@@ -27,7 +27,7 @@ all: $(TARGET)
 
 $(TARGET) : $(OBJ)
 	@echo Linking $@
-	$(QUIET)$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) $^ `$(LLVM_CONFIG) --libs bitreader core support`
+	$(QUIET)$(CXX) -o $@ $(CXXFLAGS) $^ `$(LLVM_CONFIG) --libs bitreader core support` $(LDFLAGS)
 
 clean:
 	@echo deleteing ...

@@ -1,2 +1,2 @@
 # test
-this is just a test file. 
+this repo is just a test repo, meaning nothing useful
