@@ -1,6 +1,6 @@
 # should we use our own math functions?
 option (USE_MYMATH
-        "Use tutorial provided math implementation" ON)
+    "Use tutorial provided math implementation" OFF)
 
 # add the MathFunctions library?
 #
@@ -19,6 +19,8 @@ project(Tutorial)
 # The version number.
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
 # configure a header file to pass some of the CMake settings
 # to the source code

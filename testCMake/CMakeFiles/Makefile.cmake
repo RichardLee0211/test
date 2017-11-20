@@ -43,9 +43,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "TutorialConfig.h"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "MathFunctions/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "MathFunctions/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Tutorial.dir/DependInfo.cmake"
+  "CMakeFiles/MathFunctions.dir/DependInfo.cmake"
   )
