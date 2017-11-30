@@ -1,5 +1,0 @@
-/tmp/test/lib/libhello.so.1.2
-/tmp/test/lib/libhello.so.1
-/tmp/test/lib/libhello.so
-/tmp/test/lib/libhello.a
-/tmp/test/include/hello/hello.h
