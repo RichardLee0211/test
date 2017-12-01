@@ -1,3 +1,0 @@
-/Users/richardlee/Code/test/testC/llvm/CMakeFiles/rebuild_cache.dir
-/Users/richardlee/Code/test/testC/llvm/CMakeFiles/edit_cache.dir
-/Users/richardlee/Code/test/testC/llvm/CMakeFiles/main.dir
