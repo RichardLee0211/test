@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/richardlee/Code/test/testLLVM/llvm/build/bin",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -I/usr/local/llvm/llvm-3.4-apple/include  -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk   -o CMakeFiles/main.dir/mysource.cpp.o -c /Users/richardlee/Code/test/testLLVM/llvm/src/mysource.cpp",
+  "file": "/Users/richardlee/Code/test/testLLVM/llvm/src/mysource.cpp"
+}
+]
