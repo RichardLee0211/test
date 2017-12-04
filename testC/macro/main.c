@@ -13,8 +13,8 @@ double get_log_page_size(){
 }
 
 int main(){
-    double i;
-    i = get_log_page_size();
-    // i = get_vaddr_pagenum(2);
-    return i;
+    int test = 0x07;
+    CLEAR_BIT(test, USED);
+    int test2 = !(BIT_MASK(USED)); // test2 = 0
+    return test2;
 }
