@@ -2,8 +2,7 @@
 #define _MACROS_H
 
 #include<math.h> /* for log() function */
-// #include"global.h"
-#define page_size 2
+#include"global.h"
 
 /* Bit positions */
 #define VALID			0
@@ -17,12 +16,11 @@
 #define CLEAR_BIT(flags,bit) ((flags) &= ~(BIT_MASK(bit)))
 
 
-// #define LOG_PAGE_SIZE ((int)log(page_size))
 #define LOG_PAGE_SIZE (log2(page_size))
-#define OFFSET_MASK ((1<<(LOG_PAGE_SIZE))-1)
+#define OFFSET_MASK ((1<<((int)LOG_PAGE_SIZE))-1)
 
 /* Get the page number and page offset from a virtual address. */
 #define VADDR_PAGENUM(addr) addr>>((int)LOG_PAGE_SIZE)
-#define VADDR_OFFSET(addr) addr &= (OFFSET_MASK)
+#define VADDR_OFFSET(addr) addr & (OFFSET_MASK)
 
 #endif

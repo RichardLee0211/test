@@ -13,8 +13,11 @@ double get_log_page_size(){
 }
 
 int main(){
-    int test = 0x07;
-    CLEAR_BIT(test, USED);
+    int test = 0x00;
+    // CLEAR_BIT(test, USED);
+    SET_BIT(test, USED);
+    SET_BIT(test, DIRTY);
+    SET_BIT(test, VALID);
     int test2 = !(BIT_MASK(USED)); // test2 = 0
     return test2;
 }
