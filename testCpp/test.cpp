@@ -3,6 +3,7 @@
 using namespace std;
 
 int main(){
-    string myStr;
+    int num = -1;
+    num = num%10;
     return 0;
 }
