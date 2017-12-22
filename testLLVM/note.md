@@ -168,3 +168,4 @@ $ git clone http://llvm.org/git/clang-tools-extra.git
 	-lLLVMDemangle \
 	-lcurses \
 	-lz -lm
+code from chapter4 of get start with llvm lib
