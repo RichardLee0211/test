@@ -27,13 +27,18 @@ CLANGLIBS = \
 LLVMLIBS=$(shell $(LLVM_CONFIG) --libs)
 PROJECT=myproject
 PROJECT_OBJECTS=project.o
+
 default: $(PROJECT)
-	%.o : $(SRC_DIR)/%.cpp
+
+%.o : $(SRC_DIR)/%.cpp
 	@echo Compiling $*.cpp
 	$(QUIET)$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $<
-	$(PROJECT) : $(PROJECT_OBJECTS)
+
+$(PROJECT) : $(PROJECT_OBJECTS)
 	@echo Linking $@
-	$(QUIET)$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) $^ $(CLANGLIBS)
-	$(LLVMLIBS)
+	$(QUIET)$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) $^ $(CLANGLIBS) $(LLVMLIBS)
+
 clean::
 	$(QUIET)rm -f $(PROJECT) $(PROJECT_OBJECTS)
+
+# export LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):/your/llvm/installation/lib

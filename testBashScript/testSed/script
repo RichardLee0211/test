@@ -1,0 +1,2 @@
+sed -n "/north/p" datafile
+sed "2,5d" datafile
