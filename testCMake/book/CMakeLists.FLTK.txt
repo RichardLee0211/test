@@ -1,0 +1,8 @@
+find_package(FLTK)
+if(FLTK_FOUND)
+    set(FLTK_SRCS
+        fltkl.fl
+    )
+    FLTK_WRAP_UI(wraplibFLTK ${FLTK_SRCS})
+    add_library(wraplibFLTK ${wraplibFLTK_UI_SRCS})
+endif(FLTK_FOUND)

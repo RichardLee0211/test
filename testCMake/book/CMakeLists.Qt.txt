@@ -1,0 +1,17 @@
+find_package(Qt4)
+
+if(QT4_FOUND)
+    include(${QT_USE_FILE})
+
+    # what are your ui files?
+    set(QTUI_SRCS qtwrapping.ui)
+    QT4_WRAP_UI (QTUI_H_SRCS ${QTUI_SRCS})
+    QT4_WRAP_CPP(QT_MOC _SRCS TestMoc.h)
+
+    add_library(myqtlib ${QTUI_H_SRCS} ${QT_MOC_SRCS})
+    target_link_libraries(myqtlib ${QT_LIBRARIES})
+
+    add_executable(qtwrapping qtwrappingmain.cxx)
+    target_link_libraries(qtwrapping myqtlib)
+
+endif(QT4_FOUND)

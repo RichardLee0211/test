@@ -1,0 +1,14 @@
+# Find SWIG and include the use swig file
+find_package(SWIG REQUIRED)
+set(CMAKE_SWIG_FLAGS "")
+
+# let swig know that example.i is c++ and add the -includeall
+# flag to swig
+set_source_files_properties(example.i PROPERTIES CPLUSPLUS ON)
+set_source_files_properties(example.i PROPERTIES SWIG_FLAGS "-includeall")
+
+# Create the swig mudule called example
+# using the example.i source and example.cxx
+# wig will be used to create wrap_example.css from exampel.i
+SWIG_ADD_MODULE(example python example.i example.cxx)
+SWIG_LINK_LIBRARIES(example ${PYTHON_LIBRARIES})
