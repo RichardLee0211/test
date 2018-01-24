@@ -1,8 +1,14 @@
-# Mac LLVM_SRC_PATH
+## ===========================================
+## set variable to LLVM directory
+## ========================================
+## Mac LLVM_SRC_PATH
 LLVM_SRC_PATH := /usr/local/llvm/llvm-3.4-apple
 # LLVM_SRC_PATH := /usr/local/llvm/llvm-3.4
 LLVM_BIN_PATH := $(LLVM_SRC_PATH)/bin
 
+## ==========================================
+## set varible for compiler and its flags
+## =========================================
 # CXX := g++
 CXX := clang++
 CXXFLAGS := -fno-rtti -O0 -g

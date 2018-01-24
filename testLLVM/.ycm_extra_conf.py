@@ -13,6 +13,7 @@ flags = [
         '-std=c11',
         '-xc',
         '-isystem/usr/include/',
+        '-I/usr/local/llvm/llvm-3.4-apple/include',
         ]
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]
