@@ -38,3 +38,4 @@ standalone:
 	llc sum.bc -o sum.s
 	llc sum.bc -filetype=obj -o sum.o
 	llc -march=mips -filetype=obj sum.bc -o sum.o
+	llvm-talgen -print-records insns.td
