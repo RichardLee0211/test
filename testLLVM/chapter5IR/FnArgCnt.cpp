@@ -9,7 +9,7 @@
 #include "llvm/Pass.h"
 #include "llvm/Support/raw_ostream.h"
 
-using namespce llvm;
+using namespace llvm;
 
 namespace{
     class FnArgCnt : public FunctionPass{
