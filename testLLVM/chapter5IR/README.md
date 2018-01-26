@@ -1,5 +1,10 @@
-when using opt standalone tool in LLVM, it would be useless to optimize the .bc file because I cann't actually see the changes that opt made.
+when using opt standalone tool in LLVM,
+it would be useless to optimize the .bc file
+because I cann't actually see the changes that opt made.
+
 maybe I can do it with .ll file, to look at the IR code
+
+## question??
 ``` zsh
 ➜  chapter5IR git:(master) ✗ opt -load=fnarg.so -fnargcnt < sum.bc > /dev/null
 Error opening 'fnarg.so': dlopen(fnarg.so, 9): Symbol not found: __ZN4llvm12FunctionPass17assignPassManagerERNS_7PMStackENS_15PassManagerTypeE

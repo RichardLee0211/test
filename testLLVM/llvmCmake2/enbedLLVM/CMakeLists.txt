@@ -1,0 +1,30 @@
+# A convenience variable:
+# set(LLVM_ROOT "/usr/local/llvm/llvm-3.4-apple" CACHE PATH "/usr/local/llvm/llvm-3.4-apple")
+set(LLVM_ROOT "/usr/local/llvm/llvm-3.4-apple" )
+
+## test
+# message(${LLVM_ROOT})
+# message(${CACHE})
+# message(${PATH})
+
+# A bit of a sanity check:
+if( NOT EXISTS ${LLVM_ROOT}/include/llvm )
+    message(FATAL_ERROR "LLVM_ROOT (${LLVM_ROOT}) is not a valid LLVM install")
+endif()
+
+# We incorporate the CMake features provided by LLVM:
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${LLVM_ROOT}/share/llvm/cmake")
+# include(LLVMConfig) # failed because can't find LLVMConfig
+include(~/Code/reference/LAB/llvm-3.4/cmake/modules/LLVM-Config.cmake)
+
+# Now set the header and library paths:
+include_directories( ${LLVM_INCLUDE_DIRS} )
+link_directories( ${LLVM_LIBRARY_DIRS} )
+add_definitions( ${LLVM_DEFINITIONS} )
+
+# Let's suppose we want to build a JIT compiler with support for
+# binary code (no interpreter):
+llvm_map_components_to_libraries(REQ_LLVM_LIBRARIES jit native)
+
+# Finally, we link the LLVM libraries to our executable:
+target_link_libraries(mycompiler ${REQ_LLVM_LIBRARIES})

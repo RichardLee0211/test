@@ -1,5 +1,11 @@
 # A convenience variable:
-set(LLVM_ROOT "/usr/local/llvm/llvm-3.4-apple" CACHE PATH "/usr/local/llvm/llvm-3.4-apple")
+# set(LLVM_ROOT "/usr/local/llvm/llvm-3.4-apple" CACHE PATH "/usr/local/llvm/llvm-3.4-apple")
+set(LLVM_ROOT "/usr/local/llvm/llvm-3.4-apple" )
+
+## test
+message(${LLVM_ROOT})
+# message(${CACHE})
+# message(${PATH})
 
 # A bit of a sanity check:
 if( NOT EXISTS ${LLVM_ROOT}/include/llvm )
