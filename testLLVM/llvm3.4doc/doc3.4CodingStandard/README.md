@@ -1,3 +1,5 @@
+note come from 3.4 doc, coding stand
+
 ```c++
 //===-- llvm/Instruction.h - Instruction class definition -------*- C++ -*-===//
 //
@@ -47,3 +49,27 @@ void Something::fooBar() { ... }
 ```
 
 ## Use Early Exits and continue to Simplify Code
+
+## Assert Liberally
+```cpp
+inline Value *getOperand(unsigned I) {
+    assert(I < Operands.size() && "getOperand() out of range!");
+    return Operands[I];
+}
+
+```
+
+With C++11, we can mark methods that won’t be implemented with = delete.
+
+We prefer to put a space before an open parenthesis only in control flowstatements,
+but not in normal function call expressions and function-likemacros.
+For example, this is good:
+```cpp
+if (X) ...
+for (I = 0; I != 100; ++I) ...
+while (LLVMRocks) ...
+
+somefunc(42);
+assert(3 != 4 && "laws of math are failing me");
+A = foo(42, 92) + bar(X);
+```
