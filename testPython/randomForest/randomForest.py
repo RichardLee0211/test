@@ -12,26 +12,26 @@ from math import sqrt
 # Load a CSV file
 def load_csv(filename):
     #init the dataset as a list
-    dataset = list()
+	dataset = list()
     #open it as a readable file
-    with open(filename, 'r') as file:
+	with open(filename, 'r') as file:
         #init the csv reader
-        csv_reader = reader(file)
+		csv_reader = reader(file)
         #for every row in the dataset
-	for row in csv_reader:
-	    if not row:
-		continue
+		for row in csv_reader:
+			if not row:
+				continue
             #add that row as an element in our dataset list (2D Matrix of values)
-	    dataset.append(row)
+			dataset.append(row)
     #return in-memory data matrix
-    return dataset
+	return dataset
 
 # Convert string column to float
 def str_column_to_float(dataset, column):
     #iterate throw all the rows in our data matrix
-    for row in dataset:
+	for row in dataset:
         #for the given column index, convert all values in that column to floats
-	row[column] = float(row[column].strip())
+		row[column] = float(row[column].strip())
 
 # Convert string column to integer
 def str_column_to_int(dataset, column):
@@ -58,45 +58,45 @@ def str_column_to_int(dataset, column):
 #The cross-validation process is then repeated k times (the folds),
 #with each of the k subsamples used exactly once as the validation data.
 def cross_validation_split(dataset, n_folds):
-	dataset_split = list()
-	dataset_copy = list(dataset)
-	fold_size = int(len(dataset) / n_folds)
-	for i in range(n_folds):
-		fold = list()
-		while len(fold) < fold_size:
-			index = randrange(len(dataset_copy))
-			fold.append(dataset_copy.pop(index))
-		dataset_split.append(fold)
-	return dataset_split
+    dataset_split = list()
+    dataset_copy = list(dataset)
+    fold_size = int(len(dataset) / n_folds)
+    for i in range(n_folds):
+	    fold = list()
+	    while len(fold) < fold_size:
+		    index = randrange(len(dataset_copy))
+		    fold.append(dataset_copy.pop(index))
+	    dataset_split.append(fold)
+    return dataset_split
 
 # Split a dataset based on an attribute and an attribute value
 def test_split(index, value, dataset):
     #init 2 empty lists for storing split dataubsets
-	left, right = list(), list()
+    left, right = list(), list()
     #for every row
-	for row in dataset:
+    for row in dataset:
         #if the value at that row is less than the given value
-		if row[index] < value:
+	if row[index] < value:
             #add it to list 1
-			left.append(row)
-		else:
+	    left.append(row)
+	else:
             #else add it list 2
-			right.append(row)
+	    right.append(row)
     #return both lists
-	return left, right
+    return left, right
 
 # Calculate accuracy percentage
 def accuracy_metric(actual, predicted):
     #how many correct predictions?
-	correct = 0
+    correct = 0
     #for each actual label
-	for i in range(len(actual)):
+    for i in range(len(actual)):
         #if actual matches predicted label
-		if actual[i] == predicted[i]:
+	if actual[i] == predicted[i]:
             #add 1 to the correct iterator
-			correct += 1
+	    correct += 1
     #return percentage of predictions that were correct
-	return correct / float(len(actual)) * 100.0
+    return correct / float(len(actual)) * 100.0
 
 # Evaluate an algorithm using a cross validation split
 def evaluate_algorithm(dataset, algorithm, n_folds, *args):
@@ -105,18 +105,18 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
     scores = list()
     #for each subsample
     for fold in folds:
-            #create a copy of the data
-	    train_set = list(folds)
-            #remove the given subsample
-	    train_set.remove(fold)
-	    train_set = sum(train_set, [])
-            #init a test set
-	    test_set = list()
-            #add each row in a given subsample to the test set
-	    for row in fold:
-		    row_copy = list(row)
-		    test_set.append(row_copy)
-		    row_copy[-1] = None
+        #create a copy of the data
+	train_set = list(folds)
+        #remove the given subsample
+	train_set.remove(fold)
+	train_set = sum(train_set, [])
+        #init a test set
+	test_set = list()
+        #add each row in a given subsample to the test set
+	for row in fold:
+	    row_copy = list(row)
+	    test_set.append(row_copy)
+	    row_copy[-1] = None
             #get predicted labls
 	    predicted = algorithm(train_set, test_set, *args)
             #get actual labels
@@ -128,8 +128,9 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
     #return all accuracy scores
     return scores
 
-
-# Calculate the Gini index for a split dataset
+################################################################################
+## Calculate the Gini index for a split dataset
+################################################################################
 ## this is the name of the cost function used to evaluate splits in the dataset.
 # this is a measure of how often a randomly chosen element from the set
 #would be incorrectly labeled if it was randomly labeled according to the distribution
@@ -141,61 +142,62 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 #A split in the dataset involves one input attribute and one value for that attribute.
 #It can be used to divide training patterns into two groups of rows.
 #A Gini score gives an idea of how good a split is by how mixed the classes
-#are in the two groups created by the split. A perfect separation results in
-#a Gini score of 0, whereas the worst case split that results in 50/50 classes
+#are in the two groups created by the split.
+#A perfect separation results in
+#a Gini score of 0,
+#whereas the worst case split that results in 50/50 classes
 #in each group results in a Gini score of 1.0 (for a 2 class problem).
 #We first need to calculate the proportion of classes in each group.
 def gini_index(groups, class_values):
-	gini = 0.0
+    gini = 0.0
     #for each class
-	for class_value in class_values:
+    for class_value in class_values:
         #a random subset of that class
-		for group in groups:
-			size = len(group)
-			if size == 0:
-				continue
+	for group in groups:
+	    size = len(group)
+	    if size == 0:
+		continue
             #average of all class values
-			proportion = [row[-1] for row in group].count(class_value) / float(size)
+	    proportion = [row[-1] for row in group].count(class_value) / float(size)
             #  sum all (p * 1-p) values, this is gini index
-			gini += (proportion * (1.0 - proportion))
-	return gini
+	    gini += (proportion * (1.0 - proportion))
+    return gini
 
 # Select the best split point for a dataset
 # This is an exhaustive and greedy algorithm
 def get_split(dataset, n_features):
     ##Given a dataset, we must check every value on each attribute as a candidate split,
     #evaluate the cost of the split and find the best possible split we could make.
-	class_values = list(set(row[-1] for row in dataset))
-	b_index, b_value, b_score, b_groups = 999, 999, 999, None
-	features = list()
-	while len(features) < n_features:
-		index = randrange(len(dataset[0])-1)
-		if index not in features:
-			features.append(index)
-	for index in features:
-		for row in dataset:
+    class_values = list(set(row[-1] for row in dataset))
+    b_index, b_value, b_score, b_groups = 999, 999, 999, None
+    features = list()
+    while len(features) < n_features:
+	index = randrange(len(dataset[0])-1)
+	if index not in features:
+	    features.append(index)
+    for index in features:
+	for row in dataset:
             ##When selecting the best split and using it as a new node for the tree
             #we will store the index of the chosen attribute, the value of that attribute
             #by which to split and the two groups of data split by the chosen split point.
             ##Each group of data is its own small dataset of just those rows assigned to the
             #left or right group by the splitting process. You can imagine how we might split
             #each group again, recursively as we build out our decision tree.
-			groups = test_split(index, row[index], dataset)
-			gini = gini_index(groups, class_values)
-			if gini < b_score:
-				b_index, b_value, b_score, b_groups = index, row[index], gini, groups
+	    groups = test_split(index, row[index], dataset)
+	    gini = gini_index(groups, class_values)
+	    if gini < b_score:
+		b_index, b_value, b_score, b_groups = index, row[index], gini, groups
     ##Once the best split is found, we can use it as a node in our decision tree.
     ##We will use a dictionary to represent a node in the decision tree as
     #we can store data by name.
-	return {'index':b_index, 'value':b_value, 'groups':b_groups}
+    return {'index':b_index, 'value':b_value, 'groups':b_groups}
 
 # Create a terminal node value
-
 def to_terminal(group):
     #select a class value for a group of rows.
-	outcomes = [row[-1] for row in group]
+    outcomes = [row[-1] for row in group]
     #returns the most common output value in a list of rows.
-	return max(set(outcomes), key=outcomes.count)
+    return max(set(outcomes), key=outcomes.count)
 
 #Create child splits for a node or make terminal
 #Building a decision tree involves calling the above developed get_split() function over
@@ -209,45 +211,46 @@ def to_terminal(group):
 def split(node, max_depth, min_size, n_features, depth):
     #Firstly, the two groups of data split by the node are extracted for use and
     #deleted from the node. As we work on these groups the node no longer requires access to these data.
-	left, right = node['groups']
-	del(node['groups'])
+    left, right = node['groups']
+    del(node['groups'])
 
     #Next, we check if either left or right group of rows is empty and if so we create
     #a terminal node using what records we do have.
-	# check for a no split
-	if not left or not right:
-		node['left'] = node['right'] = to_terminal(left + right)
-		return
+    # check for a no split
+    if not left or not right:
+	node['left'] = node['right'] = to_terminal(left + right)
+	return
     #We then check if we have reached our maximum depth and if so we create a terminal node.
-	# check for max depth
-	if depth >= max_depth:
-		node['left'], node['right'] = to_terminal(left), to_terminal(right)
-		return
+    # check for max depth
+    if depth >= max_depth:
+	node['left'], node['right'] = to_terminal(left), to_terminal(right)
+	return
     #We then process the left child, creating a terminal node if the group of rows is too small,
     #otherwise creating and adding the left node in a depth first fashion until the bottom of
     #the tree is reached on this branch.
-	# process left child
-	if len(left) <= min_size:
-		node['left'] = to_terminal(left)
-	else:
-		node['left'] = get_split(left, n_features)
-		split(node['left'], max_depth, min_size, n_features, depth+1)
-	# process right child
+    # process left child
+    if len(left) <= min_size:
+	node['left'] = to_terminal(left)
+    else:
+	node['left'] = get_split(left, n_features)
+	split(node['left'], max_depth, min_size, n_features, depth+1)
+    # process right child
     #The right side is then processed in the same manner,
     #as we rise back up the constructed tree to the root.
-	if len(right) <= min_size:
-		node['right'] = to_terminal(right)
-	else:
-		node['right'] = get_split(right, n_features)
-		split(node['right'], max_depth, min_size, n_features, depth+1)
+    if len(right) <= min_size:
+	node['right'] = to_terminal(right)
+    else:
+	node['right'] = get_split(right, n_features)
+	split(node['right'], max_depth, min_size, n_features, depth+1)
+    ## TODO:??
 
 #Build a decision tree
 def build_tree(train, max_depth, min_size, n_features):
     #Building the tree involves creating the root node and
-	root = get_split(train, n_features)
+    root = get_split(train, n_features)
     #calling the split() function that then calls itself recursively to build out the whole tree.
-	split(root, max_depth, min_size, n_features, 1)
-	return root
+    split(root, max_depth, min_size, n_features, 1)
+    return root
 
 # Make a prediction with a decision tree
 def predict(node, row):
@@ -257,25 +260,25 @@ def predict(node, row):
     #called again with the left or the right child nodes, depending on how the split affects the provided data.
     #We must check if a child node is either a terminal value to be returned as the prediction
     #, or if it is a dictionary node containing another level of the tree to be considered.
-	if row[node['index']] < node['value']:
-		if isinstance(node['left'], dict):
-			return predict(node['left'], row)
-		else:
-			return node['left']
+    if row[node['index']] < node['value']:
+	if isinstance(node['left'], dict):
+	    return predict(node['left'], row)
 	else:
-		if isinstance(node['right'], dict):
-			return predict(node['right'], row)
-		else:
-			return node['right']
+	    return node['left']
+    else:
+	if isinstance(node['right'], dict):
+	    return predict(node['right'], row)
+	else:
+	    return node['right']
 
 # Create a random subsample from the dataset with replacement
 def subsample(dataset, ratio):
-	sample = list()
-	n_sample = round(len(dataset) * ratio)
-	while len(sample) < n_sample:
-		index = randrange(len(dataset))
-		sample.append(dataset[index])
-	return sample
+    sample = list()
+    n_sample = round(len(dataset) * ratio)
+    while len(sample) < n_sample:
+	index = randrange(len(dataset))
+	sample.append(dataset[index])
+    return sample
 
 # Make a prediction with a list of bagged trees
 #responsible for making a prediction with each decision tree and
@@ -283,38 +286,39 @@ def subsample(dataset, ratio):
 #This is achieved by selecting the most common prediction
 #from the list of predictions made by the bagged trees.
 def bagging_predict(trees, row):
-	predictions = [predict(tree, row) for tree in trees]
-	return max(set(predictions), key=predictions.count)
+    predictions = [predict(tree, row) for tree in trees]
+    return max(set(predictions), key=predictions.count)
 
 # Random Forest Algorithm
 #esponsible for creating the samples of the training dataset, training a decision tree on each,
 #then making predictions on the test dataset using the list of bagged trees.
 def random_forest(train, test, max_depth, min_size, sample_size, n_trees, n_features):
-	trees = list()
-	for i in range(n_trees):
-		sample = subsample(train, sample_size)
-		tree = build_tree(sample, max_depth, min_size, n_features)
-		trees.append(tree)
-	predictions = [bagging_predict(trees, row) for row in test]
-	return(predictions)
+    trees = list()
+    for i in range(n_trees):
+	sample = subsample(train, sample_size)
+	tree = build_tree(sample, max_depth, min_size, n_features)
+	trees.append(tree)
+    predictions = [bagging_predict(trees, row) for row in test]
+    return(predictions)
 
-# Test the random forest algorithm
-seed(1)
-# load and prepare data
-filename = 'sonar.all-data.csv'
-dataset = load_csv(filename)
-# convert string attributes to integers
-for i in range(0, len(dataset[0])-1):
-	str_column_to_float(dataset, i)
-# convert class column to integers
-str_column_to_int(dataset, len(dataset[0])-1)
-# evaluate algorithm
-n_folds = 5
-max_depth = 10
-min_size = 1
-sample_size = 1.0
-n_features = int(sqrt(len(dataset[0])-1))
-for n_trees in [1, 5, 10]:
+if __main__ == "__main__":
+    # Test the random forest algorithm
+    seed(1)
+    # load and prepare data
+    filename = 'sonar.all-data.csv'
+    dataset = load_csv(filename)
+    # convert string attributes to integers
+    for i in range(0, len(dataset[0])-1):
+	    str_column_to_float(dataset, i)
+    # convert class column to integers
+    str_column_to_int(dataset, len(dataset[0])-1)
+    # evaluate algorithm
+    n_folds = 5
+    max_depth = 10
+    min_size = 1
+    sample_size = 1.0
+    n_features = int(sqrt(len(dataset[0])-1))
+    for n_trees in [1, 5, 10]:
 	scores = evaluate_algorithm(dataset, random_forest, n_folds, max_depth, min_size, sample_size, n_trees, n_features)
 	print('Trees: %d' % n_trees)
 	print('Scores: %s' % scores)
