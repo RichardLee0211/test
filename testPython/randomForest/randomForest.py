@@ -12,26 +12,26 @@ from math import sqrt
 # Load a CSV file
 def load_csv(filename):
     #init the dataset as a list
-	dataset = list()
+    dataset = list()
     #open it as a readable file
-	with open(filename, 'r') as file:
+    with open(filename, 'r') as file:
         #init the csv reader
-		csv_reader = reader(file)
+        csv_reader = reader(file)
         #for every row in the dataset
-		for row in csv_reader:
-			if not row:
-				continue
+	for row in csv_reader:
+	    if not row:
+		continue
             #add that row as an element in our dataset list (2D Matrix of values)
-			dataset.append(row)
+	    dataset.append(row)
     #return in-memory data matrix
-	return dataset
+    return dataset
 
 # Convert string column to float
 def str_column_to_float(dataset, column):
     #iterate throw all the rows in our data matrix
-	for row in dataset:
+    for row in dataset:
         #for the given column index, convert all values in that column to floats
-		row[column] = float(row[column].strip())
+	row[column] = float(row[column].strip())
 
 # Convert string column to integer
 def str_column_to_int(dataset, column):
