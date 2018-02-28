@@ -138,6 +138,8 @@ dataset = pd.read_csv('a_selection_example_1.csv')
 dataset = pd.read_csv('a_selection_example_1.csv', index_col=0)
 ```
 
+to see all varibles in ipython: whos
+
 TODO:
 - [x] master ipython and load python2 into it # using ipython2
 - [ ] how to using ipyhton as ipyhon notebook, to code blocks and exam each step
