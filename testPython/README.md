@@ -1,3 +1,38 @@
+# note
+you see, although ipython could auto-complete, but not as advanced as YCM, can
+only start with begin and with precise string.
+
+using vim to do python auto completion, although it's slow for the first time,
+but it's way more convinient for me.
+TODO:
+now, YCM works for lib, like pandas. and show the reminders. but don't
+work for data struture like dataframe
+
+to work with python3 since python2.7 is dying in 2020.
+open a fullscreen size shell and a little one. latter using for compile and
+loging.
+
+
+
+
+# basic of python
+python buildin data type:
+immutable types:
+- int, float, complex
+- str ""
+- bytes
+- tuple ()
+- frozenset {}
+- bool
+
+mutable types:
+- array [] not buildin type
+- bytearray  not buildin type
+- list []
+- set
+- dict {... : ... , }
+
+# install process log
 trying to download pip with get-pip.py provided by
 https://pip.readthedocs.io/en/stable/installing/
 but get errors
@@ -140,7 +175,7 @@ dataset = pd.read_csv('a_selection_example_1.csv', index_col=0)
 
 to see all varibles in ipython: whos
 
-TODO:
+# TODO:
 - [x] master ipython and load python2 into it # using ipython2
 - [ ] how to using ipyhton as ipyhon notebook, to code blocks and exam each step
 - [ ] find some analysis ways
