@@ -1,16 +1,24 @@
+# TODO:
+- [x] master ipython and load python2 into it # using ipython2
+- [x] how to using ipyhton as ipyhon notebook, to code blocks and exam each step
+- [x] find some analysis ways, A: ipython2 and pdb, python -n pdb <filename>
+
 # note
 you see, although ipython could auto-complete, but not as advanced as YCM, can
 only start with begin and with precise string.
 
 using vim to do python auto completion, although it's slow for the first time,
 but it's way more convinient for me.
+
 TODO:
 now, YCM works for lib, like pandas. and show the reminders. but don't
-work for data struture like dataframe
+work for data struture like dataframe, like df. and don't show reminders.
 
 to work with python3 since python2.7 is dying in 2020.
 open a fullscreen size shell and a little one. latter using for compile and
 loging.
+
+TODO: after all, learn algorithms and library: numpy, scipy, pandas
 
 
 
@@ -174,8 +182,3 @@ dataset = pd.read_csv('a_selection_example_1.csv', index_col=0)
 ```
 
 to see all varibles in ipython: whos
-
-# TODO:
-- [x] master ipython and load python2 into it # using ipython2
-- [ ] how to using ipyhton as ipyhon notebook, to code blocks and exam each step
-- [ ] find some analysis ways
