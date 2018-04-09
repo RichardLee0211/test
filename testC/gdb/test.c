@@ -11,9 +11,12 @@ void *thread_func(void *p_arg){
 int main(void){
     pthread_t t1, t2;
 
-    pthread_create(&t1, NULL, thread_func, "Thread 1");
-    pthread_create(&t2, NULL, thread_func, "Thread 2");
+    // pthread_create(&t1, NULL, thread_func, "Thread 1");
+    // pthread_create(&t2, NULL, thread_func, "Thread 2");
 
-    sleep(1000);
+    while(1){
+        printf("delay\n");
+        sleep(10);
+    }
     return 0;
 }
