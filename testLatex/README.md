@@ -9,7 +9,7 @@ here: http://tug.org/mactex/
     brew cask install mactex
     brew cask install texmaker # latex editor
 ```
-output: straigy, ask for passwd and don't response any more
+output: straghgy, ask for passwd and don't response any more
 ```bash
     wnloading https://homebrew.bintray.com/bottles/little-cms2-2.9.high_sierra.bottle.1.tar.gz
 ######################################################################## 100.0%
@@ -64,7 +64,74 @@ couldn't uninstall neither
 #<Process::Status: pid 509 exit 1>
 ```
 
-##
+### install Mactex via downloading the package, more than 5GB is occupied
+including
+ - bibdesk, the bible manager
+ - latexIt, have no idea what's it for
+ - tex live utility, look like the page manager for latex
+
+!! seting PATH in bashrc file is stupid idea, install mactex will change PATH, but
+bashrc set it back. using add, don't edit the original PATH
+
+maybe sharelatex.com is good option
+
+here, using mactex via command line, I'm lack of patient
+https://tex.stackexchange.com/questions/142554/command-line-pdflatex-vs-texshop
+
+## tutorial
 from: http://www.tug.org.in/tutorials.html
+can't visit this, the indian Tex user Group: http://sarovar.org/projects/pstricks/
 
 one happy thing is that remote have latex installed
+what happened when type "latex on remote"
+```bash
+    [wli100@remote06 testLatex]$ ls
+    README.md  test1.tex  test2.tex
+    [wli100@remote06 testLatex]$ latex test2.tex
+    This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=latex)
+     restricted \write18 enabled.
+     entering extended mode
+     (./test2.tex
+     LaTeX2e <2017/01/01> patch level 3
+     Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+
+     ! LaTeX Error: File `tutorial.cls' not found.
+
+     Type X to quit or <RETURN> to proceed,
+     or enter new name. (Default extension: cls)
+
+     Enter file name:
+     ! Emergency stop.
+     <read *>
+
+     l.2 \pagestyle
+                   {heading}^^M
+                   No pages of output.
+                   Transcript written on test2.log.
+```
+
+xdvi in ssh: remote
+```bash
+    [wli100@remote06 testLatex]$ xdvi
+    perl: warning: Setting locale failed.
+    perl: warning: Please check that your locale settings:
+            LANGUAGE = (unset),
+            LC_ALL = (unset),
+            LC_CTYPE = "zh_CN.UTF-8",
+            LANG = "en_US.UTF-8"
+            are supported and installed on your system.
+    perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+    Error: Can't open display:
+```
+
+## log
+pdftex is a different program with pdflatex
+vim-llp seems doesn't work, this plugin
+https://github.com/xuhdev/vim-latex-live-preview
+but I can do
+:!pdflatex test1.tex
+and open manually
+so cool, YCM seem to have to latex autocomplete
+
+like HTML, why do I need to learn Latex
+for drawing UML and write design docment
