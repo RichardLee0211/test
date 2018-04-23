@@ -1,3 +1,6 @@
+/**
+ * may from dash c++ document, algorithm
+ */
 #include <algorithm>
 #include <vector>
 #include <iostream>
