@@ -47,3 +47,16 @@ std::out_of_range() reference in http://www.cplusplus.com/reference/stdexcept/ou
 ```
 
 ### 12.1.2 managing memory directly
+### 12.1.3 using shared_ptrs with new, PageNo.559
+```cpp
+    share_ptr<int> p1 = new int(1024); // error: must use direct initializeion
+    share_ptr<int> p2(new int(1024)); // ok: uses direct initialize
+
+    share_ptr<int> clone(int p){
+        return new int(p); // error: implicit  conversion to share_ptr<int>
+    }
+    shared_ptr<int> clone(int p){
+        // ok: explicity create a shared_ptr<int> from int*
+        return shared_ptr<int> (new int(p));
+    }
+```
