@@ -17,3 +17,7 @@ example/ObfuscatedStrings
 what does this code do ??
 
 TODO: ??using objdump -disassemble <objectname>
+
+context-free grammar: In formal language theory, a context-free grammar is a
+certain type of formal grammar: a set of production rules that describe all
+possible strings in a given formal language. Production rules are simple replacements.
