@@ -208,6 +208,179 @@ example with buildin array
 #### Eliminating Duplicates
 ```cpp
     void elimDups(vector<string> &words){
-        // sort wor alphabetically so we can find
+        // sort wor alphabetically so we can find the duplicates
+        sort(words.begin(), words.end());
+        // unique reorders the input range so that each word apperas once in
+        // the front portion of the range and returns an iterator one past the unique range
+        auto end_unique = unique(words.begin(), worfs.end());
+        // erase uses a vector operation to remove the nonunique elements
+        words.erase(end_unique, words.end());
     }
 ```
+
+this is a strange output after unique, what's after end_unique is unknown
+```cpp
+    template<typename T>
+    int print(const vector<T> &that){
+        for(auto i=that.cbegin(); i<that.cend(); ++i)
+            std::cout<< *i <<" ";
+        std::cout<<std::endl;
+        return 0;
+    }
+
+    template<typename T>
+    void elimDups(vector<T> &words){
+        std::cout<<"origin: "; print(words);
+        sort(words.begin(), words.end());
+        std::cout<<"after sort: "; print(words);
+        auto end_unique = unique(words.begin(), words.end());
+        std::cout<<"after unique: "; print(words);
+        words.erase(end_unique, words.end());
+        std::cout<<"after erase: "; print(words);
+    }
+
+    int main(){
+        vector<int> v1{11, 1, 3, 4, 5, 6, 1,2,3,4,5};
+        vector<int> v2 = v1;
+        elimDups(v1);
+    }
+```
+```output
+    ➜  testCppPrimer git:(master) ✗ ./a.out
+    origin: 11 1 3 4 5 6 1 2 3 4 5
+    after sort: 1 1 2 3 3 4 4 5 5 6 11
+    after unique: 1 2 3 4 5 6 11 5 5 6 11
+    after erase: 1 2 3 4 5 6 11
+```
+The library algorithms operate on iterators, not containers. Therefore,
+an algorithm cannot (directly) add or remove elements.
+but algorithms can change value by std::swap or assignment
+
+#### using container operations or remove elements
+
+## 10.3 customizing operations
+
+### 10.3.1 passing a function to an algorithm
+#### predicates
+A predicate is an expression that can be called and that returns a value that can be used as a condition.
+```cpp
+    // comparison function to be used to sort by word length
+    bool isShorter(const string &s1, const string &s2)
+    {
+        return s1.size() < s2.size();
+    }
+    // sort on word length, shortest to longest
+    sort(words.begin(), words.end(), isShorter);
+```
+but this doesn't do secondary sort
+
+#### sorting algorithms
+- stable sort
+maintain the original sequels if they are equal to sort function
+
+### 10.3.2 lambda expression
+- find_if
+#### introducing lambdas
+[capture list] (parameter list) -> return type { function body }
+#### passing arguments to a lambda
+#### using the capture list
+#### call find_if
+#### for_each algorithm
+#### putting it all together
+capture list is only for (non-static) varibles defined in the surrounding function
+```cpp
+    // put words in alphabetical order and remove duplicates
+    // resort by length, maintaining alphabetical order among words of the same length
+    // get an iterator to the first element whose size() is >= sz
+    // compute the number of elements with size >= sz
+    // print words of the given size or longer, each one followed by a space
+    void biggies(vector<string> &words, vector<string>::size_type sz)
+    {
+        elimDups(words);
+        stable_sort(words.begin(), words.end(), isShorter);
+        // use lambda because the UnaryPredicate only could pass one parameter
+        auto wc = find_if(words.begin(), words.end(),
+                [sz](const string &a){ return a.size() >= sz; });
+        auto count = words.end() - wc;
+        cout << count << " " << make_plural(count, "word", "s")
+            << " of length " << sz << " or longer" << endl;
+        for_each(wc, words.end(),
+                [](const string &s){cout << s << " ";}); cout << endl;
+    }
+```
+
+### 10.3.3 lambda captures and returns
+TODO: skipped, come back when you feel necessary
+#### capture by value
+#### capture by reference
+#### implicit captures
+#### mutable lambdas
+#### specifying the lambda return type
+
+### 10.3.4 binding arguments
+#### ...
+
+## 10.4 revisiting Iterators
+### 10.4.1 insert iterators
+### 10.4.2 iostream iterators
+### 10.4.3 reverse iteratiors
+
+## 10.5 structure of generic algorithm
+## 10.6 container-specific algorithm
+
+# ch11 associative containers
+!!Associative and sequential containers differ from one another in a fundamental
+way: Elements in an associative container are stored and retrieved by a key.
+In contrast, elements in a sequential container are stored and accessed
+sequentially by their position in the container.
+
+The two primary associative-container types are map and set.
+
+## 11.1 using an associative container
+#### using a map
+```cpp
+    // count the number of times each word occurs in the input
+    map<string, size_t> word_count; // empty map from string to size_t
+    string word;
+    while (cin >> word)
+        ++word_count[word];
+    for (const auto &w : word_count)
+        cout << w.first << " occurs " << w.second
+        << ((w.second > 1) ? " times" : " time") << endl;
+```
+#### using a set
+```cpp
+    // count the number of times each word occurs in the input
+    map<string, size_t> word_count; // empty map from string to size_t
+    set<string> exclude = {"The", "But", "And", "Or", "An", "A",
+        "the", "but", "and", "or", "an", "a"};
+    string word;
+    while (cin >> word)
+        if (exclude.find(word) == exclude.end())
+            ++word_count[word]; // fetch and increment the counter for word
+```
+
+## 11.2 overview of the associative containers
+### 11.2.1 defining an associative container
+```cpp
+    map<string, size_t> word_count; // empty
+    // list initialization
+    set<string> exclude = {"the", "but", "and", "or", "an", "a",
+                            "The", "But", "And", "Or", "An", "A"};
+    // three elements; authors maps last name to first
+    map<string, string> authors = {
+                    {"Joyce", "James"},
+                    {"Austen", "Jane"},
+                    {"Dickens", "Charles"} };
+```
+
+#### initializing a multimap or multiset
+...
+
+## 11.3 operations on associative containers
+
+
+
+# others
+in my note system, TODO: and ?? is the most used mark
+and what about warning, note, etc
