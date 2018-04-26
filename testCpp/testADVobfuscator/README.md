@@ -1,12 +1,13 @@
+# this is note of ADVobfucator
 this is for the reimplement obfuscatorCall under C++98
 
 ALWAYS_INLINE is define in inline.h
 ```cpp
-#if defined(_MSC_VER)
-#define ALWAYS_INLINE __forceinline
-#else
-#define ALWAYS_INLINE __attribute__((always_inline))
-#endif
+    #if defined(_MSC_VER)
+    #define ALWAYS_INLINE __forceinline
+    #else
+    #define ALWAYS_INLINE __attribute__((always_inline))
+    #endif
 ```
 
 constexpr
@@ -14,26 +15,60 @@ not exactly sure why I need it, since C++11
 
 the feature of C++11
 ```cpp
-testADVobfuscator git:(master) ✗ clang++ test.cpp
-test.cpp:3:13: warning: variadic templates are a C++11 extension [-Wc++11-extensions]
-template<int...I>
-            ^
-test.cpp:5:5: error: unknown type name 'constexpr'
-constexpr inline MetaString1(const char* str):
-                    ^
-test.cpp:5:15: error: expected member name or ';' after declaration specifiers
-constexpr inline MetaString1(const char* str):
-                            ~~~~~~~~~ ^
-test.cpp:23:1: error: unknown type name 'constexpr'
-constexpr inline const char* operator "" _obfuscatoed1(const char* str, size_t)
-                            ^
-test.cpp:23:11: error: expected unqualified-id
-constexpr inline const char* operator "" _obfuscatoed1(const char* str, size_t)
-                                      ^
-test.cpp:31:23: error: expected ';' after expression
-std::cout<<"hello"_obfuscatoed1<<std::endl;
-^
-;
-test.cpp:31:23: error: use of undeclared identifier '_obfuscatoed1'
-1 warning and 6 errors generated.
+    testADVobfuscator git:(master) ✗ clang++ test.cpp
+    test.cpp:3:13: warning: variadic templates are a C++11 extension [-Wc++11-extensions]
+    template<int...I>
+                ^
+    test.cpp:5:5: error: unknown type name 'constexpr'
+    constexpr inline MetaString1(const char* str):
+                        ^
+    test.cpp:5:15: error: expected member name or ';' after declaration specifiers
+    constexpr inline MetaString1(const char* str):
+                                ~~~~~~~~~ ^
+    test.cpp:23:1: error: unknown type name 'constexpr'
+    constexpr inline const char* operator "" _obfuscatoed1(const char* str, size_t)
+                                ^
+    test.cpp:23:11: error: expected unqualified-id
+    constexpr inline const char* operator "" _obfuscatoed1(const char* str, size_t)
+                                          ^
+    test.cpp:31:23: error: expected ';' after expression
+    std::cout<<"hello"_obfuscatoed1<<std::endl;
+    ^
+    ;
+    test.cpp:31:23: error: use of undeclared identifier '_obfuscatoed1'
+    1 warning and 6 errors generated.
 ```
+
+example/DetectDebugger
+when debugger with mac, string disappear
+```cpp
+    OBFUSCATED_CALL_P0(DetectDebugger, ImportantFunctionInTheApplication);
+```
+
+example/ObfuscatedCalls
+no surprise, but what this do to the original code??
+```cpp
+    OBFUSCATED_CALL0(FunctionToProtect);
+    auto result = OBFUSCATED_CALL_RET(int, FunctionToProtectWithParameters, OBFUSCATED("did"), OBFUSCATED("again"));
+```
+
+example/ObfuscatedStrings
+what does this code do ??
+
+TODO: ??using objdump -disassemble <objectname>
+
+context-free grammar: In formal language theory, a context-free grammar is a
+certain type of formal grammar: a set of production rules that describe all
+possible strings in a given formal language. Production rules are simple replacements.
+
+in the macro, use code in MataFSM.h
+
+# learning Finite State Machine for ObfuscatedCalls
+from https://www.boost.org/doc/libs/1_67_0/libs/msm/doc/HTML/pr01.html
+where can I get the pdf of this document
+
+document like this make me unable to make notes
+concept: state machine, state, transition, event
+from https://www.boost.org/doc/libs/1_67_0/libs/msm/doc/HTML/ch02s02.html
+
+I like this kind of tutorial, boost_MSM_tutorial.pdf

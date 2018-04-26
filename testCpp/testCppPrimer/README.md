@@ -392,6 +392,13 @@ int compare(const char (&p1)[N], const char (&p2)[M]){
 }
 ```
 
+#### ...
+#### tempalte compilation
+As a result, unlike nontemplate code, headers for templates typically include
+definitions as well as declarations
+
+### 16.1.2 class templates
+
 
 
 
