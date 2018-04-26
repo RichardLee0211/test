@@ -378,6 +378,20 @@ The two primary associative-container types are map and set.
 ...
 
 ## 11.3 operations on associative containers
+...
+
+# ch16 templates and generic programming
+## 16.1 defining a template
+### 16.1.1 function templates
+#### ...
+#### nontype template parameters
+```cpp
+template<unsigned N, unsigned M>
+int compare(const char (&p1)[N], const char (&p2)[M]){
+    return strcmp(p1, p2);
+}
+```
+
 
 
 
