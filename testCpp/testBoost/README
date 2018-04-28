@@ -161,3 +161,52 @@ by Dimitri Reiswich
 
 just introduce
 TODO: to be continue
+
+# boost project
+there is a example fold in the boost/msm fold, pretty good
+output of SimpleTutorial.cpp
+```bash
+    entering: Player
+    entering: Empty
+    leaving: Empty
+    player::open_drawer
+    entering: Open
+    -> Open
+    leaving: Open
+    player::close_drawer
+    entering: Empty
+    -> Empty
+    wrong disk, sorry
+    -> Empty
+    leaving: Empty
+    player::store_cd_info
+    entering: Stopped
+    -> Stopped
+    leaving: Stopped
+    player::start_playback
+    entering: Playing
+    leaving: Playing
+    player::pause_playback
+    -> Paused
+    player::resume_playback
+    entering: Playing
+    -> Playing
+    leaving: Playing
+    player::pause_playback
+    -> Paused
+    player::stop_playback
+    entering: Stopped
+    -> Stopped
+    leaving: Stopped
+    entering: Stopped
+    -> Stopped
+    stop fsm
+    leaving: Stopped
+    leaving: Player
+```
+
+what's bjam
+TODO: how doesn't boost manager it's project??
+there are so many other things in boost project
+
+well, I can read the source code, but I'd rather have to API document

@@ -71,4 +71,45 @@ document like this make me unable to make notes
 concept: state machine, state, transition, event
 from https://www.boost.org/doc/libs/1_67_0/libs/msm/doc/HTML/ch02s02.html
 
-I like this kind of tutorial, boost_MSM_tutorial.pdf
+I like this kind of tutorial, boost_MSM_tutorial.pdf, it's in the original document
+
+seem have many function called in MetaFSM.h
+#define OBFUSCATED_CALL0(f) \
+                andrivet::ADVobfuscator::ObfuscatedCall \
+                <andrivet::ADVobfuscator::Machine1::Machine> \
+                (MakeObfuscatedAddress(f, \
+                andrivet::ADVobfuscator::MetaRandom<__COUNTER__, 400>::value + 278))
+
+still have problem reading this part:
+from MetaFSM.h
+```cpp
+    // When function F is not returning a value
+    // FSM: Finite State Machine
+    // F: Function (target)
+    // Args: Arguments of target
+    template<template<typename, typename = Void> class FSM, typename F, typename... Args>
+    inline void ObfuscatedCall(F f, Args&&... args)
+    {
+        using E = event<Void, F, Args&...>;
+        using M = msm::back::state_machine<FSM<E, Void>>;
+        using Run = typename FSM<E, Void>::template Run<F, Args...>;
+
+        M machine;
+        Run::run(machine, f, std::forward<Args>(args)...);
+    }
+```
+
+cann't use open in tmux, explained here:
+https://apple.stackexchange.com/questions/243067/terminal-app-and-tmux-session-cant-use-open-command-without-tmux-it-works
+```bash
+    The window server could not be contacted. open must be run with a user logged in at the console, either as that user or as root.
+
+    brew update
+    brew install reattach-to-user-namespace
+    brew upgrade reattach-to-user-namespace
+    echo "set -g default-command \"reattach-to-user-namespace -l ${SHELL}\"" >> ~/.tmux.conf
+```
+and solved here:
+http://www.elmund.io/2015/07/10/open-command-in-osx-tmux/
+
+in the project, boost provide it's tutorial at .../boost_1_66_0/libs/msm/doc/PDF/examples
