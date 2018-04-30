@@ -18,6 +18,7 @@ struct choose_larger
 {
     typedef T1 type;
 };
+//
 // specialization for the case where sizeof(T2) >= sizeof(T1)
 template< typename T1, typename T2 >
 struct choose_larger< T1,T2,false >

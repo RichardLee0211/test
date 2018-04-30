@@ -113,3 +113,5 @@ and solved here:
 http://www.elmund.io/2015/07/10/open-command-in-osx-tmux/
 
 in the project, boost provide it's tutorial at .../boost_1_66_0/libs/msm/doc/PDF/examples
+
+online tutorial here: http://redboltz.wikidot.com/boost-msm-guide
