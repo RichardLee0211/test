@@ -1,6 +1,5 @@
 # test
 this repo is just a test repo, meaning nothing useful
 
-this is a test line
-this is a test line two
-this is a test line three
+I keep curious about tech and log them here
+this is my public test repository after my private note repository
