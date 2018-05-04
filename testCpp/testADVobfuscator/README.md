@@ -61,7 +61,7 @@ context-free grammar: In formal language theory, a context-free grammar is a
 certain type of formal grammar: a set of production rules that describe all
 possible strings in a given formal language. Production rules are simple replacements.
 
-in the macro, use code in MataFSM.h
+in the macro, use code in MetaFSM.h
 
 # learning Finite State Machine for ObfuscatedCalls
 from https://www.boost.org/doc/libs/1_67_0/libs/msm/doc/HTML/pr01.html
@@ -115,3 +115,26 @@ http://www.elmund.io/2015/07/10/open-command-in-osx-tmux/
 in the project, boost provide it's tutorial at .../boost_1_66_0/libs/msm/doc/PDF/examples
 
 online tutorial here: http://redboltz.wikidot.com/boost-msm-guide
+
+## TODO to deduce from C++11 code to C++98
+- [ ] rvalue &&
+- [ ] template<...>
+- [ ] std::tuple
+- [ ] constexpr
+- [ ] std::enable_if
+
+tuple logs
+```bash
+    ./Lib/MetaFSM.h:24:#include <tuple>
+    ./Lib/MetaFSM.h:61:            // Generate a list of indexes to extract arguments from tuple
+    ./Lib/MetaFSM.h:79:        std::tuple<Args&...> data_;
+    ./Lib/tags:100:data_    MetaFSM.h       /^        std::tuple<Args&...> data_;$/;"       m       struct:andrivet::ADVobfuscator::event
+```
+
+rvalue reference
+```bash
+    ./Lib/MetaFSM.h:88:    inline R ObfuscatedCallRet(F f, Args&&... args)
+    ./Lib/MetaFSM.h:104:    inline void ObfuscatedCall(F f, Args&&... args)
+    ./Lib/MetaFSM.h:123:    inline R ObfuscatedCallRetP(F f, Args&&... args)
+    ./Lib/MetaFSM.h:140:    inline void ObfuscatedCallP(F f, Args&&... args)
+```
