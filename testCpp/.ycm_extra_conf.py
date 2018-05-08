@@ -10,7 +10,7 @@ flags = [
         '-fexceptions',
         '-ferror-limit=10000',
         '-DNDEBUG',
-        '-std=c++14',
+        '-std=c++17',
         '-xc++',
         '-isystem/usr/include/',
         ]
