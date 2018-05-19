@@ -3,6 +3,9 @@ import java.io.*;
 
 class test_internal{
     public int j;
+    public double what;
+    public char c;
+    public String str;
 }
 
 public class test extends test_internal{
@@ -17,6 +20,7 @@ public class test extends test_internal{
 
     public void setI(int i) {
         this.i = i;
+        this.c = 'w';
     }
 
     @Override
