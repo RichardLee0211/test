@@ -31,5 +31,6 @@ constexpr inline const char* operator "" _obfuscatoed1(const char* str, size_t)
 
 int main(){
     // std::cout<<"what"_obfuscatoed1<<std::endl;
-    std::cout<<OBFUSCATED("hello")<<std::endl;
+    OBFUSCATED("hello1");
+    const char * c = "hello2";
 }
