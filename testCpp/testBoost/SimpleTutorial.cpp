@@ -43,6 +43,7 @@ namespace
         DiskTypeEnum disc_type;
     };
 
+    // TODO: what's this inheritance for??
     // front-end: define the FSM structure
     struct player_ : public msm::front::state_machine_def<player_>
     {
@@ -183,6 +184,7 @@ namespace
         // needed to start the highest-level SM. This will call on_entry and mark the start of the SM
         p.start();
         // go to Open, call on_exit on Empty, then action, then on_entry on Open
+        // TODO: open_close don't override operator()
         p.process_event(open_close()); pstate(p);
         p.process_event(open_close()); pstate(p);
         // will be rejected, wrong disk type

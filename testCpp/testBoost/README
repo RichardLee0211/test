@@ -217,3 +217,152 @@ well,
 TODO:
 when to use template, what's its use pattern, don't feel it in a code way
 how to use a template and how to test it??
+
+# official document
+from http://www.boost.org/
+myClass const & is the same as const myClass & ??
+
+# boost_MSM_tutorial.pdf
+so, according to the output, every time we need a state(struct), we create one(struct ctor).
+inheritance from boost::statechart::simple_state<Stopped, Active>
+and only add typedef sc::transition<EvStartStop, Stopped> reactions; will do the transition job.
+that's to say, I still need to know the implement of 3rd party lib, this is too wired way to do it
+
+## timer
+```cpp
+    // this is from boost_MSM_tutorial.pdf
+    #include<boost/statechart/event.hpp>
+    #include<boost/statechart/state_machine.hpp>
+    #include<boost/statechart/simple_state.hpp>
+    #include<boost/statechart/transition.hpp>
+
+    #include<iostream>
+    #include<ctime>
+
+    namespace sc = boost::statechart;
+
+    /*
+    */
+    struct IElapsedTime{
+        virtual double ElapsedTime() const = 0;
+    };
+
+    struct EvStartStop : sc::event<EvStartStop> {
+        EvStartStop() { std::cout<<"do EvStartStop\n"; }
+    };
+    struct EvReset : sc::event<EvReset> {
+        EvReset() { std::cout<<"do EvReset\n"; }
+    };
+
+    /* forward declare */
+    struct Active;
+    struct Stopped;
+    struct Running;
+
+    struct StopWatch : sc::state_machine<StopWatch, Active> {
+        StopWatch() { std::cout<<"StopWatch Mechine ctor\n"; }
+        ~StopWatch() { std::cout<<"StopWatch Mechine detor\n"; }
+
+        /* TODO: what's this method do??
+        */
+        double ElapsedTime() const{
+            return state_cast<const IElapsedTime &>().ElapsedTime();
+        }
+    };
+
+    struct Active : sc::simple_state< Active, StopWatch, Stopped> {
+        typedef sc::transition<EvReset, Active> reaction;
+        Active() : elapsedTime_(0.0) { std::cout<<"\tAvtive enter\n"; }
+        ~Active() {
+            std::cout<<"\tActive exit\n";
+            std::cout<<"\t\ttotal time: "<<this->elapsedTime_<<std::endl;
+        }
+
+        double ElapsedTime() const { return elapsedTime_; }
+        double &ElapsedTime() { return elapsedTime_; }
+
+    private:
+        double elapsedTime_;
+    };
+
+    struct Stopped : IElapsedTime, sc::simple_state<Stopped, Active> {
+        typedef sc::transition<EvStartStop, Running> reactions;
+        Stopped() { std::cout<<"\t\tStopped enter\n"; }
+        ~Stopped() { std::cout<<"\t\tStopped exit\n"; }
+
+        virtual double  ElapsedTime() const{
+            return context<Active>().ElapsedTime();
+        }
+    };
+    struct Running : IElapsedTime, sc::simple_state<Running, Active> {
+        typedef sc::transition<EvStartStop, Stopped> reactions;
+        Running() : startTime_( std::time(0) ) { std::cout<<"\t\tRuning enter\n"; }
+        ~Running() {
+            std::cout<<"\t\tRuning exit\n";
+            std::cout<<"\t\ttime: "<<startTime_<<std::endl;
+            // context<Active>().ElapsedTime() += std::difftime( std::time(0), startTime_);
+            context<Active>().ElapsedTime() = ElapsedTime();
+            // std::cout<<"\t\ttotal time: "<<context<Active>().ElapsedTime()<<std::endl;
+        }
+        virtual double ElapsedTime() const{
+            return context<Active>().ElapsedTime() + std::difftime(std::time(0), this->startTime_);
+        }
+    private:
+        std::time_t startTime_;
+    };
+
+    int main(){
+        StopWatch myWatch;
+        myWatch.initiate();
+        std::cout<< myWatch.ElapsedTime() <<"\n";
+        myWatch.process_event( EvStartStop() );     // running ctor
+        sleep(1);
+        std::cout<< myWatch.ElapsedTime() <<"\n";
+        myWatch.process_event( EvStartStop() );
+        myWatch.process_event( EvStartStop() );     // running
+        sleep(1);
+        std::cout<< myWatch.ElapsedTime() <<"\n";
+        myWatch.process_event( EvStartStop() );
+        myWatch.process_event( EvStartStop() );     // running
+        sleep(1);
+        std::cout<< myWatch.ElapsedTime() <<"\n";
+        myWatch.process_event( EvReset() );
+        return 0;
+    }
+    // notes:
+    // how to record time in C++ ?: startTime_ is variable and don't change along
+    // the time, but std::time(0) is current time based on 1970
+```
+### state local storage
+
+to measure a function exec time, this's a great way to do it with C++
+```cpp
+    // I really like this code, from https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
+    // and by now, I now what's meaning of using functor
+    template<typename TimeT = std::chrono::milliseconds>
+    struct measure
+    {
+        template<typename F, typename ...Args>
+        static typename TimeT::rep execution(F&& func, Args&&... args)
+        {
+            auto start = std::chrono::steady_clock::now();
+            std::forward<decltype(func)>(func)(std::forward<Args>(args)...);
+            auto duration = std::chrono::duration_cast< TimeT>
+                (std::chrono::steady_clock::now() - start);
+            return duration.count();
+        }
+    };
+
+    int main() {
+        std::cout << measure<>::execution(main2) << std::endl;
+    }
+```
+I still don't understand cs540::Function, leave it be for now
+
+## Intermediate topics: A digital camera
+### Spreading a state machine over multiple translation units
+### Deferring events
+### Guards
+### In-state reactions
+### transition actions
+stop before advanced topics and this document don't help me a lot, because I am not so used to this style. It seems require a lot background
