@@ -217,4 +217,6 @@ int main(){
     std::cout<<OBFUSCATED2("what");
     // static_assert(OBFUSCATED2("what")[0]=='w', "");
     static_assert(add(1)==2,"");
+    OBFUSCATED("hello1");
+    const char * c = "hello2";
 }
