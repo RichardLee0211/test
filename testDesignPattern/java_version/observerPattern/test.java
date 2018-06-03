@@ -1,5 +1,6 @@
 // Java implementation of above design for Cricket App. The
 // problems with this design are discussed below.
+// here: https://www.geeksforgeeks.org/observer-pattern-set-1-introduction/
 
 // A class that gets information from stadium and notifies
 // display elements, CurrentScoreDisplay & AverageScoreDisplay
