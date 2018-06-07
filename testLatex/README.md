@@ -134,9 +134,29 @@ and open manually
 so cool, YCM seem to have to latex autocomplete
 
 like HTML, why do I need to learn Latex
-for drawing UML and write design docment
+for drawing UML and write design document
 but it pays too much just to draw that picture, like uml2.tex
 and it requires different package from the 5 GB install of mactex
 
 while, I find "what you see is what you get" is a good way to do art work
 just word doesn't do good in compatibility and stable in macOS
+
+# log2
+following the book from IndiaTexUserGroup
+now, I come back again, with my new macbook pro
+
+## ch3 introduction to Latex
+```latex
+    % class: article, book, report, letter, report, article
+    % options: fontSize, paperSize, pageFormat
+    % 10pt, [letterpaper, legalpaper, executivepaper], one column, two column
+    \documentclass[options]{class}
+```
+
+A LATEX document has broadly three parts viz., frontmatter, mainmatter and backmatter.
+
+## ch4 Lists, etc.
+see in the .tex file, nothing so surprise me
+### 4.2 displayed text
+
+## ch5. several kinds of boxes
