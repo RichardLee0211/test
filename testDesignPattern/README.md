@@ -119,7 +119,12 @@ TODO: how to hardware interrupt interrupt a process in xv6
     }
 ```
 
+wired stuff, when I edit a pdf file in mac and send it to Ubuntu, what edit part
+is missing and print out nothing
+
 ## Decorator pattern
+pizza and toping scenario
+
 TODO: to be continue
 
 ## others
