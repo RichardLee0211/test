@@ -160,3 +160,6 @@ see in the .tex file, nothing so surprise me
 ### 4.2 displayed text
 
 ## ch5. several kinds of boxes
+some config have preview effect of latex, but I don't like it, I can't even see the whole code. I need it when I'm not familiar with syntax
+
+## ch6. Floats

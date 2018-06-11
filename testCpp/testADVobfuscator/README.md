@@ -264,6 +264,9 @@ namespace alias, nested namespace
 
 TODO: I understand the algorithm but what about hacker skill, learning IDA before moving to 4th implement
 
+# application 2 - obfuscate calls
+TODO: to be continue
+
 
 ## TODO to deduce from C++11 code to C++98
 - [x] rvalue &&
