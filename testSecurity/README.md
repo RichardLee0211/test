@@ -26,6 +26,18 @@ Aria2, This is what I wanted serverial years ago. Could be a cool software to re
 
 it seems aria2 is very popular and pan.baidu.com is limited in US
 
+download MVware Fusion 8 from here: https://my.vmware.com/group/vmware/details?downloadGroup=FUS-8510&productId=527&download=true&fileId=167b6f633dc17a55c95d92619e7726a9&secureParam=3a79e727d026057034d66dcd6ee60b25&uuId=7230ac03-4273-4072-aba2-63bf89077263&downloadType=
+and get license key from here: https://blog.csdn.net/zhao_liwei/article/details/50685889
+FY75A-06W1M-H85PZ-0XP7T-MZ8E8
+ZY7TK-A3D4N-08EUZ-TQN5E-XG2TF
+FG1MA-25Y1J-H857P-6MZZE-YZAZ6
+and may could get VMware from here: http://www.orsoon.com/news/174624.html
+bother about it later
+and one post save me, here: http://planetvm.net/blog/?p=3240
+system preference->securityandPrivate->allow the block message
+
+
+
 this might be the first time I try to look at PE file and windows reverse engienerring
 and this would begin with search, have fun
 https://security.stackexchange.com/questions/37921/windows-pe-file-and-malwares

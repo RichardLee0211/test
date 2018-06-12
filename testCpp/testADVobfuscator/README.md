@@ -315,3 +315,5 @@ more gaps between different compiler
         return MetaString2<I>(str).decrypt();
     }
 ```
+
+## reading white paper from ADVobfuscator

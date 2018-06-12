@@ -163,3 +163,12 @@ see in the .tex file, nothing so surprise me
 some config have preview effect of latex, but I don't like it, I can't even see the whole code. I need it when I'm not familiar with syntax
 
 ## ch6. Floats
+
+about vim
+now, I am search through my vimrc to exam the quick fix window. feel like I am lose control of this feature
+I set let g:syntastic_auto_loc_list=0 to stop automatically show up, I don't think it's doing any help
+and here: https://stackoverflow.com/questions/3262037/how-to-quit-vim-quickfix
+:cclose # close the quick fix window
+:copen  # open the quick fix window
+:cnext or :cn # next error
+:cprevious or :cp # previous error
