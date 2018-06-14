@@ -22,3 +22,6 @@ multiply comment
     example for embedding
     comment in your document
 ```
+
+# ch5
+at this point, leave vimtex plugin alone

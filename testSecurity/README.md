@@ -5,7 +5,7 @@ for security study, I would need a virtual mechine, and it would be serveral opt
 - QEMU, open source but mainly for Linux
 - boot camp, free but it's most like a dual system, refuse
 
-I need windows because all my evil software are of window
+I need windows because all my evil software are of windows
 try parallels first and download window 10 from parallel
 I prefer VMware
 got to have a windows running first
@@ -45,3 +45,20 @@ and MSDN documentary in PE format
 here: https://msdn.microsoft.com/en-us/library/windows/desktop/ms680547(v=vs.85).aspx
 
 Portable Executable(PE) and Common Object File Format(COFF)
+
+since I have install MVware and would need system ISO file, here's usually hacking linux distro
+https://resources.infosecinstitute.com/top-10-linux-distro-ethical-hacking-penetration-testing/#gref
+
+install Kali with root abcd
+
+# note of "Pratical Reverse Engineering.pdf"
+book list:
+- [ ] The C Programming Language, by Brian Kernighan and Dennis Ritchie (Prentice Hall, 1988)
+- [ ] C: A Reference Manual, by Samuel Harbison (Prentice Hall, 2002)
+- [ ] Expert C Programming: Deep C Secrets, by Peter van der Linden (Prentice Hall, 1994)
+- [ ] Compilers: Principles, Techniques, and Tools, by Alfred Aho, Ravi Sethi, and Jeffrey Ullman, (Prentice Hall, 1994)
+- [ ] Linkers and Loaders, by John Levine (Morgan Kaufmann, 1999),
+- [ ] Advanced Compiler Design and Implementation, by Steven Muchnick (Morgan Kaufmann, 1997).
+- [ ] Intel 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture by Intel, with special attention to Chapters 2–7.
+- [ ]
+- [ ]
