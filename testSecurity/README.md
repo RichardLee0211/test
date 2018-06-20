@@ -62,3 +62,62 @@ book list:
 - [ ] Intel 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture by Intel, with special attention to Chapters 2–7.
 - [ ]
 - [ ]
+
+## ch1 x86 and x64
+
+### data movement
+little endian
+MOV [0x0], 0x113
+00 00 01 13h
+0x000 Type          0x13
+0x001 Important     0x01
+0x002 Number        0x00
+0x004 DpcListEntry  0x00
+
+SCAS, compare AL/AX/EAX with data starting at the memory address EDI
+```x86
+    ; strlen implement
+    01: 30 C0            xor    al, al
+    ; set AL to 0 (NUL byte).  You will frequently observe the XOR reg, reg
+    ;  pattern in code.
+    02: 89 FB            mov    ebx, edi
+    ; save the original pointer to the string
+    03: F2 AE            repne  scasb
+    ; repeatedly scan forward one byte at a time as long as AL does not match the
+    ; byte at EDI when this instruction ends, it means we reached the NUL byte in
+    ; the string buffer
+    04: 29 DF            sub    edi, ebx
+    ; edi is now the NUL byte location. Subtract that from the original pointer
+    ; to the length.
+```
+
+STOS, write the value AL/AX/EAX to EDI
+```x86
+    ; memset()
+    01: 33 C0            xor    eax, eax
+    ; set EAX to 0
+    02: 6A 09            push   9
+    ; push 9 on the stack
+    03: 59               pop    ecx
+    ; pop it back in ECX. Now ECX = 9.
+     04: 8B FE            mov    edi, esi
+    ; set the destination address
+    05: F3 AB            rep stosd
+    ; write 36 bytes of zero to the destination buffer (STOSD repeated 9 times)
+    ; this is equivalent lent to memset(edi, 0, 36)
+```
+
+exercise:
+01: 8B 7D 08    mov   edi, [ebp+8]       // argument 1, pointer
+02: 8B D7       mov   edx, edi           // store the original pointer
+03: 33 C0       xor   eax, eax           // set eax to 0x0(NULL)
+04: 83 C9 FF    or    ecx, 0FFFF FFFFh   // set ecx to 0xFFFF FFFF
+05: F2 AE       repne scasb              // compare AX with edi
+06: 83 C1 02    add   ecx, 2
+07: F7 D9       neg   ecx
+08: 8A 45 0C    mov   al, [ebp+0Ch]      // argument 2
+09: 8B FA       mov   edi, edx
+10: F3 AA       rep   stosb              // store whatever al to original pointer
+11: 8B C2       mov   eax, edx
+
+may to understand assembly is to use them
