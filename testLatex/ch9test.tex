@@ -1,0 +1,105 @@
+\documentclass{article}
+
+% package
+\usepackage{color}
+\usepackage[usenames, dvipsnames,svgnames,table]{xcolor}
+% \usepackage{ragged2e} % for \RaggedRight
+\usepackage{setspace}
+
+\pagecolor{white}
+% \linespread{1.6} % double the line space
+% \linespread{1.3} % one and half the line space
+\linespread{1} % single line space
+
+\title{How to structre a \LaTeX{} document}
+\author{Joe Bloggs \and whoelse me \\
+        School of computing, \\
+        University of Study, \\
+        Books, \\
+        United Readom, \\
+        RN 1234\\
+        \texttt{jbloggs@latex.wizard}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\vfill
+\tableofcontents
+
+input\slash output
+\ldots
+...
+
+\today
+
+% two ways to use color
+\emph{some black text, \color{red} followed by a red fragment}, going black again. \\
+\textcolor{red} {this is a red text} \\
+\colorbox{pink}{this is colorbox} \\
+
+% this doesn't work
+% Default font (\familydefault = \rmdefault = Computer Modern Roman)
+Lorem ipsum dolor sit amet, consectitur adipiscing elit. \\
+% Palatino font (ppl must be installed).
+% \renewcommand*\rmdefault{ppl}
+\renewcommand*\rmdefault{pag}
+Lorem ipsum dolor sit amet, consectitur adipiscing elit. \\
+% Iwona font (iwona must be installed).
+\renewcommand*\rmdefault{iwona}
+Lorem ipsum dolor sit amet, consectitur adipiscing elit. \\
+
+% I need less line space
+\begin{itemize}
+   \item what
+   \item the
+\end{itemize}
+
+% I like this fonts
+\textsf{this is sans serif family}
+
+% ways to do centering
+\begin{center}
+    \textbf{bold text}
+\end{center}
+
+% \centering Wenchen Li what what2
+
+% \raggedright
+% \raggedleft
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+this should be right, this should be right, the second try.
+
+% !!using this for left alignment
+\noindent left \hfill right \\
+\noindent author name \hfill \today
+
+% this format do not make into one line
+this is a world
+\begin{flushright}
+    this should be right2
+\end{flushright}
+
+$\rightarrow $ this is a item
+
+\noindent
+\doublespacing
+this is double space line \\
+this is double space line \\
+this is double space line \\
+this is double space line \\
+this is double space line \\
+
+\singlespacing
+this is single space line \\
+this is single space line \\
+this is single space line \\
+this is single space line \\
+
+\end{document}

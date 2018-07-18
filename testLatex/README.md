@@ -131,7 +131,7 @@ https://github.com/xuhdev/vim-latex-live-preview
 but I can do
 :!pdflatex test1.tex
 and open manually
-so cool, YCM seem to have to latex autocomplete
+so cool, YCM seems to have to latex autocomplete
 
 like HTML, why do I need to learn Latex
 for drawing UML and write design document

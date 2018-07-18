@@ -1,3 +1,14 @@
+for now, the purpose of the learning latex is redo my resume
+and to do it, I only need to know:
+- [ ] using sans serif family
+- [x] align of words, \hfill
+- [ ] line, underline
+- [ ] bold
+- [ ] lists, reduce the line space
+- [ ] left and right margin
+- [ ]
+- [ ]
+- [ ]
 this README is following LateX.pdf from en.wikibooks.org in June 18, 2016
 # ch1 intro
 # ch2 installation
@@ -23,5 +34,28 @@ multiply comment
     comment in your document
 ```
 
-# ch5
+# ch5 Document Structure
 at this point, leave vimtex plugin alone
+not many things to record
+
+# ch6 Text Format
+## 6.1 spacing
+switch command \singlespacing
+environment \begin{singlespace} \end{singlespace}
+
+here, text-alignment: https://www.sharelatex.com/learn/Text_alignment
+raggedright, match left alignment
+
+Alignment    Environment    Switch command      ragged2e environment    ragged2e switch command
+Left         flushleft      \raggedright        FlushLeft               \RaggedRight
+Right        flushright     \raggedleft         FlushRight              \RaggedLeft
+Centre       center         \centering          Center                  \Centering
+Fully justified  N/A        N/A                 justify                 \justify
+
+\noindent % cancel the indent of this paragraph
+
+# ch7 Paragraph Formatting
+now, feeling like this is a reference, but not a tutorial
+
+# ch8 colors
+# ch9 fonts
