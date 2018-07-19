@@ -59,3 +59,4 @@ now, feeling like this is a reference, but not a tutorial
 
 # ch8 colors
 # ch9 fonts
+# ch10 List structure

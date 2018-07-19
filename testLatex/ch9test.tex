@@ -5,6 +5,8 @@
 \usepackage[usenames, dvipsnames,svgnames,table]{xcolor}
 % \usepackage{ragged2e} % for \RaggedRight
 \usepackage{setspace}
+\usepackage{blindtext}
+\usepackage[inline]{enumitem}
 
 \pagecolor{white}
 % \linespread{1.6} % double the line space
@@ -26,6 +28,8 @@
 \maketitle
 \vfill
 \tableofcontents
+\clearpage
+\section{my first section}
 
 input\slash output
 \ldots
@@ -54,6 +58,24 @@ Lorem ipsum dolor sit amet, consectitur adipiscing elit. \\
    \item what
    \item the
 \end{itemize}
+\begin{description}
+    \item [Ant] \blindtext
+    \item [Elephant] \blindtext
+\end{description}
+\begin{enumerate}
+   \item \blindtext
+   \item \blindtext
+\end{enumerate}
+
+% !! could get rid of the double space of lists
+\noindent
+% \begin{enumerate*}[label={\alph*) }, font={\color{red!50!black}}]
+\begin{enumerate*}[label={\alph*) }, font={\color{green}\bfseries}]
+\item bananas \\
+\item apples \\
+\item oranges and \\
+\item lemons \\
+\end{enumerate*}
 
 % I like this fonts
 \textsf{this is sans serif family}
