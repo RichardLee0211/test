@@ -73,4 +73,11 @@ this is not in my concer
 maybe right now I am not so interested in tables
 
 # ch15 title creation
+
+# ch16 Page layout
 better header in ch16.7 page style
+
+# ch17 Importing Graphics
+
+# ch18 Floats, Figures and Captions
+TODO: to be continue, at ch18.2. heading to new area, data analysis
