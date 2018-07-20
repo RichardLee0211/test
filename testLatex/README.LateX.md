@@ -60,3 +60,17 @@ now, feeling like this is a reference, but not a tutorial
 # ch8 colors
 # ch9 fonts
 # ch10 List structure
+
+# ch11 special characters
+\textless and \textgreater
+
+# ch12 Internationalization
+this is not in my concer
+
+# ch13 Rotation
+
+# ch14 tables
+maybe right now I am not so interested in tables
+
+# ch15 title creation
+better header in ch16.7 page style
