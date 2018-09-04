@@ -20,3 +20,10 @@ Interquartile Range
 
 ### 2.2.3
 I don't think quantile plot is a good plot to observe data, page.52
+
+page.61, scatter-plot matrix
+
+### 2.4.3 proximity Measures for Binary Attributes
+TODO: page.70, come back later to similarity and dissimilarity calcualtion
+
+## 3.2 data cleaning
