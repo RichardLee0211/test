@@ -27,3 +27,4 @@ page.61, scatter-plot matrix
 TODO: page.70, come back later to similarity and dissimilarity calcualtion
 
 ## 3.2 data cleaning
+I am back for this.
