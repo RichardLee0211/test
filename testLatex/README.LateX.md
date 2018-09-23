@@ -63,6 +63,18 @@ now, feeling like this is a reference, but not a tutorial
 
 # ch11 special characters
 \textless and \textgreater
+preserve characters: & % $ # _ { } ~ ^ \
+```latex
+\documentclass{article}
+\begin{document}
+
+    \& \% \$ \# \_ \{ \}
+    \textasciitilde % ~
+    \textasciicircum % ^
+    \textbackslash % \
+
+\end{document}
+```
 
 # ch12 Internationalization
 this is not in my concern
@@ -81,6 +93,9 @@ better header in ch16.7 page style
 
 # ch18 Floats, Figures and Captions
 TODO: to be continue, at ch18.2. heading to new area, data analysis
+
+# ch22 Errors and warning
+feel like I need to know more about latex to make my assignment perfect
 
 # ch27 Mathematics
 I am doing homework on algorithm class, and I would like to convert it into a latex document, so I jump to math chapter here
