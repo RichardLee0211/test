@@ -10,3 +10,15 @@ I am back to china, and lose my connection to internet, need to do
 ### 5.2.2 variable vector
 #### problem 5-2, the block problem, Uva 101
 I don't really understand the question
+
+here, I am back 2018 fall semester, reading this book again.
+
+# review some math here:
+## appendix D: Matrices
+
+interest topics I wanna read,
+## ch28 matrix operations
+TODO: how to compute A^(-1) ??
+TODO: to be continue, page.816
+## ch29 Linear programming
+## ch31 Number-Theoretic Algorithm
