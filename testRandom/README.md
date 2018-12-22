@@ -134,6 +134,16 @@ ch03 Statistical Experiments and Significance Testing
 --------------------------------------------------------------------------------
 is attractive for me
 
+### A/B testing
+- treatment
+- treatment group
+- control group
+- Randomization
+- subjects
+- test statistic
+
+TODO: to be continue, need build python3 statical skills
+
 ch04 regression and prediction
 --------------------------------------------------------------------------------
 
