@@ -89,5 +89,116 @@ table 2-2 some frequently used Ipython magic commands, page.29
 %run script.py
 %matplotlib
 
+### 2.3 Python Language Basic
+
+#### Language semantics
+have something I don't know about python
+
+python is strong typed, object have data type but variable names don't have type. All variable names are reference
+
+isinstance function
+getattr, hasattr, setattr function
+
+!! Duck typing: Often you may not care about the type of an object but rather only whether it has certain methods or behavior.
+
+is keyword to check if two reference refer to the same object
+```python
+    a is b
+    a is not b
+    a / b  # could lead to float type
+    a // b # C-style int divide
+```
+
+#### Scalar Types
+strong format(aka. output format)
+- Dates and times, page.44
+
+#### control flow
+...
+
 ch03 Built-in data structure, Functions, and Files
 --------------------------------------------------------------------------------
+rush a little, need to do visualization in today
+### 3.1 Data Structures and Sequences
+- Tuple ()
+- List []
+- Built-in Sequence Functions
+- dict {... : ... , }
+- set {..., ...}
+- List, set and Dict comprehensions
+
+feel like C++ is a well-oiled machine with elegent interface, old but durable
+python is like higher abstraction, but hide way to much internal working principle. Maybe I don't know python enough
+TODO: I need more practise in python and get back here
+
+### 3.2 Functions
+many concept and useful tricks in programming python
+#### ...
+clean_strings function in page.72 is so cool. Higher abstraction.
+#### Generator
+
+### 3.3 Files and the Operating System
+
+
+ch04 Numpy Basics: Arrays and Vectorized Computation
+--------------------------------------------------------------------------------
+whole Numpy is about array-oritation computation
+### 4.1 The NumPy ndarray: A multidimensional Array Object
+this is dynamic of python
+```python
+    In [22]: randomInt = np.random.randn(2,3,2)
+
+    In [23]: randomInt
+    Out[23]:
+    array([[[-1.70778637,  0.27578785],
+            [ 0.47381311,  0.48711643],
+            [-0.72034409,  1.23316204]],
+
+            [[ 0.56443843,  0.25742822],
+            [-1.45896353,  0.27529172],
+            [-1.11407563, -0.6823211 ]]])
+
+    In [24]: randomInt[1]
+    Out[24]:
+    array([[ 0.56443843,  0.25742822],
+            [-1.45896353,  0.27529172],
+            [-1.11407563, -0.6823211 ]])
+
+        In [25]: randomInt[1] = 1
+
+        In [26]: randomInt[1]
+        Out[26]:
+    array([[1., 1.],
+            [1., 1.],
+            [1., 1.]])
+```
+RandomInt[1] is 3X2 array, and RandomInt[1] = 1 is assigning every element in the array to 1
+RandomInt is 2X3X2 array, and RandomInt = 1 will assign RandomInt to a reference of a int
+
+#### ...
+#### boolean Indexing
+quite smart, but python actually requires more type knowledge to keep a clear programming mind
+things like data[names=="Bob"]
+and don't have #define function, will have a lot data liberature. Could be avoid by assgining config variable
+python creates more opportunities for programer to make mistakens, but it may be convient for prototype
+python do things most of time as expected, but when it doesn't, I need to know how to fix it.
+
+provide many easy functions, need to practise and really master them
+it actually benefit C/C++ programming, many choice have been build to build basic layer of scientific applicaiton
+
+programming in C/C++ and python is not about programer time and CPU time.
+when low-latency is a requirement, programming in lower language becomes a requirement.
+and programer time is not marjorly effected by language, it's effected by programer's program effecience, experience in code design.
+one there is a good code design and enough experience with language, development should be march ahead.
+I have also seen people programing in high level language, but they are slow because know a little about language
+
+It's good for beginner though that there are a lot of library to use, and they get to use library in smart way
+python, language itself is dynamic and user-friendly(fake-frindly??), programmer need to take time to familiar their self with library
+
+### 4.2 Universal Functions: Fast Element-wise Array Function
+
+### 4.3 Array-Oriented Programming with Arrays
+<C-l> is handy
+TODO: dont' really understand np.meshgrid function, page.108
+TODO: how to pic.show and continue interact with ipython shell??
+TODO: how to remove all variable and restart namespace?: %reset -f command
