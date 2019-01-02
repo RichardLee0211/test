@@ -126,7 +126,7 @@ TODO: need to learn to do EDA in python3, should be easy
 
 ch02 Data and Sampling Distributions
 --------------------------------------------------------------------------------
-TODO:
+TODO: read later
 ### Random Sampling and Sample Bias
 
 
@@ -141,6 +141,33 @@ is attractive for me
 - Randomization
 - subjects
 - test statistic
+
+### Hypothesis Tests
+- Null hypothesis
+- Alternative Hypothesis
+- One-way test
+- Two-way test
+
+### Resampling
+- Permutation test
+- With or without replacement
+this is could be very useful for fight against randomness
+TODO: need to know how to do it in Python
+
+#### Example: Web Stickiness
+I am great that they have a example to explain permutation test
+
+### Statistical Significance and P-values
+- p-value
+- Alpha
+TODO: read in more detail with task
+- Type 1 error
+- Type 2 error
+
+### t-Tests
+- test statistic
+- t-statistic
+- t-distribution
 
 TODO: to be continue, need build python3 statical skills
 

@@ -202,3 +202,39 @@ python, language itself is dynamic and user-friendly(fake-frindly??), programmer
 TODO: dont' really understand np.meshgrid function, page.108
 TODO: how to pic.show and continue interact with ipython shell??
 TODO: how to remove all variable and restart namespace?: %reset -f command
+
+TODO_3: page.114, dtype='<U4'
+
+### 4.4 File Input and Output with Arrays
+
+### 4.5 Linear Algebra
+
+### 4.6 Pseudorandom Number Generation
+distribution:
+- binomial distribution
+- normal(Gaussian) distribution
+- beta distribution
+- chi-square distribution
+- gamma distribution
+- uniform[0, 1) distribution
+
+### 4.7 Example: Random Walks
+import conventions
+```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import seaborn as sns
+    import statsmodels as sm
+```
+TODO: I need coding experience with Numpy
+
+ch05 Getting Start with pandas
+--------------------------------------------------------------------------------
+
+import pandas as pd
+from pandas import Series, DataFrame
+
+### 5.1 Introduction to pandas Data Structures
+
+### 5.2 Essential Functionlity
