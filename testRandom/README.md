@@ -34,6 +34,14 @@ test chosen:
 - an overlapping sums test
 - a binary rank test for 32X32 matrices
 
+E.3 L'Ecuyer's Generator with Bays-Durham shuffle
+--------------------------------------------------------------------------------
+!!, have a code of seudo random number generator
+
+[correlogram](https://en.wikipedia.org/wiki/Correlogram):
+check randomness in a data set
+TODO: don't really understand the definationa and how it works
+
 TODO: need to understand these test
 TODO: need understand statics better
 

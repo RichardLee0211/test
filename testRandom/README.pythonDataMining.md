@@ -228,6 +228,7 @@ import conventions
     import statsmodels as sm
 ```
 TODO: I need coding experience with Numpy
+install seaborn and statsmodels with pip install
 
 ch05 Getting Start with pandas
 --------------------------------------------------------------------------------
@@ -238,3 +239,67 @@ from pandas import Series, DataFrame
 ### 5.1 Introduction to pandas Data Structures
 
 ### 5.2 Essential Functionlity
+
+### 5.3 summarizing and computing descriptive statistics
+reading code is more important than reading description
+
+#### correlation and Covariance
+
+#### Unique Values, Value Counts and Membership
+
+### 5.4 conclusion
+TODO: need more practise, so far, I haven't wroten a block useful python code
+
+ch06 Data loading, storage and file formats
+--------------------------------------------------------------------------------
+### 6.1 Reading and Writing Data in Text format
+I only need to write this chapter for now
+install pandas in mac with
+```shell
+    pip install pandas
+    pip install pytest
+# test inside ipython with
+    pd.test()
+```
+
+#### reading text files in pieces
+#### writing data to text format
+... skipped
+
+ch07 Data cleaning and Preparation
+--------------------------------------------------------------------------------
+### 7.1 Handling Missing Data
+pd.DataFrame is [colum][row]
+
+### 7.2 Data Transformation
+TODO: read later
+
+
+ch08 Data Wrangling: Join, Combine, and Reshape
+--------------------------------------------------------------------------------
+maybe skip
+
+ch09 Plotting and Visualization
+--------------------------------------------------------------------------------
+### matplotlib.pyplot
+plot details
+### seaborn
+-
+I wanna plot some special funcitons
+like y=sin(x)
+
+ch10 Data Aggregation and Group Operations
+--------------------------------------------------------------------------------
+
+ch11 Time series
+--------------------------------------------------------------------------------
+
+ch12 Advanced pandas
+--------------------------------------------------------------------------------
+
+ch13 Introduction to Modeling Libraries in Python
+--------------------------------------------------------------------------------
+
+ch14 Data Analysis Examples
+--------------------------------------------------------------------------------
+I am still too weak to excute a python analysis job
