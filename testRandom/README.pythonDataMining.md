@@ -277,19 +277,47 @@ TODO: read later
 
 ch08 Data Wrangling: Join, Combine, and Reshape
 --------------------------------------------------------------------------------
-maybe skip
+skip for now
 
 ch09 Plotting and Visualization
 --------------------------------------------------------------------------------
-### matplotlib.pyplot
+### A brief matplotlib API Primer
+matplotlib.pyplot
 plot details
-### seaborn
--
 I wanna plot some special funcitons
 like y=sin(x)
 
+feels like matplotlib is take np.ndarray a lot
+but a lot of time, I read pd.DataFrame
+
+### Plorring with pandas and seaborn
+insteresting tips.csv
+DONE: what if i wanna find tip instance that tips["tip"] more than 5 dollors
+```python
+    tips[tips["tip"]>5]
+```
+
+TODO: need to know more about distribution
+DONE: after using sns.distplot, don't know how to show it in ipython: plt.show(). need to checkout seaborn doc
+```python
+    comp1 = np.random.normal(0, 1, size=200)
+    comp2 = np.random.normal(10,2, size=200)
+    values = pd.Series(np.concatenate([comp1, comp2]))
+    sns.distplot(values, bins=100, color="k")
+```
+
+```python
+    macro = pd.read_csv("examples/macrodata.csv")
+    data = macro[["cpi", "m1", "tbilrate", "unemp"]] # this is like using list as index
+    trans_data = np.log(data).diff().dropna() # TODO:??
+    trans_data[-5:]
+    sns.regplot("m1", "unemp", data=trans_data)
+```
+
+
 ch10 Data Aggregation and Group Operations
 --------------------------------------------------------------------------------
+TODO
 
 ch11 Time series
 --------------------------------------------------------------------------------

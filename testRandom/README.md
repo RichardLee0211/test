@@ -58,7 +58,7 @@ Statistic for Technology
 wanna read the "Statistics for Technology" book that analysis2001.pdf refered
 maybe could get it from Binghamton library
 
-Practical Statistics for data Scientists
+Practical Statistics for data Scientists, 50 essential concept
 ================================================================================
 put it away as it demo concept with R language, a language I am not ready to get into
 need to understand to basic statistics concepts, leaving R language part along, learn panda
@@ -134,9 +134,43 @@ TODO: need to learn to do EDA in python3, should be easy
 
 ch02 Data and Sampling Distributions
 --------------------------------------------------------------------------------
-TODO: read later
 ### Random Sampling and Sample Bias
+- sample
+- pipulation
+- N(n)
+- Random sampling
+- stratified sampling
+- Simple random sample
+- sample bias
 
+random-ful sample is better than large sample with bias
+
+### Selection Bias
+- dias
+- data snooping
+- Vast search effect
+TODO: read [this](http://systemtradersuccess.com/fooled-by-randomness-through-selection-bias/)
+
+### samping distribution of a statistic
+- Sample Statistic
+- Data distribution
+- Sampling distribution
+- Central limit theorem
+- Standard error
+
+TODO: figure 2-6, how do U mean a sample of 5 values??
+TODO: further reading
+
+### the bootstrap
+- bootstrap sample
+- resampling
+
+I like it that wikipedia provide "download as PDF" option, much cooler typeset
+TODO: need to a concrete example of how to bootstrap
+
+### confidence intervals
+- confidence level
+- interval endpoints
 
 ch03 Statistical Experiments and Significance Testing
 --------------------------------------------------------------------------------

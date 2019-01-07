@@ -7,7 +7,7 @@
 
 #define NUM 1000
 #define RANDOM_MAX 1000
-#define SEED 1
+#define SEED 2
 
 int main(){
     srand(SEED);
