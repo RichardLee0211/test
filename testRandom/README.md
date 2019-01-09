@@ -2,6 +2,62 @@ this question is always around, hack it
 
 find this website: https://www.random.org/
 
+what do I think
+================================================================================
+Do I commited to Data analysis??
+feel like can't distinguish real and pseudo random generator with statistic attributes
+- RNN
+- simple pseudo random generator algorithms
+
+statistics is way more complex than I thought, need to use it well
+math real needs a certain mindset to dig in
+the base line is
+- I need to understand and use ML methods include Random forest
+- I need to understand randomness and write a report
+
+take python first
+
+lovely, time series analysis would need Fourier transform
+
+feel like knowledge that I learned a long time ago are waiting for me to discover
+
+程序员的数学2 概率统计 by 平冈和幸
+================================================================================
+my pdf is in chinese...
+
+ch07 pseudo number 伪随积数
+--------------------------------------------------------------------------------
+let finish this chapter
+mersenne twister: one pseudo random generator
+TODO: [MT](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html)
+
+Monte Carlo method
+TODO_2: using random number to estimate pi
+this method is like brute force in algorithms
+
+this chapter doesn't really touch the core of random number
+it tells me that tell whether a certain series of time is random number is meaningless
+
+ch08 概率学的各类应用
+--------------------------------------------------------------------------------
+TODO: didn't really do the exercise, it could be every important for further analysis
+### 8.1 回归分析和多变量分析
+TODO: 主成分分析，principla component analysis, PCA
+
+### 8.2 随机过程
+stochastic process
+
+!! 练习题8.3 技巧型很强
+!! 练习题8.4
+!! 练习题8.5
+
+#### 8.2.2 卡尔曼滤波器
+
+#### 8.2.3 马尔可夫链
+
+### 8.3 信息论
+TODO_2: this is a mount to climb
+
 analysis2001.pdf
 ================================================================================
 
@@ -57,167 +113,3 @@ Statistic for Technology
 ================================================================================
 wanna read the "Statistics for Technology" book that analysis2001.pdf refered
 maybe could get it from Binghamton library
-
-Practical Statistics for data Scientists, 50 essential concept
-================================================================================
-put it away as it demo concept with R language, a language I am not ready to get into
-need to understand to basic statistics concepts, leaving R language part along, learn panda
-
-ch01 Exploratory Data Analysis
---------------------------------------------------------------------------------
-talked a little about data type
-
-### rectangular data
-- rectangular data
-- time series data
-- spatial data
-- graph(or network) data
-
-### Estimates of Location
-- mean("x-bar")
-- weighted mean
-- Median
-- weighted median
-- Trimmed mean: can be thought of a compromise between the median and the mean
-- robust
-- outlier
-
-### Estimates of Variability
-- Deviations: difference from mean, errors
-- Mean absolute deviation: I1-norm, Manhattan norm
-- Variance: mean-squared-error, s**2
-- Standard deviation: the square root of the variance, I2-norm, Euclidean norm, s
-- Median absolute deviation from the median
-- Range
-- order statustics
-- Percentile
-- Interquartile range
-
-### exploring the data distribution
-- boxplot
-- Frequency table
-- Histogram
-- Density plot
-
-### exploring Binary and Categorical Data
-- mode
-- expected value
-- bar charts
-- pie charts
-
-TODO: [a lesson on misleading graphs](http://passyworldofmathematics.com/misleading-graphs/)
-
-### correlation
-- Correlation coefficient
-- Correlation matrix
-- Scatterplot
-
-### Exploring Two or More Variables
-- contingency tables
-- Hexagonal binning
-- Coutour plots
-- violin plots
-
-univariate analysis
-bivariate analysis
-
-download some csv files, like the old time. But this time, I am not focus on big data tech.
-I am on statistic method and data mining algorithms
-using python3 and panda, see what I can do
-R is supported by open source community, great. Although I don't using it for now
-
-TODO_3: may be look into this [magic graph](https://en.wikipedia.org/wiki/Mandelbrot_set)
-, after I get excellent drawing skills
-
-TODO: need to learn to do EDA in python3, should be easy
-
-
-ch02 Data and Sampling Distributions
---------------------------------------------------------------------------------
-### Random Sampling and Sample Bias
-- sample
-- pipulation
-- N(n)
-- Random sampling
-- stratified sampling
-- Simple random sample
-- sample bias
-
-random-ful sample is better than large sample with bias
-
-### Selection Bias
-- dias
-- data snooping
-- Vast search effect
-TODO: read [this](http://systemtradersuccess.com/fooled-by-randomness-through-selection-bias/)
-
-### samping distribution of a statistic
-- Sample Statistic
-- Data distribution
-- Sampling distribution
-- Central limit theorem
-- Standard error
-
-TODO: figure 2-6, how do U mean a sample of 5 values??
-TODO: further reading
-
-### the bootstrap
-- bootstrap sample
-- resampling
-
-I like it that wikipedia provide "download as PDF" option, much cooler typeset
-TODO: need to a concrete example of how to bootstrap
-
-### confidence intervals
-- confidence level
-- interval endpoints
-
-ch03 Statistical Experiments and Significance Testing
---------------------------------------------------------------------------------
-is attractive for me
-
-### A/B testing
-- treatment
-- treatment group
-- control group
-- Randomization
-- subjects
-- test statistic
-
-### Hypothesis Tests
-- Null hypothesis
-- Alternative Hypothesis
-- One-way test
-- Two-way test
-
-### Resampling
-- Permutation test
-- With or without replacement
-this is could be very useful for fight against randomness
-TODO: need to know how to do it in Python
-
-#### Example: Web Stickiness
-I am great that they have a example to explain permutation test
-
-### Statistical Significance and P-values
-- p-value
-- Alpha
-TODO: read in more detail with task
-- Type 1 error
-- Type 2 error
-
-### t-Tests
-- test statistic
-- t-statistic
-- t-distribution
-
-TODO: to be continue, need build python3 statical skills
-
-ch04 regression and prediction
---------------------------------------------------------------------------------
-
-ch06 Statistical Machine Learning
---------------------------------------------------------------------------------
-
-ch07 Unsuparvised Learning
---------------------------------------------------------------------------------
