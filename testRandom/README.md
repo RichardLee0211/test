@@ -19,7 +19,34 @@ take python first
 
 lovely, time series analysis would need Fourier transform
 
-feel like knowledge that I learned a long time ago are waiting for me to discover
+feel like knowledge that I learned a long time ago are waiting for me to discover again
+
+[kaggle](https://www.kaggle.com/competitions) is a good place to go, but for now, I am not lack data. I need to see more data analysis code
+
+TODO: [bootstrap](https://www.uvm.edu/~dhowell/StatPages/Resampling/BootstMeans/bootstrapping_means.html)
+
+to edit multiply lines in ipython:
+way1: using ;\
+way2: %edit
+
+a little trick to use ipython:
+%edit # to edit a new temperlary file
+%edit -p  # to edit the previous file
+%edit _NN # NN is the output number, to edit that file/section
+%edit <function name> # to edit the function
+
+%run <script_file_name>
+
+%debug
+
+%save hello.py NN  # NN the input section number
+%save -a hello.py _NN # _NN the output section number, -a append
+
+%recall
+%timeit
+%history
+
+TODO_3: more about [ipython tips](http://pages.physics.cornell.edu/~myers/teaching/ComputationalMethods/python/ipython.html)
 
 程序员的数学2 概率统计 by 平冈和幸
 ================================================================================

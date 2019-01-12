@@ -272,7 +272,99 @@ ch07 Data cleaning and Preparation
 pd.DataFrame is [colum][row]
 
 ### 7.2 Data Transformation
+when you wanna get familiar with files in a fold, more is a good tool
+using more *.csv, then use :n for next file, :f for filename, space for next page or next file
+TODO: stock_px.csx wanna plot it
+put code in .py file make it easier for me to doc and watch
+
+!! add a new column to dataFrame, page.199
+```python
+    lowercased = data["food"].str.lower()
+    data["animal"] = lowercased.map(meat_to_animal)
+```
+
+Interact computing do get its convenient, I start to feel it.
+
+pd.DataFrame is different from np.ndarray
+np.ndarray is like array, ndarray[1]
+pd.DataFrame is like data table, DataFrame["Attri"] is a colum, it's a pd.Series
+pd.Series is printed as colum, to work with DataFrame
+
+pd.DataFrame.index is the row index
+pd.DataFrame.colums is the colum index
+
+a nice way to get random DataFrame
+```python
+    data = pd.DateFrame(np.random.randn(1000, 4))
+    data.describe()
+    col = data[2]
+    col[np.abs(col)>3] # get values that exceeds 3 in one colum
+```
+
+TODO: ?? I get a data: DataFrame and wanna change values
+```python
+    data = pd.DateFrame(np.random.randn(1000, 4))
+    col_2 = data[2] # col_2 is a Serie
+    col_2[3] = 4 # get a caveat
+```
+
+DataFrame is colum first
+TODO: it confused me that dataFrame[] take colume index and row boolean index
+```python
+    data = pd.DataFrame(np.arange(10).reshape(5, 2))
+    (data>3).any(1) # get row boolean index(Series)
+    (data>3).any(0) # get colum boolean index(Series)
+    data[0] # get 5 elements Series
+    data[(data>3).any(1)] # get filtered DataFrame
+```
+
+data initialization could be useful when I manipulate on data with this auxiliary data
+```python
+    df = pd.DataFrame(np.arange(5*4).reshape(5, 4))
+    sampler = np.random.permutation(5) # get something like array([3, 1, 4, 2, 0])
+    choices = pd.Series([5, 7, -1, 6, 4])
+```
+
+#### Computing Indicator/Dummy Variables
+TODO: don't really understand
+
+like to use DataFrame.columnName
+
+a fancy process, page.209
+```python
+    all_genres = []
+    for x in movies.genres:
+        all_genres.extend(x.split("|")) # x is str type, x.split("|") returns a list of str
+    genres = pd.unique(all_genres)
+```
+
+DataFrame[:8] is row slide
+
+something about my_list
+```python
+    my_list = ["apple", "banana", "grapes", "pear"]
+    for c, value in enumerate(my_list):
+        print(c, value)
+```
+
+```python
+    for i, gen in enumerate(movies.genres):
+        indices = dummies.columns.get_indexer(gen.split("|"))
+        dummies.iloc[i, indices] = 1
+```
+
+### 7.3 String Manipulation
+
+wait, """ is not comment, it's for multiline string literal
+
+
 TODO: read later
+TODO: I wanna to be able to do classfication base on some basic attributes
+lets say some data about students
+(assuming one exam records about a class is in one .csv file)
+way1, based on one attributes
+way2, based on some attributes combined
+way3, based on one student's several exam results across several datasets
 
 
 ch08 Data Wrangling: Join, Combine, and Reshape
