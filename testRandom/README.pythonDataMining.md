@@ -413,6 +413,24 @@ TODO
 
 ch11 Time series
 --------------------------------------------------------------------------------
+### 11.1 Date and time data types and tools
+
+### 11.2 Time Series Basics
+
+### 11.3 Date Ranges, Frequencies, and Shifting
+
+### 11.4 Time zone Handling
+skipped
+
+### 11.5 periods and period Arithmetic
+skipped
+
+### 11.6 Resampling and Frequency conversion
+skipped
+
+### 11.7 Moving window Functions
+DataFrame.describe()
+TODO: how lower to 2 digit behind the dot
 
 ch12 Advanced pandas
 --------------------------------------------------------------------------------
