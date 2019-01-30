@@ -9,7 +9,14 @@ following a little blogger
 aim to learn how to show graph in ipython
 [here](http://pbpython.com/simple-graphing-pandas.html)
 
+to have a good habit, don't leave a python sessean unclosed. in order to make my computer run faster
+
 it's wired, using ipython slowdown my computer, got to reboot
+
+shame, ipython could not do sales["category"].<tab> autocompletion
+
+TODO: what's panel, Index,
+
 
 data mining concepts and techniques
 ================================================================================
