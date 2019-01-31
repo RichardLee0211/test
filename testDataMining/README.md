@@ -47,3 +47,5 @@ TODO: page.70, come back later to similarity and dissimilarity calcualtion
 
 ### 3.2 data cleaning
 I am back for this.
+
+TODO: http://pbpython.com/simple-graphing-pandas.html

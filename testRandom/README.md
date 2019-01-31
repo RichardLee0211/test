@@ -140,3 +140,39 @@ Statistic for Technology
 ================================================================================
 wanna read the "Statistics for Technology" book that analysis2001.pdf refered
 maybe could get it from Binghamton library
+
+log
+================================================================================
+
+following this [ML predict RNG discussion](https://ai.stackexchange.com/questions/3850/using-machine-deep-learning-for-guessing-pseudo-random-generator)
+
+```shell
+    pip install virtualenv
+    pip install virtualenvwrapper
+```
+
+pip install tensorflow failed
+```shell
+    ➜  Code pip install tensorflow
+    Collecting tensorflow
+      Could not find a version that satisfies the requirement tensorflow (from versions: )
+      No matching distribution found for tensorflow
+```
+because in my macOS, python 3.7, and tensorflow is only compatible with python 3.4 3.5 3.6
+[here](https://github.com/tensorflow/tensorflow/issues/20444)
+
+pip uninstall keras
+
+calm down and learn virtualenv first
+[here](https://virtualenv.pypa.io/en/latest/)
+
+[Use different Python version with virtualenv](https://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv)
+
+python3.6 make test failed
+
+this is really time consuming to comfront this problem, I just wanna to test a python script
+
+try it on Ubuntu virtual mechine
+Ubuntu refuse to apt-get install pip3
+
+finally, I choose to give Anaconda a try. Don't wanna spend my whole night in installation
