@@ -11,6 +11,7 @@ find myself about macOS setup: note/other/newMacOS.md
 
 need to improve it
 
+- add chinese input method
 - login the apple account to sync my buildin apps
 - since this is 15 inches screen, set display to be more space
 - install google chrome and log in my count
@@ -69,6 +70,9 @@ I would like to play with zsh configuration, [here](https://sourabhbajaj.com/mac
 tmux, git, vim
 --------------------------------------------------------------------------------
 ```shell
+    # wget
+    brew install wget
+
     # git
 	brew install git
     git config --global user.name "Wenchen"
@@ -84,6 +88,8 @@ tmux, git, vim
     # tmux
 	brew install tmux
     wget "TODO" # the config file
+
+
 ```
 I might like to play with this vim theme, [here](https://github.com/square/maximum-awesome)
 
