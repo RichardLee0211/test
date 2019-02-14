@@ -4,7 +4,15 @@ find this website: https://www.random.org/
 
 what do I think
 ================================================================================
-Do I commited to Data analysis??
+
+TODO:
+- [ ] figure out the principal of random number generator
+- [ ] figure out the principal of prediction algorithm
+- [ ] figure out the statistical test for RNGs
+- [ ]
+
+Do I commited to Data analysis?: Yes, for this semester, I have 2 weeks to go for stage 1
+
 feel like can't distinguish real and pseudo random generator with statistic attributes
 - RNN
 - simple pseudo random generator algorithms
@@ -26,25 +34,27 @@ feel like knowledge that I learned a long time ago are waiting for me to discove
 TODO: [bootstrap](https://www.uvm.edu/~dhowell/StatPages/Resampling/BootstMeans/bootstrapping_means.html)
 
 to edit multiply lines in ipython:
-way1: using ;\
-way2: %edit
+- way1: using ;\
+- way2: %edit
 
 a little trick to use ipython:
-%edit # to edit a new temperlary file
-%edit -p  # to edit the previous file
-%edit _NN # NN is the output number, to edit that file/section
-%edit <function name> # to edit the function
+```python
+    %edit # to edit a new temperlary file
+    %edit -p  # to edit the previous file
+    %edit _NN # NN is the output number, to edit that file/section
+    %edit <function name> # to edit the function
 
-%run <script_file_name>
+    %run <script_file_name>
 
-%debug
+    %debug
 
-%save hello.py NN  # NN the input section number
-%save -a hello.py _NN # _NN the output section number, -a append
+    %save hello.py NN  # NN the input section number
+    %save -a hello.py _NN # _NN the output section number, -a append
 
-%recall
-%timeit
-%history
+    %recall
+    %timeit
+    %history
+```
 
 TODO_3: more about [ipython tips](http://pages.physics.cornell.edu/~myers/teaching/ComputationalMethods/python/ipython.html)
 
@@ -102,7 +112,7 @@ TODO: how to do it in python
 TODO: need to know more about statistics
 - a run sequence plot
 - a log plot
-- a hitogram
+- a histogram
 - an autocorrelation plot
 
 ## 4 the test criteria and the tests chosen
@@ -176,3 +186,22 @@ try it on Ubuntu virtual mechine
 Ubuntu refuse to apt-get install pip3
 
 finally, I choose to give Anaconda a try. Don't wanna spend my whole night in installation
+
+and Yes, Anaconda helped me to manager my package version issue. use it for now
+
+I need to understand the ML modle the code uses.
+
+Okay, look. I would put some serious pictures in github repository and use markdown file to organize them.
+now I would need a command line picture view in Ubuntu if it is my daily working OS, then it would make things easier
+
+```shell
+    # what I need to do when using command output as a string
+    ls -al `which youtube-dl`
+
+    # what you need to do when connect two stream
+    which youtube-dl | ls -al
+
+    # what you need to do to deal with file and command
+    ./command > outputfile
+    ./command < inputfile > outputfile
+```

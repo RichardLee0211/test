@@ -3,6 +3,19 @@ Mac setup for working
 
 in the near future, I will need a Ubuntu setup note by me
 
+Hardware basic check
+--------------------------------------------------------------------------------
+
+- the touch pad
+- the keyboard
+- the screen
+- the exter-material
+- the hardware config, RAM, SSD, CPU, GPU, release year
+- the fan sound
+- a screen protector and body protector
+- the power charge
+- maybe a heave task test
+
 
 system preferences
 --------------------------------------------------------------------------------
