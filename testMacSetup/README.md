@@ -86,6 +86,9 @@ tmux, git, vim
     # wget
     brew install wget
 
+    # cmake
+    brew install cmake
+
     # git
 	brew install git
     git config --global user.name "Wenchen"
