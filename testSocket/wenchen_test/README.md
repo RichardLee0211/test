@@ -1,6 +1,8 @@
 log
 ================================================================================
 
+network books from [here](https://stackoverflow.com/questions/8122592/which-books-to-learn-sockets-programming-and-tcp-network-communication)
+
 though network test code and note better keep in this repository
 
 go to check the compter network code
