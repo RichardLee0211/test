@@ -205,3 +205,15 @@ now I would need a command line picture view in Ubuntu if it is my daily working
     ./command > outputfile
     ./command < inputfile > outputfile
 ```
+
+need to source ~/.bash_profile, which is appended with some code by anaconda.
+because I use zsh.
+
+what would I do if you only receive bad reflects? keep digging
+
+following this [blog](https://machinelearningmastery.com/setup-python-environment-machine-learning-deep-learning-anaconda/)
+to do installation, library management could be better than pip
+
+tensorflow is now not compatible with python3.7, pip return a error; while
+anaconda manage to build a virtual enveronment(in ~/.bash_profile) and downgrade software version.
+Just make everything work for now
