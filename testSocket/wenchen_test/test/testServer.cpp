@@ -36,6 +36,8 @@ main(int argc, char *argv[])
     hints.ai_addr = NULL;
     hints.ai_next = NULL;
 
+    // printf("hints.ai_flags: %d\n", hints.ai_flags); // 1
+
     s = getaddrinfo(NULL, argv[1], &hints, &result);
     if (s != 0) {
         fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(s));
@@ -80,11 +82,13 @@ main(int argc, char *argv[])
         s = getnameinfo((struct sockaddr *) &peer_addr,
                 peer_addr_len, host, NI_MAXHOST,
                 service, NI_MAXSERV, NI_NUMERICSERV);
-        if (s == 0)
-            printf("Received %zd bytes from %s:%s\n",
-                    nread, host, service);
-        else
+        if (s == 0){
+            printf("Received %zd bytes from %s:%s, content: %s\n",
+                    nread, host, service, buf);
+        }
+        else{
             fprintf(stderr, "getnameinfo: %s\n", gai_strerror(s));
+        }
 
         if (sendto(sfd, buf, nread, 0,
                     (struct sockaddr *) &peer_addr,

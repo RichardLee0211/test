@@ -5,11 +5,43 @@ network books from [here](https://stackoverflow.com/questions/8122592/which-book
 
 though network test code and note better keep in this repository
 
-go to check the compter network code
---------------------------------------------------------------------------------
+could test with
+```shell
+    ./testServer 8888
+    # another terminal
+    ./testClient 127.0.0.1 8888 "Message to travel"
+```
+this is fine. But when test with
+```shell
+    ./testServer 80 # failed and error couldn't bind?: need sudo to open 80 port
+    ./testClient 129.21.248.90 80 "Message to travel" # jammed, I don't know how VM network would deal with it
+```
+
+now I got a test code, wanna do it with multiply VM Ubuntu
+
+the host and VM pubic ip are both: 129.21.248.90. this is probably router IP address.
+Yes, it is. According to my phone response
+
+if we are using the same public address, then package would travel to the router. Because router don't forword the package to my computer, then it jammed.
+
+building a new VM ubuntu
+account: wenchen
+password: abcd
+
+netstat
+
+```shell
+    ipconfig getifaddr en0
+```
+this is like my wifi ip address, as long as clients and servers are in the same wifi network, it works
+10.0.5.18
+using sudo ./Server 80 may danger my computer
+
+TODO: netstat and ifconfig
+
 
 check Xiang's code
---------------------------------------------------------------------------------
+================================================================================
 got segmentation fault at the first time I run it
 
 
@@ -85,7 +117,13 @@ source code for building doc from [here](https://github.com/beejjorgensen/bgnet)
     printf("The address is: %s\n", ip6);
 ```
 
-### 5. System calls or Bust
+TODO:
+- addrinfo
+- sockaddr
+- sockaddr_in
+- nread = recvfrom(sfd, buf, BUF_SIZE, 0, (struct sockaddr *) &peer_addr, &peer_addr_len);
+
+5. System calls or Bust
 --------------------------------------------------------------------------------
 
 ```cpp
