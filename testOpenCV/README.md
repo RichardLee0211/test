@@ -1,4 +1,6 @@
-I don't even remember when I started this fold
+I don't even remember when I started this fold.
+for me, right now, data analysis is more important and design pattern is another topic to study.
+learning this topic for fun.
 
 log
 ================================================================================
@@ -45,6 +47,21 @@ I think I am messing around my environment
     pip2 install numpy
     pip2 install scipy
     brew install opencv
+    pip2 install ipython
 ```
+
 And don't update my daily working machine(namely macOS or others),
 Apple would push a great system upgrade and break others' code
+
+[sample code](https://github.com/opencv/opencv)
+
+chapter 02 Handling Files, Cameras, and GUIs
+================================================================================
+
+check the src code in pycv
+
+cv2.imshow("w1", image) # not working in macOS
+
+well, consdiering that python2 is dieing,
+and openCV API changing, most call don't make sense in my machine
+quit following this book
