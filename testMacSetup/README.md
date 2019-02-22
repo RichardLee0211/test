@@ -156,3 +156,10 @@ search, download and install
 Vmware Fusion
 --------------------------------------------------------------------------------
 search, download and install
+
+others
+--------------------------------------------------------------------------------
+
+TODO: maybe I need a Code download script to download my code from github in one command
+
+build up a list of my reference repository??

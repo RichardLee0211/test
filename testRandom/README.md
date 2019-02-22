@@ -138,6 +138,30 @@ TODO: don't really understand the definationa and how it works
 TODO: need to understand these test
 TODO: need understand statics better
 
+Analysis2005.pdf
+================================================================================
+
+great, good paper reading is half of the project
+
+cool, NIST test suit(15 test)
+
+flip a coin, exact modeling could predict
+
+random test is like security.
+No one define obsolute randomness, and no one define obsolute security
+but when they pass more test, the confidence of randomness/security increases
+
+ENGLISH: pass the battery of tests
+
+D. TYPES OF PRNGs
+--------------------------------------------------------------------------------
+this would be useful for my report
+
+K. DESCRIPTION OF THE NIST TESTS
+--------------------------------------------------------------------------------
+this would be useful for my report
+
+
 statics handbook
 ================================================================================
 introduce the statics handbook from [here](https://www.itl.nist.gov/div898/handbook/)
@@ -217,3 +241,8 @@ to do installation, library management could be better than pip
 tensorflow is now not compatible with python3.7, pip return a error; while
 anaconda manage to build a virtual enveronment(in ~/.bash_profile) and downgrade software version.
 Just make everything work for now
+
+TODO:
+well, the RNG predistion proble in ML is a classification problem, then
+what's the relationship that might exists between the prediction algorithm and
+intellectual problems that I saw before?

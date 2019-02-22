@@ -201,8 +201,21 @@ TODO: to be continue, need build python3 statical skills
 ch04 regression and prediction
 --------------------------------------------------------------------------------
 
+ch05 classification
+--------------------------------------------------------------------------------
+
+### Naive Bayes
+
 ch06 Statistical Machine Learning
 --------------------------------------------------------------------------------
+
+### K-Nearest Neighbors
+
+I got a KNN assignment in HPC
+
+right now, I am so excited to see the number, enum(state of a abbtirbution), location, time etc
+
+great, a small sample
 
 ch07 Unsuparvised Learning
 --------------------------------------------------------------------------------

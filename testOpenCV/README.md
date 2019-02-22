@@ -10,7 +10,11 @@ is outdated
 
 <img src="./pic/programmingCVwithPython.png" alt="drawing" width="200" \>
 
-"learning openCV 3 computer vision with python" , second edition, 2015
+**pause this learning process for now. need to learn more about ML, and then come back to image process field**
+
+openCV learnning resource: http://jacksimpson.co/best-resources-for-learning-opencv-python-and-c/
+
+"learning openCV 3 computer vision with python" , second edition, 2015, quit
 ================================================================================
 
 <img src="./pic/learningOpenCV3withpython2nd.png" alt="drawing" width="200" \>
