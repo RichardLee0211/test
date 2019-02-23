@@ -202,6 +202,89 @@ install openCV-python
 
 sudo apt-get install -y python-opencv
 
+install i3-gaps on ubuntu 18.04
+================================================================================
+```bash
+#!/bin/bash
+    sudo apt install -y \
+    libxcb1-dev \
+    libxcb-keysyms1-dev \
+    libpango1.0-dev \
+    libxcb-util0-dev \
+    libxcb-icccm4-dev \
+    libyajl-dev \
+    libstartup-notification0-dev \
+    libxcb-randr0-dev \
+    libev-dev \
+    libxcb-cursor-dev \
+    libxcb-xinerama0-dev \
+    libxcb-xkb-dev \
+    libxkbcommon-dev \
+    libxkbcommon-x11-dev \
+    autoconf \
+    libxcb-xrm0 \
+    libxcb-xrm-dev \
+    automake
+
+    cd /tmp
+
+# clone the repository
+    git clone https://www.github.com/Airblader/i3 i3-gaps
+    cd i3-gaps
+
+# compile & install
+    autoreconf --force --install
+    rm -rf build/
+    mkdir -p build && cd build/
+
+# Disabling sanitizers is important for release versions!
+# The prefix and sysconfdir are, obviously, dependent on the distribution.
+    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
+```
+
+install [i3blocks]
+(https://github.com/vivien/i3blocks)
+
+install polybar
+================================================================================
+it seems to work
+```shell
+
+    sudo apt-get install -y \
+    cmake \
+    cmake-data \
+    libcairo2-dev \
+    libxcb1-dev \
+    libxcb-ewmh-dev \
+    libxcb-icccm4-dev \
+    libxcb-image0-dev \
+    libxcb-randr0-dev \
+    libxcb-util0-dev \
+    libxcb-xkb-dev \
+    pkg-config \
+    python-xcbgen \
+    xcb-proto \
+    libxcb-xrm-dev \
+    i3-wm \
+    libasound2-dev \
+    libmpdclient-dev \
+    libiw-dev \
+    libcurl4-openssl-dev \
+    libpulse-dev \
+    libxcb-composite0-dev \
+    xcb \
+    libxcb-ewmh2
+
+    git clone https://github.com/jaagr/polybar.git
+
+    cd polybar && ./build.sh
+
+```
+
+I don't know if I install polybar right, when I launch it, it show errors
+
 log
 ================================================================================
 
@@ -213,3 +296,68 @@ plus I don't wanna keep google things for rise my LinuxOS(set-up)
 
 it turns out install i3 in Ubuntu 18.04 is a pain.
 try other Linux distro, I would need a well documented one
+
+well, troggle full screen could use space or ` in wenchen_mode
+
+following this tutorial:
+[UnixPorn](https://www.reddit.com/r/unixporn/wiki/index)
+--------------------------------------------------------------------------------
+
+I don't really care how system fonts set up, but I need to use
+[fronts](https://github.com/Tecate/bitmap-fonts)
+
+using i3
+
+GTK themes are fine
+icon themes are fine
+
+organize your Xresource
+```
+    ! ~/.Xresources
+    #define mybg #222222
+    #define myfg #cccccc
+    #define myfont Inconsolata
+    #define myfontsize 7
+    #define mypadding 20
+    ! #include "~/.xres/rofi"
+    ! #include "~/.xres/urxvt"
+    ! #include "~/.xres/xterm"
+
+
+    ! ~/.xres/rofi
+    rofi.bg: mybg
+    rofi.fg: myfg
+    rofi.hlfg: mybg
+    rofi.hlbg: myfg
+    rofi.padding: mypadding
+    rofi.font: myfont myfontsize
+
+
+    ! ~/.xres/urxvt
+    URxvt*background: mybg
+    URxvt*foreground: myfg
+    URxvt*highlightColor: myfg
+    URxvt*highlightTextColor: mybg
+    URxvt*cursorColor: myfg
+    URxvt*cursorColor2: mybg
+    URxvt*font: xft:myfont:medium:size=myfontsize
+    URxvt*boldFont: xft:myfont:size=myfontsize
+    URxvt*italicFont: xft:myfont:italic:size=myfontsize
+    URxvt*boldItalicFont: xft:myfont:bold:italic:size=myfontsize
+    ! URxvt*internalBorder mypadding
+
+    ! ~/.xres/xterm
+    xterm*faceName: myfont:style=Medium:size=myfontsize
+    xterm*background: mybg
+    xterm*foreground: myfg
+```
+
+```shell
+sudo apt-get install htop\
+                cmatrix
+
+```
+
+this is a good rice start article: https://www.reddit.com/r/unixporn/wiki/ricerous_info
+
+following this video: https://www.youtube.com/watch?v=ARKIwOlazKI
