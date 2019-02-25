@@ -2,13 +2,16 @@ learning latex
 
 ## install mactex as compiler
 from: https://thetechsolo.wordpress.com/2016/01/28/latex-on-mac-the-easy-way/
+
 surprisely, mactex is over 1 GB, and brew cask is needed
 and since mactex is the only popular choice for mac OS
+
 here: http://tug.org/mactex/
 ```bash
     brew cask install mactex
     brew cask install texmaker # latex editor
 ```
+
 output: straghgy, ask for passwd and don't response any more
 ```bash
     wnloading https://homebrew.bintray.com/bottles/little-cms2-2.9.high_sierra.bottle.1.tar.gz
@@ -40,9 +43,13 @@ output: straghgy, ask for passwd and don't response any more
     Updating Homebrew...
     ==> Auto-updated Homebrew!
 ```
-runing reinstall and no response again
-yes, there is response but extra slow
-when brew's script encounter a problem, it stops
+
+runing reinstall and no response again.
+
+yes, there is response but extra slow.
+
+when brew's script encounter a problem, it stops.
+
 couldn't uninstall neither
 ```cpp
     way way to slow
@@ -79,10 +86,13 @@ here, using mactex via command line, I'm lack of patient
 https://tex.stackexchange.com/questions/142554/command-line-pdflatex-vs-texshop
 
 ## tutorial
+
 from: http://www.tug.org.in/tutorials.html
+
 can't visit this, the indian Tex user Group: http://sarovar.org/projects/pstricks/
 
 one happy thing is that remote have latex installed
+
 what happened when type "latex on remote"
 ```bash
     [wli100@remote06 testLatex]$ ls
@@ -124,28 +134,37 @@ xdvi in ssh: remote
     Error: Can't open display:
 ```
 
-## log
+log
+================================================================================
+
 pdftex is a different program with pdflatex
-vim-llp seems doesn't work, this plugin
+
+vim-llp seems doesn't work, this plugin:
 https://github.com/xuhdev/vim-latex-live-preview
+
 but I can do
 :!pdflatex test1.tex
 and open manually
+
 so cool, YCM seems to have to latex autocomplete
 
-like HTML, why do I need to learn Latex
+like HTML, why do I need to learn Latex.
 for drawing UML and write design document
-but it pays too much just to draw that picture, like uml2.tex
+
+but it pays too much just to draw that picture, like uml2.tex.
 and it requires different package from the 5 GB install of mactex
 
-while, I find "what you see is what you get" is a good way to do art work
-just word doesn't do good in compatibility and stable in macOS
+while, I find "what you see is what you get" is a good way to do art work.
+just word doesn't do well in compatibility and stable in macOS.
 
-# log2
+log2
+================================================================================
+
 following the book from IndiaTexUserGroup
 now, I come back again, with my new macbook pro
 
-## ch3 introduction to Latex
+ch3 introduction to Latex
+--------------------------------------------------------------------------------
 ```latex
     % class: article, book, report, letter, report, article
     % options: fontSize, paperSize, pageFormat
@@ -155,11 +174,14 @@ now, I come back again, with my new macbook pro
 
 A LATEX document has broadly three parts viz., frontmatter, mainmatter and backmatter.
 
-## ch4 Lists, etc.
+ch4 Lists, etc.
+--------------------------------------------------------------------------------
 see in the .tex file, nothing so surprise me
+
 ### 4.2 displayed text
 
-## ch5. several kinds of boxes
+ch5. several kinds of boxes
+--------------------------------------------------------------------------------
 some config have preview effect of latex, but I don't like it, I can't even see the whole code. I need it when I'm not familiar with syntax
 
 ## ch6. Floats

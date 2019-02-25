@@ -9,11 +9,21 @@ and to do it, I only need to know:
 - [ ]
 - [ ]
 - [ ]
+
 this README is following LateX.pdf from en.wikibooks.org in June 18, 2016
-# ch1 intro
-# ch2 installation
-# ch3 installing extra packages
-# ch4 basics
+
+ch1 intro
+--------------------------------------------------------------------------------
+
+ch2 installation
+--------------------------------------------------------------------------------
+
+ch3 installing extra packages
+--------------------------------------------------------------------------------
+
+ch4 basics
+--------------------------------------------------------------------------------
+
 ```tex
     \documentclass{article}
     \begin{document}
@@ -34,16 +44,20 @@ multiply comment
     comment in your document
 ```
 
-# ch5 Document Structure
-at this point, leave vimtex plugin alone
-not many things to record
+ch5 Document Structure
+--------------------------------------------------------------------------------
 
-# ch6 Text Format
-## 6.1 spacing
+at this point, leave vimtex plugin alone, because not many things to record
+
+ch6 Text Format
+--------------------------------------------------------------------------------
+
+### 6.1 spacing
 switch command \singlespacing
 environment \begin{singlespace} \end{singlespace}
 
 here, text-alignment: https://www.sharelatex.com/learn/Text_alignment
+
 raggedright, match left alignment
 
 Alignment    Environment    Switch command      ragged2e environment    ragged2e switch command
@@ -54,54 +68,81 @@ Fully justified  N/A        N/A                 justify                 \justify
 
 \noindent % cancel the indent of this paragraph
 
-# ch7 Paragraph Formatting
+ch7 Paragraph Formatting
+--------------------------------------------------------------------------------
+
 now, feeling like this is a reference, but not a tutorial
 
-# ch8 colors
-# ch9 fonts
-# ch10 List structure
+ch8 colors
+--------------------------------------------------------------------------------
 
-# ch11 special characters
+ch9 fonts
+--------------------------------------------------------------------------------
+
+ch10 List structure
+--------------------------------------------------------------------------------
+
+ch11 special characters
+--------------------------------------------------------------------------------
+
 \textless and \textgreater
 preserve characters: & % $ # _ { } ~ ^ \
 ```latex
-\documentclass{article}
-\begin{document}
+    \documentclass{article}
+    \begin{document}
 
-    \& \% \$ \# \_ \{ \}
-    \textasciitilde % ~
-    \textasciicircum % ^
-    \textbackslash % \
+        \& \% \$ \# \_ \{ \}
+        \textasciitilde % ~
+        \textasciicircum % ^
+        \textbackslash % \
 
-\end{document}
+    \end{document}
 ```
 
-# ch12 Internationalization
+ch12 Internationalization
+--------------------------------------------------------------------------------
 this is not in my concern
 
-# ch13 Rotation
+ch13 Rotation
+--------------------------------------------------------------------------------
 
-# ch14 tables
+ch14 tables
+--------------------------------------------------------------------------------
 maybe right now I am not so interested in tables
 
-# ch15 title creation
+ch15 title creation
+--------------------------------------------------------------------------------
 
-# ch16 Page layout
+ch16 Page layout
+--------------------------------------------------------------------------------
 better header in ch16.7 page style
 
-# ch17 Importing Graphics
+ch17 Importing Graphics
+--------------------------------------------------------------------------------
 
-# ch18 Floats, Figures and Captions
+ch18 Floats, Figures and Captions
+--------------------------------------------------------------------------------
 TODO: to be continue, at ch18.2. heading to new area, data analysis
 
-# ch22 Errors and warning
+ch22 Errors and warning
+--------------------------------------------------------------------------------
 feel like I need to know more about latex to make my assignment perfect
 
-# ch27 Mathematics
+ch27 Mathematics
+--------------------------------------------------------------------------------
 I am doing homework on algorithm class, and I would like to convert it into a latex document, so I jump to math chapter here
 
-# ch 28 Advanced Mathematics
-# ch 29 Theorems
-# ch 30 chemical graphics
-# ch 31 algorithm
-# ch 32 source code Listings
+ch 28 Advanced Mathematics
+--------------------------------------------------------------------------------
+
+ch 29 Theorems
+--------------------------------------------------------------------------------
+
+ch 30 chemical graphics
+--------------------------------------------------------------------------------
+
+ch 31 algorithm
+--------------------------------------------------------------------------------
+
+ch 32 source code Listings
+--------------------------------------------------------------------------------

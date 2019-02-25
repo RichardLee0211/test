@@ -133,7 +133,7 @@ E.3 L'Ecuyer's Generator with Bays-Durham shuffle
 
 [correlogram](https://en.wikipedia.org/wiki/Correlogram):
 check randomness in a data set
-TODO: don't really understand the definationa and how it works
+TODO: don't really understand the defination and how it works
 
 TODO: need to understand these test
 TODO: need understand statics better
@@ -155,11 +155,11 @@ ENGLISH: pass the battery of tests
 
 D. TYPES OF PRNGs
 --------------------------------------------------------------------------------
-this would be useful for my report
+!! this would be useful for my report
 
 K. DESCRIPTION OF THE NIST TESTS
 --------------------------------------------------------------------------------
-this would be useful for my report
+!! this would be useful for my report
 
 
 statics handbook
