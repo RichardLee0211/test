@@ -353,11 +353,157 @@ organize your Xresource
 ```
 
 ```shell
-sudo apt-get install htop\
-                cmatrix
+sudo apt-get install htop \
+                cmatrix \
+                ctags
 
 ```
 
 this is a good rice start article: https://www.reddit.com/r/unixporn/wiki/ricerous_info
 
 following this video: https://www.youtube.com/watch?v=ARKIwOlazKI
+--------------------------------------------------------------------------------
+
+#### change fonts
+
+interesting, ~/.fonts and
+sudo apt install lxappearance
+
+two places to config gtk application fonts:
+~/.gtkrc-2.0
+~/.config/gtk-3.0/
+
+change GTK theme: Arc theme
+```shell
+    sudo apt install Arc theme
+```
+and use "lxappearance" to change theme, great
+
+using gtk arc theme
+could also change firefox theme to arc theme, just search firefox add-on arc theme
+
+using moka icon by search
+
+#### thunar, the file explorer GUI choosed by the author
+sudo apt install thunar
+# sudo apt install gnome-icon-theme-??
+# fix missing icon in "thunar" by edit gtk-icon-theme-name="gnome" in ~/.gtkrc-2.0
+
+using rofi
+--------------------------------------------------------------------------------
+
+sudo apt install rofi
+
+I could understand demu_run as a CLI(command line interface)
+
+bindsym $mod+semicolon exec dmenu_run -some-arguments
+bindsym $mod+d exec rofi -show run \
+    -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" \
+    -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" \
+    -hlbg "$bg-color" -hlfg "#9575cd" \
+    -font "System San Francisco Display 18"
+
+sudo apt install compton # a compositor for X11
+
+i3status is also a CLI, and we can write our own shell script to replace it
+
+https://fontawesome.com/cheatsheet
+TODO: it seems this emulate can't handle unicode icon
+
+sudo apt install i3blocks
+
+install playerctl by search, download and install
+sudo dpkg -i playerctl-0.4.2_amd64.deb
+
+load rhythmbox load with i3
+--------------------------------------------------------------------------------
+
+exec rhythmbox # load everytime you login to a X session
+exec_always rhythmbox # load everytime you restart i3 $mod+shift+r
+
+sudo apt install feh
+
+configure monitor
+--------------------------------------------------------------------------------
+
+sudo apt-get install arandr
+config file save in .screenlayout/foo.sh
+internally, it use xrandr and arguments
+
+rename workspaces
+--------------------------------------------------------------------------------
+
+```config
+    set $workspace1 "1. Editor"
+    set $workspace1 "2. something"
+    set $workspace1 "3. Editor"
+    set $workspace1 "4. Editor"
+
+    # switch to workspace
+    bindsym $mod+1 workspace $workspace1
+    bindsym $mod+2 workspace $workspace2
+    bindsym $mod+3 workspace $workspace3
+    bindsym $mod+4 workspace $workspace4
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $workspace1
+    bindsym $mod+Shift+2 move container to workspace $workspace2
+    bindsym $mod+Shift+3 move container to workspace $workspace3
+    bindsym $mod+Shift+4 move container to workspace $workspace4
+```
+
+force windows to open on certain workspaces
+--------------------------------------------------------------------------------
+
+CLI: xprop
+and then click on one window to get VM_CLASS, need the second argument
+
+
+in ~/.config/i3/config
+assign [class="Rhythmbox"] $workspace2
+
+how to associate Font Awesome icons with your workspace
+--------------------------------------------------------------------------------
+
+https://github.com/FortAwesome/Font-Awesome
+download the zip file and cp *.ttf file into ~/.font
+
+search "Awesome Fonts cheatsheet"
+
+TODO: need to unify tmux bg and fg
+
+```config
+    # floating
+    for_window [class="qTox"] floating enable
+    for_window [class="Pavucontrol"] floating enable
+    for_window [class="Skype"] floating enable
+
+    # Keys
+    exec_always xmodmap -e "clear lock" #disable caps lock switch
+    exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+```
+
+using terminal transparence and back background, save colors for vim and other application
+don't use theme color in terminal
+
+using URXVT
+--------------------------------------------------------------------------------
+in .Xresources
+```shell
+    URxvt.font: xft:monospace:size=16
+    URxvt.scrollBar: false
+```
+and load into urxvt
+```shell
+    xrdb ~/.Xresources
+```
+
+urxvt --help 2>&1 | grep scroll
+Arch wiki
+
+while, URXVT extension is perl script
+
+another package manager:
+yaourt -S urxvt-fullscreen
+
+finding urxvt extension, others/dotfile, Arch wiki, extension github repository, reddit UnixPorn
