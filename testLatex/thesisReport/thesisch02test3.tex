@@ -1,16 +1,32 @@
 \documentclass[oneside]{scrbook}
 
+\usepackage{scrpage2}
+\usepackage{blindtext}
+
+\pagestyle{scrheadings}
+
+\newcommand{\myregnum}{123456789}% registration number
+\ihead{}
+\chead{}
+\ohead[]{\headmark}
+\ifoot[\myregnum]{\myregnum}% registration number
+\cfoot[]{}
+\ofoot[\pagemark]{\pagemark}
+
 \title{A Sample Thesis}
 \author{A.N. Other}
 \date{July 2013}
 \titlehead{A Thesis submitted for the degree of Doctor of Philosophy}
 \publishers{School of Something\\University of Somewhere}
 
+% for now
+\includeonly{results}
+
 \begin{document}
 
 \maketitle
-\frontmatter
 
+\frontmatter
 \tableofcontents
 \listoffigures
 \listoftables
@@ -23,8 +39,14 @@ research was funded by the Imaginary Research Council.
 A brief summary of the project goes here.
 % A glossary and list of acronyms may go here
 % or may go in the back matter.
-\mainmatter
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
+\blindtext
 
+\mainmatter
 \chapter{Introduction}
 \label{ch:intro}
 
@@ -39,6 +61,7 @@ A brief summary of the project goes here.
 
 \chapter{Conclusions}
 \label{ch:conc}
+
 \backmatter
 % A glossary and list of acronyms may go here
 % or may go in the front matter after the abstract.
