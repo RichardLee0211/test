@@ -1,3 +1,5 @@
+log
+================================================================================
 for now, the purpose of the learning latex is redo my resume
 and to do it, I only need to know:
 - [ ] using sans serif family
@@ -10,7 +12,13 @@ and to do it, I only need to know:
 - [ ]
 - [ ]
 
-this README is following LateX.pdf from en.wikibooks.org in June 18, 2016
+LateX.pdf from en.wikibooks.org in June 18, 2016
+================================================================================
+
+God, I need to thanks wikibook, this is a nice document
+
+PART I Getting Started
+--------------------------------------------------------------------------------
 
 ch1 intro
 --------------------------------------------------------------------------------
@@ -43,6 +51,9 @@ multiply comment
     example for embedding
     comment in your document
 ```
+
+PART II Common Elements
+--------------------------------------------------------------------------------
 
 ch5 Document Structure
 --------------------------------------------------------------------------------
@@ -124,25 +135,56 @@ ch18 Floats, Figures and Captions
 --------------------------------------------------------------------------------
 TODO: to be continue, at ch18.2. heading to new area, data analysis
 
+PART III Mechanics
+--------------------------------------------------------------------------------
+
 ch22 Errors and warning
 --------------------------------------------------------------------------------
 feel like I need to know more about latex to make my assignment perfect
+
+PART IV Technical Texts
+--------------------------------------------------------------------------------
 
 ch27 Mathematics
 --------------------------------------------------------------------------------
 I am doing homework on algorithm class, and I would like to convert it into a latex document, so I jump to math chapter here
 
-ch 28 Advanced Mathematics
+ch28 Advanced Mathematics
 --------------------------------------------------------------------------------
 
-ch 29 Theorems
+ch29 Theorems
 --------------------------------------------------------------------------------
 
-ch 30 chemical graphics
+ch30 chemical graphics
 --------------------------------------------------------------------------------
 
-ch 31 algorithm
+ch31 algorithm
 --------------------------------------------------------------------------------
 
-ch 32 source code Listings
+ch32 source code Listings
 --------------------------------------------------------------------------------
+
+ch38 Bibliography Management
+--------------------------------------------------------------------------------
+
+ENGLISH: If it were totally manual, then adding or removing a reference would be a real chore, as you would have to
+
+ch55 Modular Document
+--------------------------------------------------------------------------------
+writing a book, .sty file
+
+### 38.3 BibTeX
+
+Good tool
+
+@article{greenwade93,
+    author = "George D. Greenwade",
+    title = "The {C}omprehensive {T}ex {A}rchive {N}etwork ({CTAN})",
+    year = "1993",
+    journal = "TUGBoat",
+    volume  = "14",
+    number  = "3",
+    pages   = "342--351"
+}
+
+TODO: vim-LaTeX plugin

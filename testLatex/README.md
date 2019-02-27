@@ -1,6 +1,7 @@
 learning latex
 
-## install mactex as compiler
+install mactex as compiler
+--------------------------------------------------------------------------------
 from: https://thetechsolo.wordpress.com/2016/01/28/latex-on-mac-the-easy-way/
 
 surprisely, mactex is over 1 GB, and brew cask is needed
@@ -85,7 +86,8 @@ maybe sharelatex.com is good option
 here, using mactex via command line, I'm lack of patient
 https://tex.stackexchange.com/questions/142554/command-line-pdflatex-vs-texshop
 
-## tutorial
+tutorial
+--------------------------------------------------------------------------------
 
 from: http://www.tug.org.in/tutorials.html
 
