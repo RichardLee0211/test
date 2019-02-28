@@ -246,3 +246,74 @@ TODO:
 well, the RNG predistion proble in ML is a classification problem, then
 what's the relationship that might exists between the prediction algorithm and
 intellectual problems that I saw before?
+
+I will need more coding
+
+- LCG: https://en.wikipedia.org/wiki/Linear_congruential_generator
+- Randomness tests: https://en.wikipedia.org/wiki/Randomness_tests
+    great, reference to "Numerical Recipes" and GCC
+
+
+
+```shell
+    # LCG
+    ➜  testRandom git:(master) ✗ ./test 1664525 1013904223 4294967296 2 10
+    3CA1BF79
+    75C0E284
+    305F0C13
+    BDED2256
+    B78DF5BD
+    1E02BBF8
+    34AF4EF7
+    78EB5FEA
+    86740E41
+    B25A92AC
+    B444EE1B
+    ➜  testRandom git:(master) ✗ ./test 8 2 1024 1 20
+    A
+    52
+    292
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+    92
+```
+
+ENGLISH: It may well seem surprising that a group of just 23 individuals is required to reach a probability of 50% that two individuals in the group have the same birthday
+
+TODO: Real-world applications for the birthday paradox include a cryptographic attack called the birthday attack, which uses this probabilistic model to reduce the complexity of finding a collision for a hash function.
+
+ENGLISH: In deference to
+
+TODO: python3 calculate 364*363*362*...*(365-22)
+
+100% means it always happen, 0% means it never happened.
+but always happening doesn't mean 100%, never happened doesn't 0%.
+Because we don't know the future. We also only know a little about past.
+
+Random meaning patternless
+
+TODO: For example, the infamous RANDU fails many randomness tests dramatically, including the spectral test.
+a = 65539 c=0 m=2^31
+
+ENGLISH: The use of an ill-conceived random number generator can put the validity of an experiment in doubt by violating statistical assumptions.
+
+TODO:
+- Yongge Wang. On the Design of LIL Tests for (Pseudo) Random Generators and Some Experimental Results, http://webpages.uncc.edu/yonwang/, 2014
+- Yongge Wang; Tony Nicol (2014), "Statistical Properties of Pseudo Random Sequences and Experiments with PHP and Debian OpenSSL", Esorics 2014, Lncs 8712: 454–471
+
+ENGLISH: String 1 admits a short linguistic description: "32 repetitions of '01'".
