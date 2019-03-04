@@ -22,7 +22,8 @@ now I got a test code, wanna do it with multiply VM Ubuntu
 the host and VM pubic ip are both: 129.21.248.90. this is probably router IP address.
 Yes, it is. According to my phone response
 
-if we are using the same public address, then package would travel to the router. Because router don't forword the package to my computer, then it jammed.
+if we are using the same public address, then package would travel to the router.
+Because router don't forword the package to my computer, then it jammed.
 
 building a new VM ubuntu
 account: wenchen
