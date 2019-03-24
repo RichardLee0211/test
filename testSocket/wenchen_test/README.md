@@ -40,6 +40,8 @@ using sudo ./Server 80 may danger my computer
 
 TODO: netstat and ifconfig
 
+NAT is the answer for private IP for public IP translation
+from: https://en.wikipedia.org/wiki/Network_address_translation
 
 check Xiang's code
 ================================================================================

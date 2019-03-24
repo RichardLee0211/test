@@ -317,3 +317,7 @@ TODO:
 - Yongge Wang; Tony Nicol (2014), "Statistical Properties of Pseudo Random Sequences and Experiments with PHP and Debian OpenSSL", Esorics 2014, Lncs 8712: 454–471
 
 ENGLISH: String 1 admits a short linguistic description: "32 repetitions of '01'".
+
+how to use conda: https://docs.conda.io/projects/conda/en/latest/user-guide/troubleshooting.html
+
+solve VMware share fold, follow intructions from VMware Fusion 8 Help manual, need to mount device. Cool
