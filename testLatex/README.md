@@ -1,14 +1,18 @@
 learning latex
 
-## install mactex as compiler
+install mactex as compiler
+--------------------------------------------------------------------------------
 from: https://thetechsolo.wordpress.com/2016/01/28/latex-on-mac-the-easy-way/
+
 surprisely, mactex is over 1 GB, and brew cask is needed
 and since mactex is the only popular choice for mac OS
+
 here: http://tug.org/mactex/
 ```bash
     brew cask install mactex
     brew cask install texmaker # latex editor
 ```
+
 output: straghgy, ask for passwd and don't response any more
 ```bash
     wnloading https://homebrew.bintray.com/bottles/little-cms2-2.9.high_sierra.bottle.1.tar.gz
@@ -40,9 +44,13 @@ output: straghgy, ask for passwd and don't response any more
     Updating Homebrew...
     ==> Auto-updated Homebrew!
 ```
-runing reinstall and no response again
-yes, there is response but extra slow
-when brew's script encounter a problem, it stops
+
+runing reinstall and no response again.
+
+yes, there is response but extra slow.
+
+when brew's script encounter a problem, it stops.
+
 couldn't uninstall neither
 ```cpp
     way way to slow
@@ -78,11 +86,15 @@ maybe sharelatex.com is good option
 here, using mactex via command line, I'm lack of patient
 https://tex.stackexchange.com/questions/142554/command-line-pdflatex-vs-texshop
 
-## tutorial
+tutorial
+--------------------------------------------------------------------------------
+
 from: http://www.tug.org.in/tutorials.html
+
 can't visit this, the indian Tex user Group: http://sarovar.org/projects/pstricks/
 
 one happy thing is that remote have latex installed
+
 what happened when type "latex on remote"
 ```bash
     [wli100@remote06 testLatex]$ ls
@@ -124,19 +136,63 @@ xdvi in ssh: remote
     Error: Can't open display:
 ```
 
-## log
+log
+================================================================================
+
 pdftex is a different program with pdflatex
-vim-llp seems doesn't work, this plugin
+
+vim-llp seems doesn't work, this plugin:
 https://github.com/xuhdev/vim-latex-live-preview
+
 but I can do
 :!pdflatex test1.tex
 and open manually
-so cool, YCM seem to have to latex autocomplete
 
-like HTML, why do I need to learn Latex
-for drawing UML and write design docment
-but it pays too much just to draw that picture, like uml2.tex
+so cool, YCM seems to have to latex autocomplete
+
+like HTML, why do I need to learn Latex.
+for drawing UML and write design document
+
+but it pays too much just to draw that picture, like uml2.tex.
 and it requires different package from the 5 GB install of mactex
 
-while, I find "what you see is what you get" is a good way to do art work
-just word doesn't do good in compatibility and stable in macOS
+while, I find "what you see is what you get" is a good way to do art work.
+just word doesn't do well in compatibility and stable in macOS.
+
+log2
+================================================================================
+
+following the book from IndiaTexUserGroup
+now, I come back again, with my new macbook pro
+
+ch3 introduction to Latex
+--------------------------------------------------------------------------------
+```latex
+    % class: article, book, report, letter, report, article
+    % options: fontSize, paperSize, pageFormat
+    % 10pt, [letterpaper, legalpaper, executivepaper], one column, two column
+    \documentclass[options]{class}
+```
+
+A LATEX document has broadly three parts viz., frontmatter, mainmatter and backmatter.
+
+ch4 Lists, etc.
+--------------------------------------------------------------------------------
+see in the .tex file, nothing so surprise me
+
+### 4.2 displayed text
+
+ch5. several kinds of boxes
+--------------------------------------------------------------------------------
+some config have preview effect of latex, but I don't like it, I can't even see the whole code. I need it when I'm not familiar with syntax
+
+## ch6. Floats
+
+about vim
+now, I am search through my vimrc to exam the quick fix window. feel like I am lose control of this feature
+I set let g:syntastic_auto_loc_list=0 to stop automatically show up, I don't think it's doing any help
+and here: https://stackoverflow.com/questions/3262037/how-to-quit-vim-quickfix
+:cclose # close the quick fix window
+:copen  # open the quick fix window
+:cnext or :cn # next error
+:cprevious or :cp # previous error

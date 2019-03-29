@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\title{this is the title}
+\author{author, Affilication}
+\date{}
+
+\maketitle
+
+\begin{abstract}
+this is sample abstract
+\end{abstract}
+
+\section{Introduction}
+this is sample section
+
+\begin{enumerate}
+    \item the labels consists of sequential numbers
+    \item the numbers starts at 1 with every call to the enumerate environment
+\end{enumerate}
+
+\begin{itemize}
+    \item the individual entries are indicated with a block dot, a so-called bullet
+    \item the text in the entries may be of any length
+\end{itemize}
+
+\begin{description}
+    \item[Purpose:] this environment is appropriate when a number of works or
+                    expressions are to be defined. This environment is appropriate when a number of words or expressions are to be defined.
+    \item[Example:] It may also be used as an author list in the bibliography
+\end{description}
+
+% nested list
+\begin{itemize}
+    \item The {\tt itemize} label at the first level is a bullet.
+    \begin{enumerate}
+        \item The numbering is with Arabic numerals since this is ...
+        \begin{itemize}
+            \item This is the third level of the nesting, but the ...
+                \begin{enumerate}
+                    \item And this is the fourth level of the overall ...
+                    \item Thus the numbering is with lower case letters ...
+                \end{enumerate}
+            \item The label at this level is a long dash.
+        \end{itemize}
+        \item Every list should contain at least two points.
+    \end{enumerate}
+    \item Blank lines ahead of an ...
+\end{itemize}
+
+\subsection{Subsection}
+This is sample subsection
+
+% box exercise
+% it seems that pdflatex and indiaUserGroup use different version of Latex
+\makebox[5cm][c] {some word}        \par
+\framebox[5cm][c]{some words}
+
+\framebox{A few words of advice}
+\framebox[\width+4mm][s]{A few words of advice}
+\framebox[1.5\width]{A few word of advice}
+
+\fbox{Text in a box}
+\setlength\fboxrule{2pt}\setlength\fboxsep{2mm}
+\fbox{Text in a box}
+
+% baseline \arisebox{lex}{upward} baseline
+% \raisebox{-lex}{downword} baseline
+% TODO: ??
+% baseline \arisebox{10pt}{upward} baseline \raisebox{-10pt}{downword} baseline
+
+% \doturn doesn't work with pdflatex
+$x_1$ \doturn{\fbox{badthing}}
+$x_2$ \doturn{\raisebox{\depth}{\fbox{bad thing}}}
+$x_3$ \doturn{\raisebox{-\height}{\fbox{Bad thing}}} 
+$x_4$
+
+\parbox{.3\linewidth}
+	{this is the content of the left-most parbox. }
+\hfill CURRENT LINE \hfill
+\parbox{.3\linewidth}
+	{this is the right-most parbox. Note that the typeset text looks sloppy because 
+	\LaTeX{} cannot nicely balance the material in these narrow columns. }
+
+\subsubsection{Subsubsection}
+this is sample subsubsection
+
+\paragraph{paragraph}
+this is sample paragraph.
+
+\begin{thebibliography}{00}
+
+\bibitem{1} this is sample bibitem one.
+\bibitem{2} this is sample bibitem two.
+\bibitem{3} this is sample bibitem three.
+
+\end{thebibliography}
+
+\end{document}

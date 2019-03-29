@@ -1,0 +1,190 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{verbatim}
+
+\everymath{\displaystyle}
+
+\begin{document}
+this is some words, $ \sum $
+% TODO: wired??
+% this is some words, \( \sum \) \\
+% this is some words, \math{\sum } \\
+% this is some words, \displaymath{\sum x = y}
+this is some words \\
+$ \forall x \in X, \quad \exists y \leq \epsilon $
+
+$ \alpha, \beta, \gamma, \Gamma, \pi, \Pi, \phi, \varphi, \mu, \Phi $
+% \Alpha, \Beta is not provided by Latex, which is A and B respectly
+
+$ \sin(2*\theta) = 2*\sin(\theta)\cos(\theta) $
+
+$ \cos(2\theta) = \cos^2(\theta) - \sin^2(\theta) $
+
+$ \lim{x \to \infty } \exp(-x) = 0 $ % TODO: not good enough
+
+$ a \bmod b $
+
+$ x \equiv a \pmod b $
+
+$ k_{n+1} = n^2 + k_n^2 - k_{n-1} $
+
+$ k_{n+1} = n^2 + k^2_n - k_{n-1} $
+
+$ f(n) = n^2 +4n^{1/2} + 4 |_{n=17} $
+
+% binomial coefficient: choose k from n items
+$ \frac{n!}{k!(n-k)!} = \binom{n}{k} $
+
+$ {n! \over k!(n-k)!} = {n \choose k}$
+
+$ {n \choose k} = \frac{n!}{k!(n-k)!}$
+
+$ \frac{\frac{1}{x}+\frac{1}{y}}{y-z}$
+
+$ ^3/_7 $
+
+ %running fraction with slash - requires math mode.
+\newcommand*\rfrac[2]
+$ \rfrac{3}{7} $
+
+% $x^\frac{1}{2}$ % no error $xˆ\sfrac{1}{2}$ % error $xˆ{\sfrac{1}{2}}$ % no error
+$ x^{\frac{1}{2}} $
+
+\begin{equation}
+    \frac{
+        \begin{array}[b]{r}
+            \left( x_1 x_2 \right)\\
+            \times \left( x'_1 x'_2 \right)
+        \end{array}
+    }{
+        \left( y_1y_2y_3y_4 \right)
+    }
+\end{equation}
+
+$ \sqrt{\frac{a}{b}} $
+
+$ \sqrt[n]{1+x+x^2+x^3+\ldots}$
+
+$ \displaystyle \sum^{10}_{i=1} x_i $
+
+% integral
+$ \int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x $
+
+$ \int_0^\infty x\mathrm{d}x $
+
+
+$
+\sum_{\substack{
+    0<i<m \\
+    0<j<n
+    }}
+P(i,j)
+$
+
+% brackets
+% $ (a),[b],\{c\}, d,\e\, \langle f \rangle, \lfloor g \rfloor, \lceil h \rceil, \ulcorner i \urcorner $
+
+$ \left(\frac{x^2}{y^3}\right) $
+
+% $ P\left(A=2\middle\frac{A^2}{B}\right) $ % problems
+
+$ \left\{\frac{x^2}{y^3}\right\} $
+
+
+% $ \left.\frac{x^3}{3}\right_0^1 $ % problems
+
+$ ( \big( \Big( \bigg( \Bigg( $
+
+$ \frac{\mathrm d}{\mathrm d x} \left( k g(x) \right) $
+
+$ \frac{\mathrm d}{\mathrm d x} \big( k g(x) \big) $
+
+$ x \in [-1, 1] $
+
+$
+\begin{matrix}
+    -1 & 3 \\
+    2 & -4
+\end{matrix}
+=
+\begin{matrix*}[r]
+    -1 & 3 \\
+    2 & -4
+\end{matrix*}
+$
+
+$
+A_{m,n} =
+\begin{pmatrix}
+    a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+    a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+    \vdots  & \vdots  & \ddots & \vdots  \\
+    a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+\end{pmatrix}
+$
+
+% \math{ }
+$
+\begin{array}{cc}
+1 & 2 \\
+\hline
+3 & 4
+\end{array}
+$
+
+$
+M = \begin{bmatrix}
+    \frac{5}{6} & \frac{1}{6} & 0           \\[0.3em]
+    \frac{5}{6} & 0           & \frac{1}{6} \\[0.3em]
+    0           & \frac{5}{6} & \frac{1}{6}
+    \end{bmatrix}
+$
+
+\begin{comment}
+$
+M = \bordermatrix{~ & x & y \cr
+                   A & 1 & 0 \cr
+                   B & 0 & 1 \cr}
+
+$
+\end{comment}
+
+A matrix in text must be set smaller:
+$\bigl(\begin{smallmatrix}
+a&b \\ c&d
+\end{smallmatrix} \bigr)$
+to not increase leading in a portion of text.
+
+%displaystyle
+\[
+f(n) =
+    \begin{cases}
+        n/2       & \quad \text{if } n \text{ is even}\\
+        -(n+1)/2  & \quad \text{if } n \text{ is odd}\\
+    \end{cases}
+\]
+
+%intextstyle
+\(
+f(n) =
+    \begin{cases}
+        n/2       & \quad \text{if } n \text{ is even}\\
+        -(n+1)/2  & \quad \text{if } n \text{ is odd}\\
+    \end{cases}
+\)
+
+% difference between dx and \mathrm{d}x
+\[
+\int y\, dx \\
+\int y\; \mathrm{d} x
+\]
+
+\newcommand{\dd}{\mathop{} \,\mathrm{d}}
+
+\begin{equation}
+    C^i_j = {\textstyle \sum_k} A^i_k B^k_j
+\end{equation}
+
+
+\end{document}

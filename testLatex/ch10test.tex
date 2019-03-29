@@ -1,0 +1,76 @@
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage[ampersand]{easylist}
+\usepackage[normalem]{ulem}
+
+% \renewcommand{\familydefault}{\rmdefault} % roman or use \textrm{...} or {\rmfamily ...}
+% \renewcommand{\familydefault}{\sfdefault} % sans serif or use textsf{...} or {\sffamily ...}
+% \renewcommand{\familydefault}{\ttdefault} % monospace or use texttt{...} or {\ttfamily ...}
+
+\begin{document}
+
+% \usefont{<encoding>}{<family>}{<series>}{<shape>}
+% encoding: OT1, T1
+% family: fontfamily
+% series: l=light, m=medium, b=bold, bx=very bold
+% shape: it=italic, n=normal, sl=slanted, sc=small capitals
+% \usefont{T1}{cmr}{m}{sc}
+% \usefont{T1}{phv}{m}{sc}
+\usefont{T1}{ptm}{m}{n}
+
+\blindtext
+\begin{itemize}
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+\blindtext
+
+\newpage
+\blindtext
+\begin{itemize}[noitemsep]
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+
+\begin{easylist}
+& main menu~:
+&& sub item.
+&& Another sub item.
+\end{easylist}
+
+\blindtext
+
+\newpage
+what?
+\emph{In this emphasized sentence, there is an emphasized \emph{word} which looks upright.}
+
+% effect under \usepackage[normalem]{ulem}
+\noindent
+\uline{this sentence should be underlined} \\
+\uwave{this sentence should be wave underlined} \\
+\sout{this sentence should be stricked out} \\
+\xout{this sentence should be slasheded out} \\
+\textsc{this is small capitaled} \\
+\textbf{this is bold text} \\
+\textnormal{this is normal text} \\
+\textmd{this is medium text} \\
+% \textlf{this is light text} % unavailable for sans serif
+
+\noindent
+\tiny{this is tiny} \\
+\scriptsize{this is script} \\
+\footnotesize{this is footnotesize} \\
+\small{this is small} \\
+\normalsize{this is normal} \\
+\large{this is large text} \\
+\Large{this is Large} \\
+\LARGE{this is LARGE} \\
+\huge{this is huge} \\
+\Huge{this is Huge} \\
+
+
+
+\end{document}

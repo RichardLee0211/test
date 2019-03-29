@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage{verbatim}
+
+\begin{document}
+
+basic table
+\begin{tabular}{ l c r }
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9 \\
+\end{tabular}
+
+add some vertical lines
+\begin{tabular}{ l | c || r }
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9 \\
+\end{tabular}
+
+% \emph is a command with argument, \em is a switch.
+\emph{emphasized text}, this part is normal % correct
+{\em emphsized text}, this part is normal % correct
+
+% \em emphasized text, this part is normal % Incorrect
+% \em{emphasized text}, this part si normal % Incorrect
+
+% wired example about comment
+This is an % stupid
+% Better: instructive <----
+example: Supercal%
+ifragilist%
+icexpialidocious
+
+This is another
+\begin{comment}
+rather stupid,
+but helpful
+\end{comment}
+example for embedding
+comment in your document
+
+\end{document}
