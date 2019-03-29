@@ -312,3 +312,10 @@ more gaps between different compiler
         return MetaString2<I>(str).decrypt();
     }
 ```
+
+## reading white paper from ADVobfuscator
+TODO:
+- [ ] what's turing-complete 12 reference
+- [ ]
+- [ ]
+- [ ]
