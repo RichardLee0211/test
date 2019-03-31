@@ -161,6 +161,19 @@ K. DESCRIPTION OF THE NIST TESTS
 --------------------------------------------------------------------------------
 !! this would be useful for my report
 
+a little reading about p-value:
+- null-hypothesis(H_0): the hypothesis of original status
+- alternative-hypothesis(H_a): the hypothesis of new status(new method is better), where heavy proof goes
+- P-value is smaller than threshold(\alpha, e.g. 0.05 or 0.01 or researcher decided value),
+then we could reject H_0 and go H_a, and engineers are happy
+
+e.g.
+H_0: this sequence is random
+H_a: this sequence is no-random
+if P-value < \alpha then reject H_0, H_a is right
+
+Ho, I love "GNU Scientific Library" and scipy when I gonna implement these tests
+
 
 statics handbook
 ================================================================================
@@ -174,6 +187,7 @@ Statistic for Technology
 ================================================================================
 wanna read the "Statistics for Technology" book that analysis2001.pdf refered
 maybe could get it from Binghamton library
+
 
 log
 ================================================================================
@@ -216,7 +230,8 @@ and Yes, Anaconda helped me to manager my package version issue. use it for now
 I need to understand the ML modle the code uses.
 
 Okay, look. I would put some serious pictures in github repository and use markdown file to organize them.
-now I would need a command line picture view in Ubuntu if it is my daily working OS, then it would make things easier
+now I would need a command line picture view in Ubuntu if it is my daily working OS,
+then it would make things easier
 
 ```shell
     # what I need to do when using command output as a string
@@ -293,13 +308,16 @@ I will need more coding
     92
 ```
 
-ENGLISH: It may well seem surprising that a group of just 23 individuals is required to reach a probability of 50% that two individuals in the group have the same birthday
+ENGLISH: It may well seem surprising that a group of just 23 individuals is
+required to reach a probability of 50% that two individuals in the group have the same birthday
 
-TODO: Real-world applications for the birthday paradox include a cryptographic attack called the birthday attack, which uses this probabilistic model to reduce the complexity of finding a collision for a hash function.
+TODO: Real-world applications for the birthday paradox include a cryptographic
+attack called the birthday attack, which uses this probabilistic model to reduce
+the complexity of finding a collision for a hash function.
 
 ENGLISH: In deference to
 
-TODO: python3 calculate 364*363*362*...*(365-22)
+TODO: python3 calculate 364*363*362*...*(365-22), what's it called??
 
 100% means it always happen, 0% means it never happened.
 but always happening doesn't mean 100%, never happened doesn't 0%.
@@ -310,7 +328,8 @@ Random meaning patternless
 TODO: For example, the infamous RANDU fails many randomness tests dramatically, including the spectral test.
 a = 65539 c=0 m=2^31
 
-ENGLISH: The use of an ill-conceived random number generator can put the validity of an experiment in doubt by violating statistical assumptions.
+ENGLISH: The use of an ill-conceived random number generator can put the validity
+of an experiment in doubt by violating statistical assumptions.
 
 TODO:
 - Yongge Wang. On the Design of LIL Tests for (Pseudo) Random Generators and Some Experimental Results, http://webpages.uncc.edu/yonwang/, 2014
@@ -318,6 +337,73 @@ TODO:
 
 ENGLISH: String 1 admits a short linguistic description: "32 repetitions of '01'".
 
-how to use conda: https://docs.conda.io/projects/conda/en/latest/user-guide/troubleshooting.html
+#### how to use conda
+https://docs.conda.io/projects/conda/en/latest/user-guide/troubleshooting.html
+get cheat sheet here, using it as my python environment manager
+```shell
+    conda create --name test
+    conda create --clone base --name test02 # copy base into test02
+    conda env export --name ENVNAME > envname.yml
+    conda env create --file envname.yml
 
-solve VMware share fold, follow intructions from VMware Fusion 8 Help manual, need to mount device. Cool
+    conda activate test
+    conda env list
+    conda install --yes PKGNAME1 PKGNAME2
+    conda update PKGNAME
+    conda remove PKGNAME
+```
+
+#### about shared fold in VMware Fusion 8
+solve VMware share fold, follow intructions from VMware Fusion 8 Help manual,
+need to mount device. Cool.
+with VMware Fusion 8, the Shared fold need to install tools to Guest OS.
+
+#### about if __name__ == "__main__":
+from: https://stackoverflow.com/questions/419163/what-does-if-name-main-do
+
+feel happy to see OpenMP, a term that I understand
+```shell
+    (test) ➜  testRandom git:(master) ✗ python3 test3.py
+    Using TensorFlow backend.
+    WARNING:tensorflow:From /Users/wenchen/anaconda3/envs/test/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Colocations handled automatically by placer.
+    WARNING:tensorflow:From /Users/wenchen/anaconda3/envs/test/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Use tf.cast instead.
+    Epoch 1/1
+    2019-03-29 12:23:51.265799: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+    2019-03-29 12:23:51.266984: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 4. Tune using inter_op_parallelism_threads for best performance.
+    OMP: Error #15: Initializing libiomp5.dylib, but found libiomp5.dylib already initialized.
+    OMP: Hint: This means that multiple copies of the OpenMP runtime have been linked into the program. That is dangerous, since it can degrade performance or cause incorrect results. The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. For more information, please see http://www.intel.com/software/products/support/.
+    [1]    83442 abort      python3 test3.py
+```
+
+wait, ipython doesn't using conda environment
+
+conda install ipython
+conda install matplotlib
+conda install keras
+
+this is cons of python, environment management
+
+TensorFlowPrediction.py works on base conda environment
+
+ENGLISH: For the user, the most salient distinction is probably this
+
+manage python package:
+- pip + virtualenv
+- conda
+
+ENGLISH: An entire generation of scientific Python users spent countless hours
+struggling with the installation hell created by this exercise of forcing a
+square peg into a round hole – and those were just ones lucky enough to be using
+Linux. If you were on Windows, forget about it.
+
+a way to install conda:
+- pip install conda
+- or search_download_install anaconda
+
+PyPI(python package index)
+
+TODO: given a math function, calculate integrate to some precision

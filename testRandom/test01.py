@@ -12,4 +12,6 @@ for i in range(steps):
     walk.append(position)
 
 plt.plot(walk)
+# plt.draw()
+# print("something going on")
 plt.show()

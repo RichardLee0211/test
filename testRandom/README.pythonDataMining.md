@@ -390,7 +390,7 @@ DONE: what if i wanna find tip instance that tips["tip"] more than 5 dollors
 ```
 
 TODO: need to know more about distribution
-DONE: after using sns.distplot, don't know how to show it in ipython: plt.show(). need to checkout seaborn doc
+DONE: after using sns.distplot, don't kbcnow how to show it in ipython: plt.show(). need to checkout seaborn doc
 ```python
     comp1 = np.random.normal(0, 1, size=200)
     comp2 = np.random.normal(10,2, size=200)
