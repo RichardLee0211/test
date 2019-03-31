@@ -1,12 +1,12 @@
-/* this is random generator code that put 1000 pseudo random number between 0~999 to random.txt
- *
+/*
  */
 
 #include<stdlib.h>
 #include<stdio.h>
 
-#define NUM 5000
-#define RANDOM_MAX 1000
+// #define NUM 5000
+// #define RANDOM_MAX 1000
+#define NUM 65536
 #define SEED 0
 
 int main_1(){
@@ -41,7 +41,7 @@ int main_3(){
     return 0;
 }
 
-int main(){
+int main_4(){
     // std::mt19937 eng{};
     std::ranlux24_base eng{};
     std::uniform_int_distribution<uint32_t> dist(0);
@@ -50,4 +50,8 @@ int main(){
     }
     return 0;
 
+}
+
+int main(){
+    main_3();
 }

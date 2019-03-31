@@ -407,3 +407,44 @@ a way to install conda:
 PyPI(python package index)
 
 TODO: given a math function, calculate integrate to some precision
+
+|-----------------------------------------------------------------------------|
+|random eng | frequency | frequencyBlock |------------------------------------|
+|-----------------------------------------------------------------------------|
+|random_dev | 0.77564   |0.00398---------|------------------------------------|
+|srand0     | 0.00000   |----------------|------------------------------------|
+|srand2     | 0.00000   |----------------|------------------------------------|
+|LCG01      | 0.53855   |----------------|------------------------------------|
+|LCG02      | 0.65271   |----------------|------------------------------------|
+|mt19937    | 0.14156   |----------------|------------------------------------|
+|ranlux24   | 0.61356   |----------------|------------------------------------|
+|homeLCG01  | 0.87682   |----------------|------------------------------------|
+|homeLCG02  | 0.00000   |----------------|------------------------------------|
+|-----------------------------------------------------------------------------|
+
+#### test for longest run of ones in a Block
+choose K=5, M=128
+|-------|-----------------------|
+| class | probabilities         |
+|-------|-----------------------|
+| v<=4  | pi_0 = 0.1174         |
+| v=5   | pi_1 = 0.2430         |
+| v=6   | pi_2 = 0.2493         |
+| v=7   | pi_3 = 0.1752         |
+| v=8   | pi_4 = 0.1027         |
+| v>=9  | pi_5 = 0.1124         |
+|-------|-----------------------|
+
+maybe checkout:
+1. NIST (National Institute of Standards and Technology), A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications. 2001  
+2. Knuth, Donald E., The Art of Computer Programming - Seminumerical Algorithm. Vol 2 Chapter 3 Random Numbers pg1-184. 1997.  
+3. Menezes, van Oorschot and Vanstone, Handbook of Applied Cryptography, CRC Press 1997.  
+4. Lavarand http://lavarand.sgi.com  
+5. Vattulainen et al., A Comparative Study of Some Pseudorandom Number Generators,  Department of Electrical Engineering, August 1993.  
+6. Klimasauskas, C. Not Knowing Your Random Number Generator Could be Costly: Random  Generators – Why Are They Important. PCAI (PC Artificial Intelligence) Issue 16.3 pg 50-56  
+7. Rutti, Mario, A Random Number Generator Test Suite for the C++ Standard (Diploma Thesis), Institute for Theoretical Physics, Zurich, 2004. http://www.comp- phys.org:16080/rngts/doc/main.pdf  
+8. How We Learned to Cheat at Online Poker: A Study in Software Security By Brad Arkin  Frank Hill Scott Marks Matt Schmid and Thomas John Walls  http://www.developer.com/tech/article.php/616221  
+9. The Evaluation of RPG100 by Using NIST and DIEHARD tests, FDK Corporation, Dec 2003.  http://www.fdk.co.jp/cyber-e/pdf/HM-RAE104.pdf  
+
+###
+errors in K.10 in 2005report, d calculation
