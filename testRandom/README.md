@@ -448,3 +448,22 @@ maybe checkout:
 
 ###
 errors in K.10 in 2005report, d calculation
+
+### over_lapping template matching test
+this is ... , bad reporter
+pi_0 0.367879
+pi_1 0.183940
+pi_2 0.137955
+pi_3 0.099634
+pi_4 0.069935
+pi_5 0.140657
+
+I don't wanna reclaim the math process to calculate P_value, as doing so in
+five-pages report would lose a lot of detail and explaination, which is necessary
+to fully understand and implement them. An example has been made in 2005 report.
+
+ε = “the first 1,000,000 binary digits in the expansion of e”
+
+1. virtualization
+2. test suit
+3. conbine

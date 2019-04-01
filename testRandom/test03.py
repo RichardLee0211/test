@@ -190,17 +190,133 @@ def binary_matrix_rank_test(f):
     print(f"X_obs={X_obs:2.5f}")
     print(f"P_value={P_value:2.5f}")
 
+# TODO: what ttf return means and how to use it
 def spectral_test(f):
-    arr_e = np.array()
+    # arr_e = np.array()
+    list_e = []
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
         # print(f"{a:b}")
         for j in range(BIT_WIDTH):
             b = (a>>(BIT_WIDTH-1-j)) & 0x1
-            arr_e.append(b)
+            list_e.append(b)
+    n = len(list_e)
+    arr_e = np.array(list_e)
+    arr_X = arr_e *2 -1
+    arr_S = np.fft.fft(arr_X)
+    arr_M = abs(arr_S[0:int(arr_S.size/2)])
+    T = math.sqrt(2.995732274*n)
+    N_0 =  0.95*n/2
+    N_1 = 0
+    for e in arr_M:
+        if e<T:
+            N_1 += 1
+    d = abs(N_1 - N_0) / math.sqrt(n*0.95*.05/2)
+    P_value = special.erfc(d/math.sqrt(2))
+    print("====spectral_test: ")
+    print(f"N_0={N_0:2.5f} N_1={N_1} d = {d}")
+    print(f"P_value={P_value: 2.5f}")
 
+def non_overlapping_template_matching_test(f):
+    M = 32   # M should be 131'072, set to 32 for convinience
+    N = 3000
+    m = 8    # m = 9~148 should be tested
+    B = 0x05 # this pattern should not be a matter, as it would be evenly appear
+    arr_W = np.zeros(N)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        j = 0
+        while j <= BIT_WIDTH-m: # update j in the loop body
+            b = (a>>(BIT_WIDTH-m-j)) & 0xFF
+            if b==B:
+                arr_W[i] += 1
+                j += m
+            else:
+                j += 1
+    mu = (M-m+1) / math.pow(2, m)
+    sigma_sq = M *(1/math.pow(2, m) - (2*m-1)/math.pow(2, 2*m))
+    X_obs = 0.0
+    for i in range(N):
+        X_obs += (arr_W[i] - mu)**2 / sigma_sq
+    X_obs /= N # TODO: I doubt formula given in 2015 report, I add this line to make it look good
+    P_value = chi2.pdf(X_obs, 2)
+    print(f"====non_overlapping_template_matching_test: ")
+    print(f"mu={mu:.5f} sigma_sq={sigma_sq:.5f}")
+    print(f"total match={np.sum(arr_W)}")
+    print(f"X_obs={X_obs:2.5f}")
+    print(f"P_value={P_value:2.5f}")
 
+def overlapping_template_matching_test(f):
+    M = 32   # M should be 131'072, set to 32 for convinience
+    N = 3000
+    m = 8    # m = 9~148 should be tested
+    B = 0x05 # this pattern should not be a matter
+    arr_V = np.zeros(5)
+    # TODO: this need to recalculate
+    arr_Pi = np.array([.367879, .183940, .137955, .099634, .069935, .140657])
+    f.readline() # header
+    for i in range(N):
+        mySum = 0
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        j = 0
+        while j <= BIT_WIDTH-m: # update j in the loop body
+            b = (a>>(BIT_WIDTH-m-j)) & 0xFF
+            if b==B:
+                mySum += 1
+            j += 1
+        if mySum>=5:
+            arr_V[5] += 1
+        else:
+            arr_V[mySum] += 1
+
+    mu = (M-m+1) / math.pow(2, m)
+    mylambda = mu/2
+    X_obs = 0.0
+    for i in range(5):
+        X_obs += (arr_V[i] - N*arr_Pi[i])**2 / (N*arr_Pi[i])
+    P_value = chi2.pdf(X_obs, 5)
+    print(f"====overlapping_template_matching_test: ")
+    print(f"mu={mu:.5f} mylambda={mylambda:.5f}")
+    for i in range(5): print(f"arr_V[{i}]: {arr_V[i]}")
+    print(f"X_obs={X_obs:2.5f}")
+    print(f"P_value={P_value:2.5f}")
+
+def universal_statistical_test(f):
+    N = 5000 # line
+    L = 8 # choose 8 as it is easy for implement
+    Q = 2560 # according to NIST
+    table = np.zeros(int(math.pow(2, L)))
+
+    mySum = 0.0
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        for j in range(4): # BIT_WIDTH/L
+            b = (a >> ((4-1-j)*8)) &0xFF
+            if i*4+j >= Q:
+                mySum += math.log2((i*4+j) - table[b])
+            table[b] = i*4+j
+
+    K = N*4 - Q
+    f_n = mySum / K
+    expectedValue = 7.1836656
+    variance = 3.238
+    c = 0.6+(8/15)*math.pow(K, -3/8)
+    delta = c*math.sqrt(variance/K)
+    x= abs((f_n-expectedValue)/(math.sqrt(2)*delta))
+    P_value = special.erfc(x)
+    print(f"====universal_statistical_test: ")
+    print(f"f_n={f_n:2.5f} expectedValue=7.1836656")
+    print(f"P_value = {P_value:2.5f}")
+
+# this could be expensive for now
+# TODO: Berlekamp-Massey algorithm
+def linear_complexity_test(f):
+    pass
 
 
 
@@ -230,7 +346,11 @@ if __name__ == "__main__":
     # frequency_test_block(f)
     # run_test(f)
     # run_test_block(f)
-    binary_matrix_rank_test(f)
+    # binary_matrix_rank_test(f)
+    # spectral_test(f)
+    # non_overlapping_template_matching_test(f)
+    # overlapping_template_matching_test(f)
+    universal_statistical_test(f)
     f.close()
 
     # old styple in python
