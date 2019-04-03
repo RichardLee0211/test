@@ -6,6 +6,7 @@ import numpy.linalg as npl
 
 import math
 import sys
+# import os
 
 """
 x = np.linspace(-3, 3)
@@ -22,6 +23,7 @@ n = N*BIT_WIDTH
 
 def frequency_test(f):
     mySum = 0
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -44,6 +46,7 @@ def frequency_test_block(f):
     M = BIT_WIDTH # choose to 32 for convinience
     X_obs = 0.0
     X_obs_4M = 0.0
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -66,6 +69,7 @@ def frequency_test_block(f):
 
 def run_test(f):
     mySum = 0
+    f.seek(0)
     f.readline() # header of csv file
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -112,6 +116,7 @@ def run_test_block(f):
     V = [0, 0, 0, 0, 0, 0]
     pi = [ 0.1174, 0.2430, 0.2493, 0.1752, 0.1027, 0.1124 ]
     num_block = int(N/4)
+    f.seek(0)
     f.readline() # header
     for i in range(num_block):
         a_0 = int(f.readline(), base=16)
@@ -164,6 +169,7 @@ def binary_matrix_rank_test(f):
     F_M_1 = 0
     F_else = 0
     N_block = int(N/M)
+    f.seek(0)
     f.readline() # header
     for k in range(N_block):
         for i in range(M):
@@ -194,6 +200,7 @@ def binary_matrix_rank_test(f):
 def spectral_test(f):
     # arr_e = np.array()
     list_e = []
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -224,6 +231,7 @@ def non_overlapping_template_matching_test(f):
     m = 8    # m = 9~148 should be tested
     B = 0x05 # this pattern should not be a matter, as it would be evenly appear
     arr_W = np.zeros(N)
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -249,14 +257,18 @@ def non_overlapping_template_matching_test(f):
     print(f"X_obs={X_obs:2.5f}")
     print(f"P_value={P_value:2.5f}")
 
-def overlapping_template_matching_test(f):
+# M should not be 32, the int generator different from sequence generator
+def overlapping_template_matching_test_02(f):
     M = 32   # M should be 131'072, set to 32 for convinience
-    N = 3000
-    m = 8    # m = 9~148 should be tested
-    B = 0x05 # this pattern should not be a matter
-    arr_V = np.zeros(5)
+    N = 5000
+    m = 4    # m = 9~148 should be tested
+    B = 0x5 # this pattern should not be a matter
+    arr_V = np.zeros(6)
     # TODO: this need to recalculate
+    arr_Pi_02 = np.array([.324652, .182627, .142670, .106645, .077147]) # provided by NIST800-22, but different parameters
     arr_Pi = np.array([.367879, .183940, .137955, .099634, .069935, .140657])
+    # arr_Pi = np.array([.2940, .4366, .2206, .0462, .0024, .0002])
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         mySum = 0
@@ -264,7 +276,7 @@ def overlapping_template_matching_test(f):
         # print(f"{a:b}")
         j = 0
         while j <= BIT_WIDTH-m: # update j in the loop body
-            b = (a>>(BIT_WIDTH-m-j)) & 0xFF
+            b = (a>>(BIT_WIDTH-m-j)) & ((0x1<<(m+1)) -1)
             if b==B:
                 mySum += 1
             j += 1
@@ -276,14 +288,75 @@ def overlapping_template_matching_test(f):
     mu = (M-m+1) / math.pow(2, m)
     mylambda = mu/2
     X_obs = 0.0
+    for i in range(6):
+        X_obs += (arr_V[i] - N*arr_Pi[i])**2 / (N*arr_Pi[i])
+    # P_value_02 = chi2.pdf(X_obs, 5)
+    P_value = 1- special.gammainc(5/2, X_obs/2)
+
+    print(f"====overlapping_template_matching_test: ")
+    print(f"mu={mu:.5f} mylambda={mylambda:.5f}")
+    for i in range(6):
+        # print(f"arr_V[{i}]: {arr_V[i]} \texpectedValue: {(arr_Pi[i]*N):2.5f}")
+        print(f"arr_V[{i}]: {arr_V[i]} \tratios:{arr_V[i]/N}")
+    print(f"X_obs={X_obs:2.5f}")
+    print(f"P_value={P_value:2.5f}")
+    # print(f"P_value_02={P_value_02:2.5f}")
+
+def overlapping_template_matching_test(f):
+    # N = 5000
+    N = 65536
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+    arr_bits = np.array(bits)
+
+    # parameters
+    M = 1032
+    N = int(len(arr_bits) / M) # num of blocks
+    m = 9    # m = 9~148 should be tested
+    B = 0x054 # this pattern should not be a matter
+    arr_Pi = np.array([.367879, .183940, .137955, .099634, .069935, .140657])
+
+    arr_V = np.zeros(6)
+    tmp = 0.0
+    # per block
+    for k in range(N):
+        mySum = 0
+        # per sequence
+        for i in range(M-m):
+            tmp=0.0
+            for j in range(m):
+                tmp += arr_bits[k*M+i+j] * 2**(m-1-j)
+            if tmp == B:
+                mySum += 1
+        if mySum >= 5:
+            arr_V[5] += 1
+        else:
+            arr_V[mySum] += 1
+
+    mu = (M-m+1) / math.pow(2, m)
+    mylambda = mu/2
+    X_obs = 0.0
     for i in range(5):
         X_obs += (arr_V[i] - N*arr_Pi[i])**2 / (N*arr_Pi[i])
     P_value = chi2.pdf(X_obs, 5)
+
     print(f"====overlapping_template_matching_test: ")
     print(f"mu={mu:.5f} mylambda={mylambda:.5f}")
-    for i in range(5): print(f"arr_V[{i}]: {arr_V[i]}")
+    for i in range(6):
+        print(f"arr_V[{i}]: {arr_V[i]} \texpectedValue: {(arr_Pi[i]*N):.5f}")
     print(f"X_obs={X_obs:2.5f}")
     print(f"P_value={P_value:2.5f}")
+
+
+
 
 def universal_statistical_test(f):
     N = 5000 # line
@@ -292,6 +365,7 @@ def universal_statistical_test(f):
     table = np.zeros(int(math.pow(2, L)))
 
     mySum = 0.0
+    f.seek(0)
     f.readline() # header
     for i in range(N):
         a = int(f.readline(), base=16)
@@ -318,14 +392,267 @@ def universal_statistical_test(f):
 def linear_complexity_test(f):
     pass
 
+def serial_test(f):
+    # using list for now
+    N = 5000
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+
+    m=3 # choose 3
+    V_3 = np.zeros(int(2**3))
+    V_2 = np.zeros(int(2**2))
+    V_1 = np.zeros(int(2**1))
+    for i in range(len(bits)):
+        v_3 = bits[i]*(2**2) + bits[(i+1)%len(bits)]*(2) + bits[(i+2)%len(bits)]
+        v_2 = bits[i]*2 + bits[(i+1)%len(bits)]
+        v_1 = bits[i]
+        V_3[v_3] += 1
+        V_2[v_2] += 1
+        V_1[v_1] += 1
+    print(f"V_3 = {V_3}")
+    print(f"V_2 = {V_2}")
+    print(f"V_1 = {V_1}")
+
+    V_3_sum = 0.0
+    V_2_sum = 0.0
+    V_1_sum = 0.0
+    for i in range(len(V_3)):
+        V_3_sum += V_3[i]**2
+    for i in range(len(V_2)):
+        V_2_sum += V_2[i]**2
+    for i in range(len(V_1)):
+        V_1_sum += V_1[i]**2
+    psi_3_sq = 8/(N*BIT_WIDTH) * V_3_sum - (N*BIT_WIDTH)
+    psi_2_sq = 4/(N*BIT_WIDTH) * V_2_sum - (N*BIT_WIDTH)
+    psi_1_sq = 2/(N*BIT_WIDTH) * V_1_sum - (N*BIT_WIDTH)
+
+    delta_psi_sq = psi_3_sq - psi_2_sq
+    delta_sq_psi_sq = psi_3_sq - 2*psi_2_sq + psi_1_sq
+
+    P_value_1 = 1 - special.gammainc(2, delta_psi_sq/2)
+    P_value_2 = 1 - special.gammainc(1, delta_sq_psi_sq/2)
+
+    print("====serial_test:")
+    print(f"delta_psi_sq = {delta_psi_sq:2.5f}")
+    print(f"delta_sq_psi_sq = {delta_sq_psi_sq:2.5f}")
+    print(f"P_value_1={P_value_1:2.5f}")
+    print(f"P_value_2={P_value_2:2.5f}")
+
+def approximate_entropy_test(f):
+    N = 5000
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+
+    m=3 # choose 3
+    subsequence_3 = 0
+    subsequence_4 = 0
+
+    arr_3 = np.zeros(int(2**3))
+    arr_4 = np.zeros(int(2**4))
+    for i in range(len(bits)):
+        b_3 = bits[i]*(2**2) + bits[(i+1)%len(bits)]*(2) + bits[(i+2)%len(bits)]
+        b_4 = bits[i]*(2**3) + bits[(i+1)%len(bits)]*(2**2) + bits[(i+2)%len(bits)]*(2)+bits[(i+3)%len(bits)]
+        arr_3[b_3] += 1
+        arr_4[b_4] += 1
+    print(f"arr_3={arr_3}")
+    print(f"arr_4={arr_4}")
+    arr_3 /= len(bits)
+    arr_4 /= len(bits)
+
+    varphi_3 = 0.0
+    varphi_4 = 0.0
+    for i in range(len(arr_3)):
+        varphi_3 += arr_3[i] * math.log(arr_3[i])
+    for i in range(len(arr_4)):
+        varphi_4 += arr_4[i] * math.log(arr_4[i])
+
+    X_sq = 2*len(bits)*(math.log(2) - (varphi_3 - varphi_4))
+    P_value = 1 - special.gammainc(4, X_sq/2)
+    print("====approximate_entropy_test:")
+    print(f"P_value={P_value:2.5f}")
+
+def Cum_sum_test(f):
+    N = 5000
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+
+    arr_bits = np.array(bits)
+    arr_bits = 2*arr_bits -1
+    arr_cumsum = np.cumsum(arr_bits)
+    # print(arr_bits)
+    print(arr_cumsum)
+
+    arr_cumsum_abs =  abs(arr_cumsum)
+    z = max(arr_cumsum_abs)
+    # print(z)
+
+    from scipy.stats import norm
+    # norm.cdf()
+
+    n = len(arr_bits)
+    k_start = int((-n/z + 1)/4)
+    k_end = int((n/z -1) /4)
+    print(f"k_start={k_start}")
+    print(f"k_end={k_end}")
+
+    sum_1 = 0.0
+    for k in range(k_start, k_end+1):
+        sum_1 += norm.cdf((4*k+1)*z/math.sqrt(n)) - norm.cdf((4*k-1)*z/math.sqrt(n))
+
+    k_start_2 = int((-n/z -3)/4)
+    k_end_2 = int((n/z -1)/4)
+    sum_2 = 0.0
+    for k in range(k_start_2, k_end_2+1):
+        sum_2 += norm.cdf((4*k+3)*z/math.sqrt(n)) - norm.cdf((4*k+1)/math.sqrt(n))
+
+    P_value = 1 - sum_1 + sum_2
+    print(f"====Cum_sum_test:")
+    print(f"P_value={P_value:2.5f}")
+
+def random_excursions_test(f):
+    N = 5000
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+
+    arr_bits = np.array(bits)
+    arr_bits = 2*arr_bits -1
+    arr_cumsum = np.cumsum(arr_bits)
+    # print(arr_bits)
+    print(f"bits length={len(arr_cumsum)}")
+    # plt.plot(arr_cumsum)
+    # plt.show()
+    # sys.exit(-1)
+
+    # ciecles[i], (i+1)th circle
+    # X standard for -4,-3,-2,-1,1,2,3,4
+    # circles[i][X] for times of X occur in circle[i]
+    circles = []
+    a = np.zeros(8)
+    for i in range(len(arr_cumsum)):
+        if arr_cumsum[i]==0:
+            circles.append(a)
+            a = np.zeros(8)
+        elif arr_cumsum[i]<=4 and arr_cumsum[i]>=-4:
+            index = arr_cumsum[i]+4 if arr_cumsum[i] < 0 else arr_cumsum[i]+3
+            a[index] += 1
+        else:
+            pass
+    circles.append(a)
+    J = len(circles)
+    print(f"len(circles)={J}")
+    # print(f"circles={circles}")
+
+    # V[K][X], X occurs K times
+    # K = 0, 1, 2, 3, 4, >=5
+    # X = -4, -3, -2, -1, 1, 2, 3, 4 shift to range(8)
+    V = np.array([np.zeros(8) for i in range(6)])
+    for i in range(len(circles)):
+        for j in range(8):
+            K = int(circles[i][j]) if circles[i][j]<5 else 5
+            V[K][j] += 1
+    print(f"V[K][X]: X occurs K times in all circles\n{V}")
+
+    # pi[K][X], thoery ratio that X show up K times in a circle
+    # from NIST800-22
+    pi = [[0 for i in range(5)] for j in range(6)]
+    pi[0][1] = 0.5000; pi[1][1]=0.2500; pi[2][1]=0.1250; pi[3][1]=0.0625; pi[4][1]=0.0312; pi[5][1]=0.0312;
+    pi[0][2] = 0.7500; pi[1][2]=0.0625; pi[2][2]=0.0469; pi[3][2]=0.0352; pi[4][2]=0.0264; pi[5][2]=0.0791;
+    pi[0][3] = 0.8333; pi[1][3]=0.0278; pi[2][3]=0.0231; pi[3][3]=0.0193; pi[4][3]=0.0161; pi[5][3]=0.0804;
+    pi[0][4] = 0.8750; pi[1][4]=0.0156; pi[2][4]=0.0137; pi[3][4]=0.0120; pi[4][4]=0.0105; pi[5][4]=0.0733;
+
+    X_obs_1 = 0.0
+    X_obs_2 = 0.0
+    X_obs_3 = 0.0
+    X_obs_4 = 0.0
+    for K in range(6):
+        X_obs_1 += (V[K][4] - J*pi[K][1])**2 / J*pi[K][1]
+        X_obs_2 += (V[K][5] - J*pi[K][2])**2 / J*pi[K][2]
+        X_obs_3 += (V[K][6] - J*pi[K][3])**2 / J*pi[K][3]
+        X_obs_4 += (V[K][7] - J*pi[K][4])**2 / J*pi[K][4]
+
+    P_value_1 = 1 - special.gammainc(5/2, X_obs_1/2)
+    P_value_2 = 1 - special.gammainc(5/2, X_obs_2/2)
+    P_value_3 = 1 - special.gammainc(5/2, X_obs_3/2)
+    P_value_4 = 1 - special.gammainc(5/2, X_obs_4/2)
+    print("====random_excursions_test:")
+    print(f"P_value_1 = {P_value_1:2.5f}")
+    print(f"P_value_2 = {P_value_2:2.5f}")
+    print(f"P_value_3 = {P_value_3:2.5f}")
+    print(f"P_value_4 = {P_value_4:2.5f}")
+
+def random_excursions_variant_test(f):
+    N = 5000
+    bits = []
+    f.seek(0)
+    f.readline() # header
+    for i in range(N):
+        a = int(f.readline(), base=16)
+        # print(f"{a:b}")
+        for j in range(BIT_WIDTH):
+            b = (a>>(BIT_WIDTH-1-j)) & 0x1
+            bits.append(b)
+    # print(bits)
+
+    arr_bits = np.array(bits)
+    arr_bits = 2*arr_bits -1
+    arr_cumsum = np.cumsum(arr_bits)
+    # print(arr_bits)
+    print(f"bits length={len(arr_cumsum)}")
+    unique, counts= np.unique(arr_cumsum, return_counts = True)
+    a = dict(zip(unique, counts))
+    J = a[0]
+    print(f"====random_excursions_variant_test:")
+    for i in range(-9, -1):
+        P_value = special.erfc(abs(J-a[i])/ math.sqrt(2*J*(4*abs(i)-2)))
+        print(f"P_value_{i}={P_value:2.5f}")
 
 
 
 
 if __name__ == "__main__":
+    """
+    """
     if len(sys.argv) != 2:
         print(f"usage: {sys.argv[0]} <file_num>")
         sys.exit(-1)
+
+    millionFiles = [
+        "./RandomData/random_rd_65536.clang++.csv",
+        "./RandomData/random_homemakeLCG_65536.csv",
+        "./RandomData/random_LCG02_65536.clang++.csv"
+            ]
 
     files = [
             "./RandomData/random_rd.clang++.csv",
@@ -335,12 +662,51 @@ if __name__ == "__main__":
             "./RandomData/random_LCG02_01.clang++.csv",
             "./RandomData/random_mt19937_01.clang++.csv",
             "./RandomData/random_ranlux24base_01.clang++.csv",
-            "./RandomData/random_homemakeLCG_01.csv.clang++.csv",
-            "./RandomData/random_homemakeLCG_02.csv.clang++.csv"
+            "./RandomData/random_homemakeLCG_01.csv",
+            "./RandomData/random_homemakeLCG_02.csv"
             ]
+    tests = [
+        frequency_test,
+        frequency_test_block,
+        run_test,
+        run_test_block,
+        binary_matrix_rank_test,
+        spectral_test,
+        non_overlapping_template_matching_test,
+        overlapping_template_matching_test,
+        universal_statistical_test,
+        serial_test,
+        approximate_entropy_test,
+        Cum_sum_test,
+        random_excursions_test,
+        random_excursions_variant_test
+        ]
+
     i = int(sys.argv[1])
-    print(f"file: {files[i]}")
-    f = open(files[i], "r")
+    # print(f"file: {files[i]}")
+    print(f"file: {millionFiles[i]}")
+    # f = open(files[i], "r")
+    f = open(millionFiles[i], "r")
+    overlapping_template_matching_test(f)
+    f.close()
+
+    """
+    for f in files:
+        f = open(f, "r")
+        tests[13](f)
+        f.close()
+    """
+
+    """
+    for test in tests:
+        test(f)
+    """
+
+    # f.close()
+
+    # old styple in python
+    # print(f"S_abs=%2.5f"%S_abs)
+    # print("P_value = %2.5f"%P_value)
 
     # frequency_test(f)
     # frequency_test_block(f)
@@ -350,9 +716,9 @@ if __name__ == "__main__":
     # spectral_test(f)
     # non_overlapping_template_matching_test(f)
     # overlapping_template_matching_test(f)
-    universal_statistical_test(f)
-    f.close()
-
-    # old styple in python
-    # print(f"S_abs=%2.5f"%S_abs)
-    # print("P_value = %2.5f"%P_value)
+    # universal_statistical_test(f)
+    # serial_test(f)
+    # approximate_entropy_test(f)
+    # Cum_sum_test(f)
+    # random_excursions_test(f)
+    # random_excursions_variant_test(f)

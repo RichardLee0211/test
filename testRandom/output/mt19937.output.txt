@@ -1,0 +1,81 @@
+file: ./RandomData/random_mt19937_01.clang++.csv
+====frequency_test: 
+mySum=-588
+S_abs=1.47000
+P_value = 0.14156
+====frequency_test_block: 
+X_obs_4M=38.765625
+X_obs=4962.000000
+P_value=0.00375
+====run test: 
+n=160000 V_obs= 80085 pi=0.4981625
+P_value = 0.66690
+====run_test_block: 
+X_obs= 5.45324
+P_value=0.11082
+====binary_matrix_rank_test:
+F_M=156 F_M-1=0 F_else=0
+X_obs=384.16620
+P_value=0.00000
+====spectral_test: 
+N_0=76000.00000 N_1=76051 d = 0.827329247766889
+P_value= 0.40805
+====non_overlapping_template_matching_test: 
+mu=0.09766 sigma_sq=0.11768
+total match=286.0
+X_obs=0.77261
+P_value=0.33978
+====overlapping_template_matching_test: 
+mu=0.09766 mylambda=0.04883
+arr_V[0]: 2721.0
+arr_V[1]: 272.0
+arr_V[2]: 7.0
+arr_V[3]: 0.0
+arr_V[4]: 0.0
+X_obs=3420.80363
+P_value=0.00000
+====universal_statistical_test: 
+f_n=7.18378 expectedValue=7.1836656
+P_value = 0.98933
+V_3 = [20121. 20131. 20078. 19964. 20131. 19911. 19964. 19700.]
+V_2 = [40252. 40042. 40042. 39664.]
+V_1 = [80294. 79706.]
+====serial_test:
+delta_psi_sq = 3.27980
+delta_sq_psi_sq = 0.94250
+P_value_1=0.51214
+P_value_2=0.62422
+arr_3=[20121. 20131. 20078. 19964. 20131. 19911. 19964. 19700.]
+arr_4=[10051. 10070. 10023. 10108. 10071. 10007.  9981.  9983. 10070. 10061.
+ 10055.  9856. 10060.  9904.  9983.  9717.]
+====approximate_entropy_test:
+P_value=0.49574
+[   1    2    1 ... -588 -587 -588]
+k_start=-43
+k_end=43
+====Cum_sum_test:
+P_value=0.11762
+bits length=160000
+len(circles)=48
+V[K][X]: X occurs K times in all circles
+[[41. 38. 30. 19. 29. 39. 44. 44.]
+ [ 0.  2.  5. 11. 10.  4.  0.  2.]
+ [ 0.  1.  5.  9.  4.  1.  1.  0.]
+ [ 1.  0.  1.  4.  4.  1.  1.  0.]
+ [ 1.  4.  2.  2.  0.  2.  0.  0.]
+ [ 5.  3.  5.  3.  1.  1.  2.  2.]]
+====random_excursions_test:
+P_value_1 = 0.99774
+P_value_2 = 0.99951
+P_value_3 = 0.99792
+P_value_4 = 0.99991
+bits length=160000
+====random_excursions_variant_test:
+P_value_-9=0.32926
+P_value_-8=0.15811
+P_value_-7=0.18821
+P_value_-6=0.19151
+P_value_-5=0.17997
+P_value_-4=0.24219
+P_value_-3=0.46050
+P_value_-2=0.31138

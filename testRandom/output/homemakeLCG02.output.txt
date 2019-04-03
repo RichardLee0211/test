@@ -1,0 +1,73 @@
+file: ./RandomData/random_homemakeLCG_02.csv
+====frequency_test: 
+mySum=-4816
+S_abs=12.04000
+P_value = 0.00000
+====frequency_test_block: 
+X_obs_4M=36.851562
+X_obs=4717.000000
+P_value=0.00007
+bad
+====run test: 
+n=160000 V_obs= 82506 pi=0.48495
+P_value = 0.00000
+====run_test_block: 
+X_obs= 125.28810
+P_value=0.00000
+====binary_matrix_rank_test:
+F_M=0 F_M-1=0 F_else=156
+X_obs=1011.66467
+P_value=0.00000
+====spectral_test: 
+N_0=76000.00000 N_1=77385 d = 22.46766682661061
+P_value= 0.00000
+====non_overlapping_template_matching_test: 
+mu=0.09766 sigma_sq=0.11768
+total match=300.0
+X_obs=0.81018
+P_value=0.33346
+====overlapping_template_matching_test: 
+mu=0.09766 mylambda=0.04883
+arr_V[0]: 2708.0
+arr_V[1]: 284.0
+arr_V[2]: 8.0
+arr_V[3]: 0.0
+arr_V[4]: 0.0
+X_obs=3368.98130
+P_value=0.00000
+====universal_statistical_test: 
+f_n=7.14706 expectedValue=7.1836656
+P_value = 0.00001
+V_3 = [19976. 21179. 21287. 19966. 21179. 20074. 19966. 16373.]
+V_2 = [41155. 41253. 41253. 36339.]
+V_1 = [82408. 77592.]
+====serial_test:
+delta_psi_sq = 433.07310
+delta_sq_psi_sq = 131.11060
+P_value_1=0.00000
+P_value_2=0.00000
+arr_3=[19976. 21179. 21287. 19966. 21179. 20074. 19966. 16373.]
+arr_4=[ 9719. 10257. 11498.  9681. 10935. 10352. 11507.  8459. 10257. 10922.
+  9789. 10285. 10244.  9722.  8459.  7914.]
+====approximate_entropy_test:
+P_value=0.00000
+[   -1    -2    -3 ... -4816 -4817 -4816]
+k_start=-8
+k_end=8
+====Cum_sum_test:
+P_value=0.01793
+bits length=160000
+len(circles)=1
+V[K][X]: X occurs K times in all circles
+[[0. 0. 0. 0. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0.]]
+====random_excursions_test:
+P_value_1 = 0.99961
+P_value_2 = 0.99997
+P_value_3 = 1.00000
+P_value_4 = 1.00000
+bits length=160000

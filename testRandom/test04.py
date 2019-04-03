@@ -15,6 +15,14 @@ matplotlib.rcParams["image.cmap"] = "gray"
 
 
 if __name__ == "__main__":
+    # circles = list(np.zeros(8))
+    circles = list()
+    for i in range(3):
+        # a = np.array([0, 0, 1*i, 1*i, 2*i, 2*i, 3*i, 3*i, 4*i, 4*i])
+        a = np.zeros(8)
+        circles.append(a)
+
+def main06():
     # np.fft.fft(np.exp(2j*np.pi*np.arange(8)/8))
     e = np.array([1, 0, 0, 1, 0, 1, 0, 0, 1, 1])
     n = e.size
