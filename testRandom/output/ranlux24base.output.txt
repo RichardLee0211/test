@@ -1,0 +1,81 @@
+file: ./RandomData/random_ranlux24base_01.clang++.csv
+====frequency_test: 
+mySum=-202
+S_abs=0.50500
+P_value = 0.61356
+====frequency_test_block: 
+X_obs_4M=38.565430
+X_obs=4936.375000
+P_value=0.00332
+====run test: 
+n=160000 V_obs= 80053 pi=0.49936875
+P_value = 0.79052
+====run_test_block: 
+X_obs= 0.87561
+P_value=0.07033
+====binary_matrix_rank_test:
+F_M=155 F_M-1=1 F_else=0
+X_obs=377.27429
+P_value=0.00000
+====spectral_test: 
+N_0=76000.00000 N_1=75980 d = 0.3244428422615251
+P_value= 0.74560
+====non_overlapping_template_matching_test: 
+mu=0.09766 sigma_sq=0.11768
+total match=293.0
+X_obs=0.77723
+P_value=0.33900
+====overlapping_template_matching_test: 
+mu=0.09766 mylambda=0.04883
+arr_V[0]: 2712.0
+arr_V[1]: 283.0
+arr_V[2]: 5.0
+arr_V[3]: 0.0
+arr_V[4]: 0.0
+X_obs=3387.50370
+P_value=0.00000
+====universal_statistical_test: 
+f_n=7.18861 expectedValue=7.1836656
+P_value = 0.55404
+V_3 = [20099. 19976. 20200. 19826. 19976. 20050. 19826. 20047.]
+V_2 = [40075. 40026. 40026. 39873.]
+V_1 = [80101. 79899.]
+====serial_test:
+delta_psi_sq = 5.23305
+delta_sq_psi_sq = 4.91042
+P_value_1=0.26421
+P_value_2=0.08584
+arr_3=[20099. 19976. 20200. 19826. 19976. 20050. 19826. 20047.]
+arr_4=[10124.  9975. 10156.  9820. 10142. 10058.  9845.  9981.  9975. 10001.
+ 10044. 10006.  9834.  9992.  9981. 10066.]
+====approximate_entropy_test:
+P_value=0.28197
+[  -1    0    1 ... -200 -201 -202]
+k_start=-105
+k_end=105
+====Cum_sum_test:
+P_value=0.68433
+bits length=160000
+len(circles)=306
+V[K][X]: X occurs K times in all circles
+[[268. 255. 234. 141. 165. 234. 255. 270.]
+ [  4.   5.  18.  94.  69.  17.  11.   3.]
+ [  5.   9.  12.  37.  40.  14.   4.   4.]
+ [  4.   4.   9.  15.  18.  11.   8.   3.]
+ [  6.   5.   6.  11.  10.  12.   7.   3.]
+ [ 19.  28.  27.   8.   4.  18.  21.  23.]]
+====random_excursions_test:
+P_value_1 = 0.99790
+P_value_2 = 0.99995
+P_value_3 = 1.00000
+P_value_4 = 1.00000
+bits length=160000
+====random_excursions_variant_test:
+P_value_-9=0.66568
+P_value_-8=0.73798
+P_value_-7=0.78754
+P_value_-6=0.85471
+P_value_-5=0.96770
+P_value_-4=0.93901
+P_value_-3=0.61215
+P_value_-2=0.83337
