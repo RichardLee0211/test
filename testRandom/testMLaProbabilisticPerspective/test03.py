@@ -129,7 +129,6 @@ import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal
 from scipy.stats import norm
 """
-"""
 x = np.linspace(0, 5, 100, endpoint=False)
 y = multivariate_normal.pdf(x, mean=2.5, cov=0.5)
 y_norm = norm.pdf(x, 2.5, 0.5)
@@ -140,10 +139,70 @@ ax.plot(x, y_norm, label="norm(mean=2.5, var=0.5)")
 plt.legend()
 plt.show()
 
-x, y = np.mgrid[-1:1:.01, -1:1:.01]
-pos = np.dstack((x, y))
-rv = multivariate_normal([0.5, -0.2], [[2.0, 0.3], [0.3, 0.5]])
+import matplotlib.cm as cm
+BONDARY = 3
+dx=dy = 0.01
+x, y = np.mgrid[-BONDARY:BONDARY:.01, -BONDARY:BONDARY:.01]
+pos = np.dstack((x, y)) # this is interesting function, stack
+rv = multivariate_normal([0.5, -0.2], [[2.0, 0.3], [0.3, 0.5]]) # mean vectors and cov
 fig2 = plt.figure()
-ax2 = fig2.add_subplot(111)
-ax2.contourf(x, y, rv.pdf(pos))
+ax2 = fig2.add_subplot(111, projection='3d')
+# ax2.contourf(x, y, rv.pdf(pos))
+# ax2.plot_surface(x, y, rv.pdf(pos), cmap = cm.hot)
+ax2.plot_surface(x, y, rv.pdf(pos), cmap = cm.Greys)
 plt.show()
+"""
+
+# This import registers the 3D projection, but is otherwise unused.
+# from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
+
+from matplotlib import cm
+"""
+# contour plots, but it seems that plot_surface is better for this formula
+# it seems to be a un-natural way to combine 2D plot with 3D plot
+x = np.linspace(0,10,51)
+y = np.linspace(0,8,41)
+(X,Y) = np.meshgrid(x,y)
+a = np.exp(-((X-2.5)**2 + (Y-4)**2)/4) - np.exp(-((X-7.5)**2 + (Y-4)**2)/4)
+#### contour plot
+c = plt.contour(X,Y,a)
+l = plt.clabel(c)
+#### contour filled
+# c = plt.contourf(x,y,a,np.linspace(-1,1,11))
+# b = plt.colorbar(c, orientation='vertical')
+# ax = plt.axis([0,10,0,8])
+#### 3d surface plot
+# ax = plt.gca(projection='3d')
+# surp = ax.plot_surface(X, Y, a, cmap=cm.coolwarm)
+# plt.colorbar(surp)
+lx = plt.xlabel("x")
+ly = plt.ylabel("y")
+plt.show()
+"""
+
+# a good example of surface plot
+# from: https://scipython.com/book/chapter-7-matplotlib/examples/simple-surface-plots/
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.cm as cm
+
+L, n = 2, 400
+x = np.linspace(-L, L, n)
+y = x.copy()
+X, Y = np.meshgrid(x, y)
+Z = np.exp(-(X**2 + Y**2))
+
+fig, ax = plt.subplots(nrows=2, ncols=2, subplot_kw={'projection': '3d'})
+ax[0,0].plot_wireframe(X, Y, Z, rstride=40, cstride=40)
+ax[0,1].plot_surface(X, Y, Z, rstride=40, cstride=40, color='m')
+ax[1,0].plot_surface(X, Y, Z, rstride=12, cstride=12, color='m')
+ax[1,1].plot_surface(X, Y, Z, rstride=20, cstride=20, cmap=cm.hot)
+for axes in ax.flatten():
+    axes.set_xticks([-2, -1, 0, 1, 2])
+    axes.set_yticks([-2, -1, 0, 1, 2])
+    axes.set_zticks([0, 0.5, 1])
+fig.tight_layout()
+plt.show()
+"""

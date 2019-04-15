@@ -11,6 +11,11 @@ https://en.wikipedia.org/wiki/Categorical_distribution
 
 distinguish classical ways of PRNGs and prediction
 
+this book is intensive
+TODO: reading ch24 MCMC, high-dimensional distributions
+
+learning curve of this book for me is too high now
+
 
 others
 --------------------------------------------------------------------------------
@@ -182,3 +187,10 @@ subplot example
 TODO: to master
 https://matplotlib.org/gallery/images_contours_and_fields/pcolormesh_levels.html
 this is one way to observe the 3D data
+
+I would say that matplotlib doc pdf is useless since it don't have a good content table
+making navigation harder than ever
+
+to be honest, this tutorial sucks: https://matplotlib.org/tutorials/index.html
+
+TODO: to kernel density estimate(KDE)
