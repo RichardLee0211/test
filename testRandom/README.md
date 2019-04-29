@@ -502,3 +502,9 @@ about python:
 could define like this:
 def foo(argc1: type1, argc2: type2) -> type_return:
     # ...
+
+#### talk with Prof. Yan, didn't help a lot
+/dev/random
+/dev/urandom
+
+I can't define deception as PRNG against TRNG
