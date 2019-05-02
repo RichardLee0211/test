@@ -36,18 +36,16 @@ def generate_data():
     encoded = one_hot_encode(sequence)
     # create lag inputs
     df = DataFrame(encoded)
-    df = concat([df.shift(4), df.shift(3), df.shift(2), df.shift(1), df], axis=1) # wenchen: ??
+    df = concat([df.shift(4), df.shift(3), df.shift(2), df.shift(1), df], axis=1)
     # remove non-viable rows
     values = df.values
     values = values[5:,:]
     # convert to 3d for input
-    X = values.reshape(len(values), 5, 100) # wenchen: ??
+    X = values.reshape(len(values), 5, 100)
     # drop last value from y
     y = encoded[4:-1,:]
     return X, y
 
-## main
-#-------------------------------------------------------------------------------
 # define model
 model = Sequential()
 model.add(LSTM(50, batch_input_shape=(5, 5, 100), stateful=True))

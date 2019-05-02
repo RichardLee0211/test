@@ -63,4 +63,14 @@ TODO: df.iloc[ndarray]
 
 page.63, This is called one-hot encoding, because only one attribute will be equal to 1 (hot), while the others will be 0 (cold).
 
-TODO: be to continue
+ch03 Classification
+--------------------------------------------------------------------------------
+don't really familiar with python data API, so many, got to get used to
+
+Stochastic Gradient Descent (SGD) classifier
+
+amusing, false positive and false negective are like
+false good news and false bad news in the project report
+
+high precision means a few false positive
+high recall mean a few false negative
