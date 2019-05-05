@@ -31,7 +31,7 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 
-print(tf.__version__)
+# print(tf.__version__)
 
 def plot_image(i, predictions_array, true_label, img):
     predictions_array, true_label, img = predictions_array[i], true_label[i], img[i]
@@ -110,10 +110,11 @@ test_loss, test_acc = model.evaluate(test_images, test_labels)
 
 print('Test accuracy:', test_acc)
 
-predictions = model.predict(test_images)
+# predictions = model.predict(test_images)
 
 # Plot the first X test images, their predicted label, and the true label
 # Color correct predictions in blue, incorrect predictions in red
+"""
 num_rows = 5
 num_cols = 3
 num_images = num_rows*num_cols
@@ -124,13 +125,15 @@ for i in range(num_images):
     plt.subplot(num_rows, 2*num_cols, 2*i+2)
     plot_value_array(i, predictions, test_labels)
     plt.show()
+"""
 
 #### predict about a single image
 # Grab an image from the test dataset
-img = test_images[0]
-print(img.shape)
+# img = test_images[0]
+# print(img.shape)
 
 # Add the image to a batch where it's the only member.
+"""
 img = (np.expand_dims(img,0))
 print(img.shape)
 
@@ -139,3 +142,4 @@ print(predictions_single)
 
 plot_value_array(0, predictions_single, test_labels)
 _ = plt.xticks(range(10), class_names, rotation=45)
+"""

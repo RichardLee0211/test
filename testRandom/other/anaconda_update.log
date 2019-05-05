@@ -1,0 +1,773 @@
+just to see how python version management is done, how software mangement could be scaled
+
+```shell
+(base) ➜  testRandom git:(master) ✗ conda install -c conda-forge tensorflow
+Collecting package metadata: done
+Solving environment: done
+
+## Package Plan ##
+
+environment location: /Users/wenchen/anaconda3
+
+added / updated specs:
+- tensorflow
+
+
+The following packages will be downloaded:
+
+package                    |            build
+---------------------------|-----------------
+_ipyw_jlab_nb_ext_conf-0.1.0|           py36_0           4 KB
+absl-py-0.7.0              |        py36_1000         154 KB  conda-forge
+alabaster-0.7.12           |             py_0          15 KB  conda-forge
+anaconda-client-1.7.1      |             py_0          66 KB  conda-forge
+anaconda-navigator-1.9.6   |           py36_0         4.8 MB
+anaconda-project-0.8.2     |             py_1         202 KB  conda-forge
+appnope-0.1.0              |        py36_1000           8 KB  conda-forge
+appscript-1.0.1            |py36h1de35cc_1000         131 KB  conda-forge
+asn1crypto-0.24.0          |        py36_1003         154 KB  conda-forge
+astor-0.7.1                |             py_0          22 KB  conda-forge
+astroid-2.1.0              |        py36_1000         256 KB  conda-forge
+astropy-3.1.1              |py36h1de35cc_1000         6.8 MB  conda-forge
+atomicwrites-1.2.1         |             py_0           9 KB  conda-forge
+attrs-18.2.0               |             py_0          30 KB  conda-forge
+babel-2.6.0                |             py_1         5.6 MB  conda-forge
+backcall-0.1.0             |             py_0          13 KB  conda-forge
+backports-1.0              |             py_2           4 KB  conda-forge
+backports.os-0.1.1         |        py36_1000          15 KB  conda-forge
+backports.shutil_get_terminal_size-1.0.0|             py_3           7 KB  conda-forge
+beautifulsoup4-4.7.1       |        py36_1001         140 KB  conda-forge
+bitarray-0.8.3             |py36h1de35cc_1000          54 KB  conda-forge
+bkcharts-0.2               |           py36_0         126 KB  conda-forge
+blaze-0.11.3               |           py36_0         602 KB  conda-forge
+bleach-3.1.0               |             py_0         110 KB  conda-forge
+blinker-1.4                |             py_1          13 KB  conda-forge
+bokeh-1.0.4                |        py36_1000         5.4 MB  conda-forge
+boto-2.49.0                |             py_0         838 KB  conda-forge
+boto3-1.9.86               |             py_0          61 KB  conda-forge
+botocore-1.12.86           |             py_0         3.1 MB  conda-forge
+bottleneck-1.2.1           |py36h917ab60_1001         112 KB  conda-forge
+bz2file-0.98               |             py_0           9 KB  conda-forge
+c-ares-1.15.0              |    h1de35cc_1001          81 KB  conda-forge
+ca-certificates-2018.11.29 |       ha4d7672_0         143 KB  conda-forge
+certifi-2018.11.29         |        py36_1000         145 KB  conda-forge
+cffi-1.11.5                |py36h342bebf_1001         203 KB  conda-forge
+chardet-3.0.4              |        py36_1003         190 KB  conda-forge
+click-7.0                  |             py_0          61 KB  conda-forge
+cloudpickle-0.6.1          |             py_0          16 KB  conda-forge
+clyent-1.2.2               |             py_1           9 KB  conda-forge
+colorama-0.4.1             |             py_0          15 KB  conda-forge
+conda-4.6.2                |           py36_0         875 KB  conda-forge
+conda-build-3.17.8         |           py36_0         496 KB  conda-forge
+conda-verify-3.1.1         |        py36_1000          32 KB  conda-forge
+contextlib2-0.5.5          |             py_2          10 KB  conda-forge
+cryptography-2.4.2         |   py36ha12b0ac_0         569 KB
+cycler-0.10.0              |             py_1           8 KB  conda-forge
+cython-0.29.3              |   py36h0a44026_0         2.1 MB  conda-forge
+cytoolz-0.9.0.1            |py36h1de35cc_1001         358 KB  conda-forge
+dask-1.1.0                 |             py_1           4 KB  conda-forge
+dask-core-1.1.0            |             py_0         523 KB  conda-forge
+datashape-0.5.4            |           py36_0          98 KB  conda-forge
+decorator-4.3.2            |             py_0          11 KB  conda-forge
+defusedxml-0.5.0           |             py_1          20 KB  conda-forge
+distributed-1.25.2         |        py36_1000         821 KB  conda-forge
+docutils-0.14              |        py36_1001         694 KB  conda-forge
+entrypoints-0.3            |        py36_1000          12 KB  conda-forge
+et_xmlfile-1.0.1           |        py36_1000          20 KB  conda-forge
+fastcache-1.0.2            |py36h1de35cc_1001          28 KB  conda-forge
+filelock-3.0.10            |             py_0           9 KB  conda-forge
+flask-1.0.2                |             py_2          66 KB  conda-forge
+flask-cors-3.0.7           |             py_0          14 KB  conda-forge
+future-0.17.1              |        py36_1000         699 KB  conda-forge
+gast-0.2.1.post0           |             py_0           9 KB  conda-forge
+gensim-3.4.0               |   py36h1de35cc_0        21.5 MB
+gevent-1.3.7               |   py36h470a237_0         1.8 MB  conda-forge
+glob2-0.6                  |             py_0          10 KB  conda-forge
+gmpy2-2.0.8                |py36h3aece09_1002         162 KB  conda-forge
+greenlet-0.4.13            |           py36_0          17 KB  conda-forge
+grpcio-1.16.1              |   py36h044775b_1         944 KB
+h5py-2.8.0                 |py36h917ab60_1003         914 KB  conda-forge
+heapdict-1.0.0             |        py36_1000           7 KB  conda-forge
+html5lib-1.0.1             |             py_0          89 KB  conda-forge
+idna-2.8                   |        py36_1000         132 KB  conda-forge
+imageio-2.4.1              |        py36_1000         3.3 MB  conda-forge
+imagesize-1.1.0            |             py_0           6 KB  conda-forge
+importlib_metadata-0.6     |           py36_0          21 KB  conda-forge
+ipykernel-5.1.0            |py36h24bf2e0_1002         156 KB  conda-forge
+ipython-7.2.0              |py36h24bf2e0_1000         1.1 MB  conda-forge
+ipython_genutils-0.2.0     |             py_1          21 KB  conda-forge
+ipywidgets-7.4.2           |             py_0          92 KB  conda-forge
+isort-4.3.4                |        py36_1000          58 KB  conda-forge
+itsdangerous-1.1.0         |             py_0          16 KB  conda-forge
+jdcal-1.4                  |             py_1           8 KB  conda-forge
+jedi-0.13.2                |        py36_1000         230 KB  conda-forge
+jinja2-2.10                |             py_1          89 KB  conda-forge
+jmespath-0.9.3             |             py_1          19 KB  conda-forge
+jsonschema-3.0.0a3         |        py36_1000          80 KB  conda-forge
+jupyter-1.0.0              |             py_1           6 KB  conda-forge
+jupyter_client-5.2.4       |             py_1          63 KB  conda-forge
+jupyter_console-6.0.0      |             py_0          19 KB  conda-forge
+jupyter_core-4.4.0         |             py_0          44 KB  conda-forge
+jupyterlab-0.35.4          |           py36_0        10.7 MB  conda-forge
+jupyterlab_server-0.2.0    |             py_0          21 KB  conda-forge
+keyring-17.1.1             |        py36_1000          47 KB  conda-forge
+kiwisolver-1.0.1           |py36h04f5b5a_1002          56 KB  conda-forge
+lazy-object-proxy-1.3.1    |py36h1de35cc_1000          28 KB  conda-forge
+libprotobuf-3.6.1          |    hd9629dc_1000         3.8 MB  conda-forge
+llvmlite-0.26.0            |py36h3fea490_1000         8.8 MB  conda-forge
+locket-0.2.0               |             py_2           6 KB  conda-forge
+lxml-4.3.0                 |py36h7166777_1000         1.4 MB  conda-forge
+markdown-2.6.11            |             py_0          56 KB  conda-forge
+markupsafe-1.1.0           |py36h1de35cc_1000          24 KB  conda-forge
+matplotlib-3.0.2           |        py36_1002           6 KB  conda-forge
+matplotlib-base-3.0.2      |py36hf043ca5_1002         6.5 MB  conda-forge
+mccabe-0.6.1               |             py_1           8 KB  conda-forge
+mistune-0.8.4              |py36h1de35cc_1000          53 KB  conda-forge
+mkl-service-1.1.2          |   py36hfbe908c_5         130 KB
+mkl_fft-1.0.10             |   py36h1de35cc_1         153 KB  conda-forge
+mkl_random-1.0.2           |   py36h1702cab_2         334 KB  conda-forge
+more-itertools-4.3.0       |        py36_1000          83 KB  conda-forge
+mpmath-1.1.0               |             py_0         432 KB  conda-forge
+msgpack-python-0.6.1       |   py36h04f5b5a_0          82 KB  conda-forge
+multipledispatch-0.6.0     |             py_0          12 KB  conda-forge
+navigator-updater-0.2.1    |           py36_0         1.2 MB
+nbconvert-5.4.0            |                1         324 KB  conda-forge
+nbformat-4.4.0             |             py_1          91 KB  conda-forge
+networkx-2.2               |             py_1         1.1 MB  conda-forge
+nltk-3.2.5                 |             py_0         1.0 MB  conda-forge
+nose-1.3.7                 |        py36_1002         214 KB  conda-forge
+notebook-5.7.4             |        py36_1000         7.2 MB  conda-forge
+numba-0.41.0               |py36h1702cab_1000         2.6 MB  conda-forge
+numexpr-2.6.9              |py36h1702cab_1000         128 KB  conda-forge
+numpy-1.15.4               |   py36hacdab7b_0          47 KB
+numpy-base-1.15.4          |   py36h6575580_0         4.1 MB
+numpydoc-0.8.0             |             py_1          21 KB  conda-forge
+oauthlib-2.1.0             |             py_0          69 KB  conda-forge
+odo-0.5.1                  |             py_1          86 KB  conda-forge
+olefile-0.46               |             py_0          31 KB  conda-forge
+openpyxl-2.5.14            |             py_0         152 KB  conda-forge
+openssl-1.1.1a             |    h1de35cc_1000         3.5 MB  conda-forge
+packaging-19.0             |             py_0          23 KB  conda-forge
+pandas-0.24.0              |   py36h0a44026_0        10.1 MB  conda-forge
+pandocfilters-1.4.2        |             py_1           9 KB  conda-forge
+parso-0.3.2                |             py_0          63 KB  conda-forge
+partd-0.3.9                |             py_0          16 KB  conda-forge
+path.py-11.5.0             |             py_0          29 KB  conda-forge
+pathlib2-2.3.3             |        py36_1000          32 KB  conda-forge
+patsy-0.5.1                |             py_0         187 KB  conda-forge
+pep8-1.7.1                 |             py_0          30 KB  conda-forge
+pexpect-4.6.0              |        py36_1000          75 KB  conda-forge
+pickleshare-0.7.5          |        py36_1000          12 KB  conda-forge
+pillow-5.4.1               |   py36hb68e598_0         584 KB
+pip-19.0.1                 |           py36_0         1.9 MB  conda-forge
+pkginfo-1.5.0.1            |             py_0          21 KB  conda-forge
+pluggy-0.8.1               |             py_0          17 KB  conda-forge
+ply-3.11                   |             py_1          44 KB  conda-forge
+prometheus_client-0.5.0    |             py_0          34 KB  conda-forge
+prompt_toolkit-2.0.8       |             py_0         222 KB  conda-forge
+protobuf-3.6.1             |py36h0a44026_1001         602 KB  conda-forge
+psutil-5.4.8               |py36h1de35cc_1000         321 KB  conda-forge
+ptyprocess-0.6.0           |        py36_1000          22 KB  conda-forge
+py-1.7.0                   |             py_0          65 KB  conda-forge
+py-lief-0.9.0              |   py36hd4eaf27_0         2.7 MB
+pycodestyle-2.5.0          |             py_0          36 KB  conda-forge
+pycosat-0.6.3              |py36h1de35cc_1001         107 KB  conda-forge
+pycparser-2.19             |             py_0          87 KB  conda-forge
+pycrypto-2.6.1             |py36h1de35cc_1002         442 KB  conda-forge
+pycurl-7.43.0.2            |   py36ha12b0ac_0         185 KB
+pyflakes-2.1.0             |             py_0          49 KB  conda-forge
+pygments-2.3.1             |             py_0         641 KB  conda-forge
+pyjwt-1.7.1                |             py_0          17 KB  conda-forge
+pylint-2.2.2               |        py36_1000         813 KB  conda-forge
+pyodbc-4.0.25              |py36h0a44026_1000          62 KB  conda-forge
+pyopenssl-18.0.0           |        py36_1000          80 KB  conda-forge
+pyparsing-2.3.1            |             py_0          54 KB  conda-forge
+pyqt-5.9.2                 |   py36h655552a_2         4.4 MB
+pyrsistent-0.14.9          |py36h1de35cc_1000          85 KB  conda-forge
+pysocks-1.6.8              |        py36_1002          22 KB  conda-forge
+pytables-3.4.4             |   py36h247b57e_1         2.8 MB  conda-forge
+pytest-4.1.1               |        py36_1000         332 KB  conda-forge
+pytest-arraydiff-0.3       |             py_0          11 KB  conda-forge
+pytest-astropy-0.4.0       |             py_0           5 KB  conda-forge
+pytest-doctestplus-0.1.3   |             py_0          13 KB  conda-forge
+pytest-openfiles-0.3.1     |             py_0           8 KB  conda-forge
+pytest-remotedata-0.3.1    |             py_0          11 KB  conda-forge
+python-3.6.8               |       haf84260_0        20.5 MB
+python-crfsuite-0.9.6      |py36h04f5b5a_1000         178 KB  conda-forge
+python-dateutil-2.7.5      |             py_0         218 KB  conda-forge
+python-libarchive-c-2.8    |        py36_1004          21 KB  conda-forge
+python.app-1.2             |py36h1de35cc_1200         1.3 MB  conda-forge
+pytz-2018.9                |             py_0         229 KB  conda-forge
+pywavelets-1.0.1           |py36h917ab60_1000         4.2 MB  conda-forge
+pyyaml-3.13                |py36h1de35cc_1001         160 KB  conda-forge
+pyzmq-17.1.2               |py36h111632d_1001         406 KB  conda-forge
+qtawesome-0.5.6            |     pyh8a2030e_0         605 KB  conda-forge
+qtconsole-4.4.3            |             py_0          81 KB  conda-forge
+qtpy-1.6.0                 |     pyh8a2030e_0          29 KB  conda-forge
+requests-2.21.0            |        py36_1000          84 KB  conda-forge
+requests-oauthlib-1.0.0    |             py_1          17 KB  conda-forge
+rope-0.10.7                |             py_1         113 KB  conda-forge
+ruamel_yaml-0.15.71        |py36h1de35cc_1000         239 KB  conda-forge
+s3transfer-0.1.13          |        py36_1001          76 KB  conda-forge
+scikit-image-0.14.2        |   py36h0a44026_0        23.2 MB  conda-forge
+scikit-learn-0.20.2        |   py36h27c97d8_0         5.3 MB
+scipy-1.2.0                |   py36h1410ff5_0        15.8 MB
+seaborn-0.9.0              |             py_0         159 KB  conda-forge
+send2trash-1.5.0           |             py_0          12 KB  conda-forge
+setuptools-40.7.1          |           py36_0         618 KB  conda-forge
+simplegeneric-0.8.1        |             py_1           7 KB  conda-forge
+singledispatch-3.4.0.3     |        py36_1000          15 KB  conda-forge
+sip-4.19.8                 |py36h0a44026_1000         251 KB  conda-forge
+six-1.12.0                 |        py36_1000          22 KB  conda-forge
+smart_open-1.8.0           |             py_0          38 KB  conda-forge
+snowballstemmer-1.2.1      |             py_1          32 KB  conda-forge
+sortedcollections-1.1.1    |             py_0           9 KB  conda-forge
+sortedcontainers-2.1.0     |             py_0          25 KB  conda-forge
+soupsieve-1.7.1            |        py36_1000          49 KB  conda-forge
+sphinx-1.8.3               |        py36_1000         1.9 MB  conda-forge
+sphinxcontrib-1.0          |           py36_1           3 KB
+sphinxcontrib-websupport-1.1.0|             py_1          20 KB  conda-forge
+spyder-3.3.1               |           py36_2         2.6 MB  conda-forge
+spyder-kernels-0.3.0       |        py36_1001          62 KB  conda-forge
+sqlalchemy-1.2.17          |   py36h1de35cc_0         1.7 MB  conda-forge
+statsmodels-0.9.0          |py36h917ab60_1000         8.2 MB  conda-forge
+sympy-1.3                  |        py36_1000         9.4 MB  conda-forge
+tblib-1.3.2                |             py_1          11 KB  conda-forge
+tensorboard-1.10.0         |           py36_0         3.3 MB  conda-forge
+tensorflow-1.10.0          |           py36_0        47.4 MB  conda-forge
+termcolor-1.1.0            |             py_2           6 KB  conda-forge
+terminado-0.8.1            |        py36_1001          23 KB  conda-forge
+testpath-0.4.2             |        py36_1000          91 KB  conda-forge
+toolz-0.9.0                |             py_1          42 KB  conda-forge
+tornado-5.1.1              |py36h1de35cc_1000         661 KB  conda-forge
+tqdm-4.29.1                |             py_0          38 KB  conda-forge
+traitlets-4.3.2            |        py36_1000         131 KB  conda-forge
+twython-3.7.0              |             py_0          26 KB  conda-forge
+typed-ast-1.2.0            |py36h1de35cc_1000         185 KB  conda-forge
+unicodecsv-0.14.1          |             py_1          12 KB  conda-forge
+urllib3-1.24.1             |        py36_1000         149 KB  conda-forge
+wcwidth-0.1.7              |             py_1          17 KB  conda-forge
+webencodings-0.5.1         |             py_1          12 KB  conda-forge
+werkzeug-0.14.1            |             py_0         249 KB  conda-forge
+wheel-0.32.3               |           py36_0          34 KB  conda-forge
+widgetsnbextension-3.4.2   |        py36_1000         1.7 MB  conda-forge
+wrapt-1.11.1               |   py36h1de35cc_0          41 KB  conda-forge
+wurlitzer-1.0.2            |        py36_1000          11 KB  conda-forge
+xlrd-1.2.0                 |             py_0         108 KB  conda-forge
+xlsxwriter-1.1.2           |             py_0         103 KB  conda-forge
+xlwings-0.15.1             |           py36_0         477 KB  conda-forge
+xlwt-1.3.0                 |             py_1          83 KB  conda-forge
+zict-0.1.3                 |             py_0          10 KB  conda-forge
+------------------------------------------------------------
+Total:       301.8 MB
+
+The following NEW packages will be INSTALLED:
+
+absl-py            conda-forge/osx-64::absl-py-0.7.0-py36_1000
+astor              conda-forge/noarch::astor-0.7.1-py_0
+blinker            conda-forge/noarch::blinker-1.4-py_1
+boto3              conda-forge/noarch::boto3-1.9.86-py_0
+botocore           conda-forge/noarch::botocore-1.12.86-py_0
+bz2file            conda-forge/noarch::bz2file-0.98-py_0
+c-ares             conda-forge/osx-64::c-ares-1.15.0-h1de35cc_1001
+gast               conda-forge/noarch::gast-0.2.1.post0-py_0
+gensim             pkgs/main/osx-64::gensim-3.4.0-py36h1de35cc_0
+grpcio             pkgs/main/osx-64::grpcio-1.16.1-py36h044775b_1
+jmespath           conda-forge/noarch::jmespath-0.9.3-py_1
+libprotobuf        conda-forge/osx-64::libprotobuf-3.6.1-hd9629dc_1000
+markdown           conda-forge/noarch::markdown-2.6.11-py_0
+matplotlib-base    conda-forge/osx-64::matplotlib-base-3.0.2-py36hf043ca5_1002
+oauthlib           conda-forge/noarch::oauthlib-2.1.0-py_0
+protobuf           conda-forge/osx-64::protobuf-3.6.1-py36h0a44026_1001
+pyjwt              conda-forge/noarch::pyjwt-1.7.1-py_0
+pyrsistent         conda-forge/osx-64::pyrsistent-0.14.9-py36h1de35cc_1000
+python-crfsuite    conda-forge/osx-64::python-crfsuite-0.9.6-py36h04f5b5a_1000
+requests-oauthlib  conda-forge/noarch::requests-oauthlib-1.0.0-py_1
+s3transfer         conda-forge/osx-64::s3transfer-0.1.13-py36_1001
+smart_open         conda-forge/noarch::smart_open-1.8.0-py_0
+soupsieve          conda-forge/osx-64::soupsieve-1.7.1-py36_1000
+tensorboard        conda-forge/osx-64::tensorboard-1.10.0-py36_0
+tensorflow         conda-forge/osx-64::tensorflow-1.10.0-py36_0
+termcolor          conda-forge/noarch::termcolor-1.1.0-py_2
+twython            conda-forge/noarch::twython-3.7.0-py_0
+typed-ast          conda-forge/osx-64::typed-ast-1.2.0-py36h1de35cc_1000
+
+The following packages will be REMOVED:
+
+anaconda-2018.12-py37_0
+
+The following packages will be UPDATED:
+
+anaconda-project   pkgs/main/osx-64::anaconda-project-0.~ --> conda-forge/noarch::anaconda-project-0.8.2-py_1
+appnope                   pkgs/main::appnope-0.1.0-py37_0 --> conda-forge::appnope-0.1.0-py36_1000
+appscript          pkgs/main::appscript-1.0.1-py37h1de35~ --> conda-forge::appscript-1.0.1-py36h1de35cc_1000
+asn1crypto            pkgs/main::asn1crypto-0.24.0-py37_0 --> conda-forge::asn1crypto-0.24.0-py36_1003
+astroid                   pkgs/main::astroid-2.1.0-py37_0 --> conda-forge::astroid-2.1.0-py36_1000
+astropy             pkgs/main::astropy-3.1-py37h1de35cc_0 --> conda-forge::astropy-3.1.1-py36h1de35cc_1000
+babel                pkgs/main/osx-64::babel-2.6.0-py37_0 --> conda-forge/noarch::babel-2.6.0-py_1
+backports          pkgs/main/osx-64::backports-1.0-py37_1 --> conda-forge/noarch::backports-1.0-py_2
+backports.os         pkgs/main::backports.os-0.1.1-py37_0 --> conda-forge::backports.os-0.1.1-py36_1000
+backports.shutil_~ pkgs/main/osx-64::backports.shutil_ge~ --> conda-forge/noarch::backports.shutil_get_terminal_size-1.0.0-py_3
+beautifulsoup4     pkgs/main::beautifulsoup4-4.6.3-py37_0 --> conda-forge::beautifulsoup4-4.7.1-py36_1001
+bitarray           pkgs/main::bitarray-0.8.3-py37h1de35c~ --> conda-forge::bitarray-0.8.3-py36h1de35cc_1000
+bleach              pkgs/main/osx-64::bleach-3.0.2-py37_0 --> conda-forge/noarch::bleach-3.1.0-py_0
+bokeh                       pkgs/main::bokeh-1.0.2-py37_0 --> conda-forge::bokeh-1.0.4-py36_1000
+bottleneck         pkgs/main::bottleneck-1.2.1-py37h1d22~ --> conda-forge::bottleneck-1.2.1-py36h917ab60_1001
+ca-certificates    pkgs/main::ca-certificates-2018.03.07~ --> conda-forge::ca-certificates-2018.11.29-ha4d7672_0
+certifi              pkgs/main::certifi-2018.11.29-py37_0 --> conda-forge::certifi-2018.11.29-py36_1000
+cffi                pkgs/main::cffi-1.11.5-py37h6174b99_1 --> conda-forge::cffi-1.11.5-py36h342bebf_1001
+chardet                   pkgs/main::chardet-3.0.4-py37_1 --> conda-forge::chardet-3.0.4-py36_1003
+conda                       pkgs/main::conda-4.6.1-py37_0 --> conda-forge::conda-4.6.2-py36_0
+conda-build          pkgs/main::conda-build-3.17.6-py37_0 --> conda-forge::conda-build-3.17.8-py36_0
+conda-verify         pkgs/main::conda-verify-3.1.1-py37_0 --> conda-forge::conda-verify-3.1.1-py36_1000
+contextlib2        pkgs/main/osx-64::contextlib2-0.5.5-p~ --> conda-forge/noarch::contextlib2-0.5.5-py_2
+cycler             pkgs/main/osx-64::cycler-0.10.0-py37_0 --> conda-forge/noarch::cycler-0.10.0-py_1
+cython             pkgs/main::cython-0.29.2-py37h0a44026~ --> conda-forge::cython-0.29.3-py36h0a44026_0
+cytoolz            pkgs/main::cytoolz-0.9.0.1-py37h1de35~ --> conda-forge::cytoolz-0.9.0.1-py36h1de35cc_1001
+dask                  pkgs/main/osx-64::dask-1.0.0-py37_0 --> conda-forge/noarch::dask-1.1.0-py_1
+dask-core          pkgs/main/osx-64::dask-core-1.0.0-py3~ --> conda-forge/noarch::dask-core-1.1.0-py_0
+decorator          pkgs/main/osx-64::decorator-4.3.0-py3~ --> conda-forge/noarch::decorator-4.3.2-py_0
+distributed          pkgs/main::distributed-1.25.1-py37_0 --> conda-forge::distributed-1.25.2-py36_1000
+docutils                  pkgs/main::docutils-0.14-py37_0 --> conda-forge::docutils-0.14-py36_1001
+entrypoints           pkgs/main::entrypoints-0.2.3-py37_2 --> conda-forge::entrypoints-0.3-py36_1000
+et_xmlfile             pkgs/main::et_xmlfile-1.0.1-py37_0 --> conda-forge::et_xmlfile-1.0.1-py36_1000
+fastcache          pkgs/main::fastcache-1.0.2-py37h1de35~ --> conda-forge::fastcache-1.0.2-py36h1de35cc_1001
+flask                pkgs/main/osx-64::flask-1.0.2-py37_1 --> conda-forge/noarch::flask-1.0.2-py_2
+future                    pkgs/main::future-0.17.1-py37_0 --> conda-forge::future-0.17.1-py36_1000
+gmpy2               pkgs/main::gmpy2-2.0.8-py37h6ef4df4_2 --> conda-forge::gmpy2-2.0.8-py36h3aece09_1002
+h5py                 pkgs/main::h5py-2.8.0-py37h878fce3_3 --> conda-forge::h5py-2.8.0-py36h917ab60_1003
+heapdict                 pkgs/main::heapdict-1.0.0-py37_2 --> conda-forge::heapdict-1.0.0-py36_1000
+idna                           pkgs/main::idna-2.8-py37_0 --> conda-forge::idna-2.8-py36_1000
+imageio                   pkgs/main::imageio-2.4.1-py37_0 --> conda-forge::imageio-2.4.1-py36_1000
+ipykernel          pkgs/main::ipykernel-5.1.0-py37h39e3c~ --> conda-forge::ipykernel-5.1.0-py36h24bf2e0_1002
+ipython            pkgs/main::ipython-7.2.0-py37h39e3cac~ --> conda-forge::ipython-7.2.0-py36h24bf2e0_1000
+ipython_genutils   pkgs/main/osx-64::ipython_genutils-0.~ --> conda-forge/noarch::ipython_genutils-0.2.0-py_1
+isort                       pkgs/main::isort-4.3.4-py37_0 --> conda-forge::isort-4.3.4-py36_1000
+jdcal                  pkgs/main/osx-64::jdcal-1.4-py37_0 --> conda-forge/noarch::jdcal-1.4-py_1
+jedi                        pkgs/main::jedi-0.13.2-py37_0 --> conda-forge::jedi-0.13.2-py36_1000
+jinja2               pkgs/main/osx-64::jinja2-2.10-py37_0 --> conda-forge/noarch::jinja2-2.10-py_1
+jsonschema             pkgs/main::jsonschema-2.6.0-py37_0 --> conda-forge::jsonschema-3.0.0a3-py36_1000
+jupyter_client     pkgs/main/osx-64::jupyter_client-5.2.~ --> conda-forge/noarch::jupyter_client-5.2.4-py_1
+jupyterlab            pkgs/main::jupyterlab-0.35.3-py37_0 --> conda-forge::jupyterlab-0.35.4-py36_0
+keyring                  pkgs/main::keyring-17.0.0-py37_0 --> conda-forge::keyring-17.1.1-py36_1000
+kiwisolver         pkgs/main::kiwisolver-1.0.1-py37h0a44~ --> conda-forge::kiwisolver-1.0.1-py36h04f5b5a_1002
+lazy-object-proxy  pkgs/main::lazy-object-proxy-1.3.1-py~ --> conda-forge::lazy-object-proxy-1.3.1-py36h1de35cc_1000
+llvmlite           pkgs/main::llvmlite-0.26.0-py37h8c7ce~ --> conda-forge::llvmlite-0.26.0-py36h3fea490_1000
+locket              pkgs/main/osx-64::locket-0.2.0-py37_1 --> conda-forge/noarch::locket-0.2.0-py_2
+lxml                 pkgs/main::lxml-4.2.5-py37hef8c89e_0 --> conda-forge::lxml-4.3.0-py36h7166777_1000
+markupsafe         pkgs/main::markupsafe-1.1.0-py37h1de3~ --> conda-forge::markupsafe-1.1.0-py36h1de35cc_1000
+matplotlib         pkgs/main::matplotlib-3.0.2-py37h54f8~ --> conda-forge::matplotlib-3.0.2-py36_1002
+mistune            pkgs/main::mistune-0.8.4-py37h1de35cc~ --> conda-forge::mistune-0.8.4-py36h1de35cc_1000
+mkl_fft            pkgs/main::mkl_fft-1.0.6-py37h27c97d8~ --> conda-forge::mkl_fft-1.0.10-py36h1de35cc_1
+mkl_random         pkgs/main::mkl_random-1.0.2-py37h27c9~ --> conda-forge::mkl_random-1.0.2-py36h1702cab_2
+more-itertools     pkgs/main::more-itertools-4.3.0-py37_0 --> conda-forge::more-itertools-4.3.0-py36_1000
+msgpack-python     pkgs/main::msgpack-python-0.5.6-py37h~ --> conda-forge::msgpack-python-0.6.1-py36h04f5b5a_0
+nbformat           pkgs/main/osx-64::nbformat-4.4.0-py37~ --> conda-forge/noarch::nbformat-4.4.0-py_1
+nose                         pkgs/main::nose-1.3.7-py37_2 --> conda-forge::nose-1.3.7-py36_1002
+notebook                 pkgs/main::notebook-5.7.4-py37_0 --> conda-forge::notebook-5.7.4-py36_1000
+numba              pkgs/main::numba-0.41.0-py37h6440ff4_0 --> conda-forge::numba-0.41.0-py36h1702cab_1000
+numexpr            pkgs/main::numexpr-2.6.8-py37h7413580~ --> conda-forge::numexpr-2.6.9-py36h1702cab_1000
+numpydoc           pkgs/main/osx-64::numpydoc-0.8.0-py37~ --> conda-forge/noarch::numpydoc-0.8.0-py_1
+odo                    pkgs/main/osx-64::odo-0.5.1-py37_0 --> conda-forge/noarch::odo-0.5.1-py_1
+openpyxl           pkgs/main/osx-64::openpyxl-2.5.12-py3~ --> conda-forge/noarch::openpyxl-2.5.14-py_0
+openssl              pkgs/main::openssl-1.1.1a-h1de35cc_0 --> conda-forge::openssl-1.1.1a-h1de35cc_1000
+packaging          pkgs/main/osx-64::packaging-18.0-py37~ --> conda-forge/noarch::packaging-19.0-py_0
+pandas             pkgs/main::pandas-0.23.4-py37h6440ff4~ --> conda-forge::pandas-0.24.0-py36h0a44026_0
+parso                pkgs/main/osx-64::parso-0.3.1-py37_0 --> conda-forge/noarch::parso-0.3.2-py_0
+pathlib2                 pkgs/main::pathlib2-2.3.3-py37_0 --> conda-forge::pathlib2-2.3.3-py36_1000
+pexpect                   pkgs/main::pexpect-4.6.0-py37_0 --> conda-forge::pexpect-4.6.0-py36_1000
+pickleshare           pkgs/main::pickleshare-0.7.5-py37_0 --> conda-forge::pickleshare-0.7.5-py36_1000
+pillow                               5.3.0-py37hb68e598_0 --> 5.4.1-py36hb68e598_0
+pip                            pkgs/main::pip-18.1-py37_0 --> conda-forge::pip-19.0.1-py36_0
+pkginfo            pkgs/main/osx-64::pkginfo-1.4.2-py37_1 --> conda-forge/noarch::pkginfo-1.5.0.1-py_0
+pluggy              pkgs/main/osx-64::pluggy-0.8.0-py37_0 --> conda-forge/noarch::pluggy-0.8.1-py_0
+ply                     pkgs/main/osx-64::ply-3.11-py37_0 --> conda-forge/noarch::ply-3.11-py_1
+prompt_toolkit     pkgs/main/osx-64::prompt_toolkit-2.0.~ --> conda-forge/noarch::prompt_toolkit-2.0.8-py_0
+psutil             pkgs/main::psutil-5.4.8-py37h1de35cc_0 --> conda-forge::psutil-5.4.8-py36h1de35cc_1000
+ptyprocess             pkgs/main::ptyprocess-0.6.0-py37_0 --> conda-forge::ptyprocess-0.6.0-py36_1000
+pycodestyle        pkgs/main/osx-64::pycodestyle-2.4.0-p~ --> conda-forge/noarch::pycodestyle-2.5.0-py_0
+pycosat            pkgs/main::pycosat-0.6.3-py37h1de35cc~ --> conda-forge::pycosat-0.6.3-py36h1de35cc_1001
+pycrypto           pkgs/main::pycrypto-2.6.1-py37h1de35c~ --> conda-forge::pycrypto-2.6.1-py36h1de35cc_1002
+pyflakes           pkgs/main/osx-64::pyflakes-2.0.0-py37~ --> conda-forge/noarch::pyflakes-2.1.0-py_0
+pylint                     pkgs/main::pylint-2.2.2-py37_0 --> conda-forge::pylint-2.2.2-py36_1000
+pyodbc             pkgs/main::pyodbc-4.0.25-py37h0a44026~ --> conda-forge::pyodbc-4.0.25-py36h0a44026_1000
+pyopenssl              pkgs/main::pyopenssl-18.0.0-py37_0 --> conda-forge::pyopenssl-18.0.0-py36_1000
+pyparsing          pkgs/main/osx-64::pyparsing-2.3.0-py3~ --> conda-forge/noarch::pyparsing-2.3.1-py_0
+pysocks                   pkgs/main::pysocks-1.6.8-py37_0 --> conda-forge::pysocks-1.6.8-py36_1002
+pytables           pkgs/main::pytables-3.4.4-py37h13cba0~ --> conda-forge::pytables-3.4.4-py36h247b57e_1
+pytest                     pkgs/main::pytest-4.0.2-py37_0 --> conda-forge::pytest-4.1.1-py36_1000
+python-libarchive~ pkgs/main::python-libarchive-c-2.8-py~ --> conda-forge::python-libarchive-c-2.8-py36_1004
+pytz                 pkgs/main/osx-64::pytz-2018.7-py37_0 --> conda-forge/noarch::pytz-2018.9-py_0
+pywavelets         pkgs/main::pywavelets-1.0.1-py37h1d22~ --> conda-forge::pywavelets-1.0.1-py36h917ab60_1000
+pyyaml              pkgs/main::pyyaml-3.13-py37h1de35cc_0 --> conda-forge::pyyaml-3.13-py36h1de35cc_1001
+pyzmq              pkgs/main::pyzmq-17.1.2-py37h1de35cc_0 --> conda-forge::pyzmq-17.1.2-py36h111632d_1001
+qtawesome          pkgs/main/osx-64::qtawesome-0.5.3-py3~ --> conda-forge/noarch::qtawesome-0.5.6-pyh8a2030e_0
+qtpy                  pkgs/main/osx-64::qtpy-1.5.2-py37_0 --> conda-forge/noarch::qtpy-1.6.0-pyh8a2030e_0
+requests                pkgs/main::requests-2.21.0-py37_0 --> conda-forge::requests-2.21.0-py36_1000
+ruamel_yaml        pkgs/main::ruamel_yaml-0.15.46-py37h1~ --> conda-forge::ruamel_yaml-0.15.71-py36h1de35cc_1000
+scikit-image       pkgs/main::scikit-image-0.14.1-py37h0~ --> conda-forge::scikit-image-0.14.2-py36h0a44026_0
+scikit-learn                        0.20.1-py37h27c97d8_0 --> 0.20.2-py36h27c97d8_0
+scipy                                1.1.0-py37h1410ff5_2 --> 1.2.0-py36h1410ff5_0
+setuptools            pkgs/main::setuptools-40.6.3-py37_0 --> conda-forge::setuptools-40.7.1-py36_0
+singledispatch     pkgs/main::singledispatch-3.4.0.3-py3~ --> conda-forge::singledispatch-3.4.0.3-py36_1000
+sip                  pkgs/main::sip-4.19.8-py37h0a44026_0 --> conda-forge::sip-4.19.8-py36h0a44026_1000
+six                          pkgs/main::six-1.12.0-py37_0 --> conda-forge::six-1.12.0-py36_1000
+snowballstemmer    pkgs/main/osx-64::snowballstemmer-1.2~ --> conda-forge/noarch::snowballstemmer-1.2.1-py_1
+sortedcollections  pkgs/main/osx-64::sortedcollections-1~ --> conda-forge/noarch::sortedcollections-1.1.1-py_0
+sphinx                     pkgs/main::sphinx-1.8.2-py37_0 --> conda-forge::sphinx-1.8.3-py36_1000
+spyder-kernels     pkgs/main::spyder-kernels-0.3.0-py37_0 --> conda-forge::spyder-kernels-0.3.0-py36_1001
+sqlalchemy         pkgs/main::sqlalchemy-1.2.15-py37h1de~ --> conda-forge::sqlalchemy-1.2.17-py36h1de35cc_0
+statsmodels        pkgs/main::statsmodels-0.9.0-py37h1d2~ --> conda-forge::statsmodels-0.9.0-py36h917ab60_1000
+sympy                         pkgs/main::sympy-1.3-py37_0 --> conda-forge::sympy-1.3-py36_1000
+tblib                pkgs/main/osx-64::tblib-1.3.2-py37_0 --> conda-forge/noarch::tblib-1.3.2-py_1
+terminado               pkgs/main::terminado-0.8.1-py37_1 --> conda-forge::terminado-0.8.1-py36_1001
+testpath                 pkgs/main::testpath-0.4.2-py37_0 --> conda-forge::testpath-0.4.2-py36_1000
+toolz                pkgs/main/osx-64::toolz-0.9.0-py37_0 --> conda-forge/noarch::toolz-0.9.0-py_1
+tornado            pkgs/main::tornado-5.1.1-py37h1de35cc~ --> conda-forge::tornado-5.1.1-py36h1de35cc_1000
+tqdm               pkgs/main/osx-64::tqdm-4.28.1-py37h28~ --> conda-forge/noarch::tqdm-4.29.1-py_0
+traitlets               pkgs/main::traitlets-4.3.2-py37_0 --> conda-forge::traitlets-4.3.2-py36_1000
+unicodecsv         pkgs/main/osx-64::unicodecsv-0.14.1-p~ --> conda-forge/noarch::unicodecsv-0.14.1-py_1
+urllib3                  pkgs/main::urllib3-1.24.1-py37_0 --> conda-forge::urllib3-1.24.1-py36_1000
+wcwidth            pkgs/main/osx-64::wcwidth-0.1.7-py37_0 --> conda-forge/noarch::wcwidth-0.1.7-py_1
+widgetsnbextension pkgs/main::widgetsnbextension-3.4.2-p~ --> conda-forge::widgetsnbextension-3.4.2-py36_1000
+wrapt              pkgs/main::wrapt-1.10.11-py37h1de35cc~ --> conda-forge::wrapt-1.11.1-py36h1de35cc_0
+wurlitzer               pkgs/main::wurlitzer-1.0.2-py37_0 --> conda-forge::wurlitzer-1.0.2-py36_1000
+xlwt                  pkgs/main/osx-64::xlwt-1.3.0-py37_0 --> conda-forge/noarch::xlwt-1.3.0-py_1
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+alabaster          pkgs/main/osx-64::alabaster-0.7.12-py~ --> conda-forge/noarch::alabaster-0.7.12-py_0
+anaconda-client    pkgs/main/osx-64::anaconda-client-1.7~ --> conda-forge/noarch::anaconda-client-1.7.1-py_0
+atomicwrites       pkgs/main/osx-64::atomicwrites-1.2.1-~ --> conda-forge/noarch::atomicwrites-1.2.1-py_0
+attrs              pkgs/main/osx-64::attrs-18.2.0-py37h2~ --> conda-forge/noarch::attrs-18.2.0-py_0
+backcall           pkgs/main/osx-64::backcall-0.1.0-py37~ --> conda-forge/noarch::backcall-0.1.0-py_0
+bkcharts                   pkgs/main::bkcharts-0.2-py37_0 --> conda-forge::bkcharts-0.2-py36_0
+blaze                      pkgs/main::blaze-0.11.3-py37_0 --> conda-forge::blaze-0.11.3-py36_0
+boto                 pkgs/main/osx-64::boto-2.49.0-py37_0 --> conda-forge/noarch::boto-2.49.0-py_0
+click                  pkgs/main/osx-64::click-7.0-py37_0 --> conda-forge/noarch::click-7.0-py_0
+cloudpickle        pkgs/main/osx-64::cloudpickle-0.6.1-p~ --> conda-forge/noarch::cloudpickle-0.6.1-py_0
+clyent              pkgs/main/osx-64::clyent-1.2.2-py37_1 --> conda-forge/noarch::clyent-1.2.2-py_1
+colorama           pkgs/main/osx-64::colorama-0.4.1-py37~ --> conda-forge/noarch::colorama-0.4.1-py_0
+datashape               pkgs/main::datashape-0.5.4-py37_1 --> conda-forge::datashape-0.5.4-py36_0
+defusedxml         pkgs/main/osx-64::defusedxml-0.5.0-py~ --> conda-forge/noarch::defusedxml-0.5.0-py_1
+filelock           pkgs/main/osx-64::filelock-3.0.10-py3~ --> conda-forge/noarch::filelock-3.0.10-py_0
+flask-cors         pkgs/main/osx-64::flask-cors-3.0.7-py~ --> conda-forge/noarch::flask-cors-3.0.7-py_0
+gevent             pkgs/main::gevent-1.3.7-py37h1de35cc_1 --> conda-forge::gevent-1.3.7-py36h470a237_0
+glob2                  pkgs/main/osx-64::glob2-0.6-py37_1 --> conda-forge/noarch::glob2-0.6-py_0
+greenlet           pkgs/main::greenlet-0.4.15-py37h1de35~ --> conda-forge::greenlet-0.4.13-py36_0
+html5lib           pkgs/main/osx-64::html5lib-1.0.1-py37~ --> conda-forge/noarch::html5lib-1.0.1-py_0
+imagesize          pkgs/main/osx-64::imagesize-1.1.0-py3~ --> conda-forge/noarch::imagesize-1.1.0-py_0
+importlib_metadata pkgs/main::importlib_metadata-0.6-py3~ --> conda-forge::importlib_metadata-0.6-py36_0
+ipywidgets         pkgs/main/osx-64::ipywidgets-7.4.2-py~ --> conda-forge/noarch::ipywidgets-7.4.2-py_0
+itsdangerous       pkgs/main/osx-64::itsdangerous-1.1.0-~ --> conda-forge/noarch::itsdangerous-1.1.0-py_0
+jupyter            pkgs/main/osx-64::jupyter-1.0.0-py37_7 --> conda-forge/noarch::jupyter-1.0.0-py_1
+jupyter_console    pkgs/main/osx-64::jupyter_console-6.0~ --> conda-forge/noarch::jupyter_console-6.0.0-py_0
+jupyter_core       pkgs/main/osx-64::jupyter_core-4.4.0-~ --> conda-forge/noarch::jupyter_core-4.4.0-py_0
+jupyterlab_server  pkgs/main/osx-64::jupyterlab_server-0~ --> conda-forge/noarch::jupyterlab_server-0.2.0-py_0
+mccabe              pkgs/main/osx-64::mccabe-0.6.1-py37_1 --> conda-forge/noarch::mccabe-0.6.1-py_1
+mpmath              pkgs/main/osx-64::mpmath-1.1.0-py37_0 --> conda-forge/noarch::mpmath-1.1.0-py_0
+multipledispatch   pkgs/main/osx-64::multipledispatch-0.~ --> conda-forge/noarch::multipledispatch-0.6.0-py_0
+nbconvert          pkgs/main/osx-64::nbconvert-5.4.0-py3~ --> conda-forge/noarch::nbconvert-5.4.0-1
+networkx            pkgs/main/osx-64::networkx-2.2-py37_1 --> conda-forge/noarch::networkx-2.2-py_1
+nltk                    pkgs/main/osx-64::nltk-3.4-py37_1 --> conda-forge/noarch::nltk-3.2.5-py_0
+olefile             pkgs/main/osx-64::olefile-0.46-py37_0 --> conda-forge/noarch::olefile-0.46-py_0
+pandocfilters      pkgs/main/osx-64::pandocfilters-1.4.2~ --> conda-forge/noarch::pandocfilters-1.4.2-py_1
+partd                pkgs/main/osx-64::partd-0.3.9-py37_0 --> conda-forge/noarch::partd-0.3.9-py_0
+path.py            pkgs/main/osx-64::path.py-11.5.0-py37~ --> conda-forge/noarch::path.py-11.5.0-py_0
+patsy                pkgs/main/osx-64::patsy-0.5.1-py37_0 --> conda-forge/noarch::patsy-0.5.1-py_0
+pep8                  pkgs/main/osx-64::pep8-1.7.1-py37_0 --> conda-forge/noarch::pep8-1.7.1-py_0
+prometheus_client  pkgs/main/osx-64::prometheus_client-0~ --> conda-forge/noarch::prometheus_client-0.5.0-py_0
+py                      pkgs/main/osx-64::py-1.7.0-py37_0 --> conda-forge/noarch::py-1.7.0-py_0
+pycparser          pkgs/main/osx-64::pycparser-2.19-py37~ --> conda-forge/noarch::pycparser-2.19-py_0
+pygments           pkgs/main/osx-64::pygments-2.3.1-py37~ --> conda-forge/noarch::pygments-2.3.1-py_0
+pytest-arraydiff   pkgs/main/osx-64::pytest-arraydiff-0.~ --> conda-forge/noarch::pytest-arraydiff-0.3-py_0
+pytest-astropy     pkgs/main/osx-64::pytest-astropy-0.5.~ --> conda-forge/noarch::pytest-astropy-0.4.0-py_0
+pytest-doctestplus pkgs/main/osx-64::pytest-doctestplus-~ --> conda-forge/noarch::pytest-doctestplus-0.1.3-py_0
+pytest-openfiles   pkgs/main/osx-64::pytest-openfiles-0.~ --> conda-forge/noarch::pytest-openfiles-0.3.1-py_0
+pytest-remotedata  pkgs/main/osx-64::pytest-remotedata-0~ --> conda-forge/noarch::pytest-remotedata-0.3.1-py_0
+python-dateutil    pkgs/main/osx-64::python-dateutil-2.7~ --> conda-forge/noarch::python-dateutil-2.7.5-py_0
+python.app                 pkgs/main::python.app-2-py37_9 --> conda-forge::python.app-1.2-py36h1de35cc_1200
+qtconsole          pkgs/main/osx-64::qtconsole-4.4.3-py3~ --> conda-forge/noarch::qtconsole-4.4.3-py_0
+rope                 pkgs/main/osx-64::rope-0.11.0-py37_0 --> conda-forge/noarch::rope-0.10.7-py_1
+seaborn            pkgs/main/osx-64::seaborn-0.9.0-py37_0 --> conda-forge/noarch::seaborn-0.9.0-py_0
+send2trash         pkgs/main/osx-64::send2trash-1.5.0-py~ --> conda-forge/noarch::send2trash-1.5.0-py_0
+simplegeneric      pkgs/main/osx-64::simplegeneric-0.8.1~ --> conda-forge/noarch::simplegeneric-0.8.1-py_1
+sortedcontainers   pkgs/main/osx-64::sortedcontainers-2.~ --> conda-forge/noarch::sortedcontainers-2.1.0-py_0
+sphinxcontrib-web~ pkgs/main/osx-64::sphinxcontrib-websu~ --> conda-forge/noarch::sphinxcontrib-websupport-1.1.0-py_1
+spyder                     pkgs/main::spyder-3.3.2-py37_0 --> conda-forge::spyder-3.3.1-py36_2
+webencodings       pkgs/main/osx-64::webencodings-0.5.1-~ --> conda-forge/noarch::webencodings-0.5.1-py_1
+werkzeug           pkgs/main/osx-64::werkzeug-0.14.1-py3~ --> conda-forge/noarch::werkzeug-0.14.1-py_0
+wheel                      pkgs/main::wheel-0.32.3-py37_0 --> conda-forge::wheel-0.32.3-py36_0
+xlrd                  pkgs/main/osx-64::xlrd-1.2.0-py37_0 --> conda-forge/noarch::xlrd-1.2.0-py_0
+xlsxwriter         pkgs/main/osx-64::xlsxwriter-1.1.2-py~ --> conda-forge/noarch::xlsxwriter-1.1.2-py_0
+xlwings                  pkgs/main::xlwings-0.15.1-py37_0 --> conda-forge::xlwings-0.15.1-py36_0
+zict                  pkgs/main/osx-64::zict-0.1.3-py37_0 --> conda-forge/noarch::zict-0.1.3-py_0
+
+The following packages will be DOWNGRADED:
+
+_ipyw_jlab_nb_ext~                           0.1.0-py37_0 --> 0.1.0-py36_0
+anaconda-navigator                           1.9.6-py37_0 --> 1.9.6-py36_0
+cryptography                         2.4.2-py37ha12b0ac_0 --> 2.4.2-py36ha12b0ac_0
+mkl-service                          1.1.2-py37hfbe908c_5 --> 1.1.2-py36hfbe908c_5
+navigator-updater                            0.2.1-py37_0 --> 0.2.1-py36_0
+numpy                               1.15.4-py37hacdab7b_0 --> 1.15.4-py36hacdab7b_0
+numpy-base                          1.15.4-py37h6575580_0 --> 1.15.4-py36h6575580_0
+py-lief                              0.9.0-py37hd4eaf27_0 --> 0.9.0-py36hd4eaf27_0
+pycurl                            7.43.0.2-py37ha12b0ac_0 --> 7.43.0.2-py36ha12b0ac_0
+pyqt                                 5.9.2-py37h655552a_2 --> 5.9.2-py36h655552a_2
+python                                   3.7.1-haf84260_7 --> 3.6.8-haf84260_0
+sphinxcontrib                                  1.0-py37_1 --> 1.0-py36_1
+
+
+Proceed ([y]/n)? y
+
+
+Downloading and Extracting Packages
+qtpy-1.6.0           | 29 KB     | ################################################################################################################################################################# | 100%
+mccabe-0.6.1         | 8 KB      | ################################################################################################################################################################# | 100%
+pyzmq-17.1.2         | 406 KB    | ################################################################################################################################################################# | 100%
+distributed-1.25.2   | 821 KB    | ################################################################################################################################################################# | 100%
+xlwings-0.15.1       | 477 KB    | ################################################################################################################################################################# | 100%
+dask-1.1.0           | 4 KB      | ################################################################################################################################################################# | 100%
+gast-0.2.1.post0     | 9 KB      | ################################################################################################################################################################# | 100%
+boto-2.49.0          | 838 KB    | ################################################################################################################################################################# | 100%
+gmpy2-2.0.8          | 162 KB    | ################################################################################################################################################################# | 100%
+msgpack-python-0.6.1 | 82 KB     | ################################################################################################################################################################# | 100%
+tblib-1.3.2          | 11 KB     | ################################################################################################################################################################# | 100%
+pytest-astropy-0.4.0 | 5 KB      | ################################################################################################################################################################# | 100%
+pytz-2018.9          | 229 KB    | ################################################################################################################################################################# | 100%
+pytest-openfiles-0.3 | 8 KB      | ################################################################################################################################################################# | 100%
+wcwidth-0.1.7        | 17 KB     | ################################################################################################################################################################# | 100%
+imageio-2.4.1        | 3.3 MB    | ################################################################################################################################################################# | 100%
+navigator-updater-0. | 1.2 MB    | ################################################################################################################################################################# | 100%
+jupyterlab-0.35.4    | 10.7 MB   | ################################################################################################################################################################# | 100%
+jupyter_console-6.0. | 19 KB     | ################################################################################################################################################################# | 100%
+babel-2.6.0          | 5.6 MB    | ################################################################################################################################################################# | 100%
+tqdm-4.29.1          | 38 KB     | ################################################################################################################################################################# | 100%
+fastcache-1.0.2      | 28 KB     | ################################################################################################################################################################# | 100%
+soupsieve-1.7.1      | 49 KB     | ################################################################################################################################################################# | 100%
+locket-0.2.0         | 6 KB      | ################################################################################################################################################################# | 100%
+numpy-base-1.15.4    | 4.1 MB    | ################################################################################################################################################################# | 100%
+six-1.12.0           | 22 KB     | ################################################################################################################################################################# | 100%
+idna-2.8             | 132 KB    | ################################################################################################################################################################# | 100%
+defusedxml-0.5.0     | 20 KB     | ################################################################################################################################################################# | 100%
+packaging-19.0       | 23 KB     | ################################################################################################################################################################# | 100%
+nltk-3.2.5           | 1.0 MB    | ################################################################################################################################################################# | 100%
+jupyter-1.0.0        | 6 KB      | ################################################################################################################################################################# | 100%
+psutil-5.4.8         | 321 KB    | ################################################################################################################################################################# | 100%
+pexpect-4.6.0        | 75 KB     | ################################################################################################################################################################# | 100%
+bz2file-0.98         | 9 KB      | ################################################################################################################################################################# | 100%
+itsdangerous-1.1.0   | 16 KB     | ################################################################################################################################################################# | 100%
+widgetsnbextension-3 | 1.7 MB    | ################################################################################################################################################################# | 100%
+datashape-0.5.4      | 98 KB     | ################################################################################################################################################################# | 100%
+mkl_random-1.0.2     | 334 KB    | ################################################################################################################################################################# | 100%
+c-ares-1.15.0        | 81 KB     | ################################################################################################################################################################# | 100%
+scikit-image-0.14.2  | 23.2 MB   | ################################################################################################################################################################# | 100%
+ca-certificates-2018 | 143 KB    | ################################################################################################################################################################# | 100%
+ply-3.11             | 44 KB     | ################################################################################################################################################################# | 100%
+pandas-0.24.0        | 10.1 MB   | ################################################################################################################################################################# | 100%
+s3transfer-0.1.13    | 76 KB     | ################################################################################################################################################################# | 100%
+pycurl-7.43.0.2      | 185 KB    | ################################################################################################################################################################# | 100%
+numba-0.41.0         | 2.6 MB    | ################################################################################################################################################################# | 100%
+pkginfo-1.5.0.1      | 21 KB     | ################################################################################################################################################################# | 100%
+et_xmlfile-1.0.1     | 20 KB     | ################################################################################################################################################################# | 100%
+pep8-1.7.1           | 30 KB     | ################################################################################################################################################################# | 100%
+snowballstemmer-1.2. | 32 KB     | ################################################################################################################################################################# | 100%
+terminado-0.8.1      | 23 KB     | ################################################################################################################################################################# | 100%
+oauthlib-2.1.0       | 69 KB     | ################################################################################################################################################################# | 100%
+nbformat-4.4.0       | 91 KB     | ################################################################################################################################################################# | 100%
+toolz-0.9.0          | 42 KB     | ################################################################################################################################################################# | 100%
+sphinxcontrib-1.0    | 3 KB      | ################################################################################################################################################################# | 100%
+jmespath-0.9.3       | 19 KB     | ################################################################################################################################################################# | 100%
+blaze-0.11.3         | 602 KB    | ################################################################################################################################################################# | 100%
+requests-2.21.0      | 84 KB     | ################################################################################################################################################################# | 100%
+absl-py-0.7.0        | 154 KB    | ################################################################################################################################################################# | 100%
+grpcio-1.16.1        | 944 KB    | ################################################################################################################################################################# | 100%
+parso-0.3.2          | 63 KB     | ################################################################################################################################################################# | 100%
+typed-ast-1.2.0      | 185 KB    | ################################################################################################################################################################# | 100%
+decorator-4.3.2      | 11 KB     | ################################################################################################################################################################# | 100%
+pathlib2-2.3.3       | 32 KB     | ################################################################################################################################################################# | 100%
+pyqt-5.9.2           | 4.4 MB    | ################################################################################################################################################################# | 100%
+pyparsing-2.3.1      | 54 KB     | ################################################################################################################################################################# | 100%
+pyflakes-2.1.0       | 49 KB     | ################################################################################################################################################################# | 100%
+mistune-0.8.4        | 53 KB     | ################################################################################################################################################################# | 100%
+notebook-5.7.4       | 7.2 MB    | ################################################################################################################################################################# | 100%
+nose-1.3.7           | 214 KB    | ################################################################################################################################################################# | 100%
+testpath-0.4.2       | 91 KB     | ################################################################################################################################################################# | 100%
+numexpr-2.6.9        | 128 KB    | ################################################################################################################################################################# | 100%
+sphinx-1.8.3         | 1.9 MB    | ################################################################################################################################################################# | 100%
+sphinxcontrib-websup | 20 KB     | ################################################################################################################################################################# | 100%
+entrypoints-0.3      | 12 KB     | ################################################################################################################################################################# | 100%
+pylint-2.2.2         | 813 KB    | ################################################################################################################################################################# | 100%
+gensim-3.4.0         | 21.5 MB   | ################################################################################################################################################################# | 100%
+lazy-object-proxy-1. | 28 KB     | ################################################################################################################################################################# | 100%
+openssl-1.1.1a       | 3.5 MB    | ################################################################################################################################################################# | 100%
+protobuf-3.6.1       | 602 KB    | ################################################################################################################################################################# | 100%
+requests-oauthlib-1. | 17 KB     | ################################################################################################################################################################# | 100%
+path.py-11.5.0       | 29 KB     | ################################################################################################################################################################# | 100%
+_ipyw_jlab_nb_ext_co | 4 KB      | ################################################################################################################################################################# | 100%
+astroid-2.1.0        | 256 KB    | ################################################################################################################################################################# | 100%
+markupsafe-1.1.0     | 24 KB     | ################################################################################################################################################################# | 100%
+blinker-1.4          | 13 KB     | ################################################################################################################################################################# | 100%
+colorama-0.4.1       | 15 KB     | ################################################################################################################################################################# | 100%
+certifi-2018.11.29   | 145 KB    | ################################################################################################################################################################# | 100%
+bokeh-1.0.4          | 5.4 MB    | ################################################################################################################################################################# | 100%
+pycparser-2.19       | 87 KB     | ################################################################################################################################################################# | 100%
+termcolor-1.1.0      | 6 KB      | ################################################################################################################################################################# | 100%
+jupyter_core-4.4.0   | 44 KB     | ################################################################################################################################################################# | 100%
+prompt_toolkit-2.0.8 | 222 KB    | ################################################################################################################################################################# | 100%
+mkl-service-1.1.2    | 130 KB    | ################################################################################################################################################################# | 100%
+scipy-1.2.0          | 15.8 MB   | ################################################################################################################################################################# | 100%
+seaborn-0.9.0        | 159 KB    | ################################################################################################################################################################# | 100%
+qtconsole-4.4.3      | 81 KB     | ################################################################################################################################################################# | 100%
+werkzeug-0.14.1      | 249 KB    | ################################################################################################################################################################# | 100%
+astropy-3.1.1        | 6.8 MB    | ################################################################################################################################################################# | 100%
+openpyxl-2.5.14      | 152 KB    | ################################################################################################################################################################# | 100%
+backports.os-0.1.1   | 15 KB     | ################################################################################################################################################################# | 100%
+atomicwrites-1.2.1   | 9 KB      | ################################################################################################################################################################# | 100%
+pycrypto-2.6.1       | 442 KB    | ################################################################################################################################################################# | 100%
+tornado-5.1.1        | 661 KB    | ################################################################################################################################################################# | 100%
+html5lib-1.0.1       | 89 KB     | ################################################################################################################################################################# | 100%
+cloudpickle-0.6.1    | 16 KB     | ################################################################################################################################################################# | 100%
+jinja2-2.10          | 89 KB     | ################################################################################################################################################################# | 100%
+conda-verify-3.1.1   | 32 KB     | ################################################################################################################################################################# | 100%
+send2trash-1.5.0     | 12 KB     | ################################################################################################################################################################# | 100%
+urllib3-1.24.1       | 149 KB    | ################################################################################################################################################################# | 100%
+matplotlib-base-3.0. | 6.5 MB    | ################################################################################################################################################################# | 100%
+wrapt-1.11.1         | 41 KB     | ################################################################################################################################################################# | 100%
+numpy-1.15.4         | 47 KB     | ################################################################################################################################################################# | 100%
+wheel-0.32.3         | 34 KB     | ################################################################################################################################################################# | 100%
+python.app-1.2       | 1.3 MB    | ################################################################################################################################################################# | 100%
+botocore-1.12.86     | 3.1 MB    | ################################################################################################################################################################# | 100%
+pillow-5.4.1         | 584 KB    | ################################################################################################################################################################# | 100%
+tensorboard-1.10.0   | 3.3 MB    | ################################################################################################################################################################# | 100%
+qtawesome-0.5.6      | 605 KB    | ################################################################################################################################################################# | 100%
+markdown-2.6.11      | 56 KB     | ################################################################################################################################################################# | 100%
+jupyter_client-5.2.4 | 63 KB     | ################################################################################################################################################################# | 100%
+pytest-arraydiff-0.3 | 11 KB     | ################################################################################################################################################################# | 100%
+future-0.17.1        | 699 KB    | ################################################################################################################################################################# | 100%
+wurlitzer-1.0.2      | 11 KB     | ################################################################################################################################################################# | 100%
+setuptools-40.7.1    | 618 KB    | ################################################################################################################################################################# | 100%
+prometheus_client-0. | 34 KB     | ################################################################################################################################################################# | 100%
+pytest-doctestplus-0 | 13 KB     | ################################################################################################################################################################# | 100%
+anaconda-project-0.8 | 202 KB    | ################################################################################################################################################################# | 100%
+more-itertools-4.3.0 | 83 KB     | ################################################################################################################################################################# | 100%
+bkcharts-0.2         | 126 KB    | ################################################################################################################################################################# | 100%
+lxml-4.3.0           | 1.4 MB    | ################################################################################################################################################################# | 100%
+greenlet-0.4.13      | 17 KB     | ################################################################################################################################################################# | 100%
+cycler-0.10.0        | 8 KB      | ################################################################################################################################################################# | 100%
+sip-4.19.8           | 251 KB    | ################################################################################################################################################################# | 100%
+bleach-3.1.0         | 110 KB    | ################################################################################################################################################################# | 100%
+cython-0.29.3        | 2.1 MB    | ################################################################################################################################################################# | 100%
+pycosat-0.6.3        | 107 KB    | ################################################################################################################################################################# | 100%
+dask-core-1.1.0      | 523 KB    | ################################################################################################################################################################# | 100%
+py-lief-0.9.0        | 2.7 MB    | ################################################################################################################################################################# | 100%
+pandocfilters-1.4.2  | 9 KB      | ################################################################################################################################################################# | 100%
+pysocks-1.6.8        | 22 KB     | ################################################################################################################################################################# | 100%
+webencodings-0.5.1   | 12 KB     | ################################################################################################################################################################# | 100%
+pytables-3.4.4       | 2.8 MB    | ################################################################################################################################################################# | 100%
+alabaster-0.7.12     | 15 KB     | ################################################################################################################################################################# | 100%
+pygments-2.3.1       | 641 KB    | ################################################################################################################################################################# | 100%
+spyder-3.3.1         | 2.6 MB    | ################################################################################################################################################################# | 100%
+pyodbc-4.0.25        | 62 KB     | ################################################################################################################################################################# | 100%
+networkx-2.2         | 1.1 MB    | ################################################################################################################################################################# | 100%
+h5py-2.8.0           | 914 KB    | ################################################################################################################################################################# | 100%
+python-crfsuite-0.9. | 178 KB    | ################################################################################################################################################################# | 100%
+rope-0.10.7          | 113 KB    | ################################################################################################################################################################# | 100%
+scikit-learn-0.20.2  | 5.3 MB    | ################################################################################################################################################################# | 100%
+conda-build-3.17.8   | 496 KB    | ################################################################################################################################################################# | 100%
+astor-0.7.1          | 22 KB     | ################################################################################################################################################################# | 100%
+filelock-3.0.10      | 9 KB      | ################################################################################################################################################################# | 100%
+matplotlib-3.0.2     | 6 KB      | ################################################################################################################################################################# | 100%
+nbconvert-5.4.0      | 324 KB    | ################################################################################################################################################################# | 100%
+pywavelets-1.0.1     | 4.2 MB    | ################################################################################################################################################################# | 100%
+odo-0.5.1            | 86 KB     | ################################################################################################################################################################# | 100%
+singledispatch-3.4.0 | 15 KB     | ################################################################################################################################################################# | 100%
+anaconda-navigator-1 | 4.8 MB    | ################################################################################################################################################################# | 100%
+pycodestyle-2.5.0    | 36 KB     | ################################################################################################################################################################# | 100%
+spyder-kernels-0.3.0 | 62 KB     | ################################################################################################################################################################# | 100%
+flask-1.0.2          | 66 KB     | ################################################################################################################################################################# | 100%
+pluggy-0.8.1         | 17 KB     | ################################################################################################################################################################# | 100%
+conda-4.6.2          | 875 KB    | ################################################################################################################################################################# | 100%
+click-7.0            | 61 KB     | ################################################################################################################################################################# | 100%
+beautifulsoup4-4.7.1 | 140 KB    | ################################################################################################################################################################# | 100%
+mkl_fft-1.0.10       | 153 KB    | ################################################################################################################################################################# | 100%
+numpydoc-0.8.0       | 21 KB     | ################################################################################################################################################################# | 100%
+ipython_genutils-0.2 | 21 KB     | ################################################################################################################################################################# | 100%
+xlrd-1.2.0           | 108 KB    | ################################################################################################################################################################# | 100%
+xlsxwriter-1.1.2     | 103 KB    | ################################################################################################################################################################# | 100%
+attrs-18.2.0         | 30 KB     | ################################################################################################################################################################# | 100%
+olefile-0.46         | 31 KB     | ################################################################################################################################################################# | 100%
+importlib_metadata-0 | 21 KB     | ################################################################################################################################################################# | 100%
+contextlib2-0.5.5    | 10 KB     | ################################################################################################################################################################# | 100%
+smart_open-1.8.0     | 38 KB     | ################################################################################################################################################################# | 100%
+jupyterlab_server-0. | 21 KB     | ################################################################################################################################################################# | 100%
+appscript-1.0.1      | 131 KB    | ################################################################################################################################################################# | 100%
+sqlalchemy-1.2.17    | 1.7 MB    | ################################################################################################################################################################# | 100%
+flask-cors-3.0.7     | 14 KB     | ################################################################################################################################################################# | 100%
+ptyprocess-0.6.0     | 22 KB     | ################################################################################################################################################################# | 100%
+xlwt-1.3.0           | 83 KB     | ################################################################################################################################################################# | 100%
+isort-4.3.4          | 58 KB     | ################################################################################################################################################################# | 100%
+sortedcollections-1. | 9 KB      | ################################################################################################################################################################# | 100%
+traitlets-4.3.2      | 131 KB    | ################################################################################################################################################################# | 100%
+jdcal-1.4            | 8 KB      | ################################################################################################################################################################# | 100%
+ipywidgets-7.4.2     | 92 KB     | ################################################################################################################################################################# | 100%
+tensorflow-1.10.0    | 47.4 MB   | ################################################################################################################################################################# | 100%
+chardet-3.0.4        | 190 KB    | ################################################################################################################################################################# | 100%
+cryptography-2.4.2   | 569 KB    | ################################################################################################################################################################# | 100%
+pytest-remotedata-0. | 11 KB     | ################################################################################################################################################################# | 100%
+cytoolz-0.9.0.1      | 358 KB    | ################################################################################################################################################################# | 100%
+pip-19.0.1           | 1.9 MB    | ################################################################################################################################################################# | 100%
+pyjwt-1.7.1          | 17 KB     | ################################################################################################################################################################# | 100%
+pyopenssl-18.0.0     | 80 KB     | ################################################################################################################################################################# | 100%
+backcall-0.1.0       | 13 KB     | ################################################################################################################################################################# | 100%
+llvmlite-0.26.0      | 8.8 MB    | ################################################################################################################################################################# | 100%
+appnope-0.1.0        | 8 KB      | ################################################################################################################################################################# | 100%
+anaconda-client-1.7. | 66 KB     | ################################################################################################################################################################# | 100%
+pyrsistent-0.14.9    | 85 KB     | ################################################################################################################################################################# | 100%
+libprotobuf-3.6.1    | 3.8 MB    | ################################################################################################################################################################# | 100%
+boto3-1.9.86         | 61 KB     | ################################################################################################################################################################# | 100%
+py-1.7.0             | 65 KB     | ################################################################################################################################################################# | 100%
+zict-0.1.3           | 10 KB     | ################################################################################################################################################################# | 100%
+asn1crypto-0.24.0    | 154 KB    | ################################################################################################################################################################# | 100%
+sortedcontainers-2.1 | 25 KB     | ################################################################################################################################################################# | 100%
+python-dateutil-2.7. | 218 KB    | ################################################################################################################################################################# | 100%
+gevent-1.3.7         | 1.8 MB    | ################################################################################################################################################################# | 100%
+kiwisolver-1.0.1     | 56 KB     | ################################################################################################################################################################# | 100%
+multipledispatch-0.6 | 12 KB     | ################################################################################################################################################################# | 100%
+cffi-1.11.5          | 203 KB    | ################################################################################################################################################################# | 100%
+ipykernel-5.1.0      | 156 KB    | ################################################################################################################################################################# | 100%
+docutils-0.14        | 694 KB    | ################################################################################################################################################################# | 100%
+bottleneck-1.2.1     | 112 KB    | ################################################################################################################################################################# | 100%
+clyent-1.2.2         | 9 KB      | ################################################################################################################################################################# | 100%
+python-3.6.8         | 20.5 MB   | ################################################################################################################################################################# | 100%
+glob2-0.6            | 10 KB     | ################################################################################################################################################################# | 100%
+ipython-7.2.0        | 1.1 MB    | ################################################################################################################################################################# | 100%
+pyyaml-3.13          | 160 KB    | ################################################################################################################################################################# | 100%
+keyring-17.1.1       | 47 KB     | ################################################################################################################################################################# | 100%
+mpmath-1.1.0         | 432 KB    | ################################################################################################################################################################# | 100%
+imagesize-1.1.0      | 6 KB      | ################################################################################################################################################################# | 100%
+ruamel_yaml-0.15.71  | 239 KB    | ################################################################################################################################################################# | 100%
+jsonschema-3.0.0a3   | 80 KB     | ################################################################################################################################################################# | 100%
+backports-1.0        | 4 KB      | ################################################################################################################################################################# | 100%
+jedi-0.13.2          | 230 KB    | ################################################################################################################################################################# | 100%
+python-libarchive-c- | 21 KB     | ################################################################################################################################################################# | 100%
+simplegeneric-0.8.1  | 7 KB      | ################################################################################################################################################################# | 100%
+patsy-0.5.1          | 187 KB    | ################################################################################################################################################################# | 100%
+unicodecsv-0.14.1    | 12 KB     | ################################################################################################################################################################# | 100%
+pytest-4.1.1         | 332 KB    | ################################################################################################################################################################# | 100%
+backports.shutil_get | 7 KB      | ################################################################################################################################################################# | 100%
+statsmodels-0.9.0    | 8.2 MB    | ################################################################################################################################################################# | 100%
+pickleshare-0.7.5    | 12 KB     | ################################################################################################################################################################# | 100%
+bitarray-0.8.3       | 54 KB     | ################################################################################################################################################################# | 100%
+heapdict-1.0.0       | 7 KB      | ################################################################################################################################################################# | 100%
+twython-3.7.0        | 26 KB     | ################################################################################################################################################################# | 100%
+sympy-1.3            | 9.4 MB    | ################################################################################################################################################################# | 100%
+partd-0.3.9          | 16 KB     | ################################################################################################################################################################# | 100%
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: - Enabling notebook extension jupyter-js-widgets/extension...
+- Validating: OK
+
+done
+```
