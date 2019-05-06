@@ -1,5 +1,6 @@
-# VGG-like convnet
+## VGG-like convnet
 # TODO: need to figure out what kind of data it works
+
 import numpy as np
 import keras
 from keras.models import Sequential

@@ -31,12 +31,11 @@ def generate_sequence(n_sample, n_feature):
     return np.array(ret)
 
 
-"""
 data = generate_sequence(400, 400)
 # data = data.reshape(-1, 1)
 # plt.plot(data)
 # plt.scatter(np.arange(0, len(data)), data)
-plt.imshow(data)
+plt.imshow(data, cmap=plt.cm.binary)
 plt.title(f"{A}*x+{B} mod {M}")
 plt.show()
 """
@@ -54,6 +53,7 @@ data = generate_sequence(100, INPUT_DIM+1)
 x_test = data[:, 0:-1]
 y_test = data[:, -1]
 y_test = keras.utils.to_categorical(y_test, num_classes=n_CATA)
+"""
 
 
 # Generate dummy data
@@ -66,7 +66,6 @@ y_train = keras.utils.to_categorical(train[:, -1], num_classes=10)
 test = np.random.randint(10, size=(100, 21))
 x_test = test[:, 0:-1]
 y_test = keras.utils.to_categorical(test[:, -1], num_classes=10)
-"""
 
 tf.set_random_seed(1234) # don't really set it steal
 model = Sequential()
@@ -87,3 +86,4 @@ model.fit(x_train, y_train,
             )
 
 # score = model.evaluate(x_test, y_test, batch_size=128)
+"""
