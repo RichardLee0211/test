@@ -11,19 +11,39 @@ from keras.optimizers import SGD
 import numpy as np
 import matplotlib.pyplot as plt
 
-# this is acctually a killer choose
+# this is stanadard LCG
+"""
 A = 16807
 B = 0
 M = 2147483647
+"""
+
+# baby one, but actually work good
+"""
+A = 68
+B = 3
+M = 54132
+"""
+
+A = 68
+B = 0
+M = 4328
 
 x = 51
 def foo():
     global A, B, M, x
     x_tmp = (A*x+B) % M
     x = x_tmp
-    return x_tmp % 100
+    return x_tmp
 
-def generate_sequence(n_sample, n_feature):
+def generate_sequence_100(n_sample, n_feature):
+    ret = []
+    for _ in range(n_sample):
+        tmp = [ foo()  for _ in range(n_feature)]
+        ret.append(np.array(tmp)%100)
+    return np.array(ret)
+
+def generate_sequence_unlimit(n_sample, n_feature):
     ret = []
     for _ in range(n_sample):
         tmp = [ foo() for _ in range(n_feature)]
@@ -31,16 +51,24 @@ def generate_sequence(n_sample, n_feature):
     return np.array(ret)
 
 
-data = generate_sequence(400, 400)
+ax1 = plt.subplot(211)
+ax2 = plt.subplot(212)
+
+data = generate_sequence_unlimit(400, 1)
 # data = data.reshape(-1, 1)
-# plt.plot(data)
-# plt.scatter(np.arange(0, len(data)), data)
-plt.imshow(data, cmap=plt.cm.binary)
-plt.title(f"{A}*x+{B} mod {M}")
+data2 = generate_sequence_100(400, 1)
+# data2 = data.reshape(-1, 1)
+
+ax1.plot(data)
+ax1.scatter(np.arange(0, len(data)), data)
+
+ax2.plot(data2)
+ax2.scatter(np.arange(0, len(data2)), data2)
+# plt.imshow(data, cmap=plt.cm.binary)
+# ax1.title(f"{A}*x+{B} mod {M}")
 plt.show()
+
 """
-
-
 INPUT_DIM = 20
 n_CATA = 100
 n_epochs = 40
