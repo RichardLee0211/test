@@ -26,6 +26,7 @@ x = 3
 A = 16807
 B = 0
 M = 2147483647
+
 def foo():
     global x
     x = (A*x + B) % M
@@ -44,10 +45,36 @@ def foo_2():
     return x_2
 """
 
+seed = '10011011101011001100100111000011'
+taps = (7, 6, 5, 0)
+sr = '10011011101011001100100111000011'
+
+def lfsr_foo():
+    global seed, taps, sr
+
+    xor = 0
+    for t in taps:
+        xor += int(sr[t])
+
+    if xor%2 == 0.0:
+        xor = 0
+    else:
+        xor = 1
+
+    sr = str(xor) + sr[:-1]
+    xor = 0
+    num = 0
+    for j in range(len(seed)):
+        # num += (sr[j]=='1' ? 2**j : 0) # c style
+        num += 2**j if sr[7-j]=='1' else 0
+    # print("sr: ", sr, "num: ", num)
+    return num
+
 # generate a sequence of random numbers in [0, 99]
 def generate_sequence(length=25):
     # return [randint(0, 99) for _ in range(length)]
-    return [foo() for _ in range(length)]
+    # return [foo()  for _ in range(length)]
+    return [lfsr_foo() %100 for _ in range(length)]
 
 # one hot encode sequence
 def one_hot_encode(sequence, n_unique=100):

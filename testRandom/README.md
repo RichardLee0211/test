@@ -508,3 +508,6 @@ def foo(argc1: type1, argc2: type2) -> type_return:
 /dev/urandom
 
 I can't define deception as PRNG against TRNG
+
+TODO_3: this is another two week program,
+known attacks on LCG: https://crypto.stackexchange.com/questions/20495/how-brittle-are-lcg-cracking-techniques
