@@ -1,10 +1,30 @@
 \documentclass{article}
 
-% \usepackage{}
 \usepackage[normalem]{ulem}
 \usepackage[top=0.25in, bottom=0.25in, left=0.5in, right=0.5in]{geometry}
 \usepackage{verbatim}
-\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\familydefault}{\sfdefault} % change fonts to sans-serif
+
+\usepackage{fontawesome}
+
+\usepackage{fontspec}
+% \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+% \setmainfont{Times}
+% \setmainfont{American Typewriter}
+% \setmonofont{Lucida Sans Typewriter}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\newfontfamily{\FA}{FontAwesome}
+\def\twitter{{\FA \faTwitter}}
+
+
 
 \begin{document}
 
@@ -15,9 +35,12 @@
 \noindent
 % 12 Goethe Street Binghamton NY 13905 $|$
 % 607-297-0166 $|$
-wli100@binghamton.edu $|$
-http://www.linkedin.com/in/wenchenli0211 $|$
-https://github.com/RichardLee0211
+\href{https://github.com/RichardLee0211}
+{\FA \faEnvelope} wli100@binghamton.edu $|$
+\href{http://www.linkedin.com/in/wenchenli0211}
+{\FA \faLinkedin} http://www.linkedin.com/in/wenchenli0211 $|$
+\href{https://github.com/RichardLee0211}
+{\FA \faGithub} https://github.com/RichardLee0211
 
 
 
@@ -30,7 +53,6 @@ EDUCATION
 
 \noindent
 \textbf{Binghamton University}, SUNY, Master degree
-% \hfill Expected May 2019 \\
 \dotfill Expected May 2019 \\
 Computer Science Department \\
     \indent Major GPA: $4.00/4.00$
@@ -38,11 +60,9 @@ Computer Science Department \\
 \noindent
 \textbf{Chongqing University}, 985/211 University in China, Bachelor degree \\
 Computer Science Department
-% \hfill Sep 2016~July 2017 \\
 \dotfill Sep 2016~July 2017 \\
     \indent Major GPA: $3.59/4.00$ \textbar TOP 5\%  \\
 Hongshen Department, top experimental department of CQU
-% \hfill Sep 2014~July 2016 \\
 \dotfill Sep 2014~July 2016 \\
     \indent 30 out of 200 interviewers, 12 out of 30 graduate successfully \\
     \indent Overall GPA: $3.60/4.00$ \textbar  TOP 5\% \textbar  scholarship for 4 semesters
@@ -106,13 +126,15 @@ AWARD \& COMPITITION
 %===============================================================================
 
 \noindent
-\textbf{Meritorous Winner for American Mathematical Contest in a team of 3}
+\textbf{Meritorious Winner for American Mathematical Contest in a team of 3}
+\href{}{\FA \faExternalLink} % TODO: public this repository
 \dotfill Worldwide, Feb 2016 \\
     \indent interdisciplinary Contest in Modeling, topic on water source protection and prediciton in China\\
     \indent Charge in model build, Coding and essay draft
 
 \noindent
 \textbf{1\textsuperscript{st} Award of National Innovation and Entrepreneurship Contest in a team of 7}
+\href{}{\FA \faExternalLink} % TODO: public this repository
 \dotfill Chongqing, Sep 2016~July 2017 \\
     \indent a tech team of 3, developing a Wechat application to simplify the students' life on campus \\
     \indent the server runs for entire one year and more, the most successful Wechat application on our campus \\
@@ -132,17 +154,20 @@ INTERESTING PROJECTS
 
 \noindent
 \textbf{Binary analysis with Prof. Prakash }
+\href{https://github.com/RichardLee0211}{\FA \faExternalLink} % TODO: public this repository
 \dotfill CS220Arch@BU, Nov 2017 \\
     \indent Excutable Binary Analysis in CentOS
 
 \noindent
 \textbf{CPU pipeline simulator with Prof. Ghose}
+\href{https://github.com/RichardLee0211/CS520Arch_Ghose}{\FA \faExternalLink}
 \dotfill CS520Arch@BU, Nov 2018 \\
-    \indent CPU pipeline simulator with C, support 32 basic intructure
+    \indent CPU pipeline simulator with C++, support 32 basic intructure
     % \indent https://github.com/RichardLee0211/CS520Arch_Ghose
 
 \noindent
 \textbf{PRNGs, statical test and RNN prediction}
+\href{https://github.com/RichardLee0211}{\FA \faExternalLink} % TODO: public this repository
 \dotfill June 2019 \\
     \indent PRNG algorithms, NIST statical test, and RNN predict model test
 
@@ -159,11 +184,14 @@ ADDITIONAL
     \indent Lead a team of 20 to run Propaganda Department, charging in Hongshen Department News website and Server \\
     \indent make and implement propaganda plan of New Year's show of Hongshen Department (300 people project)
 
-% \vskip 0.1in
-% \noindent
-% TEST FIELD
-% \hrule
+\vskip 0.1in
+\noindent
+TEST FIELD
+\hrule
 %===============================================================================
+
+
+% \faAdn
 
 \end{document}
 

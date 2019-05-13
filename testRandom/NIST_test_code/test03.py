@@ -651,21 +651,21 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     millionFiles = [
-        "./RandomData/random_rd_65536.clang++.csv",
-        "./RandomData/random_homemakeLCG_65536.csv",
-        "./RandomData/random_LCG02_65536.clang++.csv"
+        "../RandomData/random_rd_65536.clang++.csv",
+        "../RandomData/random_homemakeLCG_65536.csv",
+        "../RandomData/random_LCG02_65536.clang++.csv"
             ]
 
     files = [
-            "./RandomData/random_rd.clang++.csv",
-            "./RandomData/random_srand0_01.clang++.csv",
-            "./RandomData/random_srand2_01.clang++.csv",
-            "./RandomData/random_LCG01_01.clang++.csv",
-            "./RandomData/random_LCG02_01.clang++.csv",
-            "./RandomData/random_mt19937_01.clang++.csv",
-            "./RandomData/random_ranlux24base_01.clang++.csv",
-            "./RandomData/random_homemakeLCG_01.csv",
-            "./RandomData/random_homemakeLCG_02.csv"
+            "../RandomData/random_rd.clang++.csv",
+            "../RandomData/random_srand0_01.clang++.csv",
+            "../RandomData/random_srand2_01.clang++.csv",
+            "../RandomData/random_LCG01_01.clang++.csv",
+            "../RandomData/random_LCG02_01.clang++.csv",
+            "../RandomData/random_mt19937_01.clang++.csv",
+            "../RandomData/random_ranlux24base_01.clang++.csv",
+            "../RandomData/random_homemakeLCG_01.csv",
+            "../RandomData/random_homemakeLCG_02.csv"
             ]
     tests = [
         frequency_test,
@@ -685,11 +685,11 @@ if __name__ == "__main__":
         ]
 
     i = int(sys.argv[1])
-    # print(f"file: {files[i]}")
-    print(f"file: {millionFiles[i]}")
-    # f = open(files[i], "r")
-    f = open(millionFiles[i], "r")
-    overlapping_template_matching_test(f)
+    print(f"file: {files[i]}")
+    # print(f"file: {millionFiles[i]}")
+    f = open(files[i], "r")
+    # f = open(millionFiles[i], "r")
+    approximate_entropy_test(f)
     f.close()
 
     """
