@@ -118,7 +118,6 @@ model.add(Dense(100, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 model.summary()
 # fit model
-"""
 for i in range(2000):
     X, y = generate_data()
     model.fit(X, y, epochs=1, batch_size=5, verbose=2, shuffle=False)
@@ -128,4 +127,5 @@ X, y = generate_data()
 yhat = model.predict(X, batch_size=5)
 print('Expected:  %s' % one_hot_decode(y))
 print('Predicted: %s' % one_hot_decode(yhat))
+"""
 """
