@@ -63,6 +63,12 @@ from https://gist.github.com/audrummer15/c33688b5a148179214c08b0518f18ac3
 
     ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
     make -j8 && make install
+
+    # Rice
+    apt-get install lxappearance arc-theme moka-icon-theme compton neofetch nitrogen rofi
+
+    cd ~ && git clone https://github.com/audrummer15/dotfiles.git
+    ./dotfiles/install.sh
 ```
 
 
