@@ -10,6 +10,8 @@ sudo apt install -y tmux
 sudo apt install -y i3
 sudo apt install -y git
 sudo apt install -y g++
+sudo apt install -y net-tools # ifconfig
+sudo apt install -y valgrind
 # ?? sudo apt install -y python3
 ```
 
@@ -507,3 +509,11 @@ another package manager:
 yaourt -S urxvt-fullscreen
 
 finding urxvt extension, others/dotfile, Arch wiki, extension github repository, reddit UnixPorn
+
+take a break here, I did well. to be continue
+
+others
+================================================================================
+
+change $PS1 \w to \W
+to only show this current directory name in prompt
