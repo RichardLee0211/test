@@ -22,3 +22,5 @@ search download and install Arch Linux
 [general recommendations](https://wiki.archlinux.org/index.php/General_recommendations)
 
 followed this wiki to build my ArchLinux and fall, the login interface display gabage
+
+the default pdf view in Ubuntu is "evince", which support hjkl vim move key-map
