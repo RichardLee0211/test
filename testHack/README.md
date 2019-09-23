@@ -1,6 +1,7 @@
 from the hacking book
 well, I have to say this is 2000 hack book, high posibility it's out of date,
 and I'm not in China network
+
 # ch02, DNS
 nslookup
 dig
@@ -32,3 +33,6 @@ Nmap, network mapper
 nmap -sP 192.168.0.0/27
 
 ```
+
+Log
+--------------------------------------------------------------------------------

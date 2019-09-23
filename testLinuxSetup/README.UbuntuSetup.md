@@ -103,7 +103,7 @@ broswer with vimium plug in:
     - p  to open the clipboard's URL in the current tab
     - P  to open the clipboard's URL in the new tab
 
-TODO: weird thought: using Esc+num to do something??
+weird thought: using Esc+num to do something??
 
 TODO: When dealing with pictures, how to working with i3?
 using ranger as recommanded by LuckSmith??
@@ -127,7 +127,7 @@ If I only use 2 windows, one in left and one in right,
 what differece it make to using Command+tab to switch between these applications?
 And Ctrl+tab to switch tabs in web broswer
 
-TODO: I need background pictures, how to do that??
+DOEN: I need background pictures, how to do that ?: hef
 
 well, because I am using VM in Mac or Windows,
 using command key or win key usingeasely cause key conflicts.
