@@ -65,15 +65,18 @@ and using vim insert mode, <C-v> u <unicode> to edit file
 from: https://gist.github.com/lightonphiri/5811226a1fba0b3df3be73ff2d5b351c
 
 some place for google font: https://fonts.google.com/
+Nerd font: https://www.nerdfonts.com/font-downloads
 
 ```shell
-    cd /usr/share/fonts # I would prefer ~/.fonts/
+    cd /usr/share/fonts # I would prefer ~/.fonts/ or ~/.
     sudo mkdir googlefonts
     cd googlefonts
     sudo unzip -d . ~/Downloads/Open_Sans.zip
     sudo chmod -R --reference=/usr/share/fonts/opentype /usr/share/fonts/googlefonts
-    sudo fc-cache -fv
+    sudo fc-cache -fv /usr/share/fonts # update cache, more like a small database with links to dictionary
     fc-match OpenSans
+    # or
+    fc-list -v | grep "<familyName>"
 ```
 
 #### fix audio problem
@@ -124,6 +127,27 @@ to config urxvt, first man, then archwiki
 
 #### compton
 use for gnome-terminal to get transparent
+
+
+#### zsh
+a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
+```shell
+    apt install zsh
+    usermod username -s /usr/bin/zsh
+    # or
+    chsh -s /usr/bin/zsh username
+
+    # install Oh My Zsh
+    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+#### Wallpaper
+```shell
+    mkdir -p ~/Pictures/WallPaper/ && cd ~/Pictures/WallPaper/
+    wget https://i.redd.it/cb12p2q4rocx.png
+    # restart i3
+```
+it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
 #### others
 using selection to clipboard and mouse middle key to paste is reasonable
