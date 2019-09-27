@@ -87,3 +87,6 @@ terminal.sexy is good tool to export .Xresources file
 
 
 #### others
+unofficial guide to dotfiles on Github: https://dotfiles.github.io/
+
+dmenu don't have auto-complete feature, or history search or refer-back feature

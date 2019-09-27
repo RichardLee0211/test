@@ -24,3 +24,9 @@ search download and install Arch Linux
 followed this wiki to build my ArchLinux and fall, the login interface display gabage
 
 the default pdf view in Ubuntu is "evince", which support hjkl vim move key-map
+
+here: http://www.linuxfromscratch.org/
+what could help more to build a Linux from scratch
+
+Here: http://www.linuxfromscratch.org/blfs/view/svn/index.html
+A good list of Linux package and utility
