@@ -29,20 +29,20 @@ or search in here: https://fontawesome.com/icons?d=gallery
 #### about fontawesome
 from: https://www.blackmoreops.com/2014/07/31/install-fonts-on-linux/
 ```
-apt-cache search ttf-mscorefonts-installer
-apt-get install ttf-mscorefonts-installer
-apt-get install <package-name>
-    # ttf-liberation
-    # fonts-liberation
-    # ttf-uralic
-    # fonts-uralic
-    # ttf-root-installer
-    # ttf-freefont
-    # ttf-dustin
-    # ttf-linux-libertine
-    # fonts-linuxlibertine
-    # fonts-dustin
-    # ttf-staypuft
+    apt-cache search ttf-mscorefonts-installer
+    apt-get install ttf-mscorefonts-installer
+    apt-get install <package-name>
+        # ttf-liberation
+        # fonts-liberation
+        # ttf-uralic
+        # fonts-uralic
+        # ttf-root-installer
+        # ttf-freefont
+        # ttf-dustin
+        # ttf-linux-libertine
+        # fonts-linuxlibertine
+        # fonts-dustin
+        # ttf-staypuft
 ```
 
 download fontawesome from website
@@ -87,17 +87,40 @@ apt install ranger
 ~/.config/ranger/rc.conf
 ```
     set preview_images true
+    set preview_images_method urxvt
+    set draw_borders true
     set ranger_load_default_rc false
 ```
 
 ranger --copy-config=scope
-TODO: rice it
+TODO: couldn't get image preview, could be since Kali distro
 
 #### polybar
+```shell
+    # need to build this from source code
+    ** Use GCC even if Clang is installed ----------------------------- [y/N]: y
+    ** Include support for "internal/i3" (requires i3) ---------------- [y/N]: y
+    ** Include support for "internal/alsa" (requires alsalib) --------- [y/N]: y
+    ** Include support for "internal/pulseaudio" (requires libpulse) -- [y/N]: y
+    ** Include support for "internal/network" (requires libnl/libiw) -- [y/N]: y
+    ** Include support for "internal/mpd" (requires libmpdclient) ----- [y/N]: y
+    ** Include support for "internal/github" (requires libcurl) ------- [y/N]: y
+    ** Build "polybar-msg" used to send ipc messages ------------------ [y/N]: y
+    ** Executing cmake command
+```
+need some lib installed
+already, I think that's it. Polybar is not ready in Kali yet.
 
 #### urxvt
 using .Xresource to config it
 add perl script to ~/.urxvt/ext/ and set up in .Xresource
+TODO: font-size perl script refuse to operate
+urxvt seem don't need compton to be transparent
+
+I don't know, urxvt doesn't have a perl script plugin management,
+guess I need to reserve these script myself
+
+to config urxvt, first man, then archwiki
 
 #### compton
 use for gnome-terminal to get transparent
