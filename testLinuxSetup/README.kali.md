@@ -53,7 +53,8 @@ copy fonts file into directory:
     /usr/local/share/fonts
     ~/.fonts
 ```shell
-    fc-cache -fv
+    wget <url to fonts>
+    fc-cache -fv /fold/to/fonts
     fc-list -v | grep family
     fc-match OpenSans
 ```
@@ -133,6 +134,8 @@ use for gnome-terminal to get transparent
 a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
 ```shell
     apt install zsh
+
+    ## config
     usermod username -s /usr/bin/zsh
     # or
     chsh -s /usr/bin/zsh username
