@@ -12,12 +12,12 @@ route -n
 last night, Hu's macOS misbehaved.
 MacOS user manager is not account for the Linux way to manage user
 
-apt-get in kali
+apt in kali
 I have nothing to complain about apt
 GNOME desktop environment
 I really don't care about Desktop Environment, I wanna do it in Terminal
 
-some cool devices:
+jome cool devices:
 https://docs.kali.org/kali-on-arm/
 
 2019/09/10 Wed
@@ -31,7 +31,9 @@ root:toor, yeah, spell root backward
 
 adduser wenchen
 passwd wenchen
+usermod -aG sudo wenchen
 visudo # to add wenchen to sudo group
+
 
 userdel
 users
@@ -40,10 +42,7 @@ users
 just PrtSc key save to ~/Picture
 
 #### need a better PDF reader
-
-#### others
-xdg-open
-terminal.sexy is good tool to export .Xresources file
+evience is good enough for now
 
 #### using i3-gaps
 from https://gist.github.com/audrummer15/c33688b5a148179214c08b0518f18ac3
@@ -74,3 +73,20 @@ from https://gist.github.com/audrummer15/c33688b5a148179214c08b0518f18ac3
 
 #### xdg-open
 https://wiki.archlinux.org/index.php/Xdg-utils
+```
+    xdg-mime query filetype photo.jpeg
+    xdg-mime query default image/jpeg
+    xdg-mime default feh.desktop image/jpeg
+```
+
+or
+mimeopen some.pdf &
+mimeopen -d some.pdf # to choose application
+
+terminal.sexy is good tool to export .Xresources file
+
+
+#### others
+unofficial guide to dotfiles on Github: https://dotfiles.github.io/
+
+dmenu don't have auto-complete feature, or history search or refer-back feature

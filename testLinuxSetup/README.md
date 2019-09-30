@@ -82,3 +82,19 @@ Just search unicode music
  vi mode in bash and zsh
 mpd ncmpcpp mpc
 Pandoc
+
+#### Linux from scratch
+
+here: http://www.linuxfromscratch.org/
+what could help more to build a Linux from scratch
+
+Here: http://www.linuxfromscratch.org/blfs/view/svn/index.html
+A good list of Linux package and utility
+
+#### logout using commnand line
+Logout with ‘pkill x’, OMG
+Pkill - u ${USERNAME}
+Or
+Gnome-session-quit
+
+Use stow to place dot in  ~/.config
