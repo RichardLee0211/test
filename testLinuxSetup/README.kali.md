@@ -153,6 +153,7 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
 it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
 #### Chinese input method
+now I understand how encoding and font work.
 Hey, since I can read Chinese and there are some pretty cool Chinese Community,
 I would need to be type Chinese in Kali, although I don't consider bring Chinese
 into my Terminal yet, as a result of not finding a pretty fonts for terminal.

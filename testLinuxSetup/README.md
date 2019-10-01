@@ -25,14 +25,79 @@ followed this wiki to build my ArchLinux and fall, the login interface display g
 
 the default pdf view in Ubuntu is "evince", which support hjkl vim move key-map
 
+#### 2019/09/23
+
+Top 10 Linux Job Interview Questions
+From youtube tutorialLinux
+Q1: Kernel Version Checking
+uname -a
+
+Q2: IP address checking
+Ifconfig
+Ip adds show eth0
+
+Q3: Free disk space checking
+df -ah
+Disk free
+
+Q4: Manage services on a system
+new: systemd
+Systemctl status udev
+
+old:
+Service dev status
+
+Q5: check fold’s size
+Du -sh ~/Code
+Disk usage
+
+Q6: check for open ports
+Netstat -tulpn
+
+Q7: CPU usage of a process
+Ps aux | grep nginx
+Top
+
+Q8: Dealing with Mounts
+Ls /mnt
+Mount /dev/sda2 /mnt
+More /etc/fsfile
+
+Q9: help list
+Man <command>
+<Command> —help
+Google.com
+
+#### Some notes on youtube DistroTube First Rice
+
+For any terminal using Xresource
+Xrdb -merge ~/.Xresource
+
+Alsamixer
+GIMP, the photo editing software
+Powerline
+Cmus, a terminal music player
+Unicode character with fontawesome, or other font
+Just search unicode music
+ vi mode in bash and zsh
+mpd ncmpcpp mpc
+Pandoc
+
+#### logout using commnand line
+Logout with ‘pkill x’, OMG
+Pkill - u ${USERNAME}
+Or
+Gnome-session-quit
+
+Use stow to place dot in  ~/.config
+
+#### Linux from scratch
+
 here: http://www.linuxfromscratch.org/
 what could help more to build a Linux from scratch
 
 Here: http://www.linuxfromscratch.org/blfs/view/svn/index.html
 A good list of Linux package and utility
-
-#### input chinese in Linux
-now I understand how encoding and font work.
 
 BLFS
 ================================================================================
