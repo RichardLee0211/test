@@ -152,5 +152,21 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
 ```
 it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
+#### Chinese input method
+Hey, since I can read Chinese and there are some pretty cool Chinese Community,
+I would need to be type Chinese in Kali, although I don't consider bring Chinese
+into my Terminal yet, as a result of not finding a pretty fonts for terminal.
+I think type Chinese in the search bar is good enough for now.
+Plus if I really need to type Chinese in Terminal, Gnomal-Terminal has good internal font support for Chinese.
+```
+    sudo apt installl ibus-pinyin
+    sudo apt install ibus-sunpinyin
+    ibus-setup # config to using <C-space> to change imput method
+    ibus restart
+    reboot
+```
+
 #### others
 using selection to clipboard and mouse middle key to paste is reasonable
+
+using mkdir /some/directory/to/somewhere/ and then cd !$
