@@ -12,6 +12,61 @@ and to do it, I only need to know:
 - [ ]
 - [ ]
 
+#### using Nerd Font in LaTeX
+in LaTeX, mainly use Nerd Font for icons
+1. search, download and install a Nerd Font of choice from: nerdfonts.com
+    MacOS: font book is convinient
+    Debian: fc-cache, fc-list, fc-match
+2. Nerd Font Cheat sheet from: https://www.nerdfonts.com/cheat-sheet
+    or use Font Book like program to show icons
+3. in main.tex
+like fontawesome.sty from: http://fortawesome.github.com/Font-Awesome/
+```LaTeX
+    \newfontfamily{\Term}{TerminessTTF Nerd Font} %
+    % then use like this
+    {\Term\symbol{"F50E}} %   , if it shows up, Nerd Font is installed, otherwise, it isn't.
+```
+
+some interesting icons:
+nf-fa-space_shuttle     F197    
+nf-fa-terminal          F120    
+nf-fae-biohazard        E286    
+nf-fae-radioactive      E238    
+nf-fae-virus            E214    
+
+nf-weather-alien        E36E    
+nf-weather-aliens       E345    
+nf-fa-user_secret       F21B    
+nf-oct-gist_secret      F46C    
+nf-mdi-robot            FBA7    ﮧ
+nf-linux-redhat         F316    
+nf-mdi-clippy           F64E    
+nf-mdi-cow              F699    
+nf-mdi-incognite        FAF8    﫸
+nf-mdi-language_go      FCD1    ﳑ
+nf-mdi-minecraft        F872    
+nf-mdi-ninja            FC72    ﱲ
+nf-mdi-owl              F8D1    
+nf-mdi-panda            F8D9    
+nf-mdi-skull            FB8A    ﮊ
+nf-dev-gun              E779    
+nf-dev-grunt            E74C    
+nf-dev-prolog           E7A1    
+
+nf-mdi-webhook          FB2E    אַ
+nf-dev-atom             E764    
+nf-dev-codeigniter      E780    
+
+nf-mdi-power_socket     F926    臘
+nf-mdi-power_socket_eu  FCE5    ﳥ
+nf-mdi-power_socket_uk  FCE6    ﳦ
+nf-mdi-power_socket_us  FCE7    ﳧ
+
+something weird
+nf-mdi-delta            F6C1    
+nf-mdi-details          F6C5    
+
+
 LateX.pdf from en.wikibooks.org in June 18, 2016
 ================================================================================
 
