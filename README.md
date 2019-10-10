@@ -21,3 +21,16 @@ Here's some interesting ones:
 | testLLVM | Next gen C/CPP compiler. Big fan of its new compile concept. | |
 | testPython | Quick code and data anlysis. Simple syntax and great community support make it a must learn language for me. | |
 | testRandom | A huge question in my head during Spring 2019, and a essential part of encryption and security. A good topic. | |
+
+Meanwhile, there are some great courses I took in SUNY Binghamon.
+Some of them are programming chanllenging, some of them are mind opening.
+I always appreciate how these courses are carefully designed and
+how professors show their skills plus knowledges and lead students into next level of mastering.
+
+| CodeName | Desc    | Note |
+|:---------|:--------|:-----:|
+| CS547HPC_Chiu     | We did MP&MPI, SIMD, omp, and Neural Network using bare CUDA code. Amazing and mind opening. Also, I am a big fun of Prof. Chiu's "Show it, not tell it " teaching style. | |
+| CS540OOP_Chiu     | Prof.Chiu's course is like the last few chapters of techBook that most students would ignore yet contain highly beneficial content. | |
+| CS558Security_Yan | We did meltdown&specture attack demo, reviewed dozens of general attack methods, and solved the big question of mine about PRNG. While this course didn't make me a CTF bog, it embeds "Hack the planet" idea in my mind. | |
+| CS220Arch_Prakash | Outstanding Linux&C skills with a mix of assembly. Remaining chanllenge and fun, it brought my terminal style to next level. | |
+| CS520Arch_Ghose   | Obsolutely great course. It is the first time I would regard one's teaching material as gold mine. Even better, it requires you to build the CPU simulator from ground, making these concepts vivid and unforgettable. | |
