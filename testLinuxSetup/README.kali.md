@@ -116,6 +116,12 @@ need some lib installed
 already, I think that's it. Polybar is not ready in Kali yet.
 
 #### urxvt
+```
+    apt install rxvt-unicode -y
+    cp ./urxvt/Xresources ~/.Xresources
+    xrdb ~/.Xresources
+    mkdir -p ~/.urxvt/ext/ && cp -r ./urxvt/ext/* ~/.urxvt/ext/
+```
 using .Xresource to config it
 add perl script to ~/.urxvt/ext/ and set up in .Xresource
 TODO: font-size perl script refuse to operate
@@ -146,11 +152,25 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
 
 #### Wallpaper
 ```shell
+    apt install feh -y
     mkdir -p ~/Pictures/WallPaper/ && cd ~/Pictures/WallPaper/
     wget https://i.redd.it/cb12p2q4rocx.png
     # restart i3
 ```
 it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
+#### Nvidia Driver
+from: https://docs.kali.org/general-use/install-nvidia-drivers-on-kali-linux
+
+#### torrent
+apt install transmission # torrent file
+
+#### screen temperature adjust
+https://github.com/jonls/redshift
+apt install redshift
+~/.config/redshift/config
+
 #### others
 using selection to clipboard and mouse middle key to paste is reasonable
+
+Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
