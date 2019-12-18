@@ -1,14 +1,19 @@
 #! /bin/bash
 ## this is for set up a clean install kali
 
+## post installation of system
+#===============================================================================
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" > /etc/apt/sources.list
+sudo apt update
+sudo apt upgrade # it may take a while
 
-# install
+# app and library install
 #==================================================
 # TODO
-sudo apt update
 # sudo apt install -y vim
 # sudo apt install -y tmux
-sudo apt install -y i3
+# sudo apt install -y i3 # to install i3-gap refer to ./i3/README.md
 # sudo apt install -y git
 sudo apt install -y g++
 sudo apt install -y net-tools # ifconfig
@@ -16,6 +21,7 @@ sudo apt install -y valgrind
 sudo apt install -y htop
 sudo apt install -y cmatrix
 sudo apt install -y ctags
+sudo apt install -y neofetch
 # ?? sudo apt install -y python3
 
 # git setup
