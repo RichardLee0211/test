@@ -94,7 +94,8 @@ table 2-2 some frequently used Ipython magic commands, page.29
 #### Language semantics
 have something I don't know about python
 
-python is strong typed, object have data type but variable names don't have type. All variable names are reference
+python is strong typed, object have data type but variable names don't have type.
+All variable names are reference
 
 isinstance function
 getattr, hasattr, setattr function

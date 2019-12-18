@@ -6,9 +6,9 @@ what do I think
 ================================================================================
 
 TODO:
-- [ ] figure out the principal of random number generator
-- [ ] figure out the principal of prediction algorithm
-- [ ] figure out the statistical test for RNGs
+- [x] figure out the principal of random number generator
+- [x] figure out the principal of prediction algorithm
+- [x] figure out the statistical test for RNGs
 - [ ]
 
 Do I commited to Data analysis?: Yes, for this semester, I have 2 weeks to go for stage 1
@@ -135,7 +135,7 @@ E.3 L'Ecuyer's Generator with Bays-Durham shuffle
 check randomness in a data set
 TODO: don't really understand the defination and how it works
 
-TODO: need to understand these test
+DONE: need to understand these test
 TODO: need understand statics better
 
 Analysis2005.pdf
