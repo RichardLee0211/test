@@ -117,7 +117,7 @@ passwd                   # lets you change your password
 date                     # shows the current date and time
 cal                      # shows the month's calendar
 uptime                   # shows current uptime
-finger <user>            # displays information about user
+!!: finger <user>            # displays information about user
 uname -a                 # shows kernel information
 man <command>            # shows the manual for specified command
 !!: df                       # shows disk usage
@@ -135,8 +135,8 @@ fg <job>                 # brings job to the foreground
 
 ping <host>              # pings host and outputs results
 ??: whois <domain>           # gets whois information for domain
-dig <domain>             # gets DNS information for domain
-dig -x <host>            # reverses lookup host
+!!: dig <domain>             # gets DNS information for domain
+!!: dig -x <host>            # reverses lookup host
 wget <file>              # downloads file
 
 
@@ -153,6 +153,7 @@ echo $$                      # prints process ID of the current shell
 echo $!                      # prints process ID of the most recently invoked background job
 echo $?                      # displays the exit status of the last command
 export VARNAME=value         # defines an environment variable (will be available in subprocesses)
+
 from here: https://stackoverflow.com/questions/5163144/what-are-the-special-dollar-sign-shell-variables?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 $1, $2, $3, ... are the positional parameters
 $@ is an array like construct of all positional parameters, {$1, $2, $3, ...}
