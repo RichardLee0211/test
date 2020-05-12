@@ -1,0 +1,107 @@
+!! ColorsScheme called tomorrow.dark from terminal.sexy
+!===============================================================================
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #1d1f21
+*.color8:       #969896
+
+! red
+*.color1:       #cc6666
+*.color9:       #cc6666
+
+! green
+*.color2:       #b5bd68
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #f0c674
+*.color11:      #f0c674
+
+! blue
+*.color4:       #81a2be
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #b294bb
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #8abeb7
+*.color14:      #8abeb7
+
+! white
+*.color7:       #c5c8c6
+*.color15:      #ffffff
+
+!! URxvt
+!===============================================================================
+! nice tutorial: https://wiki.gentoo.org/wiki/Rxvt-unicode
+!! URxvt Appearance
+!! fc-cache -fv
+!! fc-list -v | grep family
+!! xrdb ~/.Xresources
+URxvt.termName: screen-256color
+! URxvt.font: xft:Nimbus Mono L:size=6:antialias=true
+! URxvt.font: xft:Open Sans:size=6:antialias=true
+! URxvt.boldFont: Quicksand
+! URxvt.italicFont: Quicksand
+! URxvt.boldItalicfont: Quicksand
+URxvt.font: xft:monospace:size=4.5:antialias=true
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
+! good for i3 float mode
+URxvt.geometry: 160x50
+URxvt.loginShell: true
+URxvt.internalBorder: 24
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+! URxvt.background: [50]#1d1f21
+URxvt.scrollTtyKeypress: true
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer:  false
+URxvt.skipScroll:  true
+URxvt.utmpInhibit: false
+URxvt.visualBell: true
+URxvt.mapAlert: true
+URxvt.mouseWheelScrollPage: false
+URxvt.saveLines: 0
+URxvt.buffered: true
+URxvt.hold: false
+URxvt.print-pipe: cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt.transparent: true
+URxvt.shading:10
+! fade with lose focus
+! URxvt.fading:  30
+! URxvt.colorUL: yellow
+! URxvt.underlineColor: yellow
+
+!! Perl extensions
+!-------------------------------------------------------------------------------
+! URxvt.perl-ext-common: default,matcher,font-size,url-select,keyboard-select
+URxvt.perl-lib: /root/.urxvt/ext/
+URxvt.perl-ext-common: default,matcher,font-size,selection-to-clipboard,pasta,url-select
+!! Open urls in browser with Control-Click
+URxvt.urlLauncher: mimeopen
+URxvt.matcher.button: C1
+!! Change font size on Control-Plus/Minus
+! URxvt.keysym.Control-=: perl:font-size:increase
+URxvt.keysym.Control-0x2b: perl:font-size:increase
+URxvt.keysym.Control-0x2d: perl:font-size:decrease
+!!copy and paste
+!! using select to copy and mouse middle key to paste
+!! or using Contrl-Shift-V
+URxvt.keysym.Control-Shift-V: perl:pasta:paste
+!! select URL and open in browser
+URxvt.keysym.M-o: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true

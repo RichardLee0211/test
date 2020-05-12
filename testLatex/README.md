@@ -165,6 +165,10 @@ log2
 following the book from IndiaTexUserGroup
 now, I come back again, with my new macbook pro
 
+pdflatex: aim to ascii pdf
+xelatex: aim to utf-8, language compatibility
+lualatex: add lua script to system
+
 ch3 introduction to Latex
 --------------------------------------------------------------------------------
 ```latex

@@ -1,0 +1,7 @@
+output sum of each line, number generate by random
+5
+7 9 3 8 0 2
+0 5 3 4 3 4
+1 8 2 6 4 9
+5 2 5 0 5 2
+2 0 6 5 8 6

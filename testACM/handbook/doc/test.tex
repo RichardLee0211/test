@@ -1,0 +1,18 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+
+\begin{document}
+
+- Euclid's algorithm \\
+greatest common devisor(gcd) \\
+least common multiple(lcm) \\
+\begin{align*}
+    \for i \in [2, n], p_i is prime numbers needed \\
+    a = p_1^{\alpha_1} \times p_2^{\alpha_2} \times ... \times p_n^{\alpha_n} \\
+    b = p_1^{\beta_1} \times p_2^{\beta_2} \times ... \times p_n^{\beta_n} \\
+    gcd(a, b) = p_1^{\min(\alpha_1, \beta_1)} \times p_2^{\min(\alpha_2, \beta_2)} \times  ... \times p_n^{\min(\alpha_n, \beta_n)} \\
+    lcm(a, b) = p_1^{\max(\alpha_1, \beta_1)} \times p_2^{\max(\alpha_2, \beta_2)} \times ... \times p_n^{\max(\alpha_n, \beta_n)} \\
+\end{align*}
+
+\end{document}

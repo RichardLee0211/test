@@ -1,0 +1,7 @@
+nnoremap "^" "0"
+nnoremap "$" "$"
+
+nnoremap "gg" "^"
+nnoremap "G" "#"
+
+inoremap "<C-d>" "<cr>kl"

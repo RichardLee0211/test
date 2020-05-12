@@ -4,7 +4,7 @@
 // pile a onto b
 // pile a over b
 
-#include<csstdio>
+#include<cstdio>
 #include<string>
 #include<vector>
 #include<iostream>
