@@ -195,7 +195,7 @@ apt install redshift
 from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
 not work for i3
 ```
-# 0. Set ibus
+    # 0. Set ibus
     `sudo apt install ibus`
     `sudo im-config`
 
@@ -210,6 +210,26 @@ not work for i3
     3. Ready to use
     Press Super + space to switch input method.
     Press F4 to switch schema(simple or complex).
+```
+
+from: https://ultra-technology.org/linux_for_beginners/how-to-write-in-japanese-or-chinese-under-linux-on-any-window-manager-using-fcitx/
+from: https://askubuntu.com/questions/1060130/using-ibus-japanese-input-with-ubuntu-mate-and-i3
+using fcitx, take some patient to make it running
+```
+    sudo apt install fcitx fcitx-googlepinyin fcitx-mozc im-config
+    sudo apt install xfonts-intl-chinese
+
+    echo " \
+    export XMODIFIERS=@im=fcitx \
+    export GTK_IM_MODULE=fcitx \
+    export QT_IM_MODULE=fcitx \
+    export XIM=fcitx \
+    fcitx " >> ~/.xinitrc
+
+    im-config -c # using im-config to select fcitx
+
+    fcitx
+    fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
 ```
 
 #### fix firefox veritical tear in i3
