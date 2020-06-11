@@ -188,8 +188,9 @@ apt install transmission # torrent file
 
 #### screen temperature adjust
 https://github.com/jonls/redshift
+http://jonls.dk/redshift/
 apt install redshift
-~/.config/redshift/config
+~/.config/redshift.conf
 
 #### Chinese input method
 from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
