@@ -260,6 +260,21 @@ file1 -ot file2           # file1 is older than file2
 -gt                       # greater than
 -ne                       # not equal
 
+wenchen example
+```
+if [[ $var1 -eq 0 ]]
+then
+    echo "equal"
+fi
+
+if [ -d $HOME ] && [-w $HOME/testing ]
+then
+    echo "the file exist and you can write to it"
+else
+    echo "I can't write to the file"
+fi
+```
+
 if condition
 then
   statements
