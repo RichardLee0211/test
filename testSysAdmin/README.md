@@ -1,4 +1,5 @@
 reading "Essential System Administration"
+================================================================================
 
 interesting command:
 write wli100
@@ -18,6 +19,7 @@ before make install, preview it by make -n install
 
 TODO: to be continue
 
+<<<<<<< HEAD
 others
 --------------------------------------------------------------------------------
 #### for backup
@@ -51,3 +53,25 @@ date "+%Y%m%d"
     echo ""
     exit 0
 ```
+=======
+reading "Kali Linux Revealed"
+================================================================================
+
+some command Util
+```shell
+    free
+    lspci # this util still excites me
+    lsusb
+    lsdev
+    lswh
+```
+
+TODO:
+- [ ] man fail2ban
+- [ ] 4.2.2 install on a fully encrypted file system, page.85
+- [ ] adding a nuke password for extra safety, page.246
+- [x] man iptables # like firewall principle
+- [x] man netfilter
+- [ ] custom system ISO
+- [ ]
+>>>>>>> f16eda2c39f09d56dc6f0e31592e469f658c95aa

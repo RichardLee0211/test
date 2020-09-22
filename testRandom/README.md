@@ -498,10 +498,24 @@ to fully understand and implement them. An example has been made in 2005 report.
 2. test suit
 3. conbine
 
-about python:
-could define like this:
+in python, one could define like this:
+```python
 def foo(argc1: type1, argc2: type2) -> type_return:
     # ...
+```
+
+#### I am reading NIST800-22 code
+
+extern "C":
+from: https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
+name mangling and function overload, interesting
+
+TODO: 3D random sample plot
+
+find this math library by google cephes, very interesting.
+https://www.netlib.org/liblist.html
+
+pretty good code
 
 #### talk with Prof. Yan, didn't help a lot
 /dev/random

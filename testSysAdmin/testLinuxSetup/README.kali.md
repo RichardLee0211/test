@@ -86,6 +86,8 @@ kali don't play audio when playing youtube
 
 apt install alsa-utils -y # to use alsamixer
 
+And it could tell PS4 controller and pass audio to this device, nice
+
 #### ranger
 apt install ranger
 ~/.config/ranger/rc.conf
@@ -150,6 +152,25 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
+#### add user
+```
+    adduser wenchen
+    usermod -aG sudo wenchen
+    groups wenchen
+```
+
+#### sc-im
+Linux has something called scim: Smart Common input method
+
+spread calculator: https://github.com/andmarti1424/sc-im
+```
+    sudo apt install bison
+    git clone https://github.com/andmarti1424/sc-im && cd sc-im
+    vim src/Makefile
+    make -C src
+    sudo make -C src install
+```
+
 #### Wallpaper
 ```shell
     apt install feh -y
@@ -167,8 +188,70 @@ apt install transmission # torrent file
 
 #### screen temperature adjust
 https://github.com/jonls/redshift
+http://jonls.dk/redshift/
 apt install redshift
-~/.config/redshift/config
+~/.config/redshift.conf
+
+#### Chinese input method
+from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
+not work for i3
+```
+    # 0. Set ibus
+    `sudo apt install ibus`
+    `sudo im-config`
+
+    1. Install RIME
+    `sudo apt-get install ibus-rime`
+    https://github.com/rime/home/wiki/RimeWithIBus#ubuntu
+
+    2. Select Input Language
+    `reboot`
+    System Setting — Region&Language — input Source, then click ‘+’ button, choose Chinese
+
+    3. Ready to use
+    Press Super + space to switch input method.
+    Press F4 to switch schema(simple or complex).
+```
+
+from: https://ultra-technology.org/linux_for_beginners/how-to-write-in-japanese-or-chinese-under-linux-on-any-window-manager-using-fcitx/
+from: https://askubuntu.com/questions/1060130/using-ibus-japanese-input-with-ubuntu-mate-and-i3
+using fcitx, take some patient to make it running
+```
+    sudo apt install fcitx fcitx-googlepinyin fcitx-mozc im-config
+    sudo apt install xfonts-intl-chinese
+
+    echo " \
+    export XMODIFIERS=@im=fcitx \
+    export GTK_IM_MODULE=fcitx \
+    export QT_IM_MODULE=fcitx \
+    export XIM=fcitx \
+    fcitx " >> ~/.xinitrc
+
+    im-config -c # using im-config to select fcitx
+
+    fcitx
+    fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
+```
+
+#### fix firefox veritical tear in i3
+disable hardware acceleration
+from: https://forum.manjaro.org/t/firefox-screen-tearing-i3wm-compton/81794
+In summary, I changed and added these options to my ~/.config/compton.conf. It seems to have fix the issue.
+```
+    backend = "glx";
+    vsync = "true";
+    glx-swap-method = 2;
+```
+
+#### firefox
+vimium, vim like operation
+adblock, adblock
+windowed, could float youtube video
+
+#### screenshot
+apt install scrot # and bind it to PrtSc
+apt install gnome-screenshot
+
 
 #### others
 using selection to clipboard and mouse middle key to paste is reasonable
