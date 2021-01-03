@@ -13,4 +13,15 @@ sed s/day/night/ < old > new
 Another important concept is that sed is line oriented.
 meaning by default only change the first instance per line
 GNU to use -r to enable regular expression
-TODO: come back next time, don't want to spend to much time with text process.I'm not in mood
+
+book "Sed & Awk"
+================================================================================
+
+the satisfaction of solving a problem is the difference between work and drudgery.
+
+sed 's/MA/Massachusetts/' mailList
+awk -F, '{ print $1; print $2; print $3; }' mailList
+
+code from: https://github.com/nmcglincy/oreilly-sed-and-awk
+
+TO BE CONTINUE

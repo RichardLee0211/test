@@ -2,3 +2,5 @@
 *.dSYM
 
 .DS_Store
+*.zip
+*.csv

@@ -19,7 +19,7 @@ before make install, preview it by make -n install
 
 TODO: to be continue
 
-<<<<<<< HEAD
+
 others
 --------------------------------------------------------------------------------
 #### for backup
@@ -53,7 +53,7 @@ date "+%Y%m%d"
     echo ""
     exit 0
 ```
-=======
+
 reading "Kali Linux Revealed"
 ================================================================================
 
@@ -74,4 +74,8 @@ TODO:
 - [x] man netfilter
 - [ ] custom system ISO
 - [ ]
->>>>>>> f16eda2c39f09d56dc6f0e31592e469f658c95aa
+
+improved CLI
+================================================================================
+from: https://remysharp.com/2018/08/23/cli-improved
+- bat to a pretty cat
