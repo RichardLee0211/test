@@ -6,9 +6,9 @@ what do I think
 ================================================================================
 
 TODO:
-- [ ] figure out the principal of random number generator
-- [ ] figure out the principal of prediction algorithm
-- [ ] figure out the statistical test for RNGs
+- [x] figure out the principal of random number generator
+- [x] figure out the principal of prediction algorithm
+- [x] figure out the statistical test for RNGs
 - [ ]
 
 Do I commited to Data analysis?: Yes, for this semester, I have 2 weeks to go for stage 1
@@ -135,7 +135,7 @@ E.3 L'Ecuyer's Generator with Bays-Durham shuffle
 check randomness in a data set
 TODO: don't really understand the defination and how it works
 
-TODO: need to understand these test
+DONE: need to understand these test
 TODO: need understand statics better
 
 Analysis2005.pdf
@@ -498,10 +498,24 @@ to fully understand and implement them. An example has been made in 2005 report.
 2. test suit
 3. conbine
 
-about python:
-could define like this:
+in python, one could define like this:
+```python
 def foo(argc1: type1, argc2: type2) -> type_return:
     # ...
+```
+
+#### I am reading NIST800-22 code
+
+extern "C":
+from: https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
+name mangling and function overload, interesting
+
+TODO: 3D random sample plot
+
+find this math library by google cephes, very interesting.
+https://www.netlib.org/liblist.html
+
+pretty good code
 
 #### talk with Prof. Yan, didn't help a lot
 /dev/random

@@ -11,7 +11,7 @@ aim to learn how to show graph in ipython
 
 to have a good habit, don't leave a python sessean unclosed. in order to make my computer run faster
 
-it's wired, using ipython slowdown my computer, got to reboot
+it's weird, using ipython slowdown my computer, got to reboot
 
 shame, ipython could not do sales["category"].<tab> autocompletion
 
