@@ -60,7 +60,7 @@ Apple would push a great system upgrade and break others' code
 [sample code](https://github.com/opencv/opencv)
 
 chapter 02 Handling Files, Cameras, and GUIs
-================================================================================
+--------------------------------------------------------------------------------
 
 check the src code in pycv
 

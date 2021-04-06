@@ -1,0 +1,45 @@
+# first one
+# /UNIX$/{
+# N
+# s/\nSystem/ Operating &/
+# P
+# D
+# }
+# 
+# second one
+# /UNIX$/{
+# 	N
+# 	/\nSystem/{
+# 	s// Operating &/
+# 	P
+# 	D
+# 	}
+# }
+# 
+# third one
+# s/@f1(\([^)]*\))/\\fB\1\\fR/g
+# /@f1(/,/)/{
+# 	s/@f1(/\\fB/
+# 	s/)/\\fR/
+# }
+# 
+# So Lenny's script doesn't work on it own, but with some tweeks and the right first line
+# it does. Maybe it's not robust enought though, like if you wanted multiple bold lines with
+# embracked expressions in the middle.
+# 
+# NPD version as suggested:
+s/@f1(\([^)]*\))/\\fB\1\\fR/g
+/@f1(.*/{
+	N
+	s/@f1(\(.*\n[^)]*\))/\\fB\1\\fR/g
+	P
+	D
+}
+# 
+# This one works and it doesn't used the NPD thing, but maybe it's not rebust enough...
+# s/@f1(\([^)]*\))/\\fB\1\\fR/g
+# /@f1([^)]*/{
+# 	N
+# 	s/@f1(\([^)]*\n[^)]*\))/\\fB\1\\fR/
+# 	s/@f1(\([^)]*\))/\\fB\1\\fR/g
+# }
