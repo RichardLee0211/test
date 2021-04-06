@@ -3,6 +3,9 @@
 # links to some wallpaper
 # I would consider write a script to extract matedata file_wherefrom of jpg file
 
+bash
+
+mkdir -p ~/Pictures/Wallpaper/ && cd ~/Pictures/Wallpaper/
 wget \
 https://cdn-l-cyberpunk.cdprojektred.com/wallpapers/2560x1600/Its-a-deal-en.jpg \
 https://cdn-l-cyberpunk.cdprojektred.com/wallpapers/2560x1600/A-mercenary-on-the-rise-en.jpg \
@@ -15,3 +18,5 @@ https://cdn-l-cyberpunk.cdprojektred.com/wallpapers/2560x1600/Sweet_ride-en.jpg 
 https://cdn-l-cyberpunk.cdprojektred.com/gallery/2160p/screen-shock-to-save-shoot-to-kill-en.jpg \
 https://cdn-l-cyberpunk.cdprojektred.com/gallery/2160p/Cyberpunk2077-The_million_euro_dollar_question-RGB-en.jpg \
 https://cdn-l-cyberpunk.cdprojektred.com/gallery/2160p/Cyberpunk2077-Really_love_what_you_did_with_the_place-RGB-en.jpg
+
+exit

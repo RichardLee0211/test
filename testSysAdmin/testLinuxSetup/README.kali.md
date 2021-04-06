@@ -233,6 +233,21 @@ using fcitx, take some patient to make it running
     fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
 ```
 
+#### Chinese input method 2
+now I understand how encoding and font work.
+Hey, since I can read Chinese and there are some pretty cool Chinese Community,
+I would need to be type Chinese in Kali, although I don't consider bring Chinese
+into my Terminal yet, as a result of not finding a pretty fonts for terminal.
+I think type Chinese in the search bar is good enough for now.
+Plus if I really need to type Chinese in Terminal, Gnomal-Terminal has good internal font support for Chinese.
+```
+    sudo apt installl ibus-pinyin
+    sudo apt install ibus-sunpinyin
+    ibus-setup # config to using <C-space> to change imput method
+    ibus restart
+    reboot
+```
+
 #### fix firefox veritical tear in i3
 disable hardware acceleration
 from: https://forum.manjaro.org/t/firefox-screen-tearing-i3wm-compton/81794
@@ -257,3 +272,5 @@ apt install gnome-screenshot
 using selection to clipboard and mouse middle key to paste is reasonable
 
 Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
+
+using mkdir /some/directory/to/somewhere/ and then cd !$
