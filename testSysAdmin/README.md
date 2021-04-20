@@ -79,3 +79,10 @@ improved CLI
 ================================================================================
 from: https://remysharp.com/2018/08/23/cli-improved
 - bat to a pretty cat
+
+Log
+================================================================================
+
+##### try to view/edit files' meta data
+
+exiftool is integrated with ranger, cool

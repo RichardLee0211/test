@@ -22,16 +22,25 @@ system preferences
 
 find myself about macOS setup: note/other/newMacOS.md
 
+preference:
+
 need to improve it
 
 - add chinese input method
+- keyboard: map mac keyboard to more conventional layout
+		modified caps-lock key to ctrl key
+	    screenshot and recording options Option+p
+	    select next input method using Ctrl+space
+		could map move focus to next window to Opt+n,
+		or Opt+Esp, but this is just for poker keyboard
 - login the apple account to sync my buildin apps
 - since this is 15 inches screen, set display to be more space
 - install google chrome and log in my count
+- share setting could enable ssh, ftp, and smb protocol, might be handy
 - move dock to left and choose automatically hide
 - set hot corner left-bottom to be put display to sleep
 - using
-	First day of week: Monday
+	First day of week: Sunday
 	time format: 24-hour time
 	temperature: degree celsius
 - set night shift from sunrise to sunset
@@ -39,7 +48,6 @@ need to improve it
 - able App expose(swipe down with three fingers)
 	loop up & data detector(tap with three fingers)
 	tap to click
-- modified caps-lock key to ctrl key
 - show bluetooth in the toolbar
 
 Xcode command line tool
@@ -51,14 +59,15 @@ Xcode command line tool
 
 then click and install
 
-it refuses to install xcode-select for me. This is probably OS X command line. Need to update. GOD, reboot works.
+it refuses to install xcode-select for me. This is probably OS X command line.
+Need to update. GOD, reboot works.
 
 Homebrew
 --------------------------------------------------------------------------------
 
 ```shell
 	# download and install brew
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	# tell shell to use brew directory
 	echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
 	# check the installation
@@ -66,16 +75,33 @@ Homebrew
 	# enable cask as a tap
 ```
 
+wow, the default shell changed to zsh in macOS, cool
+
 iterm2
 --------------------------------------------------------------------------------
 ```shell
-	brew cask install iterm2
+    brew install --cask iterm2
 	# zsh
 	brew install zsh
 	# Oh My Zsh, this is a framework
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	# set zsh to my default shell
 	chsh -s $(which zsh)
+```
+
+warming about ncurses
+```shell
+    ==> ncurses
+    ncurses is keg-only, which means it was not symlinked into /usr/local,
+    because macOS already provides this software and installing another version in
+    parallel can cause all kinds of trouble.
+
+    If you need to have ncurses first in your PATH, run:
+      echo 'export PATH="/usr/local/opt/ncurses/bin:$PATH"' >> ~/.zshrc
+
+    For compilers to find ncurses you may need to set:
+      export LDFLAGS="-L/usr/local/opt/ncurses/lib"
+      export CPPFLAGS="-I/usr/local/opt/ncurses/include"
 ```
 
 I would like to play with zsh configuration, [here](https://sourabhbajaj.com/mac-setup/iTerm/zsh.html)
@@ -139,6 +165,17 @@ TODO: install anaconda.
 
 At this stage, I have too little knowledge about community
 
+m4 warming
+```shell
+    ==> m4
+        m4 is keg-only, which means it was not symlinked into /usr/local,
+        because macOS already provides this software and installing another version in
+        parallel can cause all kinds of trouble.
+
+        If you need to have m4 first in your PATH, run:
+          echo 'export PATH="/usr/local/opt/m4/bin:$PATH"' >> ~/.zshrc
+```
+
 Latex
 --------------------------------------------------------------------------------
 
@@ -149,13 +186,23 @@ or
 	brew install basictex
 ```
 
-Google Drive
+other CLIs
 --------------------------------------------------------------------------------
-search, download and install
+brew install trash
+brew install ranger
+brew install youtube-dl
+brew install tldr
 
-Vmware Fusion
---------------------------------------------------------------------------------
+##### git pub key
+enabled github.com two factor auth, can't use account/password anymore
+not every flex, don't you think, has to use public key
+
 search, download and install
+--------------------------------------------------------------------------------
+- Google Drive
+- Vmware Fusion
+- spectacle
+- IINA and VLC
 
 others
 --------------------------------------------------------------------------------
@@ -163,3 +210,21 @@ others
 TODO: maybe I need a Code download script to download my code from github in one command
 
 build up a list of my reference repository??
+
+using rsync --progress to copy large file in order to see the speed and progress
+
+experience
+--------------------------------------------------------------------------------
+
+##### try to find a good way(software or script) to manage my media files
+- Amarok, doesn't support Mac officially
+
+may I could adapt this naming scheme: Suicide.Squad.2016.1080p.HDRip.KORSUB.x264.AAC2.0-STUTTERSHIT.mp4
+
+- easy-tag
+brew install easy-tag
+nice tool
+
+- exiftool
+
+- vlc Sys+I to trigger inspect windows
