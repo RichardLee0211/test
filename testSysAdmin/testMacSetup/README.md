@@ -192,10 +192,29 @@ brew install trash
 brew install ranger
 brew install youtube-dl
 brew install tldr
+brew install ffmpeg
 
 ##### git pub key
 enabled github.com two factor auth, can't use account/password anymore
-not every flex, don't you think, has to use public key
+not very flex, don't you think, has to use public key
+```shell
+	ssh-keygen -t rsa -b 4096 -C your@email.com
+	eval "$(ssh-agent -s)" # make sure ssh-agent is running
+	ssh-add ~/.ssh/id_rsa
+	cat ~/.ssh/id_rsa.pub | pbcopy  # and copy it to github website
+	# change origin url
+		# url = https://github.com/richardlee0211/test
+		url = git@github.com:richardlee0211/test.git
+
+	# ~/.ssh/config
+	Host *
+		AddKeysToAgent yes
+		IdentityFile ~/.ssh/id_rsa
+
+	# test ssh auth
+	ssh -T git@github.com
+
+```
 
 search, download and install
 --------------------------------------------------------------------------------
