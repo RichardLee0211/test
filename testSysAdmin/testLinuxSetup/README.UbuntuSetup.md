@@ -18,7 +18,7 @@ sudo apt install -y ctags
 # ?? sudo apt install -y python3
 
 # git setup
-git config --global user.name Wenchen
+git config --global user.name wenchen
 git config --global user.email richardlee0211er@gmail.com
 ```
 
