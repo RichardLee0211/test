@@ -253,23 +253,84 @@ some examples at line# 700 of wpa_supplicant.doc.conf file
 ```
 
 
-TODO: every ifconfig
+ifconfig wlan0
 ```shell
-usb0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet6 fe80::fc8e:47ff:fe70:57e7  prefixlen 64  scopeid 0x20<link>
-        ether fe:8e:47:70:57:e7  txqueuelen 1000  (Ethernet)
-        RX packets 3344  bytes 752383 (752.3 KB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1061  bytes 297472 (297.4 KB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+	usb0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+					inet6 fe80::fc8e:47ff:fe70:57e7  prefixlen 64  scopeid 0x20<link>
+					ether fe:8e:47:70:57:e7  txqueuelen 1000  (Ethernet)
+					RX packets 3344  bytes 752383 (752.3 KB)
+					RX errors 0  dropped 0  overruns 0  frame 0
+					TX packets 1061  bytes 297472 (297.4 KB)
+					TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.1.30  netmask 255.255.255.0  broadcast 192.168.1.255
-        inet6 fe80::670f:e044:35be:8ed6  prefixlen 64  scopeid 0x20<link>
-        ether 00:e0:4c:4b:b7:97  txqueuelen 1000  (Ethernet)
-        RX packets 9729  bytes 8684168 (8.6 MB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1811  bytes 181115 (181.1 KB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+	wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+					inet 192.168.1.30  netmask 255.255.255.0  broadcast 192.168.1.255
+					inet6 fe80::670f:e044:35be:8ed6  prefixlen 64  scopeid 0x20<link>
+					ether 00:e0:4c:4b:b7:97  txqueuelen 1000  (Ethernet)
+					RX packets 9729  bytes 8684168 (8.6 MB)
+					RX errors 0  dropped 0  overruns 0  frame 0
+					TX packets 1811  bytes 181115 (181.1 KB)
+					TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+iwconfig
+```shell
+	╭─wenchen at wenchen-nano in ~
+	╰─○ iwconfig
+	dummy0    no wireless extensions.
 
+	l4tbr0    no wireless extensions.
+
+	eth0      no wireless extensions.
+
+	wlan0     IEEE 802.11bgn  ESSID:"NETGEAR04"  Nickname:"<WIFI@REALTEK>"
+						Mode:Managed  Frequency:2.447 GHz  Access Point: 10:0C:6B:12:E7:08
+						Bit Rate:72.2 Mb/s   Sensitivity:0/0
+						Retry:off   RTS thr:off   Fragment thr:off
+						Power Management:off
+						Link Quality=100/100  Signal level=64/100  Noise level=0/100
+						Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+						Tx excessive retries:0  Invalid misc:0   Missed beacon:0
+
+	usb0      no wireless extensions.
+
+	lo        no wireless extensions.
+
+	docker0   no wireless extensions.
+
+	rndis0    no wireless extensions.
+
+```
+
+NetworkManager
+```shell
+	╭─wenchen at wenchen-nano in ~
+	╰─○ sudo systemctl status NetworkManager.service
+	[sudo] password for wenchen:
+	● NetworkManager.service - Network Manager
+		 Loaded: loaded (/lib/systemd/system/NetworkManager.service; enabled; vendor preset: enabled)
+		 Active: active (running) since Tue 2021-08-31 12:49:55 EDT; 21h ago
+			 Docs: man:NetworkManager(8)
+	 Main PID: 3949 (NetworkManager)
+			Tasks: 4 (limit: 2280)
+		 CGroup: /system.slice/NetworkManager.service
+						 ├─ 3949 /usr/sbin/NetworkManager --no-daemon
+						 └─13832 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /run/dhclient
+
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1509] device (wlan0): state c
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1530] device (wlan0): state c
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1536] device (wlan0): state c
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1540] manager: NetworkManager
+	Sep 01 10:15:16 wenchen-nano dhclient[13832]: bound to 192.168.1.30 -- renewal in 37503 seconds.
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1659] manager: NetworkManager
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1661] policy: set 'NETGEAR04'
+	Sep 01 10:15:16 wenchen-nano NetworkManager[3949]: <info>  [1630505716.1678] device (wlan0): Activat
+	Sep 01 10:15:28 wenchen-nano NetworkManager[3949]: <info>  [1630505728.2763] manager: NetworkManager
+	Sep 01 10:20:24 wenchen-nano NetworkManager[3949]: <info>  [1630506024.7433] connectivity: (l4tbr0)
+```
+
+dhclient, dynamic host to get a private IP
+```shell
+	╭─wenchen at wenchen-nano in ~
+	╰─○ sudo dhclient wlan0
+	RTNETLINK answers: File exists
 ```
