@@ -1,5 +1,3 @@
-xrandr -s 2560x1600 # to change solution in terminal
-
 I need a way to change volume, brighness, etc
 
 download youtube-dl from lastest version, and it tells me video don't exist
@@ -20,11 +18,123 @@ I am reading README.Ubuntu.md and do some editing and
 - [ ]
 - [ ]
 
+#### correct screen resolution for raspberry pi 4
+xrandr -s 2560x1600 # to change solution in terminal
+
+- on raspberry pi 4
+/boot/config.txt
+uncomment disable_overscan=1
+http://rpf.io/configtxt
+
+#### map cap locks to ctrl as I am so used to it
+- change the keyboard layout
+setxkbmap -layout us
+
+- xmodmap utility
+utility for modifying keymaps and pointer button mappings in X
+mainly from: https://wiki.archlinux.org/title/xmodmap
+some conceptions:
+keycode: the code that keyboard sent to motherboard
+keysym:  the symbols that computer see when receive keycode
+keymap table: the map between keycode and keysym
+
+warming: Due to a limitation of Xorg, xmodmap settings are not applied to
+hotplugged devices automatically.
+
+- xmodmap -pke
+...
+keycode 57 = n N
+...
+
+ 1. Key
+ 2. Shift+Key
+ 3. Mode_switch+Key
+ 4. Mode_switch+Shift+Key
+ 5. ISO_Level3_Shift+Key
+ 6. ISO_Level3_Shift+Shift+Key
+
+- map caplock to ctrl
+```~/.Xmodmap
+    ! Simplest example of changeing CapsLock into Control
+    ! from: https://wiki.archlinux.org/title/xmodmap
+    ! need to clear modifier key involved
+    clear lock
+    clear control
+    ! assign new keysym to keycode
+    keycode 66 = Control_L
+    ! add back the modifier key
+    add control = Control_L Control_R
+```
+then xmodmap ~/.Xmodmap
+
+following example modifies CapsLock to Control, and Shift+CapsLock to CapsLock
+I perfer this solution
+```~/.Xmodmap
+	clear lock
+	clear control
+	add control = Caps_Lock Control_L Control_R
+	keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+```
+- see the changed modifier key
+xmodmap -pm
+```shell
+	┌──(kali㉿kali)-[~]
+	└─$ xmodmap -pm                                                                                                 1 ⚙
+	xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+	shift       Shift_L (0x32),  Shift_R (0x3e)
+	lock
+	control     Control_L (0x25),  Control_L (0x42),  Control_R (0x69)
+	mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+	mod2        Num_Lock (0x4d)
+	mod3
+	mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+	mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+```
+
+- to see the keycode and keysym
+```shell
+xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+showkey --keycodes # in console
+```
+
+- Turn CapsLock into Control, and LeftControl into Hyper
+This is new idea for me.
+Laptop users may prefer having CapsLock as Control.
+The Left Control key can be used as a Hyper modifier
+(an additional modifier for emacs or openbox or i3).
+
+```~/.Xmodmap
+	clear      lock
+	clear   control
+	clear      mod1
+	clear      mod2
+	clear      mod3
+	clear      mod4
+	clear      mod5
+	keycode      37 = Hyper_L
+	keycode      66 = Control_L
+	add     control = Control_L Control_R
+	add        mod1 = Alt_L Alt_R Meta_L
+	add        mod2 = Num_Lock
+	add        mod3 = Hyper_L
+	add        mod4 = Super_L Super_R
+	add        mod5 = Mode_switch ISO_Level3_Shift
+```
+
+- using super+tab to switch window focus
+- disable super+l to lock the screen
+
 #### how to input fontawesome within vim
 go to fontawesome cheatsheet: https://fontawesome.com/cheatsheet/free/regular
 in insert mode of vim, <C-v> u <the unicode of the font>
 
 or search in here: https://fontawesome.com/icons?d=gallery
+
+#### vim misc
+some vim build doesn't have +clipboard, it annoys me
+sudo apt install vim-gtk3 # replace default build with more robust build
 
 #### about fontawesome
 from: https://www.blackmoreops.com/2014/07/31/install-fonts-on-linux/
