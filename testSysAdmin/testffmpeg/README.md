@@ -30,6 +30,7 @@ from: https://ostechnix.com/20-ffmpeg-commands-beginners/
 
     #  -filter: video scale=XXX:XXX -codec: audio copy
     ffmpeg -i input.mp4 -filter:v scale=1280:720 -c:a copy output.mp4
+	ffmpeg -i input.mp4 -vf scale=1920:1080 smaller.mp4  # my 13MBP cannot play 4k video well, :(
 
     # 06 Compressing video files
     ffmpeg -i input.mp4 -vf scale=1280:-1 -c:v libx264 -preset veryslow -crf 24 output.mp4
