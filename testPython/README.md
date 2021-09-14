@@ -10,19 +10,6 @@ only start with begin and with precise string.
 using vim to do python auto completion, although it's slow for the first time,
 but it's way more convinient for me.
 
-TODO:
-now, YCM works for lib, like pandas. and show the reminders. but don't
-work for data struture like dataframe, like df. and don't show reminders.
-
-to work with python3 since python2.7 is dying in 2020.
-open a fullscreen size shell and a little one. latter using for compile and
-loging.
-
-TODO: after all, learn algorithms and library: numpy, scipy, pandas
-
-
-
-
 # basic of python
 python buildin data type:
 immutable types:
