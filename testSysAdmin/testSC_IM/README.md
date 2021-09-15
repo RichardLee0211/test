@@ -1,4 +1,5 @@
 I might have taken some notes
+install: https://github.com/andmarti1424/sc-im/wiki/Installing-on-Debian
 
 it doesn't have a tutorial online, and function based article
 
