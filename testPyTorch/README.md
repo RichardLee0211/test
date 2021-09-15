@@ -65,14 +65,14 @@ NumPy Bridge
     print(b)
     a.add_(1)
     print(a)
-    print(b)
+    print(b)    # a and b point to the same data structure
 
     import numpy as np
     a = np.ones(5)
     b = torch.from_numpy(a)
     np.add(a, 1, out=a)
     print(a)
-    print(b)
+    print(b)    # a and b point to the same data structure
 ```
 
 CUDA Tensors
@@ -96,7 +96,7 @@ Tensor
     y = x + 2
     print(y)
     print(y.grad_fn)
-    z = y * y * 3
+    z = y * y * 3       # this is not matrix multiply
     out = z.mean()
     print(z, out)
 
@@ -303,4 +303,15 @@ training an image classifier
     # save the model
     PATH = './cifar_net.pth'
     torch.save(net.state_dict(), PATH)
+```
+
+#### review it
+```shell
+  # ipython and conda env
+  conda activate nlp-hw1
+  ipython
+  import sys; print(sys.version);
+  ## since conda creat virtual env by prepending entries in $PATH, I need install
+  ## ipython in the new envrionment
+  conda install ipython
 ```
