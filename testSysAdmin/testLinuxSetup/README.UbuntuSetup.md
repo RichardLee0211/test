@@ -1,21 +1,32 @@
-using this new ubuntu VM now
+ubuntu flovar Linux set up
 ================================================================================
 
 TODO: definately have soemthing to add
 ubuntu setup script
 ```bash
 sudo apt update
-sudo apt install -y vim
+### app tools
+sudo apt install -y terminator
+sudo apt install -y vim-gtk3     # for +clipboard and +python3
 sudo apt install -y tmux
-sudo apt install -y i3
+sudo apt install -y zsh
 sudo apt install -y git
-sudo apt install -y g++
-sudo apt install -y net-tools # ifconfig
-sudo apt install -y valgrind
-sudo apt install -y htop
+sudo apt install -y ranger
 sudo apt install -y cmatrix
+sudo apt install -y tldr
+sudo apt install -y pandoc
+
+### system tools
+sudo apt install -y i3
+sudo apt install -y net-tools # ifconfig
+sudo apt install -y htop
+
+sudo apt install -y g++
+sudo apt install -y valgrind
 sudo apt install -y ctags
-# ?? sudo apt install -y python3
+
+# ??
+# sudo apt-get install -y python-opencv
 
 # git setup
 git config --global user.name wenchen
@@ -37,6 +48,372 @@ so restart the VM, and in the login options, I can i3 as my VM(window manage)
 this is exciting, and this is a choice. i3, tmux, transparent terminal and backgroud picture
 
 and I will need a remap to vim keystrick
+
+
+#### map cap locks to ctrl as I am so used to it
+- change the keyboard layout
+setxkbmap -layout us
+
+- xmodmap utility
+utility for modifying keymaps and pointer button mappings in X
+mainly from: https://wiki.archlinux.org/title/xmodmap
+some conceptions:
+keycode: the code that keyboard sent to motherboard
+keysym:  the symbols that computer see when receive keycode
+keymap table: the map between keycode and keysym
+
+warming: Due to a limitation of Xorg, xmodmap settings are not applied to
+hotplugged devices automatically.
+
+- xmodmap -pke
+...
+keycode 57 = n N
+...
+
+ 1. Key
+ 2. Shift+Key
+ 3. Mode_switch+Key
+ 4. Mode_switch+Shift+Key
+ 5. ISO_Level3_Shift+Key
+ 6. ISO_Level3_Shift+Shift+Key
+
+- map caplock to ctrl
+```~/.Xmodmap
+    ! Simplest example of changeing CapsLock into Control
+    ! from: https://wiki.archlinux.org/title/xmodmap
+    ! need to clear modifier key involved
+    clear lock
+    clear control
+    ! assign new keysym to keycode
+    keycode 66 = Control_L
+    ! add back the modifier key
+    add control = Control_L Control_R
+```
+then xmodmap ~/.Xmodmap
+
+following example modifies CapsLock to Control, and Shift+CapsLock to CapsLock
+I perfer this solution
+```~/.Xmodmap
+	clear lock
+	clear control
+	add control = Caps_Lock Control_L Control_R
+	keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
+```
+- see the changed modifier key
+xmodmap -pm
+```shell
+	┌──(kali㉿kali)-[~]
+	└─$ xmodmap -pm                                                                                                 1 ⚙
+	xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
+
+	shift       Shift_L (0x32),  Shift_R (0x3e)
+	lock
+	control     Control_L (0x25),  Control_L (0x42),  Control_R (0x69)
+	mod1        Alt_L (0x40),  Alt_R (0x6c),  Meta_L (0xcd)
+	mod2        Num_Lock (0x4d)
+	mod3
+	mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+	mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
+```
+
+- to see the keycode and keysym
+```shell
+xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+showkey --keycodes # in console
+```
+
+- Turn CapsLock into Control, and LeftControl into Hyper
+This is new idea for me.
+Laptop users may prefer having CapsLock as Control.
+The Left Control key can be used as a Hyper modifier
+(an additional modifier for emacs or openbox or i3).
+
+```~/.Xmodmap
+	clear      lock
+	clear   control
+	clear      mod1
+	clear      mod2
+	clear      mod3
+	clear      mod4
+	clear      mod5
+	keycode      37 = Hyper_L
+	keycode      66 = Control_L
+	add     control = Control_L Control_R
+	add        mod1 = Alt_L Alt_R Meta_L
+	add        mod2 = Num_Lock
+	add        mod3 = Hyper_L
+	add        mod4 = Super_L Super_R
+	add        mod5 = Mode_switch ISO_Level3_Shift
+```
+
+- using super+tab to switch window focus
+- disable super+l to lock the screen
+
+#### zsh and oh-my-zsh
+a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
+```shell
+    apt install zsh
+
+    ## config
+    usermod username -s /usr/bin/zsh
+    # or
+    chsh -s /usr/bin/zsh username
+
+    # install Oh My Zsh
+    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+#### ranger
+apt install ranger
+~/.config/ranger/rc.conf
+```
+    set preview_images true
+    set preview_images_method urxvt
+    set draw_borders true
+    set ranger_load_default_rc false
+```
+
+ranger --copy-config=scope
+TODO: couldn't get image preview, could be since Kali distro
+
+#### Chinese input method
+from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
+not work for i3
+```
+    # 0. Set ibus
+    `sudo apt install ibus`
+    `sudo im-config`
+
+    1. Install RIME
+    `sudo apt-get install ibus-rime`
+    https://github.com/rime/home/wiki/RimeWithIBus#ubuntu
+
+    2. Select Input Language
+    `reboot`
+    System Setting — Region&Language — input Source, then click ‘+’ button, choose Chinese
+
+    3. Ready to use
+    Press Super + space to switch input method.
+    Press F4 to switch schema(simple or complex).
+```
+
+from: https://ultra-technology.org/linux_for_beginners/how-to-write-in-japanese-or-chinese-under-linux-on-any-window-manager-using-fcitx/
+from: https://askubuntu.com/questions/1060130/using-ibus-japanese-input-with-ubuntu-mate-and-i3
+using fcitx, take some patient to make it running
+```
+    sudo apt install fcitx fcitx-googlepinyin fcitx-mozc im-config
+    sudo apt install xfonts-intl-chinese
+
+    echo " \
+    export XMODIFIERS=@im=fcitx \
+    export GTK_IM_MODULE=fcitx \
+    export QT_IM_MODULE=fcitx \
+    export XIM=fcitx \
+    fcitx " >> ~/.xinitrc
+
+    im-config -c # using im-config to select fcitx
+
+    fcitx
+    fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
+```
+
+#### Chinese input method 2
+now I understand how encoding and font work.
+Hey, since I can read Chinese and there are some pretty cool Chinese Community,
+I would need to be type Chinese in Kali, although I don't consider bring Chinese
+into my Terminal yet, as a result of not finding a pretty fonts for terminal.
+I think type Chinese in the search bar is good enough for now.
+Plus if I really need to type Chinese in Terminal,
+Gnomal-Terminal has good internal font support for Chinese.
+```
+    sudo apt install ibus-pinyin
+    sudo apt install ibus-sunpinyin
+    ibus-setup # config to using <C-space> to change imput method
+    ibus restart
+    reboot
+```
+
+#### firefox plugin
+vimium, vim like operation
+adblock, adblock
+windowed, could float youtube video
+dark reader, for late night read
+
+#### screenshot
+apt install scrot # and bind it to PrtSc
+apt install gnome-screenshot
+
+#### nvidia driver
+from: https://docs.kali.org/general-use/install-nvidia-drivers-on-kali-linux
+sudo apt install nvidia-driver-455
+
+#### use terminator
+as it support "copy on select"
+would be faster when with terminal and broswer work flow
+apt install terminator
+
+
+
+#### unattended-upgr take too long
+from: https://askubuntu.com/questions/934807/unattended-upgrades-status
+check
+```shell
+	systemctl list-timers apt-daily.timer
+	ls -l /var/lib/apt/periodic/
+	less /var/log/unattended-upgrades/unattended-upgrades.log
+	apt list --upgradeable | wc -l
+```
+for this time, it would take 10 hours to download all the packages it needs
+abort this job
+
+from: https://unix.stackexchange.com/questions/374748/ubuntu-update-error-waiting-for-unattended-upgr-to-exit
+    1. Stop the automatic updater.
+    `sudo dpkg-reconfigure -plow unattended-upgrades`
+    At the first prompt, choose not to download and install updates.
+    Make a reboot.
+
+    2. Make sure any packages in an unclean state are installed correctly.
+    `sudo dpkg --configure -a`
+
+    3. Get your system up-top-date.
+    `sudo apt update && sudo apt -f install && sudo apt full-upgrade`
+
+    4. Turn the automatic updater back on, now that the blockage is cleared.
+    `sudo dpkg-reconfigure -plow unattended-upgrades`
+    Select the package unattended-upgrades again.
+
+log:
+system crashed, try to save it,
+guess what, donot move the case when the computer is working
+
+
+#### fix audio problem
+
+kali don't play audio when playing youtube
+apt install alsa-utils -y # to use alsamixer
+And it could tell PS4 controller and pass audio to this device, nice
+
+#### fix firefox veritical tear
+disable hardware acceleration
+For Firefox do this:
+    Type "about:config" on the address bar.
+    Search for layers.acceleration.force-enabled (default is false). This forces Hardware Acceleration to turn on.
+    Change it to true by double-clicking.
+    Save and restart Firefox.
+
+#### vim copy and paste x11
+apt install vim-gtk3
+vim --version # look for xterm_clipboard
+set clipboard+=unnamedplus
+
+#### build vim with X11 copy and paste support
+from vim.git/src/INTSALL
+```shell
+To build Vim on Ubuntu from scratch on a clean system using git:
+	Install tools required to be able to get and build Vim:
+	% sudo apt install git
+	% sudo apt install make
+	% sudo apt install clang
+
+	Build Vim with default features:
+	% git clone https://github.com/vim/vim.git
+	% cd vim/src
+	% make
+
+	Run tests to check there are no problems:
+	% make test
+
+	Install Vim in /usr/local:
+	% sudo make install
+
+	Add X windows clipboard support (also needed for GUI):
+	% sudo apt install libxt-dev
+	% make reconfig
+
+	Add GUI support:
+	% sudo apt install libgtk-3-dev
+	% make reconfig
+
+	Add Python 3 support:
+	% sudo apt install libpython3-dev
+	Uncomment this line in Makefile:
+		"CONF_OPT_PYTHON3 = --enable-python3interp"
+	% make reconfig
+```
+
+apt vim is in /user/bin while this build should be in /user/local/bin/vim
+only ubuntu using Ctrl+Shift+c or +v to copy and paste
+
+
+#### pip3 and internet speed test
+sudo apt install -y python3-pip
+pip3 install speedtest-cli
+export PATH="/home/wenchen/.local/bin/:$PATH" # ~/.zshrc
+
+Gigbit internet in the lab
+```shell
+    pip3 install speedtest-cli
+    ➜  testLinuxSetup git:(master) ✗ ~/.local/bin/speedtest
+    Retrieving speedtest.net configuration...
+    Testing from SUNY at Stony Brook (XXXXXXXXXXXXX)...
+    Retrieving speedtest.net server list...
+    Selecting best server based on ping...
+    Hosted by Optimum Online (New York, NY) [76.79 km]: 7.726 ms
+    Testing download speed................................................................................
+    Download: 774.94 Mbit/s
+    Testing upload speed......................................................................................................
+    Upload: 677.55 Mbit/s
+```
+
+#### youtube-dl
+sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
+sudo chmod a+x /usr/local/bin/youtube-dl
+sudo apt install python-dev
+rehash
+
+#### dolphin
+using dolphin as it provides better img preview
+sudo apt install dolphin
+feels like this apt build is limited
+
+- setting default filemanager to dolphin
+failed after some twinking
+maybe reboot??
+https://help.ubuntu.com/community/DefaultFileManager
+
+#### stress test
+nice, the new heat sink works, stress cpu top temp 65 degrees,
+stress gpu top temp 71 degrees
+```shell
+    sudo apt-get install -y stress htop iotop lm-sensors
+    # Run a stress test with `nproc` CPU workers (sqrt)
+    #                        `nproc` Virtual Memory workers (malloc / free)
+    #                        `nproc` workers calling (sync)
+    #                        `nproc` workers writing to disk (write / unlink)
+    # For a total of 60 seconds.
+    stress --cpu `nproc` --vm `nproc` --vm-bytes 1GB --io `nproc` --hdd `nproc` --hdd-bytes 1GB --timeout 60s
+
+    git clone https://github.com/wilicc/gpu-burn
+    cd gpu-burn
+    make
+    ./gpu_burn 60 # will run gpu_burn for 60 seconds
+
+    sudo apt install s-tui
+    s-tui
+
+    htop
+    sudo iotop
+    watch sudo sensors
+    watch nvidia-smi
+```
+
+log 20210924 lab machine
+--------------------------------------------------------------------------------
+python3 unattended-upgrade # 100% CPU core usage
+
+okay, it made sence, the CPU thermal throttled pretty easily
+
 
 using i3
 ================================================================================
@@ -165,28 +542,8 @@ things I wanna do within Linux machine, build a custome OS for me
 
 considering that I might build an applications similar, I would check these open source code first
 
-ranger
-================================================================================
-
-https://github.com/ranger/ranger
-
-```cpp
-    sudo apt install python-pip
-    pip install ranger-fm # didn't work out on ubuntu
-    sudo apt install ranger # works on ubuntu
-```
-
-ranger is mainly for PDF review and picture preview
-
-set up https://wiki.archlinux.org/index.php/Ranger#PDF_file_preview
-
-install openCV-python
-================================================================================
-
-sudo apt-get install -y python-opencv
-
 install i3-gaps on ubuntu 18.04
-================================================================================
+--------------------------------------------------------------------------------
 ```bash
 #!/bin/bash
     sudo apt install -y \
@@ -231,7 +588,7 @@ install [i3blocks]
 (https://github.com/vivien/i3blocks)
 
 install polybar
-================================================================================
+--------------------------------------------------------------------------------
 it seems to work
 ```shell
 
@@ -267,18 +624,6 @@ it seems to work
 ```
 
 I don't know if I install polybar right, when I launch it, it show errors
-
-log
-================================================================================
-
-so windows could be in the surface of this workspace, or in the background,
-or in the other workspace. Basically that nothing is hiding from the user's point of "view"
-
-it seems to be immature to install i3-gap in Ubuntu 18.04.
-plus I don't wanna keep google things for rise my LinuxOS(set-up)
-
-it turns out install i3 in Ubuntu 18.04 is a pain.
-try other Linux distro, I would need a well documented one
 
 following this tutorial:
 [UnixPorn](https://www.reddit.com/r/unixporn/wiki/index)
@@ -438,7 +783,9 @@ how to associate Font Awesome icons with your workspace
 --------------------------------------------------------------------------------
 
 https://github.com/FortAwesome/Font-Awesome
+```shell
 download the zip file and cp *.ttf file into ~/.font
+```
 
 search "Awesome Fonts cheatsheet"
 
@@ -485,3 +832,12 @@ others
 
 change $PS1 \w to \W
 to only show this current directory name in prompt
+
+so windows could be in the surface of this workspace, or in the background,
+or in the other workspace. Basically that nothing is hiding from the user's point of "view"
+
+it seems to be immature to install i3-gap in Ubuntu 18.04.
+plus I don't wanna keep google things for rise my LinuxOS(set-up)
+
+it turns out install i3 in Ubuntu 18.04 is a pain.
+try other Linux distro, I would need a well documented one

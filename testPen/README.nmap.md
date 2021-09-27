@@ -676,3 +676,8 @@ nmap -sV 192.168.56.102     # find services Listening
 	Nmap done: 1 IP address (1 host up) scanned in 2.51 seconds
 
 ```
+
+something else
+--------------------------------------------------------------------------------
+
+some data refer to ~/Code/_Note/note.tmp/note.tmp.txt
