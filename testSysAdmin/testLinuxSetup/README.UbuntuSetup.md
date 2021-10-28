@@ -164,6 +164,25 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
+```~/.zshrc
+    ## wenchen
+    ## inside ~/.bash_profile
+    ## xmodmap ~/.Xmodmap
+    ## ~/.bash_profile is for login shells(GUI login or ssh)
+    ## while ~/.bashrc is for interactive non-login shells
+    bindkey -v
+    bindkey "^A" vi-beginning-of-line
+    bindkey "^E" vi-end-of-line
+
+    ## from: https://unix.stackexchange.com/questions/97843/how-can-i-search-history-with-text-already-entered-at-the-prompt-in-zsh/280845
+    autoload -U up-line-or-beginning-search
+    autoload -U down-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey "^[[A" up-line-or-beginning-search # Up
+    bindkey "^[[B" down-line-or-beginning-search # Down
+```
+
 #### ranger
 apt install ranger
 ~/.config/ranger/rc.conf
@@ -381,6 +400,10 @@ feels like this apt build is limited
 failed after some twinking
 maybe reboot??
 https://help.ubuntu.com/community/DefaultFileManager
+
+#### cuda
+sudo apt install nvidia-cuda-toolkit
+nvcc --version
 
 #### stress test
 nice, the new heat sink works, stress cpu top temp 65 degrees,

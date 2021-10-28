@@ -1,6 +1,9 @@
 https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
 
-didn't use anaconda for this time
+install conda from: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
+cd ~/anaconda3/bin
+./conda init zsh
+
 install torch torchvision
 ```shell
     ➜  testPyTorch git:(master) ✗ pip3 install torch torchvision
