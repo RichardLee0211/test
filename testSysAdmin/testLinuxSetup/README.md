@@ -48,11 +48,11 @@ old:
 Service dev status
 
 Q5: check fold’s size
-Du -sh ~/Code
+du -sh ~/Code
 Disk usage
 
 Q6: check for open ports
-Netstat -tulpn
+netstat -tulpn
 
 Q7: CPU usage of a process
 Ps aux | grep nginx
