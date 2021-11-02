@@ -315,3 +315,67 @@ training an image classifier
   ## ipython in the new envrionment
   conda install ipython
 ```
+
+#### conda manage environments
+from: https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+
+```environment.yml
+  name: stats2
+  channels:
+    - javascript
+  dependencies:
+    - python=3.6   # or 2.7
+    - bokeh=0.9.2
+    - numpy=1.9.*
+    - nodejs=0.10.*
+    - flask
+    - pip:
+      - Flask-Testing
+```
+
+```shell
+  # it has a ~/.condarc file
+  conda create --name myenv
+  conda install -n myenv python=3.6 scipy=0.15.0
+  conda env create -f environment.yml
+  ## list
+  conda env list
+  conda info
+  conda info --envs
+  ## activate
+  conda activate myenv
+  ## update packages
+  conda env update --prefix ./env --file environment.yml --prune
+  ## clone
+  conda create --name myclone --clone myenv
+  conda info --envs
+  ## export packages list
+  conda list --explicit   # list all the packages installed in this env
+  conda list --explicit > spec-file.txt
+  conda create --name myenv --file spec-file.txt
+  conda install --name myenv --file spec-file.txt
+  ## deactivate
+  conda deactivate
+  ## export env
+  conda env export > environment.yml
+  ## remove env
+  conda env remove --name myenv
+  conda remove --name myenv --all
+```
+
+```shell
+  conda install torch=1.9.0
+
+  PackagesNotFoundError: The following packages are not available from current channels:
+
+    - torch=1.9.0
+  ...
+
+  # using pip then
+  conda install -n myenv pip
+  conda activate myenv
+  pip install -r requirement.txt
+  conda install ipython
+```
+
+usint test20210916
