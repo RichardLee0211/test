@@ -1,6 +1,9 @@
 https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
 
-didn't use anaconda for this time
+install conda from: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
+cd ~/anaconda3/bin
+./conda init zsh
+
 install torch torchvision
 ```shell
     ➜  testPyTorch git:(master) ✗ pip3 install torch torchvision
@@ -305,6 +308,154 @@ training an image classifier
     torch.save(net.state_dict(), PATH)
 ```
 
+## from: https://www.deeplearningwizard.com/deep_learning/practical_pytorch/pytorch_logistic_regression/
+Logistic regression
+```python3
+# %%
+import torch
+import torch.nn as nn
+import torchvision.transforms as transforms
+import torchvision.datasets as dsets
+
+'''
+STEP 1: LOADING DATASET
+'''
+
+train_dataset = dsets.MNIST(root='./data',
+                            train=True,
+                            transform=transforms.ToTensor(),
+                            download=True)
+
+test_dataset = dsets.MNIST(root='./data',
+                           train=False,
+                           transform=transforms.ToTensor())
+
+# %%
+'''
+STEP 2: MAKING DATASET ITERABLE
+'''
+
+batch_size = 100
+n_iters = 3000
+num_epochs = n_iters / (len(train_dataset) / batch_size)
+num_epochs = int(num_epochs)
+
+train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
+                                           batch_size=batch_size,
+                                           shuffle=True)
+
+test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
+                                          batch_size=batch_size,
+                                          shuffle=False)
+# %%
+'''
+STEP 3: CREATE MODEL CLASS
+'''
+class LogisticRegressionModel(nn.Module):
+    def __init__(self, input_size, num_classes):
+        super(LogisticRegressionModel, self).__init__()
+        self.linear = nn.Linear(input_dim, output_dim)
+
+    def forward(self, x):
+        out = self.linear(x)
+        return out
+
+'''
+STEP 4: INSTANTIATE MODEL CLASS
+'''
+input_dim = 28*28
+output_dim = 10
+
+model = LogisticRegressionModel(input_dim, output_dim)
+
+#######################
+#  USE GPU FOR MODEL  #
+#######################
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+# %%
+'''
+STEP 5: INSTANTIATE LOSS CLASS
+'''
+criterion = nn.CrossEntropyLoss()
+
+
+'''
+STEP 6: INSTANTIATE OPTIMIZER CLASS
+'''
+learning_rate = 0.001
+
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+
+# %%
+'''
+STEP 7: TRAIN THE MODEL
+'''
+iter = 0
+for epoch in range(num_epochs):
+    for i, (images, labels) in enumerate(train_loader):
+
+        #######################
+        #  USE GPU FOR MODEL  #
+        #######################
+        images = images.view(-1, 28*28).requires_grad_().to(device)
+        labels = labels.to(device)
+
+        # Clear gradients w.r.t. parameters
+        optimizer.zero_grad()
+
+        # Forward pass to get output/logits
+        outputs = model(images)
+
+        # Calculate Loss: softmax --> cross entropy loss
+        loss = criterion(outputs, labels)
+
+        # Getting gradients w.r.t. parameters
+        loss.backward()
+
+        # Updating parameters
+        optimizer.step()
+
+        iter += 1
+
+        if iter % 500 == 0:
+            # Calculate Accuracy
+            correct = 0
+            total = 0
+            # Iterate through test dataset
+            for images, labels in test_loader:
+                #######################
+                #  USE GPU FOR MODEL  #
+                #######################
+                images = images.view(-1, 28*28).to(device)
+
+                # Forward pass only to get logits/output
+                outputs = model(images)
+
+                # Get predictions from the maximum value
+                _, predicted = torch.max(outputs.data, 1)
+
+                # Total number of labels
+                total += labels.size(0)
+
+                #######################
+                #  USE GPU FOR MODEL  #
+                #######################
+                # Total correct predictions
+                if torch.cuda.is_available():
+                    correct += (predicted.cpu() == labels.cpu()).sum()
+                else:
+                    correct += (predicted == labels).sum()
+
+            accuracy = 100 * correct.item() / total
+
+            # Print Loss
+            print('Iteration: {}. Loss: {}. Accuracy: {}'.format(iter, loss.item(), accuracy))
+# %%
+```
+
 #### review it
 ```shell
   # ipython and conda env
@@ -314,4 +465,69 @@ training an image classifier
   ## since conda creat virtual env by prepending entries in $PATH, I need install
   ## ipython in the new envrionment
   conda install ipython
+
 ```
+
+#### conda manage environments
+from: https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+
+```environment.yml
+  name: stats2
+  channels:
+    - javascript
+  dependencies:
+    - python=3.6   # or 2.7
+    - bokeh=0.9.2
+    - numpy=1.9.*
+    - nodejs=0.10.*
+    - flask
+    - pip:
+      - Flask-Testing
+```
+
+```shell
+  # it has a ~/.condarc file
+  conda create --name myenv
+  conda install -n myenv python=3.6 scipy=0.15.0
+  conda env create -f environment.yml
+  ## list
+  conda env list
+  conda info
+  conda info --envs
+  ## activate
+  conda activate myenv
+  ## update packages
+  conda env update --prefix ./env --file environment.yml --prune
+  ## clone
+  conda create --name myclone --clone myenv
+  conda info --envs
+  ## export packages list
+  conda list --explicit   # list all the packages installed in this env
+  conda list --explicit > spec-file.txt
+  conda create --name myenv --file spec-file.txt
+  conda install --name myenv --file spec-file.txt
+  ## deactivate
+  conda deactivate
+  ## export env
+  conda env export > environment.yml
+  ## remove env
+  conda env remove --name myenv
+  conda remove --name myenv --all
+```
+
+```shell
+  conda install torch=1.9.0
+
+  PackagesNotFoundError: The following packages are not available from current channels:
+
+    - torch=1.9.0
+  ...
+
+  # using pip then
+  conda install -n myenv pip
+  conda activate myenv
+  pip install -r requirement.txt
+  conda install ipython
+```
+
+usint test20210916
