@@ -384,3 +384,18 @@ using selection to clipboard and mouse middle key to paste is reasonable
 Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
 
 using mkdir /some/directory/to/somewhere/ and then cd !$
+
+apt install speedtest-cli   # for internet speed test from remote
+speedtest
+
+apt install iperf  # for testing LAN speed
+iperf -s # server
+iperf -c <server-IP> # client mod
+kali@kali:~$ iperf -s
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size:  128 KByte (default)
+------------------------------------------------------------
+[  1] local 192.168.1.35 port 5001 connected with 192.168.1.16 port 51220
+[ ID] Interval       Transfer     Bandwidth
+[  1] 0.0000-10.1839 sec  83.9 MBytes  69.1 Mbits/sec
