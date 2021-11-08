@@ -192,3 +192,124 @@ TCP window size:  128 KByte (default)
 [  1] local 192.168.1.35 port 5001 connected with 192.168.1.16 port 51220
 [ ID] Interval       Transfer     Bandwidth
 [  1] 0.0000-10.1839 sec  83.9 MBytes  69.1 Mbits/sec
+
+#### ask for static IP
+not very good with netgear wifi router
+is it a wifi thing??
+
+```shell
+    ifconfig
+    ip a
+    sudo vim /etc/network/interfaces
+    # set static ip for interface
+    sudo systemctl restart network.service
+    sudo systemctl restart NetworkManager.service
+    # or reboot
+    ip a
+    sudo vim /etc/resolv.cong # nameserver 8.8.8.8
+    ping google.com
+```
+
+```interfaces
+    # auto lo
+    # iface lo inet loopback
+
+    # auto eth0
+    # allow-hotplug eth0
+    # iface eth0 inet dhcp
+
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.100/24
+    gateway 192.168.0.1
+
+    auto wlan0
+    iface wlan0 inet static
+    address 192.168.0.100/24
+    gateway 192.168.0.1
+```
+
+from: https://forums.kali.org/showthread.php?20846-Troubleshooting-Internet-Network-Access
+#### IP addr
+ifconfig eth0
+dhclient eth0                   # ask for a available ip addr
+ifconfig eth0 192.168.1.25/24   # set ip on the fly
+cp -f /etc/network/interfaces{,.bak}
+sudo vim /etc/network/interafces
+```interfaces
+    ## change from
+    auto eth0
+    iface eth0 inet dhcp
+    ## to
+    iface eth0 inet static
+    address 192.168.1.25
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+```
+
+#### gateway
+route -n
+route add default gw 192.168.1.200 eth0
+route delete default gw 192.168.1.2 eth0
+
+#### DNS
+```shell
+cat /etc/resolv.conf
+cp -f /etc/resolv.conf{,.bak}
+vim /etc/resolv.conf
+# openDNS: 208.67.222.222     208.67.220.220
+# Google:  8.8.8.8    8.8.4.4
+cat /etc/hosts
+```
+
+#### network connectivity
+ping -c4 google.com
+traceroute www.kali.org
+
+#### proxy
+```shell
+root@kali ~$ export http_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+root@kali ~$ export ftp_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+vim /etc/bash.bashrc
+vim /etc/apt.conf
+# Proxy config
+# Acquire::http::Proxy "http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080";
+```
+
+#### virtual Machine Network adapter
+bridged: separate IP from host but the same network
+NAT:    the same IP and the same network
+Host Only: access to the host, but not access to the internet
+LAN segment: no access to the host, the VM in the same LAN segment
+
+
+#### OS
+id # for user name  and groups
+uname -a
+lsb_release -a  # kali release info
+    No LSB modules are available.
+    Distributor ID: Kali
+    Description:    Kali GNU/Linux Rolling
+    Release:        2021.2
+    Codename:       kali-rolling
+
+#### hardware
+lspci
+lsusb
+lsmod # Kernel modules(drivers)
+
+#### wifi
+airmon-ng --verbose     # air monster?, 233333
+rfkill list    #  enable or disable wireless devices
+iwconfig
+
+#### repository issue
+```shell
+    cat /etc/apt/sources.list
+    # unable to locate package xyz
+    apt update; apt-cache search xyz;
+    ## downloading from the repository slow,
+    ## found a fast mirror site, and add to /etc/apt/sources.list then apt update
+    ## download ISO slow
+    ## use Torrent
+```
