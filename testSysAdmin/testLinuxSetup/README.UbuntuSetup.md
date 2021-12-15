@@ -321,6 +321,59 @@ For Firefox do this:
     Change it to true by double-clicking.
     Save and restart Firefox.
 
+#### firefox tab appearance
+
+I can hard see the tabs, change its appearence
+from: https://superuser.com/questions/1653533/how-to-switch-back-to-firefox-old-style-of-tabs
+n Firefox 91, restore the old tab style as follows:
+
+```shell
+    Open about:config.
+
+    Search for toolkit.legacyUserProfileCustomizations.stylesheets.
+
+    Double-click the value to set it to true.
+
+    Open about:support.
+
+    Search for Profile Directory (or Profile Folder).
+
+    Click Open Directory (or Open Folder).
+
+    Create a directory named chrome.
+
+    Navigate into the chrome directory.
+
+    Create a new file inside chrome named userChrome.css.
+
+    Copy and paste the following code into userChrome.css:
+
+     .tab-background {
+       border-radius: 0px 0px !important;
+       margin-bottom: 0px !important;
+     }
+
+     .tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+       background-color: color-mix(in srgb, currentColor 5%, transparent);
+     }
+
+     menupopup>menu,
+     menupopup>menuitem {
+       padding-block: 2px !important;
+     }
+
+     :root {
+       --arrowpanel-menuitem-padding: 2px !important;
+     }
+
+    Save the file.
+
+    Restart Firefox.
+
+	The old tab style is restored.
+```
+
+
 #### vim copy and paste x11
 apt install vim-gtk3
 vim --version # look for xterm_clipboard
