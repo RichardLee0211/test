@@ -917,3 +917,13 @@ plus I don't wanna keep google things for rise my LinuxOS(set-up)
 
 it turns out install i3 in Ubuntu 18.04 is a pain.
 try other Linux distro, I would need a well documented one
+
+
+format disk to exfat for backup use
+--------------------------------------------------------------------------------
+
+sudo apt install exfat-fuse exfat-utils
+sudo fdisk -l
+sudo wipefs -a /dev/sdb
+sudo fdisk /dev/sdb
+sudo mkfs.exfat -n myStore4B /dev/sdb
