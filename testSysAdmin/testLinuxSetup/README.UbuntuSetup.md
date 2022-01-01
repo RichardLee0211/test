@@ -922,8 +922,98 @@ try other Linux distro, I would need a well documented one
 format disk to exfat for backup use
 --------------------------------------------------------------------------------
 
-sudo apt install exfat-fuse exfat-utils
-sudo fdisk -l
-sudo wipefs -a /dev/sdb
-sudo fdisk /dev/sdb
-sudo mkfs.exfat -n myStore4B /dev/sdb
+well, disk format should really use a GUI, as I do not format disk every week
+I properly do it every two year
+- low-level format: done by manufactures
+- Partitioning: disk into sections
+    partition editor: fdisk, GNU Parted or Disk Uitlity
+- High-level formatting: file system, cluster size, partition label
+
+use GUID for bigger than 2TB harddrive
+use exfat to make it readable and writable for all mac, win and Linux
+NTFS for windows
+Ext4 for Linux
+
+```shell
+    ## didn't learn it completely
+    sudo apt install exfat-fuse exfat-utils
+    sudo fdisk -l
+    sudo wipefs -a /dev/sdb
+    sudo fdisk /dev/sdb
+    sudo mkfs.exfat -n myStore4B /dev/sdb
+```
+
+BorgBackup
+--------------------------------------------------------------------------------
+from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
+borg init --encryption=repokey /path/to/repo
+borg -v -p create /path/to/repo::Monday ~/src ~/Documents
+borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
+
+```bash
+	#!/bin/sh
+
+	# Setting this, so the repo does not need to be given on the commandline:
+	export BORG_REPO=ssh://username@example.com:2022/~/backup/main
+
+	# See the section "Passphrase notes" for more infos.
+	export BORG_PASSPHRASE='XYZl0ngandsecurepa_55_phrasea&&123'
+
+	# some helpers and error handling:
+	info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
+	trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
+
+	info "Starting backup"
+
+	# Backup the most important directories into an archive named after
+	# the machine this script is currently running on:
+
+	borg create                         \
+	    --verbose                       \
+	    --filter AME                    \
+	    --list                          \
+	    --stats                         \
+	    --show-rc                       \
+	    --compression lz4               \
+	    --exclude-caches                \
+	    --exclude '/home/*/.cache/*'    \
+	    --exclude '/var/tmp/*'          \
+	                                    \
+	    ::'{hostname}-{now}'            \
+	    /etc                            \
+	    /home                           \
+	    /root                           \
+	    /var                            \
+
+	backup_exit=$?
+
+	info "Pruning repository"
+
+	# Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
+	# archives of THIS machine. The '{hostname}-' prefix is very important to
+	# limit prune's operation to this machine's archives and not apply to
+	# other machines' archives also:
+
+	borg prune                          \
+	    --list                          \
+	    --prefix '{hostname}-'          \
+	    --show-rc                       \
+	    --keep-daily    7               \
+	    --keep-weekly   4               \
+	    --keep-monthly  6               \
+
+	prune_exit=$?
+
+	# use highest exit code as global exit code
+	global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+
+	if [ ${global_exit} -eq 0 ]; then
+	    info "Backup and Prune finished successfully"
+	elif [ ${global_exit} -eq 1 ]; then
+	    info "Backup and/or Prune finished with warnings"
+	else
+	    info "Backup and/or Prune finished with errors"
+	fi
+
+	exit ${global_exit}
+```
