@@ -946,10 +946,165 @@ Ext4 for Linux
 BorgBackup
 --------------------------------------------------------------------------------
 from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
-borg init --encryption=repokey /path/to/repo
-borg -v -p create /path/to/repo::Monday ~/src ~/Documents
-borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
 
+```shell
+  borg init --encryption=repokey /path/to/repo
+  borg -v -p create /path/to/repo::Monday ~/src ~/Documents
+  borg create -v -p --stats /path/to/repo::Tuesday ~/src ~/Documents
+
+  # initialize a repository:
+  borg init /tmp/borg
+
+  # create a "first" archive inside this repo (verbose):
+  borg create --progress --stats /tmp/borg::first ~/Desktop
+
+  # create a "second" archive (less verbose):
+  borg create /tmp/borg::second ~/Desktop
+
+  # even more verbose:
+  borg create -v --stats /tmp/borg::third ~/Desktop
+
+  # list repo / archive contents:
+  borg list /tmp/borg
+  borg list /tmp/borg::first
+
+  # extract ("restore") from an archive to cwd:
+  mkdir test ; cd test
+  borg extract /tmp/borg::third
+
+  # simulate extraction (good test):
+  borg extract -v --dry-run /tmp/borg::third
+
+  # check consistency of repo:
+  borg check /tmp/borg
+
+  # info about archive:
+  borg info /tmp/borg::first
+
+  # delete archive:
+  borg delete /tmp/borg::first
+
+  # delete repo:
+  borg delete /tmp/borg
+
+  # connect to remote borg via ssh:
+  # remote borg needs to be compatible with local
+  borg init ssh://user@host:22/mnt/backup/borg
+  borg create ssh://user@host:22/mnt/backup/borg::first ~
+  # also possible: using sshfs or other locally mounted
+  # network filesystems,  but be careful: locks, perf.
+
+```
+
+
+expected backup performance:
+E.g., for this setup:
+
+- server grade machine (4C/8T 2013 Xeon, 64GB RAM, 2x good 7200RPM disks)
+- local zfs filesystem (mirrored) containing the backup source data
+- repository is remote (does not matter much for unchanged files)
+- backup job runs while machine is otherwise idle
+The observed performance is that Borg can process about 1 million unchanged files (and a few small changed ones) in 4 minutes!
+
+```shell
+
+## 20GB test on borg on backup performance
+## this is a SATAII SSD to harddrive (~130MB/s)
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:38:49
+	╰─○ borg -vp create --stat ./::test_20220103_01 ~/Downloads/_youtube/20220103_backuptest
+	Creating archive at "./::test_20220103_01"
+	6.87 GB O 6.88 GB C 6.88 GB D 32 N home/vislab/Downloads/_youtube/XXXXX
+	Archive name: test_20220103_01
+	Archive fingerprint: 03fc80a1b4ccccfe73bf08d731878cf8c496c80fd7d582e3e00c557d269fde40
+	Time (start): Mon, 2022-01-03 10:39:07
+	Time (end):   Mon, 2022-01-03 10:43:29
+	Duration: 4 minutes 22.72 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB             19.33 GB
+	All archives:               22.22 GB             22.25 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7724                 8865
+	------------------------------------------------------------------------------
+
+
+## this is fast when change a file
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:56:04
+	╰─○ borg create --list --filter=AME --stats ./::test20220103_02 ~/Downloads/_youtube/20220103_backuptest
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/XXXXXXXXXXXXXXXXX
+	------------------------------------------------------------------------------
+	Archive name: test20220103_02
+	Archive fingerprint: 8bd5c4a3edd319b4f998ea5bab213b7768466ae0c431fffbff61baf9ca8733ce
+	Time (start): Mon, 2022-01-03 10:56:59
+	Time (end):   Mon, 2022-01-03 10:57:05
+	Duration: 6.50 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB            110.79 kB
+	All archives:               44.44 GB             44.50 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7726                17730
+	------------------------------------------------------------------------------
+
+## when change a directory name, Added to the list
+## mv ads ads_01
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:57:06
+	╰─○ borg create --list --filter=AME --stats ./::test20220103_03 ~/Downloads/_youtube/20220103_backuptest
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/ads_01/XXXX
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/XXXXXXXXXXXX/XXXX
+	------------------------------------------------------------------------------
+	Archive name: test20220103_03
+	Archive fingerprint: 79eefad13a37de68fca4fa222f96502ad29ba94443cdf69c834f160b3f901e5d
+	Time (start): Mon, 2022-01-03 10:59:38
+	Time (end):   Mon, 2022-01-03 10:59:46
+	Duration: 7.82 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB            314.59 kB
+	All archives:               66.65 GB             66.76 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7728                26595
+	------------------------------------------------------------------------------
+
+
+
+## turns out, backup to SSD is not good, the backup time is longer ?
+	(base) ╭─vislab at vislab-inwin in ~/Downloads/_youtube/ssd_backup 22-01-03 - 10:47:16
+	╰─○ borg create --list --stats ./::test20220103_01 ../20220103_backuptest
+	A ../20220103_backuptest/_youtube/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXX.csv
+	A ../20220103_backuptest/_youtube/XXXXXXXXX/XXXX
+	d ../20220103_backuptest
+	------------------------------------------------------------------------------
+	Archive name: test20220103_01
+	Archive fingerprint: 66d96d2e8547993a5c75e2f05b78766ab975cafa254c7206e4e18e811e9fb271
+	Time (start): Mon, 2022-01-03 10:47:29
+	Time (end):   Mon, 2022-01-03 10:52:41
+	Duration: 5 minutes 12.36 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB             19.33 GB
+	All archives:               22.22 GB             22.25 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7651                 8804
+	------------------------------------------------------------------------------
+
+
+```
+
+
+automate backup script
 ```bash
 	#!/bin/sh
 
@@ -1016,4 +1171,78 @@ borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
 	fi
 
 	exit ${global_exit}
+```
+
+
+manage media files
+--------------------------------------------------------------------------------
+
+#### exiftool
+mp4, mkv, webm, mov
+
+```shell
+exiftool --common -json <filename.mp4>
+
+## Renaming Image Files According to their Creation Date
+exiftool '-filename<CreateDate' -d %y%m%d-%H%M%S%%-03.c.%%e -r ./imagepath
+## This would rename a file taken on Feb 1, 2021, at 14:08 to 20210201-1408-000.xxx.
+
+
+exiftool --common -json -r <dir>  >> output.txt   # give me a list of files metadata, cool
+
+exiftool --common -json -r ./  > output.txt
+
+time exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov --common -json -r ./ > output.txt
+## use this one
+time exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov  -ext rmvb -ext avi -ext flv -ext m4v -json -r ./ > output.txt     # remove --common as I need filesize for mkv file
+
+# ======== ./_edu/SBU_CS519DS/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4 [3788/3788]
+#   895 directories scanned
+#  3788 image files read
+# exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov -ext rmvb -ext avi     38.25s user 8.30s system 17% cpu 4:25.29 total
+## 4 min to scan 3788 files, not bad
+
+
+## does it worth the cpu time to convert all video file to one format ??
+
+exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov --common -json -r ./ > output.txt
+
+exiftool -T -createdate -aperture -shutterspeed -iso dir > out.txt
+## List specified meta information in tab-delimited column form for all images in "dir" to an output text file named "out.txt".
+
+
+## we don't need -l here
+exiftool --common -json -l -r ./  > output.txt
+# [{
+#   "SourceFile": "./apple/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4",
+#   "ExifToolVersion": {
+#     "desc": "ExifTool Version Number",
+#     "val": 12.30
+#   },
+#   "Directory": {
+#     "desc": "Directory",
+#     "val": "./apple"
+#   },
+#   "FileModifyDate": {
+#     "desc": "File Modification Date/Time",
+#     "val": "2021:09:14 15:17:14-04:00"
+#   },
+#   "FileAccessDate": {
+#     "desc": "File Access Date/Time",
+#     "val": "2021:09:14 15:17:14-04:00"
+#   },
+#   # ...
+# ]
+
+
+(base) ➜  ads exiftool -common -csv -r ./ > out.csv
+    2 directories scanned
+   10 image files read
+(base) ➜  ads more out.csv       # don't have Durations, I also need creation date
+SourceFile,FileName,FileSize,ImageSize
+./apple/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4,XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4,30 MiB,1920x1080
+
+## without -common
+## SourceFile,AudioBitsPerSample,AudioChannels,AudioFormat,AudioSampleRate,AverageBitrate,AvgBitrate,Balance,BitDepth,BufferSize,ByteOrderMark,CodecID,ColorRepresentation,CompatibleBrands,CompressorID,CreateDate,CurrentTime,Directory,DocType,DocTypeReadVersion,DocTypeVersion,Duration,EBMLReadVersion,EBMLVersion,Encoder,Error,ExifToolVersion,FileAccessDate,FileInodeChangeDate,FileModifyDate,FileName,FilePermissions,FileSize,FileType,FileTypeExtension,GraphicsMode,HandlerDescription,HandlerType,HandlerVendorID,ImageHeight,ImageSize,ImageWidth,LineCount,MajorBrand,MatrixStructure,MaxBitrate,MediaCreateDate,MediaDataOffset,MediaDataSize,MediaDuration,MediaHeaderVersion,MediaLanguageCode,MediaModifyDate,MediaTimeScale,Megapixels,MIMEEncoding,MIMEType,MinorVersion,ModifyDate,MovieHeaderVersion,MuxingApp,Newlines,NextTrackID,OpColor,PixelAspectRatio,PosterTime,PreferredRate,PreferredVolume,PreviewDuration,PreviewTime,Rotation,SelectionDuration,SelectionTime,SourceImageHeight,SourceImageWidth,TagName,TagString,TimecodeScale,TimeScale,TrackCreateDate,TrackDuration,TrackHeaderVersion,TrackID,TrackLanguage,TrackLayer,TrackModifyDate,TrackNumber,TrackType,TrackVolume,VideoFrameRate,VideoScanType,WordCount,WritingApp,XResolution,YResolution
+
 ```
