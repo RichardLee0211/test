@@ -1,14 +1,169 @@
 BorgBackup
 --------------------------------------------------------------------------------
-from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
-borg init --encryption=repokey /path/to/repo
-borg -v -p create /path/to/repo::Monday ~/src ~/Documents
-borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
-
 ### so this is fast
 time borg -vp create --files-cache=ctime,size --list --filter=AME --stats ./::netStore5_B_20220103 /media/wenchen/netStore00/netStore01
 
 time borg -vp create --files-cache=ctime,size --list --filter=AME --stats ./::netStore5_B_{now:%Y%m%d} /media/wenchen/netStore00/netStore01
+
+
+from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
+
+```shell
+  borg init --encryption=repokey /path/to/repo
+  borg -v -p create /path/to/repo::Monday ~/src ~/Documents
+  borg create -v -p --stats /path/to/repo::Tuesday ~/src ~/Documents
+
+  # initialize a repository:
+  borg init /tmp/borg
+
+  # create a "first" archive inside this repo (verbose):
+  borg create --progress --stats /tmp/borg::first ~/Desktop
+
+  # create a "second" archive (less verbose):
+  borg create /tmp/borg::second ~/Desktop
+
+  # even more verbose:
+  borg create -v --stats /tmp/borg::third ~/Desktop
+
+  # list repo / archive contents:
+  borg list /tmp/borg
+  borg list /tmp/borg::first
+
+  # extract ("restore") from an archive to cwd:
+  mkdir test ; cd test
+  borg extract /tmp/borg::third
+
+  # simulate extraction (good test):
+  borg extract -v --dry-run /tmp/borg::third
+
+  # check consistency of repo:
+  borg check /tmp/borg
+
+  # info about archive:
+  borg info /tmp/borg::first
+
+  # delete archive:
+  borg delete /tmp/borg::first
+
+  # delete repo:
+  borg delete /tmp/borg
+
+  # connect to remote borg via ssh:
+  # remote borg needs to be compatible with local
+  borg init ssh://user@host:22/mnt/backup/borg
+  borg create ssh://user@host:22/mnt/backup/borg::first ~
+  # also possible: using sshfs or other locally mounted
+  # network filesystems,  but be careful: locks, perf.
+
+```
+
+
+#### expected backup performance:
+E.g., for this setup:
+
+- server grade machine (4C/8T 2013 Xeon, 64GB RAM, 2x good 7200RPM disks)
+- local zfs filesystem (mirrored) containing the backup source data
+- repository is remote (does not matter much for unchanged files)
+- backup job runs while machine is otherwise idle
+The observed performance is that Borg can process about 1 million unchanged files (and a few small changed ones) in 4 minutes!
+
+#### experiments
+```shell
+
+## 20GB test on borg on backup performance
+## this is a SATAII SSD to harddrive (~130MB/s)
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:38:49
+	╰─○ borg -vp create --stat ./::test_20220103_01 ~/Downloads/_youtube/20220103_backuptest
+	Creating archive at "./::test_20220103_01"
+	6.87 GB O 6.88 GB C 6.88 GB D 32 N home/vislab/Downloads/_youtube/XXXXX
+	Archive name: test_20220103_01
+	Archive fingerprint: 03fc80a1b4ccccfe73bf08d731878cf8c496c80fd7d582e3e00c557d269fde40
+	Time (start): Mon, 2022-01-03 10:39:07
+	Time (end):   Mon, 2022-01-03 10:43:29
+	Duration: 4 minutes 22.72 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB             19.33 GB
+	All archives:               22.22 GB             22.25 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7724                 8865
+	------------------------------------------------------------------------------
+
+
+## this is fast when change a file
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:56:04
+	╰─○ borg create --list --filter=AME --stats ./::test20220103_02 ~/Downloads/_youtube/20220103_backuptest
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/XXXXXXXXXXXXXXXXX
+	------------------------------------------------------------------------------
+	Archive name: test20220103_02
+	Archive fingerprint: 8bd5c4a3edd319b4f998ea5bab213b7768466ae0c431fffbff61baf9ca8733ce
+	Time (start): Mon, 2022-01-03 10:56:59
+	Time (end):   Mon, 2022-01-03 10:57:05
+	Duration: 6.50 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB            110.79 kB
+	All archives:               44.44 GB             44.50 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7726                17730
+	------------------------------------------------------------------------------
+
+## when change a directory name, Added to the list
+## mv ads ads_01
+	(base) ╭─vislab at vislab-inwin in /media/vislab/Big3TB/20220103_testbackup 22-01-03 - 10:57:06
+	╰─○ borg create --list --filter=AME --stats ./::test20220103_03 ~/Downloads/_youtube/20220103_backuptest
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/ads_01/XXXX
+	A /home/vislab/Downloads/_youtube/20220103_backuptest/_youtube/XXXXXXXXXXXX/XXXX
+	------------------------------------------------------------------------------
+	Archive name: test20220103_03
+	Archive fingerprint: 79eefad13a37de68fca4fa222f96502ad29ba94443cdf69c834f160b3f901e5d
+	Time (start): Mon, 2022-01-03 10:59:38
+	Time (end):   Mon, 2022-01-03 10:59:46
+	Duration: 7.82 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB            314.59 kB
+	All archives:               66.65 GB             66.76 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7728                26595
+	------------------------------------------------------------------------------
+
+
+
+## turns out, backup to SSD is not good, the backup time is longer ?
+	(base) ╭─vislab at vislab-inwin in ~/Downloads/_youtube/ssd_backup 22-01-03 - 10:47:16
+	╰─○ borg create --list --stats ./::test20220103_01 ../20220103_backuptest
+	A ../20220103_backuptest/_youtube/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXX.csv
+	A ../20220103_backuptest/_youtube/XXXXXXXXX/XXXX
+	d ../20220103_backuptest
+	------------------------------------------------------------------------------
+	Archive name: test20220103_01
+	Archive fingerprint: 66d96d2e8547993a5c75e2f05b78766ab975cafa254c7206e4e18e811e9fb271
+	Time (start): Mon, 2022-01-03 10:47:29
+	Time (end):   Mon, 2022-01-03 10:52:41
+	Duration: 5 minutes 12.36 seconds
+	Number of files: 210
+	Utilization of max. archive size: 0%
+	------------------------------------------------------------------------------
+	                       Original size      Compressed size    Deduplicated size
+	This archive:               22.22 GB             22.25 GB             19.33 GB
+	All archives:               22.22 GB             22.25 GB             19.33 GB
+
+	                       Unique chunks         Total chunks
+	Chunk index:                    7651                 8804
+	------------------------------------------------------------------------------
+
+
+```
 
 
 ```bash
