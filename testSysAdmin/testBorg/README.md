@@ -5,7 +5,7 @@ borg init --encryption=repokey /path/to/repo
 borg -v -p create /path/to/repo::Monday ~/src ~/Documents
 borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
 
-### so this is fast
+### use this to backup my files !!
 time borg -vp create --files-cache=ctime,size --list --filter=AME --stats ./::netStore5_B_20220103 /media/wenchen/netStore00/netStore01
 
 time borg -vp create --files-cache=ctime,size --list --filter=AME --stats ./::netStore5_B_{now:%Y%m%d} /media/wenchen/netStore00/netStore01
