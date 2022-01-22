@@ -122,7 +122,7 @@ docker logs -f <containerID>
 	docker exec -it 413a6101347a mysql -p
 
 	docker run -it --network todo-app nicolaka/netshoot
-# read the article for review
+    # read the article for review
 
 	docker run -dp 3000:3000 \
 		-w /app -v "$(pwd):/app" \
@@ -135,7 +135,7 @@ docker logs -f <containerID>
 		sh -c "yarn install && yarn run dev"
 ```
 
-###using docker compose
+### using docker compose
 docker-compose version
 
 ```docker-compose.yml
@@ -226,12 +226,12 @@ docker pull pmckee/hello-world
 version: '2'
 services:
 	web:
-			build:
-				context:
-				dockerfile: Dockerfile
-			container_name: web
-			ports:
-				- "8080:80"
+        build:
+            context:
+            dockerfile: Dockerfile
+        container_name: web
+        ports:
+            - "8080:80"
 
 	db:
 		image: mongo:3.6.1
@@ -263,7 +263,7 @@ learning.edx.org
 ================================================================================
 from: https://learning.edx.org/course/course-v1:RedHat+DO081x+2T2017/block-v1:RedHat+DO081x+2T2017+type@sequential+block@a9a30e15abc9490aaa821ce2df1becc0/block-v1:RedHat+DO081x+2T2017+type@vertical+block@6d32f4cba2144e58b9d93045c6286e05
 
-something
+minishift
 ---------------------
 
 install minishift on macOS:
@@ -414,72 +414,75 @@ first start log
 ```
 
 some concepts: docker pods kubenet and openshift
+```shell
+    minishift setup-cdk
+    minishift status
+    minishift config view
 
-minishift setup-cdk
-minishift status
-minishift config view
+    echo $MINISHIFT_USERNAME # check runtime environment set up
+    minishift start
+    oc version
+    oc login -u system:admin
+    oc get pods -n default
+    minishift ssh
+    docker ps | grep openshift   # inside the minishift VM
+    exit
+    minishift stop
+```
 
-echo $MINISHIFT_USERNAME # check runtime environment set up
-minishift start
-oc version
-oc login -u system:admin
-oc get pods -n default
-minishift ssh
-docker ps | grep openshift   # inside the minishift VM
-exit
-minishift stop
+#### inside minishift ssh, I can run docker command
 
-inside minishift ssh, I can run docker command
+```shell
+    docker run --name mysql-basic \
+     -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 \
+     -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 \
+     -d mysql:5.6
 
-docker run --name mysql-basic \
- -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 \
- -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 \
- -d mysql:5.6
+    docker pull mysql
+    docker images
 
-docker pull mysql
-docker images
-
-docker run --name mysql-custom \
-  -e MYSQL_USER=redhat -e MYSQL_PASSWORD=r3dh4t \
-  -d mysql:5.5
+    docker run --name mysql-custom \
+      -e MYSQL_USER=redhat -e MYSQL_PASSWORD=r3dh4t \
+      -d mysql:5.5
 
 
-docker run --name demo-container-02 -d rhel7.3 dd if=/dev/zero of=/dev/null
-docker run --name demo-container-04 -it rhel7.3 /bin/bash
-docker stop demo-container-04
-docker rm demo-container-04
+    docker run --name demo-container-02 -d rhel7.3 dd if=/dev/zero of=/dev/null
+    docker run --name demo-container-04 -it rhel7.3 /bin/bash
+    docker stop demo-container-04
+    docker rm demo-container-04
 
-docker run --name demo-container -d rhscl/httpd-24-rhel7
-docker inspect -f '{{ .NetworkSetting.IPAddress }}' demo-1-httpd
-docker exec -it demo-1-httpd /bin/bash
-docker rm $(docker ps -aq)
+    docker run --name demo-container -d rhscl/httpd-24-rhel7
+    docker inspect -f '{{ .NetworkSetting.IPAddress }}' demo-1-httpd
+    docker exec -it demo-1-httpd /bin/bash
+    docker rm $(docker ps -aq)
 
-[docker@minishift ~]$ docker inspect -f '{{ .NetworkSettings.IPAddress }}' mysql-2nd
-172.17.0.10
+    [docker@minishift ~]$ docker inspect -f '{{ .NetworkSettings.IPAddress }}' mysql-2nd
+    172.17.0.10
 
-docker iamge registries: place to share Docker images
-- docker.io
-- registry.access.redhat.com
+    docker image registries: place to share Docker images
+    - docker.io
+    - registry.access.redhat.com
 
-docker save -o mysql.tar registry.access.redhat.com/rhscl/mysql-56-rhel7
-docker load -i mysql.tar
-docker tag nginx nginx
-docker push nginx
-docker rmi $(docker images -q)
+    docker save -o mysql.tar registry.access.redhat.com/rhscl/mysql-56-rhel7
+    docker load -i mysql.tar
+    docker tag nginx nginx
+    docker push nginx
+    docker rmi $(docker images -q)
 
-docker diff mysql-basic
-docker commit mysql-basic mysql-custom
+    docker diff mysql-basic
+    docker commit mysql-basic mysql-custom
 
-docker run -d --name official-httpd -p 8180:80 centos/httpd
-docker exec -it official-httpd /bin/hash
-# change some files
-docker stop official-httpd
-docker commit -a 'author name' -m 'changed some file' official-httpd
-docker images
-docker tag 05b78342c586 do180/custom-httpd
-docker tage do180/custom-httpd infrastrure.lab.example.com:5000/do180/custom-httpd:v1.0
-docker push infrastrue.lab.example.com:5000/do180/custom-httpd:v1.0
-docker-registry-clki infrastructure.lab.example.com:5000 search custom-httpd
+    docker run -d --name official-httpd -p 8180:80 centos/httpd
+    docker exec -it official-httpd /bin/hash
+    # change some files
+    docker stop official-httpd
+    docker commit -a 'author name' -m 'changed some file' official-httpd
+    docker images
+    docker tag 05b78342c586 do180/custom-httpd
+    docker tage do180/custom-httpd infrastrure.lab.example.com:5000/do180/custom-httpd:v1.0
+    docker push infrastrue.lab.example.com:5000/do180/custom-httpd:v1.0
+    docker-registry-clki infrastructure.lab.example.com:5000 search custom-httpd
+```
 
 DONE:
 /usr/bin/docker-current: read /etc/containers/policy.json: input/output error.
