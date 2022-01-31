@@ -1,9 +1,27 @@
 BorgBackup
 --------------------------------------------------------------------------------
 from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
+```
+## create archive
 borg init --encryption=repokey /path/to/repo
 borg -v -p create /path/to/repo::Monday ~/src ~/Documents
 borg create --stats /path/to/repo::Tuesday ~/src ~/Documents
+
+## mount and inspect
+borg mount ./::SSD_1TB_B_20220117 /home/me/ssd
+borg umount /home/me/ssd
+
+## extract
+## there is more, Ubuntu repository use 1.1.15, which has a bug where % sign in
+## filename is used as format sign in python string. Need to download lastest version from
+## https://github.com/borgbackup/borg/releases
+## for version 1.1.17 for fixed bug
+## this is stupid, but some filename is not up to me, they titles of others' videos
+./test20210118/borg-linux64 -p extract  --numeric-owner --nobsdflags  --noacls --noxattrs ../../SSD_1TB_B/SSD_1TB_B::SSD_1TB_B_20220117
+
+
+
+```
 
 ### use this to backup my files !!
 
@@ -37,7 +55,8 @@ from: https://borgbackup.readthedocs.io/en/stable/quickstart.html
 
   # extract ("restore") from an archive to cwd:
   mkdir test ; cd test
-  borg extract /tmp/borg::third
+  borg extract --list /tmp/borg::third
+  borg -vp extract  /tmp/borg::third
 
   # simulate extraction (good test):
   borg extract -v --dry-run /tmp/borg::third
