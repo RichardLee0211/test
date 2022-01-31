@@ -88,7 +88,8 @@ then use this in docker-compose.yml
     volumes:
       - ./wordpress_data:/var/www/html
 
-TODO: how to back up da_data and wordpress_data
+DONE: how to back up da_data and wordpress_data
+use Borg
 
 #### something about wordpress
 

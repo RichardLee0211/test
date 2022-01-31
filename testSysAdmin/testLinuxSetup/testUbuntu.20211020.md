@@ -1,21 +1,3 @@
-#### fix the black screen after update issue from Ubuntu 18.04 to Ubuntu 20
-
-dmesg
-
-from: https://askubuntu.com/questions/162075/my-computer-boots-to-a-black-screen-what-options-do-i-have-to-fix-it/162078#162078
-
-sudo apt remove --purge '^nvidia-.*'
-sudo apt install ubuntu-desktop
-sudo rm /et/cX11/xorg.confg
-echo "inouveau" | sudo tee -a /etc/modules
-
-this works, from: https://askubuntu.com/questions/1124057/ubuntu-18-04-stuck-at-purple-loading-screen-after-new-update
-```shell
-	sudo apt-get update
-	sudo apt-get install --reinstall lightdm
-	sudo dpkg-reconfigure lightdm
-```
-
 ##### debug
 ```shell
 (base) ╭─vislab at vislab-inwin in ~ 21-10-11 - 16:07:58
@@ -1481,17 +1463,6 @@ this works, from: https://askubuntu.com/questions/1124057/ubuntu-18-04-stuck-at-
 	[  4185.347] (WW) xf86CloseConsole: VT_GETMODE failed: Input/output error
 	[  4185.347] (WW) xf86CloseConsole: VT_ACTIVATE failed: Input/output error
 	[  4185.348] (II) Server terminated successfully (0). Closing log file.
-
-```
-
-```shell
-	╰─○ sudo nvidia-detector
-	[sudo] password for vislab:
-	nvidia-driver-470
-	(base) ╭─vislab at vislab-inwin in ~ 21-10-11 - 19:24:54
-	╰─○ dpkg -l | grep nvidia
-	ii  libnvidia-compute-460:amd64                   460.91.03-0ubuntu0.20.04.1            amd64        NVIDIA libcompute package
-	rc  screen-resolution-extra                       0.18build1                            all          Extension for the nvidia-settings control panel
 ```
 
 #### do resolution 2560x1440 on SyncMaster SA850
@@ -1529,6 +1500,3 @@ this works, from: https://askubuntu.com/questions/1124057/ubuntu-18-04-stuck-at-
 	# lspci -nn # to view the devices
 	# check /var/log/Xorg.0.log
 ```
-
-#### install mate desktop for 1440P display
-from: https://linuxconfig.org/how-to-install-mate-desktop-on-ubuntu-20-04-focal-fossa-linux

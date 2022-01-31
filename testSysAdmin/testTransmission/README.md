@@ -11,6 +11,20 @@ transmission-remote --exit
 # or pkill -3 transmission-daemon
 ```
 
+
+sudo add-apt-repository ppa:transmissionbt/ppa
+sudo apt update
+sudo apt install transmission-gtk transmission-cli transmission-common transmission-daemon
+transmission-gtk --version
+systemctl status transmission-daemon.service
+sudo apt remove transmission*
+
+vim ~/.config/transmission/settings.json
+pkill -HUP transmission-da
+
+from: https://github.com/transmission/transmission/wiki/Configuration-Files
+from: https://help.ubuntu.com/community/TransmissionHowTo
+
 man transmission-remote
 ```
     EXAMPLES
