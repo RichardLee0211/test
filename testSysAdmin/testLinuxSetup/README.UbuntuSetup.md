@@ -620,7 +620,8 @@ mp4, mkv, webm, mov
 
 #### teamviewer
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-sudo apt install ./name.deb
+sudo apt install ./name.deb ## or
+sudo dpkg -i ./name.deb
 
 #### config window manager to fit my habits
 tile window to left, right, top-right, botton-right, full screen
