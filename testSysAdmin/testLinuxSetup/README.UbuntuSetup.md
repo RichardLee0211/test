@@ -623,6 +623,16 @@ wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 sudo apt install ./name.deb ## or
 sudo dpkg -i ./name.deb
 
+which teamviewer
+teamviewer -help
+teamviewer -info
+-> % sudo teamviewer -info
+ TeamViewer                           15.29.4  (DEB)
+ TeamViewer ID:                        XXXXXXXXX
+-> % sudo teamviewer passwd <abcd1234>
+
+
+
 #### config window manager to fit my habits
 tile window to left, right, top-right, botton-right, full screen
     ALT+SHIFT+hjkl
@@ -659,3 +669,14 @@ https://kde.org/plasma-desktop/
 ##### I wanna try out this one
 from: https://ubuntustudio.org/
 from: https://xubuntu.org/
+
+log 20220526 lab machine
+--------------------------------------------------------------------------------
+set up Ubuntu 22.04 for Docker GPU experience
+
+tried Code ready Container(CRC) from redhat and charted-kubeflow, microk8s, and juju
+killed Ubuntu desktop display, need reinstall system again, shoot
+
+Code
+Download folder
+broswer book marks
