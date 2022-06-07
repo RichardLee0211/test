@@ -191,12 +191,12 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
     bindkey "^[[A" up-line-or-beginning-search # Up
     bindkey "^[[B" down-line-or-beginning-search # Down
 
-  ## take one directory path to add to $PATH
-  pathadd() {
-      if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-          PATH="${PATH:+"$PATH:"}$1"
-      fi
-  }
+    ## take one directory path to add to $PATH
+    pathadd() {
+        if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+            PATH="${PATH:+"$PATH:"}$1"
+        fi
+    }
 ```
 
 #### ranger
