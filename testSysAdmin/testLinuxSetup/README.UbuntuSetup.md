@@ -687,3 +687,17 @@ killed Ubuntu desktop display, need reinstall system again, shoot
 Code
 Download folder
 broswer book marks
+
+####
+power consumption cli
+
+of course a file
+sudo cat /sys/class/powercap/*/energy_uj   ## on a laptop version Ubuntu
+sudo cat /sys/class/power_supply/BAT0/power_now
+
+from: https://askubuntu.com/questions/421955/software-to-find-desktop-power-usage
+Powertop, Powerstat, and Power Statistics programs only works for laptops
+
+it turns out, this is inconvenient by software
+from: https://web.archive.org/web/20210506133809/
+from: https://software.intel.com/content/www/us/en/develop/blogs/measuring-application-power-consumption-on-linux-operating-system.html
