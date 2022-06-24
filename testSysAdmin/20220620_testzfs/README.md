@@ -466,3 +466,129 @@ zfs
 Enter passphrase for 'tank':
 
 └> sudo zfs mount tank
+
+####
+do it in the lab
+
+ $ ls -alh /dev/disk/by-id
+ total 0
+ drwxr-xr-x 2 root root 280 Jun 24 10:38 .
+ drwxr-xr-x 6 root root 120 Jun 24 10:38 ..
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 ata-TOSHIBA-TR150_566B43XRKBZU -> ../../sdc
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 ata-TOSHIBA-TR150_566B43XRKBZU-part1 -> ../../sdc1
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 ata-TOSHIBA-TR150_566B43XRKBZU-part2 -> ../../sdc2
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 ata-TOSHIBA-TR150_566B43XRKBZU-part5 -> ../../sdc5
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 ata-WDC_WD1002FBYS-02A6B0_WD-WMATV7489288 -> ../../sda
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 ata-WDC_WD1002FBYS-02A6B0_WD-WMATV7650967 -> ../../sdb
+
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 wwn-0x50014ee00244392b -> ../../sda
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 wwn-0x50014ee057997a6c -> ../../sdb
+ lrwxrwxrwx 1 root root   9 Jun 24 10:38 wwn-0x5e83a972004710a9 -> ../../sdc
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 wwn-0x5e83a972004710a9-part1 -> ../../sdc1
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 wwn-0x5e83a972004710a9-part2 -> ../../sdc2
+ lrwxrwxrwx 1 root root  10 Jun 24 10:38 wwn-0x5e83a972004710a9-part5 -> ../../sdc5
+
+ one harddrive is broken, failed to assemble raid on vislab, shoot
+
+####
+ssh access machine behind firewall
+
+server$ ssh -R 9091:localhost:22 client.example.egg
+client$ ssh -p 9091 localhost
+
+<ip1> vislab-MS-7845
+<ip2> kali
+
+
+step 1: vislab >>> || >>> kali
+step 2: vislab <<< || <<< kali
+step 3: vislab <<< || <<< kali <<< laptop via internet
+
+-R [bind_addr:]port:host:hostport
+   <remote port  > :<local side >
+
+vislab $ ssh -R 9091:localhost:22 kali@<ip2>   ## connect from vislab to kali
+kali   $ ssh -p 9091 vislab@localhost                  ## connect from kali to vislab
+kali   $ netstat nr | less
+  Active Internet connections (w/o servers)
+  Proto Recv-Q Send-Q Local Address           Foreign Address         State
+  tcp        0      0 <kali_ip2>:ssh       <laptop_ip>:60379    ESTABLISHED   ## connection with laptop
+  tcp        0      0 <kali_ip2>:ssh       <vislab_ip1>:37332     ESTABLISHED   ## connection with vislab
+  tcp6       0      0 localhost:50440         localhost:9091          ESTABLISHED
+  tcp6       0      0 localhost:9091          localhost:50440         ESTABLISHED
+
+ssh -o ProxyCommand="ssh -W localhost:9091" kali-server-onInternet
+
+####
+set up vnc
+
+from: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-22-04
+from: https://bytexd.com/how-to-install-configure-vnc-server-on-ubuntu/
+
+VNC for Linux only,
+not share the X-server,
+Like X11 forwarding
+with realVNC client on mac
+
+```shell
+  $ sudo apt install xfce4 xfce4-goodies
+  $ sudo apt install tightvncserver
+  $ vncserver   ## start new server
+
+  You will require a password to access your desktops.
+
+  Password:
+  Warning: password truncated to the length of 8.
+  Verify:
+  Would you like to enter a view-only password (y/n)? n
+
+  Warning: vislab-MS-7845:1 is taken because of /tmp/.X11-unix/X1
+  Remove this file if there is no X server vislab-MS-7845:1
+
+  New 'X' desktop is vislab-MS-7845:2
+
+  Creating default startup script /home/vislab/.vnc/xstartup
+  Starting applications specified in /home/vislab/.vnc/xstartup
+  Log file is /home/vislab/.vnc/vislab-MS-7845:2.log
+
+  $ vncpasswd
+  $ vncserver -kill
+  $ cat ~/.vnc/*.pid ## list vnc server
+  $ ps aux | grep vnc
+  $ netstat -plnt
+
+  # vnc://<vislab_ip1>:5901    ## X server 1
+  # vnc://<vislab_ip1>:5902    ## X server 2
+
+  $ vncserver -localhost
+  $ sudo netstat -plnt  | grep vnc
+  Active Internet connections (only servers)
+  Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+  tcp        0      0 127.0.0.1:5901          0.0.0.0:*               LISTEN      10125/Xtightvnc
+
+
+  New 'X' desktop is vislab-MS-7845:1
+
+  Starting applications specified in /home/vislab/.vnc/xstartup
+  Log file is /home/vislab/.vnc/vislab-MS-7845:1.log
+
+  client $ ssh -L 59000:localhost:5901 -C -N -l sammy your_server_ip   ## channel via ssh
+  # ssh -L 59000:localhost:5901 -C -N -l vislab <vislab_ip1>
+  # -L <local:port>: <remote: port>
+  # remote server: 5901 is local only, and ssh into server:22 and then tunnel to 5901
+```
+
+
+
+####
+figure what Parent Process, am I in a subprocess of what?
+
+ $ echo $PPID; # the parent ID of current shell
+   6558
+ $ ps aux | grep $(echo $PPID)
+   vislab      6558  0.0  0.0  20744  4824 ?        Ss   11:28   0:02 tmux
+   vislab     30146  0.0  0.0  17864  2428 pts/5    S+   14:42   0:00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox 6558
+ $ echo $$ ## current id of the shell
+ $ ps aux | grep $(echo $$)
+   vislab     27553  0.0  0.0  22528  7216 pts/5    Ss   14:27   0:00 -zsh
+   vislab     30340  0.0  0.0  17864  2296 pts/5    S+   14:44   0:00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn --exclude-dir=.idea --exclude-dir=.tox 27553
