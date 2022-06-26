@@ -468,7 +468,39 @@ Enter passphrase for 'tank':
 └> sudo zfs mount tank
 
 ####
-do it in the lab
+rclone
+
+from: https://console.cloud.google.com/
+from: https://rclone.org/drive/
+
+```~/.config/rclone/rclone.conf
+  [googletest001]
+  type = drive
+  scope = drive.appfolder
+  root_folder_id = appDataFolder
+  token = {"access_token":"yaXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","token_type":"Bearer","refresh_token":"1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXc","expiry":"2022-06-24T19:57:51.193352847-04:00"}
+  team_drive =
+
+  [gdrive_mount_crypt]
+  type = crypt
+  remote = googletest001:
+  filename_encryption = standard
+  directory_name_encryption = false
+  password = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+ $ rclone about googletest001:
+ Used:    23.533 GiB
+ Trashed: 717.297 MiB
+ Other:   955.929 MiB
+
+ $ rclone copy --update --verbose --transfers 30 --checkers 8 \
+ --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 1s \
+ "/home/dave/Documents" "google-drive:LinuxDocs"
+
+
+####
+do zfs in the lab
 
  $ ls -alh /dev/disk/by-id
  total 0
@@ -488,7 +520,27 @@ do it in the lab
  lrwxrwxrwx 1 root root  10 Jun 24 10:38 wwn-0x5e83a972004710a9-part2 -> ../../sdc2
  lrwxrwxrwx 1 root root  10 Jun 24 10:38 wwn-0x5e83a972004710a9-part5 -> ../../sdc5
 
- one harddrive is broken, failed to assemble raid on vislab, shoot
+ # one harddrive is broken, failed to assemble raid on vislab, shoot
+ # new drive
+
+sudo zpool create -m $HOME/zfs_tank  \
+		-o feature@encryption=enabled \
+		-O encryption=on \
+		-O keyformat=passphrase \
+		tank \
+		mirror \
+ /dev/disk/by-id/ata-WDC_WD1001FALS-00Y6A0_WD-WCATR9549724 \
+ /dev/disk/by-id/ata-WDC_WD1002FBYS-02A6B0_WD-WMATV7650967
+ ...
+
+rsync ... ## backup a project folder
+
+sent 27.12G bytes  received 30.18M bytes  16.73M bytes/sec
+total size is 27.02G  speedup is 1.00
+rsync -ah --progress ../20220127test vislab@130.245.4.102:~/zfs_tank/
+293.64s user 769.92s system 63% cpu 27:44.53 total
+
+
 
 ####
 ssh access machine behind firewall
