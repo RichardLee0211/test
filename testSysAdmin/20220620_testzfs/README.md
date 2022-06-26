@@ -517,7 +517,79 @@ kali   $ netstat nr | less
   tcp6       0      0 localhost:50440         localhost:9091          ESTABLISHED
   tcp6       0      0 localhost:9091          localhost:50440         ESTABLISHED
 
-ssh -o ProxyCommand="ssh -W localhost:9091" kali-server-onInternet
+- with one command
+ssh -o ProxyCommand="ssh -W localhost:9091" kali-server-onInternet ## not so much luck with this one
+
+ssh -J kali@<kali_ip2> vislab@localhost -p 9091
+  kali@<kali_ip2>'s password:
+  vislab@localhost's password:
+
+```~/.ssh/config
+  Host AWS_VM
+    HostName <public_ip>
+    Port 22
+    User ubuntu
+    IdentityFile <key_fullpath>
+
+  Host vislab
+    HostName <vislab_ip1>
+    Port 22
+    User vislab
+
+  Host vislab_p
+    HostName localhost
+    Port 9091
+    User vislab
+    ProxyJump AWS_VM
+```
+ssh vislab_p
+
+
+- can I transfer files over ssh reverse proxy, sure I can
+limited by 1GB Internet connnection
+
+```~/.ssh/config
+Host B
+  HostName <proxy_ip>
+  Port 22
+  ForwardAgent yes
+  User ubuntu
+  IdentityFile <key_path>
+
+Host C
+  HostName localhost
+  Port 9091
+  User vislab
+  # ProxyJump AWS_VM
+  ProxyCommand ssh B -W %h:%p
+
+```
+
+```shell
+(base) ➜  20220625_awstest sshfs C:/ ~/mnt_vislab
+  vislab@localhost's password:
+(base) ➜  20220625_awstest rsync --progress -ah file1 proxy_remote_file
+  202.48M 100%   23.25MB/s    0:00:08 (xfer#1, to-check=0/1)
+  sent 202.50M bytes  received 42 bytes  21.32M bytes/sec
+  total size is 202.48M  speedup is 1.00
+```
+
+####
+benchmart internet speed
+from: https://www.speedtest.net/apps/cli
+
+```shell
+ubuntu@ip-172-31-31-124:~$ ./speedtest
+     Speedtest by Ookla
+
+       Server: Misaka Network, Inc. - Ashburn, VA (id = 30561)
+          ISP: Amazon.com
+      Latency:     0.71 ms   (0.04 ms jitter)
+     Download:   892.08 Mbps (data used: 433.7 MB )
+       Upload:   887.93 Mbps (data used: 398.5 MB )
+  Packet Loss:     0.0%
+   Result URL: https://www.speedtest.net/result/c/90d5c1e7-c4a9-4730-8116-31d09e2d072a
+```
 
 ####
 set up vnc

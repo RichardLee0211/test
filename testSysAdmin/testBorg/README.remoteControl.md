@@ -209,3 +209,141 @@ from: https://www.youtube.com/watch?v=M3pKprTdNqQ&ab_channel=TheDigitalLife
 title: How to run TrueNAS on Proxmox?
 
 from: https://www.proxmox.com/en/
+
+####
+try router port forward
+
+- config port forward at router web interface, and it just works
+
+```shell
+  HOME_IP=<ip>   ## public IP
+  HOME_USER=<name>
+  ssh -p 130 $HOME_USER@$HOME_IP
+
+  ## test connection
+  sudo nc -l -p 21  ## home server
+  telnet IP PORT    ## client
+```
+
+- disable password and with only keys
+
+```shell
+  ## at client, generate rsa key pair, and
+  ssh-copy-id <user>@<server>
+
+  ## at server, login and check ~/.ssh/authorized_keys
+  vim /etc/ssh/sshd_config ## PasswordAuthentication no
+  systemctl restart sshd
+
+  ## client log in
+  (base) ➜  ~ ssh -p 130 root@24.146.154.138
+  root@24.146.154.138: Permission denied (publickey).
+  ## then
+  ssh -p <port> wenchen@$HOME_IP -i <key_path>    ## without -i, use default ~/.ssh/rsa key
+```
+
+- benchmark
+with sshfs, respectable download speed of 1GB internet speed
+but poor upload speed
+```shell
+  rsync -ah --progress localfile homeserverfile
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mkv
+       456.27M 100%   23.93MB/s    0:00:18 (xfer#1, to-check=0/1)
+  sent 456.32M bytes  received 42 bytes  23.40M bytes/sec
+  total size is 456.27M  speedup is 1.00
+
+  ## but download from homeserver is so bad
+  (base) ➜  20220620_testzfs git:(master) ✗
+  rsync -ah --progress homeserverfile localfile
+  test001.mkv
+         1.34M   0%  278.62kB/s    0:27:12
+```
+
+
+####
+check ssh log
+
+day one on internet, already an unknown IP attempt
+
+```/var/log/auth.log
+## vim it, has color
+## or multitail -f it
+  153 Jun 26 10:51:30 wenchen-MS-7845 sshd[6172]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=xxxxxxxxxxxxx  user=root
+  154 Jun 26 10:51:30 wenchen-MS-7845 sshd[6172]: pam_winbind(sshd:auth): getting password (0x00000388)
+  155 Jun 26 10:51:30 wenchen-MS-7845 sshd[6172]: pam_winbind(sshd:auth): pam_get_item returned a password
+  156 Jun 26 10:51:30 wenchen-MS-7845 sshd[6172]: pam_winbind(sshd:auth): request wbcLogonUser failed: WBC_ERR_AUTH_ERROR, PAM error: PAM_USER_UNKNOWN (10), NTSTATUS: NT_STATUS_NO_SUCH_USER, Error message was: The specified account does not exist.
+  157 Jun 26 10:51:32 wenchen-MS-7845 sshd[6172]: Failed password for root from xxxxxxxxxxxxx port xxxxx ssh2
+  158 Jun 26 10:51:34 wenchen-MS-7845 sshd[6172]: Connection closed by authenticating user root xxxxxxxxxxxxx port xxxxx [preauth]
+```
+
+####
+fail2ban
+from: https://www.linuxcapable.com/how-to-install-fail2ban-on-ubuntu-22-04-lts/
+
+```shell
+  sudo apt install fail2ban -y
+  sudo systemctl enable fail2ban --now
+  sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+  vim /etc/fail2ban/jail.local     ## enabled=true
+  sudo systemctl restart fail2ban
+  multitail -f /var/log/fail2ban.log /var/log/auth.log
+  ## /etc/fail2ban/filter.d/sshd.conf    ## log string matching pattern
+  ## set up email ??
+```
+
+- test out ban
+with another ip machine with wrong password
+after 5 tries
+ssh vislab@<ip_addr>                                                                                                                                                                                                                                                                                                                                      130 ⨯
+ssh: connect to host XXXXXXXXXXXXX port 22: Connection refused
+
+
+####
+need a script to check public IP addr at home
+
+```shell
+└> speedtest
+  Retrieving speedtest.net configuration...
+  Testing from Optimum Online (XXXXXXXXXXXXXX)...
+  Retrieving speedtest.net server list...
+  Selecting best server based on ping...
+  Hosted by Webair.com (Garden City, NY) [44.80 km]: 16.163 ms
+  Testing download speed................................................................................
+  Download: 312.21 Mbit/s
+  Testing upload speed......................................................................................................
+  Upload: 33.47 Mbit/s
+```
+
+curl ifconfig.co
+curl ifconfig.me
+curl icanhazip.com
+curl ipecho.net/plain
+
+
+```bash
+	#!/bin/bash
+
+  user=something
+  server=<server_ip>
+	log_file=/home/wenchen/Downloads/20220626_IPscript/ip.log
+	# format: $date $local_ip $public_ip
+
+	date=$(/bin/date +"%Y-%m-%d+%H:%M:%S")
+	local_ip=$(/sbin/ifconfig enp0s31f6 | grep 'inet ' | awk '{print $2}')
+	public_ip=$(/bin/curl -s ifconfig.co)
+	local_ip_old=$(tail -n 1 $log_file | awk '{print $2}')
+	public_ip_old=$(tail -n 1 $log_file | awk '{print $3}')
+
+	if [ $public_ip != $public_ip_old ]; then
+	    echo "different public_ip"
+	    echo $date $local_ip $public_ip  >> $log_file
+	    scp  $log_file $user@$server:~/home_ip.log
+	fi
+```
+
+crontab -l
+crontab -e
+```crontab.file
+	# m h  dom mon dow   command   ## every hour, and copy ip.log when its different
+	0 */1 * * * /bin/bash /home/wenchen/Downloads/20220626_IPscript/test.sh
+```
