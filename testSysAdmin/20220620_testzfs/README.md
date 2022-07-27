@@ -570,6 +570,9 @@ kali   $ netstat nr | less
   tcp6       0      0 localhost:9091          localhost:50440         ESTABLISHED
 
 ssh -R 9091:localhost:22 <user>@<server_ip> -i <auth_file> -N &  ## run this -R ssh in background
+nohup ssh -R 9091:localhost:22 <user>@<server_ip> -i <auth_file> -N &
+## or use nohup for after the ssh closed
+## or disown -h
 
 TODO: later
 from: https://linux.die.net/man/1/ssh
