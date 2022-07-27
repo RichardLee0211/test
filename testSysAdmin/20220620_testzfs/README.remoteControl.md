@@ -151,7 +151,6 @@ curl ipecho.net/plain
 
 ```bash
 	#!/bin/bash
-
   user=something
   server=<server_ip>
 	log_file=/home/wenchen/Downloads/20220626_IPscript/ip.log
@@ -167,8 +166,13 @@ curl ipecho.net/plain
 	    echo "different public_ip"
 	    echo $date $local_ip $public_ip  >> $log_file
 	    scp  $log_file $user@$server:~/home_ip.log
+      ## or use
+      ## ssh <user>@<server> "echo $date HOME_IP:$public_ip >> /home/ubuntu/ip.log"
+      ## with single quote, ', environment variable would be of remote machine
+      ## with double quote, ", environment variable would be of local  machine
 	fi
 ```
+
 
 crontab -l
 crontab -e

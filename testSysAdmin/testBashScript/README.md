@@ -133,6 +133,16 @@ from: red hat developers
   grep -i stuff `find . -name \*.txt -print`  # cool
   grep -i ffmpeg `find . -name \*.md -print`
 
+  ## grep through a large and complexed research folder
+  ## with --include and --exclude-dir
+  (base) ➜  20220127test git:(main) ✗
+  grep -rn  --include=\*.md --exclude-dir=node_modules "dl.acm.org" ./
+  .//RPE_research/README.md:8:from: https://dl.acm.org/doi/abs/10.1145/1101908.1101941?casa_token=LOWHLGyBbv8AAAAA:GY5l6WGcZNpC8Acf3ujo5J86wdsUp28vt10PmaJl8kl0VQ_rwuoVcyxuXvvmYf641S8JT789XMAIzA
+  .//test_frontend/test009/my-app/data01/clusterdata-master/README.md:44:  * [Who Limits the Resource Efficiency of My Datacenter: An Analysis of Alibaba Datacenter Traces](https://dl.acm.org/citation.cfm?doid=3326285.3329074), Jing Guo, Zihao Chang, Sa Wang, Haiyang Ding, Yihui Feng, Liang Mao, Yungang Bao, IEEE/ACM International Symposium on Quality of Service, IWQoS 2019
+  .//test_frontend/test009/my-app/data01/clusterdata-master/README.md:51:  * [The Elasticity and Plasticity in Semi-Containerized Co-locating Cloud Workload: a View from Alibaba Trace](https://dl.acm.org/citation.cfm?id=3267830), Qixiao Liu and Zhibin Yu. SoCC2018
+  .//test_frontend/test009/my-app/data01/clusterdata-master/cluster-trace-microservices-v2021/README.md:2:The released traces contain the detailed runtime metrics of nearly twenty thousand microservices. They are collected from Alibaba production clusters of over ten thousand [bare-metal nodes](https://dl.acm.org/doi/10.1145/3373376.3378507) during twelve hours in 2021.
+
+
   sudo netstat -anp | grep tcp | grep LISTEN   # Lists the various in-use ports and the process using it
 
   find ./ -mtime 10 # finds all files modified in the last 10 days
