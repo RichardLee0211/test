@@ -535,6 +535,9 @@ stress gpu top temp 71 degrees
     make
     ./gpu_burn 60 # will run gpu_burn for 60 seconds
 
+    sudo apt install glmark2
+    glmark2
+
     sudo apt install s-tui
     s-tui
 
