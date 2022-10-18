@@ -1,24 +1,11 @@
+#### correct screen resolution for raspberry pi 4
 xrandr -s 2560x1600 # to change solution in terminal
 
-I need a way to change volume, brighness, etc
+- on raspberry pi 4
+/boot/config.txt
+uncomment disable_overscan=1
+http://rpf.io/configtxt
 
-download youtube-dl from lastest version, and it tells me video don't exist
-
-<C-R> to search history
-
-disable beep with modprobe -r pcspkr
-
-
-set time in Kali because a wrong time could effect web broswer quality
-timedatectl set-time '2019-09-23 15:30:00'
-
-meeting Zathura - a document viewer
-
-I am reading README.Ubuntu.md and do some editing and
-- [x] ranger
-- [x] dmenu
-- [ ]
-- [ ]
 
 #### how to input fontawesome within vim
 go to fontawesome cheatsheet: https://fontawesome.com/cheatsheet/free/regular
@@ -80,27 +67,6 @@ Nerd font: https://www.nerdfonts.com/font-downloads
     fc-list -v | grep "<familyName>"
 ```
 
-#### fix audio problem
-
-kali don't play audio when playing youtube
-
-apt install alsa-utils -y # to use alsamixer
-
-And it could tell PS4 controller and pass audio to this device, nice
-
-#### ranger
-apt install ranger
-~/.config/ranger/rc.conf
-```
-    set preview_images true
-    set preview_images_method urxvt
-    set draw_borders true
-    set ranger_load_default_rc false
-```
-
-ranger --copy-config=scope
-TODO: couldn't get image preview, could be since Kali distro
-
 #### polybar
 ```shell
     # need to build this from source code
@@ -118,7 +84,7 @@ need some lib installed
 already, I think that's it. Polybar is not ready in Kali yet.
 
 #### urxvt
-```
+```shell
     apt install rxvt-unicode -y
     cp ./urxvt/Xresources ~/.Xresources
     xrdb ~/.Xresources
@@ -138,22 +104,8 @@ to config urxvt, first man, then archwiki
 use for gnome-terminal to get transparent
 
 
-#### zsh
-a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
-```shell
-    apt install zsh
-
-    ## config
-    usermod username -s /usr/bin/zsh
-    # or
-    chsh -s /usr/bin/zsh username
-
-    # install Oh My Zsh
-    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
-
 #### add user
-```
+```shell
     adduser wenchen
     usermod -aG sudo wenchen
     groups wenchen
@@ -180,9 +132,6 @@ spread calculator: https://github.com/andmarti1424/sc-im
 ```
 it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
-#### Nvidia Driver
-from: https://docs.kali.org/general-use/install-nvidia-drivers-on-kali-linux
-
 #### torrent
 apt install transmission # torrent file
 
@@ -192,81 +141,22 @@ http://jonls.dk/redshift/
 apt install redshift
 ~/.config/redshift.conf
 
-#### Chinese input method
-from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
-not work for i3
-```
-    # 0. Set ibus
-    `sudo apt install ibus`
-    `sudo im-config`
-
-    1. Install RIME
-    `sudo apt-get install ibus-rime`
-    https://github.com/rime/home/wiki/RimeWithIBus#ubuntu
-
-    2. Select Input Language
-    `reboot`
-    System Setting — Region&Language — input Source, then click ‘+’ button, choose Chinese
-
-    3. Ready to use
-    Press Super + space to switch input method.
-    Press F4 to switch schema(simple or complex).
-```
-
-from: https://ultra-technology.org/linux_for_beginners/how-to-write-in-japanese-or-chinese-under-linux-on-any-window-manager-using-fcitx/
-from: https://askubuntu.com/questions/1060130/using-ibus-japanese-input-with-ubuntu-mate-and-i3
-using fcitx, take some patient to make it running
-```
-    sudo apt install fcitx fcitx-googlepinyin fcitx-mozc im-config
-    sudo apt install xfonts-intl-chinese
-
-    echo " \
-    export XMODIFIERS=@im=fcitx \
-    export GTK_IM_MODULE=fcitx \
-    export QT_IM_MODULE=fcitx \
-    export XIM=fcitx \
-    fcitx " >> ~/.xinitrc
-
-    im-config -c # using im-config to select fcitx
-
-    fcitx
-    fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
-```
-
-#### Chinese input method 2
-now I understand how encoding and font work.
-Hey, since I can read Chinese and there are some pretty cool Chinese Community,
-I would need to be type Chinese in Kali, although I don't consider bring Chinese
-into my Terminal yet, as a result of not finding a pretty fonts for terminal.
-I think type Chinese in the search bar is good enough for now.
-Plus if I really need to type Chinese in Terminal, Gnomal-Terminal has good internal font support for Chinese.
-```
-    sudo apt installl ibus-pinyin
-    sudo apt install ibus-sunpinyin
-    ibus-setup # config to using <C-space> to change imput method
-    ibus restart
-    reboot
-```
 
 #### fix firefox veritical tear in i3
 disable hardware acceleration
+For Firefox do this:
+    Type "about:config" on the address bar.
+    Search for layers.acceleration.force-enabled (default is false). This forces Hardware Acceleration to turn on.
+    Change it to true by double-clicking.
+    Save and restart Firefox.
 from: https://forum.manjaro.org/t/firefox-screen-tearing-i3wm-compton/81794
-In summary, I changed and added these options to my ~/.config/compton.conf. It seems to have fix the issue.
+In summary, I changed and added these options to my ~/.config/compton.conf.
+It seems to have fix the issue.
 ```
     backend = "glx";
     vsync = "true";
     glx-swap-method = 2;
 ```
-
-#### firefox
-vimium, vim like operation
-adblock, adblock
-windowed, could float youtube video
-
-#### screenshot
-apt install scrot # and bind it to PrtSc
-apt install gnome-screenshot
-
 
 #### others
 using selection to clipboard and mouse middle key to paste is reasonable
@@ -274,3 +164,152 @@ using selection to clipboard and mouse middle key to paste is reasonable
 Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
 
 using mkdir /some/directory/to/somewhere/ and then cd !$
+
+I need a way to change volume, brighness, etc
+
+<C-R> to search history
+
+disable beep with modprobe -r pcspkr
+
+set time in Kali because a wrong time could effect web broswer quality
+timedatectl set-time '2019-09-23 15:30:00'
+
+meeting Zathura - a document viewer
+
+
+##### speed test tools
+apt install speedtest-cli   # for internet speed test from remote
+speedtest
+
+apt install iperf  # for testing LAN speed
+iperf -s # server
+iperf -c <server-IP> # client mod
+kali@kali:~$ iperf -s
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size:  128 KByte (default)
+------------------------------------------------------------
+[  1] local 192.168.1.35 port 5001 connected with 192.168.1.16 port 51220
+[ ID] Interval       Transfer     Bandwidth
+[  1] 0.0000-10.1839 sec  83.9 MBytes  69.1 Mbits/sec
+
+#### ask for static IP
+not very good with netgear wifi router
+is it a wifi thing??
+
+```shell
+    ifconfig
+    ip a
+    sudo vim /etc/network/interfaces
+    # set static ip for interface
+    sudo systemctl restart network.service
+    sudo systemctl restart NetworkManager.service
+    # or reboot
+    ip a
+    sudo vim /etc/resolv.cong # nameserver 8.8.8.8
+    ping google.com
+```
+
+```interfaces
+    # auto lo
+    # iface lo inet loopback
+
+    # auto eth0
+    # allow-hotplug eth0
+    # iface eth0 inet dhcp
+
+    auto eth0
+    iface eth0 inet static
+    address 192.168.0.100/24
+    gateway 192.168.0.1
+
+    auto wlan0
+    iface wlan0 inet static
+    address 192.168.0.100/24
+    gateway 192.168.0.1
+```
+
+from: https://forums.kali.org/showthread.php?20846-Troubleshooting-Internet-Network-Access
+#### IP addr
+ifconfig eth0
+dhclient eth0                   # ask for a available ip addr
+ifconfig eth0 192.168.1.25/24   # set ip on the fly
+cp -f /etc/network/interfaces{,.bak}
+sudo vim /etc/network/interafces
+```interfaces
+    ## change from
+    auto eth0
+    iface eth0 inet dhcp
+    ## to
+    iface eth0 inet static
+    address 192.168.1.25
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+```
+
+#### gateway
+route -n
+route add default gw 192.168.1.200 eth0
+route delete default gw 192.168.1.2 eth0
+
+#### DNS
+```shell
+cat /etc/resolv.conf
+cp -f /etc/resolv.conf{,.bak}
+vim /etc/resolv.conf
+# openDNS: 208.67.222.222     208.67.220.220
+# Google:  8.8.8.8    8.8.4.4
+cat /etc/hosts
+```
+
+#### network connectivity
+ping -c4 google.com
+traceroute www.kali.org
+
+#### proxy
+```shell
+root@kali ~$ export http_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+root@kali ~$ export ftp_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+vim /etc/bash.bashrc
+vim /etc/apt.conf
+# Proxy config
+# Acquire::http::Proxy "http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080";
+```
+
+#### virtual Machine Network adapter
+bridged: separate IP from host but the same network
+NAT:    the same IP and the same network
+Host Only: access to the host, but not access to the internet
+LAN segment: no access to the host, the VM in the same LAN segment
+
+
+#### OS
+id # for user name  and groups
+uname -a
+lsb_release -a  # kali release info
+    No LSB modules are available.
+    Distributor ID: Kali
+    Description:    Kali GNU/Linux Rolling
+    Release:        2021.2
+    Codename:       kali-rolling
+
+#### hardware
+lspci
+lsusb
+lsmod # Kernel modules(drivers)
+
+#### wifi
+airmon-ng --verbose     # air monster?, 233333
+rfkill list    #  enable or disable wireless devices
+iwconfig
+
+#### repository issue
+```shell
+    cat /etc/apt/sources.list
+    # unable to locate package xyz
+    apt update; apt-cache search xyz;
+    ## downloading from the repository slow,
+    ## found a fast mirror site, and add to /etc/apt/sources.list then apt update
+    ## download ISO slow
+    ## use Torrent
+```

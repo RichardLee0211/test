@@ -6,6 +6,8 @@ Mainly log my journey in various tech fields.
 I would try my best to keep them in order and make it easy for me to refer back.
 This is not meant to be a tutorial repository although that is the direction I wanna go.
 
+![](./tmp/githubocto_repo-visualizer.svg)
+
 Here's some interesting ones:
 
 | Name | Desc | Note |

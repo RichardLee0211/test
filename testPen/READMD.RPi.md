@@ -72,4 +72,4 @@ WPA WPA2
 
 #### Use Nmap for Tactical Network Reconnaissance [Tutorial]
 from: https://www.youtube.com/watch?v=ltEFbi_I2KY
-TODO: macOS ifconfig explain
+DONE: macOS ifconfig explain
