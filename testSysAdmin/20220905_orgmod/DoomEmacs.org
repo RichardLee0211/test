@@ -1,0 +1,678 @@
+#+TITLE: Doom Emacs For Noobs
+
+* Installation
+** Installing dependencies
++ Git 2.23+
++ Emacs 26.1+ (27.x is recommended)
++ ripgrep 11.0+
++ GNU Find
++ (Optional) fd 7.3.0+ (known as fd-find on Debian, Ubuntu & derivatives) – improves performance for many file indexing commands
+** Installing Doom Emacs
++ git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
++ ~/.emacs.d/bin/doom install
+      /doom install/ will set up your DOOMDIR at ~/.doom.d (if it doesn’t already exist) and will work you through the first-time setup of Doom Emacs. Carefully follow any instructions it puts out. If this is your first time, you should run /doom doctor/. This will diagnose common issues with your system or config.
+* Utilities found in bin/doom
+** doom sync:
+This synchronizes your config with Doom Emacs. It ensures that needed packages are installed, orphaned packages are removed and necessary metadata correctly generated. Run this whenever you modify your doom! block or packages.el file. You’ll need doom sync -u if you override the recipe of package installed by another module.
+** doom upgrade:
+Updates Doom Emacs (if available) and all its packages. Doom is an active project and many of its 300+ packages are in active development as well. It is wise to occasionally update
+** doom upgrade --packages
+To update only your packages (and not Doom itself)
+** doom doctor:
+If Doom misbehaves, the doc will diagnose common issues with your installation, system and environment.
+** doom purge:
+Over time, the repositories for Doom’s plugins will accumulate. Run this command from time to time to delete old, orphaned packages, and with the -g switch to compact existing package repos.
+** doom env:
+(Re)generates an “envvar file”, which is a snapshot of your shell environment that Doom loads at startup. If your app launcher or OS launches Emacs in the wrong environment you will need this. **This is required for GUI Emacs users on MacOS.**
+** doom help:
+An overview of the available commands that doom provides. Use /doom help COMMAND/ to display documentation for a particular COMMAND.
+** NOTE: I recommend you add your .emacs.d/bin to your PATH so you can call doom directly and from anywhere. Accomplish this by adding this to your .bashrc or .zshrc file: ~export PATH=”$HOME/.emacs.d/bin:$PATH”~
+* DOOMDIR
+You can configure Doom by tweaking the files found in your DOOMDIR. Doom expects this directory to be found in one of:
+** ~/.config/doom (respects $XDG_CONFIG_HOME)
+** or ~/.doom.d
+This directory is referred to as your DOOMDIR. Only one of these directories should exist (Doom will only recognize one).
+* Configuration Files
+** init.el
+Where you’ll find your doom! block, which controls what Doom modules are enabled and in what order they will be loaded. This file is evaluated early when Emacs is starting up; before any other module has loaded. You generally shouldn’t add code to this file unless you’re targeting Doom’s CLI or something that needs to be configured very early in the startup process.
+** config.el
+Here is where 99.99% of your private configuration should go. Anything in here is evaluated after all other modules have loaded, when starting up Emacs.
+** packages.el
+Package management is done from this file; where you’ll declare what packages to install and where from.
+* Package management
+**Doom Emacs does not use package.el** (the package manager built into Emacs). Packages are declared in packages.el files (in DOOMDIR).
+** To install a package, add a package! declaration for it to DOOMDIR/packages.el:
+
+#+BEGIN_SRC elisp
+;; Install a package named "example" from ELPA, MELPA, or Emacsmirror
+(package! example)
+#+END_SRC
+
+** IMPORTANT: New packages won’t be installed until you run doom sync.
+** DO NOT configure packages here (definitely no use-package! or after! in here!). This file is read in an isolated environment and will have no lasting effect.
+
+
+* wenchen
+SCHEDULED: <2022-09-11 Sun>
+
+C-c-x-v with inline image toggle
+or cursor on pics links, and hit return
+[[[[/Users/wenchenli/Downloads/unnamed.jpg]]]]
+
+这个中文支持怎么样?
+
+from: https://www.youtube.com/watch?v=JWD1Fpdd4Pc
+title: Evil Mode: Or, How I Learned to Stop Worrying and Love Emacs
+
+file:/Users/wenchenli/Desktop/20220906_EmacsEvilModeSpeech
+
+file:/Users/wenchenli/Downloads/conference_101719.pdf
+
+
+[[https://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png]]
+
+
+####
+from: https://www.youtube.com/watch?v=37H7bD-G7nE&ab_channel=DistroTube
+title: Doom Emacs On Day One (Learn These Things FIRST!)
+
+Ubuntu start up program
+
+name: Emacs Daemon
+Command: /usr/bin/emacs --daemon
+
+emacsclient -c -a 'emacs'
+alias emacs="emacsclient -c -a 'emacs'"
+## tweak .desktop file
+## desktop file in /usr/share/applications/
+sudo find / -iname emacs.desktop
+
+## DIRED, directory editor
+Mate-x find file  ## or
+SPC .  ## launch DIRED
+SPC SPC ## for file manager in  emacs
+SPC f r ## find recent files
+
+gj and gk        ## to go up and go down the same level in org mode
+C-return         ## for new heading
+SPC i s          ## insert snippets, linsence, time
+SPC m b -        ## table insert header sepearate line
+Mate hjkl        ## to move table row and column didn't work on macOS
+M-x org-schedule ## use CMD-x for my macOS
+C-x C-+          ## to zoom in C-x C-- to zoom out
+C-x C-f          ## to auto-complete filename, in DIRED
+C-n and C-p      ## to move next and prev
+C-x C-b          ## to show opened buffer
+
+C-w v ## vertical split
+C-w s ## horizontal split
+C-w c ## close a split
+C-w w ## shuttle between splits  ## or
+SPC w w ## shuttle between splits
+
+SPC b <actionKey>  ## operations about buffers
+SPC b b ## show buffer in workspace, ## or SPC ,
+SPC b B ## show very buffer          ## or SPC <
+SPC b k ## kill the buffer
+SPC b p ## previous buffer
+
+SPC h r r ## restart emacs server
+
+
+M-x term ## to use a terminal emulator inside DoomEmacs
+M-x eww  ## buildin broswer
+SPC RET  ## for bookmarks
+SPC o p  ## open current git repo directory
+
+
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 6.25.44 PM.png]] [[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 6.25.44 PM.png]]
+
+this wouldn't work
+file:/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 6.25.44 PM.png
+
+from:https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org#configure
+
+describe-variable (SPC h v)
+describe-function (SPC h f)
+describe-face     (SPC h F)          ## like font face
+describe-bindings (SPC h b)
+describe-key      (SPC h k)
+describe-char     (=SPC h ‘=)
+find-library      (SPC h P)
+
+
+####
+from: https://emacs.stackexchange.com/questions/5387/show-org-mode-hyperlink-as-plain-text
+M-x org-toggle-link-display
+(setq org-descriptive-links nil)
+
+####
+from: https://www.youtube.com/watch?v=VcgjTEa0kU4&ab_channel=SystemCrafters
+title: Emacs From Scratch #5 - Org Mode Basics
+
+| name             | age | defuault       |
+|------------------+-----+----------------|
+| asdfasdfaf       |  23 | asdfadsf234134 |
+|                  |     |                |
+| what do you want |     |                |
+
+
+- [ ] somethign
+- [ ] read the paper
+- [ ] what else
+
+  #+begin_src python
+#!/bin/python
+import os
+# os.path
+
+  #+end_src
+
+
+
+
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-02 at 1.06.45 PM.png]] [[/Users/wenchenli/Desktop/Screen Shot 2022-09-02 at 1.06.45 PM.png]]
+
+/Users/wenchenli/.emacs.d
+
+
+from: https://alhassy.github.io/emacs.d/#Emacs-is-a-flexible-platform-for-developing-end-user-applications
+
+> Don't just get used to your tool, make it get used to you!
+> Emacs is not just an editor, but a host for running Lisp applications!
+
+
+
+** TODO Create a quickstart guide
+*** TODO Create a quickstart guide
+**** TODO Create a quickstart guide
+***** TODO Create a quickstart guide
+****** TODO Create a quickstart guide
+******* TODO Create a quickstart guide
+
+
+* heading 1
+To markup text in Org, simply surround it with one or more marker characters.
+*Bold*, /italic/ and _underline_ are fairly intuitive, and the ability to use
++strikethrough+ is a plus.  You can _/*combine*/_ the basic markup in any
+order, however ~code~ and =verbatim= need to be the *_~inner-most~_* markers
+if they are present since their contents are interpreted =_literally_=.
+
+To buy:
+1. Milk
+2. Eggs
+   - Organic
+3. Cheese
+   + Parmesan
+   + Mozzarella
+
+- [ ] fruits :: get apples
+- [X] veggies :: get carrots
+
+[[https://orgmode.org][a nice website]]
+[[file:~/Pictures/dank-meme.png]]]]
+[[file:/Users/wenchenli/Pictures/dank-meme.png]]]]
+[[earlier heading][an earlier heading in the document]]
+
+
+#+begin_src emacs-lisp
+(message "Hello world")
+#+end_src
+
+#+begin_example python
+## this is
+#+end_example
+
+| Tool                           | Literate programming? | Reproducible Research? | Languages |
+|--------------------------------+-----------------------+------------------------+-----------|
+| Javadoc                        | partial               | no                     | Java      |
+| Haskell .lhs                   | partial               | no                     | Haskell   |
+| noweb                          | yes                   | no                     | any       |
+| Sweave                         | partial               | yes                    | R         |
+| Org-mode                       | yes                   | yes                    | any       |
+| Org-mode     this is long text | yes                   | yes                    | any       |
+
+# A line comment
+
+Example of an @@comment:inline@@ comment.
+
+Inline comments are used for end of line comments. @@comment:~#~ won't
+work@@ Since # only only works if preceeded by a newline follow by
+whitespace.
+
+#+begin_comment
+This is a block comment.
+It can span multiple line.
+As well as other markup.
+#+begin_src emacs-lisp
+(+ 1 2)
+#+end_src
+#+end_comment
+
+* A top level heading
+** COMMENT This section and subsections are commented out
+*** This heading inherits the =COMMENT= keyword
+This text is commented out
+
+
+** This heading is not commented
+This text will be exported and code blocks will run.
+
+[[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]][[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]]
+
+[[/Users/wenchenli/Downloads/test001.png]]
+[[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]]
+
+
+emoji:  ??, TODO
+
++delete+
+
+[[youtube.com]]
+
+
+* Diary 20220911 Sun
+
+
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 9.17.14 PM.png]] [[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 9.38.36 PM.png]]
+
+(message "Mozart is a great %s."
+         (if (> (string-to-number (emacs-uptime "%H")) 3)
+             "programmer"
+           "composer"))
+
+
+TODO_1: read it again and follow
+from: https://m00natic.github.io/emacs/emacs-wiki.html
+title: Andrey's Opinionated Emacs Guide
+this is so good
+
+from: https://alhassy.github.io/emacs.d/#Emacs-is-a-flexible-platform-for-developing-end-user-applications
+this introduced a lot of packages, which doom emacs take care of them for me
+
+from: https://abdelhakbougouffa.pro/posts/config/#custom-links
+this is good as well
+
+from: https://gitlab.com/dwt1/dotfiles/-/blob/master/.emacs.d.gnu/config.org#keybindings-to-open-dired
+DistroTube Emacs config
+
+####
+some small thing
+- from: https://www.emacswiki.org/emacs/AlignCommands
+
+- mac emacs some shortcut conflicts
+- I need to insert emoji in emacs
+
+
+* Diary 20220924 Sat
+
+TODO:
+- drag-drop image as links
+- curse doesn't go to the very top of very bottom of file viwer
+- and music index list ??
+
+  M-x list-packages
+org-download                   20220906.1929  available    melpa    Image drag-and-drop for Org-mode.
+This extension facilitates moving images from point A to point B.
+
+
+#+begin_comment
+    Package org-download is available.
+
+        Status: Available from melpa -- Install
+        Archive: melpa
+        Version: 20220906.1929
+        Commit: 19e166f0a8c539b4144cfbc614309d47a9b2a9b7
+        Summary: Image drag-and-drop for Org-mode.
+    Requires: emacs-24.3, async-1.2
+        Website: https://github.com/abo-abo/org-download
+    Keywords: multimedia images screenshots download
+    Maintainer: Oleh Krehel
+        Author: Oleh Krehel
+
+
+    This extension facilitates moving images from point A to point B.
+
+    Point A (the source) can be:
+    1. An image inside your browser that you can drag to Emacs.
+    2. An image on your file system that you can drag to Emacs.
+    3. A local or remote image address in kill-ring.
+    Use the `org-download-yank' command for this.
+    Remember that you can use "0 w" in `dired' to get an address.
+    4. An screenshot taken using `gnome-screenshot' or `scrot' or `gm'.
+    Use the `org-download-screenshot' command for this.
+    Customize the backend with  `org-download-screenshot-method'.
+
+    Point B (the target) is an Emacs `org-mode' buffer where the inline
+    link will be inserted.  Several customization options will determine
+    where exactly on the file system the file will be stored.
+
+    They are:
+    `org-download-method':
+    a. 'attach => use `org-mode' attachment machinery
+    b. 'directory => construct the directory in two stages:
+    1. first part of the folder name is:
+        * either "." (current folder)
+        * or `org-download-image-dir' (if it's not nil).
+            `org-download-image-dir' becomes buffer-local when set,
+            so each file can customize this value, e.g with:
+            # -*- mode: Org; org-download-image-dir: "~/Pictures/foo"; -*-
+    2. second part is:
+        * `org-download-heading-lvl' is nil => ""
+        * `org-download-heading-lvl' is n => the name of current
+            heading with level n. Level count starts with 0,
+            i.e. * is 0, ** is 1, *** is 2 etc.
+            `org-download-heading-lvl' becomes buffer-local when set,
+            so each file can customize this value, e.g with:
+            # -*- mode: Org; org-download-heading-lvl: nil; -*-
+
+    `org-download-timestamp':
+    optionally add a timestamp to the file name.
+
+    Customize `org-download-backend' to choose between `url-retrieve'
+    (the default) or `wget' or `curl'.
+#+end_comment
+
+ns-drag-operation-link
+
+M-x toggle-debug-on-error
+
+my-dnd-func
+
+from: https://www.youtube.com/watch?v=rCMh7srOqvw&list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj&index=1&ab_channel=ZaisteProgramming
+title: Emacs Doom Episode 1 - Getting Started
+
+chained SPC key shortcuts
+
+SPC . ## for current directory
+
+M-x projectile-discovery
+SPC p p  ## to switch projects
+SPC f p  ## files in private config, e.g. ~/.doom.d/
+SPC o p  ## open project in tree max
+SPC o e  ## open e shell
+
+
+DIRED
+create a dir by +
+change view  by (
+up by -
+sort by time and by name by o
+
+d to flag files and dirs
+x to delete flagged files and dirs
+
+SPC . # and type filename to create a new file
+
+M-x org-mode ## to enable org-mode
+SPC m l l ## org-insert-link
+SPC n l   ## org-store-link
+<s <TAB>  ## for code snippets
+C-c C-c   ## to excute code snippets, #+RESULTS, interesting
+
+#+begin_src js
+// function great(else){
+// console.log(else);
+// }
+// great("soemthign2");
+console.log("hello");
+#+end_src
+
+#+RESULTS:
+: hello
+: undefined
+
+#+begin_src python
+print("hoe");
+#+end_src
+
+#+RESULTS:
+: None
+
+- one
+- two
+- three
+- link location
+
+
+
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-23 at 2.16.29 PM.png][test]]
+
+move cursor to image, and hit return would display the image inline
+
+[[shell:ls *.org][ls]] test list all org file in current dir
+
+[[file:~/.doom.d/config.el::descriptive][test001]]
+
+from: https://www.youtube.com/watch?v=DxygfqLrFSU&list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj&index=14&ab_channel=ZaisteProgramming
+title: Emacs Doom E14: Org Mode, Getting Organized with Tasks
+maybe come back here and continue when I need to manage tasks
+
+####
+from: https://www.gtrun.org/post/config/
+title: GuangTao's Doom Emacs config
+
+from: https://abdelhakbougouffa.pro/posts/config/
+
+[[file:~/Downloads/unnamed.jpg][image]]
+
+C-h i ## for help top page
+
+
+#+begin_src elisp
+; (% (* #x15 (+ 8.2 (lsh 7 3))) 2)
+(+ 3 2 )
+(lsh 7 3)
+; (+ 8.2 (lsh 7 3))
+;(insert "he")
+
+#+end_src
+
+#+RESULTS:
+: 56
+
+
+#+begin_src elisp
+;; (progn
+;;   (switch-to-buffer-other-window "*test*")
+;;   (erase-buffer)
+;;   (hello "there"))
+
+;; (defun hello (name) (insert "Hello " name))
+;; (defun hello (name)
+;;   (insert (format "Hello %s!\n" name)))
+;;
+;; (hello "you")
+
+(setq list-of-names '("Sarah" "Chloe" "Mathilde"))
+(defun greeting ()
+    (switch-to-buffer-other-window "*test*")
+    (erase-buffer)
+    (mapcar 'hello list-of-names)
+    (other-window 1))
+
+(greeting)
+
+#+end_src
+
+#+RESULTS:
+: hello
+
+
+from: https://naghdbishi.ir/Doom-Emacs-Cheat-Sheet/README.html#org90468ed
+title: The Ultimate Doom Emacs Cheatsheet
+note: 020_
+
+from: https://dotdoom.rgoswami.me/config.html
+note: 1.5.5. Org Download
+not quite sure how to use them
+
+from: https://zzamboni.org/post/my-doom-emacs-configuration-with-commentary/
+note: Capturing images
+
+from: http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html
+title: Emergency Elisp
+note: elisp with C++/JAVA background
+
+from: https://bzg.fr/en/learn-emacs-lisp-in-15-minutes/
+title: Learn Emacs Lisp in 15 minutes
+note: okay,
+
+could SPC-n-l and SPC-m-l-l to insert link to picture
+[[file:~/Desktop/Screen Shot 2022-09-03 at 3.52.42 PM.png][file:~/Desktop/Screen Shot 2022-09-03 at 3.52.42 PM.png]]
+
+from: https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+interactive functions — commonly known as commands
+
+English: remnants 残余物
+
+[[/Users/wenchenli/.doom.d/config.el]]
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-23 at 2.16.29 PM.png]]
+
+or in macOS finder, right-click on path bar on the bottom, then copy "str" as PathName
+[[/Users/wenchenli/Desktop/Screen Shot 2022-09-26 at 11.05.20 AM.png]]
+[[/Users/wenchenli/Desktop/Screen Shot 1995-09-26 at 11.05.20 AM.png][bad link]]
+
+man, recalute table in Doom Emacs is slow
+M-x org-table-recalculate
+from: https://orgmode.org/manual/Updating-the-table.html
+
+from: https://discourse.doomemacs.org/t/why-is-emacs-doom-slow/83
+> Doom inherits this curse and does its best to mitigate it without sacrificing the staple features of modern text editors.
+profile doesn't help much, command-execute
+M-x toggle-profile
+
+
+####
+from: https://github.com/fniessen/org-html-themes
+
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
+prefer this style
+
+####
+
+screen calculation
+
+MBP15 screen size: 349.3 x 240.7 x 15.5 mm
+optimal FOV for saccade: 65 deg
+calculated viewing distance d ~= 275 mm (roughly A5 paper length)
+
+recommended laptop view distance 510 mm
+desired_screen_width = 650 mm,
+so double the MBP15 screen, or
+use 27 inches screen, which just saturate 65 deg FOV (600mm width)
+
+
+#+begin_src python  :results output
+import math
+w = 350
+FOV_d = 65
+# tan(FOV_d/2) = (w/2) / d
+d = w / 2.0 / math.tan(math.radians(FOV_d/2.0))
+recommended_d = 510
+desired_screen_width = 2.0 * recommended_d * math.tan(math.radians(FOV_d/2.0))
+print(w, FOV_d, d, desired_screen_width)
+#+end_src
+
+#+RESULTS:
+: 350 65 274.6949759955608 649.811666023643
+
+####
+English:
+orthopedics         :骨科
+osteo synthesis     :骨合成
+CIFAR images        :CIFAR 图片
+Nash Equilibrium    :纳什均衡
+oscillation         :振荡
+disjoint            :不相交的
+intractable         :棘手的
+colocated           :同地
+ingenious       :巧妙
+intractable in general      :一般难以处理
+marginalizing over the latent variables        :边缘化潜在变量，
+
+visual-oculomotor                          : 视觉动眼神经
+oculo                                      : 眼
+Saccade amplitude, velocity, and duration  : 扫视幅度、速度和持续时间
+debriefing                                 : 汇报
+Gabor pattern                              : 盖博模式
+primary stimulus (Gabor patch)             : 主要刺激（Gabor 贴片）
+plateauing                                 : 平台期
+inferior periphery                         : 下边缘
+a friend from foe                          : 敌友
+gauge                                      : 测量
+magenta                                    : 品红
+ablated     : 消融
+
+####
+from: https://www.infoworld.com/article/3662814/review-visual-studio-code-shines-for-java.html
+
+Visual Studio Code has
+- IntelliSense code completion for variables, methods, and imported modules;
+- graphical debugging;
+- linting, multi-cursor editing, parameter hints, and other powerful editing features;
+- snazzy code navigation and refactoring;
+- built-in source code control including Git support.
+- Much of this was adapted from Visual Studio technology.
+
+Extensions to Visual Studio Code can use the
+- Language Server Protocol, between IDE and language server
+  + auto complete, go to definition, find all references, etc. via inter-process communication.
+- Debug Adapter Protocol (DAP), development tool and debugger.
+
+from: [[https://code.visualstudio.com/docs/languages/java#_install-visual-studio-code-for-java]]
+The easiest way to get started is to install the Coding Pack for Java on Windows or macOS.
+six compatible Java extensions,
+- Language Support for Java by Red Hat,
+- Debugger for Java,
+- Test Runner for Java,
+- Maven for Java,
+- Project Manager for Java, and
+- Visual Studio IntelliCode by MicroSoft
+
+####
+a purchase decision
+another pair of earphone purchase
+现在这个耳机到手了, 但是没有自己的音乐列表
+
+  #+begin_src python :results output
+print(60 / 250.0)
+print(80 / 350.0)
+print(150 / 500.0)
+print(250 / 750.0)
+
+  #+end_src
+
+  #+RESULTS:
+  : 0.24
+  : 0.22857142857142856
+  : 0.3
+  : 0.3333333333333333
+
+####
+change doomEmacs theme for different light environment
+:load-theme  ## and then choose
+
+####
+
+M-x align ## acting weird, how do you define region ??, can not selection and apply align command
+M-x align-regexp ## alignment according to regexp
+
+####
+open image file in a new window ??
+
+
+* Diary 20221018 Tues
+
+convert some notion into org-mode
+cursor on image link, return to display it in in-line style
+click on it to display image in its own buffer, then +=- to zoom in/out
+
+image mangement with emacs, not good for now
+
+
+####
+something I wanna do with doom emacs
+- guard line at 80 chars
+- change syntax
+- change scroll margin
