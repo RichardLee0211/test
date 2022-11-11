@@ -252,8 +252,6 @@ a good one
 	├─nvme0n1p1     1M
 	├─nvme0n1p2   513M                                 vfat
 	└─nvme0n1p3 953.4G                                 ext4
-
-
 ```
 
 on my own machine

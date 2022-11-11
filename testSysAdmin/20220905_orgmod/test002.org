@@ -1,0 +1,114 @@
+#+title: Test002
+#+OPTIONS: toc:nil num:nil
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-bigblow.setup
+
+
+
+
+* Conference Listing
+
+ddl changes from year to year
+
+- VIS conference
+|-------------+------------------------------------------------------------+------------+------------------------------------------+------|
+| name        | full name                                                  | ddl        | link                                     | note |
+|-------------+------------------------------------------------------------+------------+------------------------------------------+------|
+| IEEE VIS    | IEEE Visualization Conference (VAST+InfoVis+SciVis)        | Mar. 21st  | [[http://ieeevis.org/year/2022/welcome]] |      |
+| VIS TVCG    | IEEE Transactions on Visualization and Computer Graphics   |            |                                          |      |
+| VIS VAST    | IEEE Conference on Visual Analytics Science and Technology |            |                                          |      |
+| VIS InfoVis | IEEE Information Visualization                             |            |                                          |      |
+| CHI         | ACM Conference on Human Factors in Computing Systems       | Sep. 8th   | [[https://chi2023.acm.org/]]             |      |
+| SIGGRAPH    | ACM SIGGRAPH                                               | July. 18th | [[https://www.siggraph.org/]]            |      |
+| TOG         | ACM Transactions on Graphics                               | AnyTime?   | [[https://dl.acm.org/journal/tog]]       |      |
+| IEEEVR      | IEEE Conference on Virtual Reality and 3D User Interfaces  | Sep. 1st   | [[https://ieeevr.org/2022/contribute/]]  |      |
+|-------------+------------------------------------------------------------+------------+------------------------------------------+------|
+
+
+- ML conference
+|------------+------------------------------------------------------------+------------+------------------------------------------------------+--------------------------------|
+| name       | full name                                                  | ddl        | link                                                 | note                           |
+|------------+------------------------------------------------------------+------------+------------------------------------------------------+--------------------------------|
+| NIPS       | Conference on Neural Information Processing Systems        | May. 16th  | [[https://nips.cc/Conferences/2022/Dates]]           | NeurIPS                        |
+| ICML       | International Conference on Machine Learning               | Jan. 11th  | [[https://icml.cc/Conferences/2022/CallForPapers]]   |                                |
+| CVPR       | Conference on Computer Vision and Pattern Recognition      | Nov. 11th  | [[https://cvpr2023.thecvf.com/]]                     |                                |
+| ICLR       | International Conference on Learning Representations       | Sep. 28th  | [[https://iclr.cc/]]                                 |                                |
+| ICCV       | International Conference on Computer Vision                | Mar. 8th   | [[https://iccv2023.thecvf.com/]]                     |                                |
+| ECCV       | European Conference on Computer Vision                     | Mar. 7th   | [[https://eccv2022.ecva.net/submission/]]            |                                |
+| ICPR       | International Conference on Pattern Recognition            | Jan. 17th  | [[https://www.icpr2022.com/]]                        |                                |
+| IAAA       | Association for the Advancement of Artificial Intelligence | July. 11th | [[https://aaai.org/Conferences/AAAI-23/aaai23call/]] | website unclear submission ddl |
+|------------+------------------------------------------------------------+------------+------------------------------------------------------+--------------------------------|
+| IEEE Cloud | IEEE Cloud                                                 | Apri. 1st  | [[https://conferences.computer.org/cloud/2022/cfp/]] |                                |
+|------------+------------------------------------------------------------+------------+------------------------------------------------------+--------------------------------|
+
+
+- other
+|---------+------------------------------------------------------------------+-----+------+----------|
+| name    | full name                                                        | ddl | link | note     |
+|---------+------------------------------------------------------------------+-----+------+----------|
+| Distill | Distill: Journal for Supporting Clarity in Machine Learning      |     |      |          |
+| arXiv   | arXiv.org e-Print Archive                                        |     |      |          |
+|---------+------------------------------------------------------------------+-----+------+----------|
+| VADL    | IEEE VIS Workshop on Visual Analytics for Deep Learning          |     |      | workshop |
+| HCML    | CHI Workshop on Human Centered Machine Learning                  |     |      |          |
+| IDEA    | KDD Workshop on Interactive Data Exploration & Analytics         |     |      |          |
+|         | ICML Workshop on Visualization for Deep Learning                 |     |      |          |
+| WHI     | ICML Workshop on Human Interpretability in ML                    |     |      |          |
+|         | NIPS Workshop on Interpreting, Explaining and Visualizing DL     |     |      |          |
+|         | NIPS Interpretable ML Symposium                                  |     |      |          |
+| FILM    | NIPS Workshop on Future of Interactive Learning Machines         |     |      |          |
+| ACCV    | Workshop on Interpretation and Visualization of Deep Neural Nets |     |      |          |
+| ICANN   | Workshop on Machine Learning and Interpretability                |     |      |          |
+|---------+------------------------------------------------------------------+-----+------+----------|
+
+
+** IEEE Vis
+[[http://ieeevis.org/year/2022/info/call-participation/shortpapers]]
+[[http://ieeevis.org/year/2022/info/call-participation/area-model#area-2-applications]]
+[[https://dblp.org/db/conf/visualization/index.html]]
+
+from: http://ieeevis.org/year/2022/info/workshops
+notes: so workshop need to be proved by IEEE VIS
+
+from: http://visxai.io/
+title: Workshop on Visualization for AI Explainability
+# images: [[/Users/wenchenli/Desktop/Screen Shot 2022-09-26 at 2.23.59 PM.png]]
+notes: TODO_weekend: this could be explored
+
+** CHI
+
+[[https://chi2023.acm.org/]]
+
+
+from: https://chi2023.acm.org/for-authors/case-studies/
+ddl: October 13th, 2022
+quote: Case Studies are compelling stories about applied HCI practice based on real-world experiences that will be instructive and of interest to other community members.
+
+from: https://chi2023.acm.org/for-authors/late-breaking-work/
+note: suitable ??
+
+from: https://chi2023.acm.org/for-authors/interactivity/
+ddl: January 19, 2023
+quote: 6 Pages. The Interactivity track is a high-visibility, high-impact forum of the Technical Program that allows you to present your hands-on demonstration, share novel interactive technologies, and stage interactive experiences. We encourage submissions from any area of human computer interaction, games, entertainment, digital and interactive art, and design.
+
+
+from: https://chi2023.acm.org/for-authors/alt-chi/
+quote: alt.chi is a forum for controversial, risk-taking, and boundary pushing research at CHI.
+note: no
+
+from: https://chi2023.acm.org/for-authors/journals/
+quote: Submissions to CHI Journals are by INVITATION ONLY.
+
+** SIGGRAPH
+
+[[https://s2022.siggraph.org/]]
+
+** CVF
+
+from: [[https://www.thecvf.com/][the computer vision foundation]]
+    WACV 2023: January 3rd – 8th, Waikoloa Village, Hawaii
+    CVPR 2023: June 18th – 22nd, Vancouver, British Columbia
+    ICCV 2023: September 30th – October 6th, Paris, France
+    CVPR 2024: June 17th – 21st, Seattle, Washington
+
+from: http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=150287&copyownerid=13149
+title: ICPR 2022 : 26th International Conference on Pattern Recognition

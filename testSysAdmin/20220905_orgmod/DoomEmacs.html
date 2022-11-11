@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-09-11 Sun 12:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doom Emacs For Noobs</title>
+<meta name="author" content="John Doe" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Doom Emacs For Noobs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8f82315">1. Installation</a>
+<ul>
+<li><a href="#org18240d1">1.1. Installing dependencies</a></li>
+<li><a href="#org48b0ac3">1.2. Installing Doom Emacs</a></li>
+</ul>
+</li>
+<li><a href="#orge8b906a">2. Utilities found in bin/doom</a>
+<ul>
+<li><a href="#org1babe4e">2.1. doom sync:</a></li>
+<li><a href="#org030e5dd">2.2. doom upgrade:</a></li>
+<li><a href="#orgdf4be1b">2.3. doom upgrade &#x2013;packages</a></li>
+<li><a href="#org587bc59">2.4. doom doctor:</a></li>
+<li><a href="#orgc706203">2.5. doom purge:</a></li>
+<li><a href="#orgad04fa3">2.6. doom env:</a></li>
+<li><a href="#orgaf03dab">2.7. doom help:</a></li>
+<li><a href="#org6607b7e">2.8. NOTE: I recommend you add your .emacs.d/bin to your PATH so you can call doom directly and from anywhere. Accomplish this by adding this to your .bashrc or .zshrc file: <code>export PATH=”$HOME/.emacs.d/bin:$PATH”</code></a></li>
+</ul>
+</li>
+<li><a href="#orga68df29">3. DOOMDIR</a>
+<ul>
+<li><a href="#org6181d7f">3.1. ~/.config/doom (respects $XDG<sub>CONFIG</sub><sub>HOME</sub>)</a></li>
+<li><a href="#orgb015e97">3.2. or ~/.doom.d</a></li>
+</ul>
+</li>
+<li><a href="#org22a038e">4. Configuration Files</a>
+<ul>
+<li><a href="#orga4e70f8">4.1. init.el</a></li>
+<li><a href="#org82ff4c4">4.2. config.el</a></li>
+<li><a href="#org11f1f2a">4.3. packages.el</a></li>
+</ul>
+</li>
+<li><a href="#org24817a6">5. Package management</a>
+<ul>
+<li><a href="#orgf087dad">5.1. To install a package, add a package! declaration for it to DOOMDIR/packages.el:</a></li>
+<li><a href="#org20d2595">5.2. IMPORTANT: New packages won’t be installed until you run doom sync.</a></li>
+<li><a href="#orgdaed3bd">5.3. DO NOT configure packages here (definitely no use-package! or after! in here!). This file is read in an isolated environment and will have no lasting effect.</a></li>
+</ul>
+</li>
+<li><a href="#org2f67e5b">6. wenchen</a></li>
+<li><a href="#orgc3f03db">7. TODO: something</a></li>
+<li><a href="#org4d69a19">8. new heading</a>
+<ul>
+<li><a href="#orgc509847">8.1. what do you want ??</a></li>
+<li><a href="#org2ee9748">8.2. this is not new</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8f82315" class="outline-2">
+<h2 id="org8f82315"><span class="section-number-2">1.</span> Installation</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org18240d1" class="outline-3">
+<h3 id="org18240d1"><span class="section-number-3">1.1.</span> Installing dependencies</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Git 2.23+</li>
+<li>Emacs 26.1+ (27.x is recommended)</li>
+<li>ripgrep 11.0+</li>
+<li>GNU Find</li>
+<li>(Optional) fd 7.3.0+ (known as fd-find on Debian, Ubuntu &amp; derivatives) – improves performance for many file indexing commands</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org48b0ac3" class="outline-3">
+<h3 id="org48b0ac3"><span class="section-number-3">1.2.</span> Installing Doom Emacs</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>git clone <a href="https://github.com/hlissner/doom-emacs">https://github.com/hlissner/doom-emacs</a> ~/.emacs.d</li>
+<li>~/.emacs.d/bin/doom install
+<i>doom install</i> will set up your DOOMDIR at ~/.doom.d (if it doesn’t already exist) and will work you through the first-time setup of Doom Emacs. Carefully follow any instructions it puts out. If this is your first time, you should run <i>doom doctor</i>. This will diagnose common issues with your system or config.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge8b906a" class="outline-2">
+<h2 id="orge8b906a"><span class="section-number-2">2.</span> Utilities found in bin/doom</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1babe4e" class="outline-3">
+<h3 id="org1babe4e"><span class="section-number-3">2.1.</span> doom sync:</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+This synchronizes your config with Doom Emacs. It ensures that needed packages are installed, orphaned packages are removed and necessary metadata correctly generated. Run this whenever you modify your doom! block or packages.el file. You’ll need doom sync -u if you override the recipe of package installed by another module.
+</p>
+</div>
+</div>
+<div id="outline-container-org030e5dd" class="outline-3">
+<h3 id="org030e5dd"><span class="section-number-3">2.2.</span> doom upgrade:</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Updates Doom Emacs (if available) and all its packages. Doom is an active project and many of its 300+ packages are in active development as well. It is wise to occasionally update
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf4be1b" class="outline-3">
+<h3 id="orgdf4be1b"><span class="section-number-3">2.3.</span> doom upgrade &#x2013;packages</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+To update only your packages (and not Doom itself)
+</p>
+</div>
+</div>
+<div id="outline-container-org587bc59" class="outline-3">
+<h3 id="org587bc59"><span class="section-number-3">2.4.</span> doom doctor:</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+If Doom misbehaves, the doc will diagnose common issues with your installation, system and environment.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc706203" class="outline-3">
+<h3 id="orgc706203"><span class="section-number-3">2.5.</span> doom purge:</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Over time, the repositories for Doom’s plugins will accumulate. Run this command from time to time to delete old, orphaned packages, and with the -g switch to compact existing package repos.
+</p>
+</div>
+</div>
+<div id="outline-container-orgad04fa3" class="outline-3">
+<h3 id="orgad04fa3"><span class="section-number-3">2.6.</span> doom env:</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+(Re)generates an “envvar file”, which is a snapshot of your shell environment that Doom loads at startup. If your app launcher or OS launches Emacs in the wrong environment you will need this. <b><b>This is required for GUI Emacs users on MacOS.</b></b>
+</p>
+</div>
+</div>
+<div id="outline-container-orgaf03dab" class="outline-3">
+<h3 id="orgaf03dab"><span class="section-number-3">2.7.</span> doom help:</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+An overview of the available commands that doom provides. Use <i>doom help COMMAND</i> to display documentation for a particular COMMAND.
+</p>
+</div>
+</div>
+<div id="outline-container-org6607b7e" class="outline-3">
+<h3 id="org6607b7e"><span class="section-number-3">2.8.</span> NOTE: I recommend you add your .emacs.d/bin to your PATH so you can call doom directly and from anywhere. Accomplish this by adding this to your .bashrc or .zshrc file: <code>export PATH=”$HOME/.emacs.d/bin:$PATH”</code></h3>
+</div>
+</div>
+<div id="outline-container-orga68df29" class="outline-2">
+<h2 id="orga68df29"><span class="section-number-2">3.</span> DOOMDIR</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+You can configure Doom by tweaking the files found in your DOOMDIR. Doom expects this directory to be found in one of:
+</p>
+</div>
+<div id="outline-container-org6181d7f" class="outline-3">
+<h3 id="org6181d7f"><span class="section-number-3">3.1.</span> ~/.config/doom (respects $XDG<sub>CONFIG</sub><sub>HOME</sub>)</h3>
+</div>
+<div id="outline-container-orgb015e97" class="outline-3">
+<h3 id="orgb015e97"><span class="section-number-3">3.2.</span> or ~/.doom.d</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+This directory is referred to as your DOOMDIR. Only one of these directories should exist (Doom will only recognize one).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org22a038e" class="outline-2">
+<h2 id="org22a038e"><span class="section-number-2">4.</span> Configuration Files</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orga4e70f8" class="outline-3">
+<h3 id="orga4e70f8"><span class="section-number-3">4.1.</span> init.el</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Where you’ll find your doom! block, which controls what Doom modules are enabled and in what order they will be loaded. This file is evaluated early when Emacs is starting up; before any other module has loaded. You generally shouldn’t add code to this file unless you’re targeting Doom’s CLI or something that needs to be configured very early in the startup process.
+</p>
+</div>
+</div>
+<div id="outline-container-org82ff4c4" class="outline-3">
+<h3 id="org82ff4c4"><span class="section-number-3">4.2.</span> config.el</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Here is where 99.99% of your private configuration should go. Anything in here is evaluated after all other modules have loaded, when starting up Emacs.
+</p>
+</div>
+</div>
+<div id="outline-container-org11f1f2a" class="outline-3">
+<h3 id="org11f1f2a"><span class="section-number-3">4.3.</span> packages.el</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Package management is done from this file; where you’ll declare what packages to install and where from.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org24817a6" class="outline-2">
+<h2 id="org24817a6"><span class="section-number-2">5.</span> Package management</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b><b>Doom Emacs does not use package.el</b></b> (the package manager built into Emacs). Packages are declared in packages.el files (in DOOMDIR).
+</p>
+</div>
+<div id="outline-container-orgf087dad" class="outline-3">
+<h3 id="orgf087dad"><span class="section-number-3">5.1.</span> To install a package, add a package! declaration for it to DOOMDIR/packages.el:</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Install a package named "example" from ELPA, MELPA, or Emacsmirror</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">package!</span> example<span style="color: #51afef;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org20d2595" class="outline-3">
+<h3 id="org20d2595"><span class="section-number-3">5.2.</span> IMPORTANT: New packages won’t be installed until you run doom sync.</h3>
+</div>
+<div id="outline-container-orgdaed3bd" class="outline-3">
+<h3 id="orgdaed3bd"><span class="section-number-3">5.3.</span> DO NOT configure packages here (definitely no use-package! or after! in here!). This file is read in an isolated environment and will have no lasting effect.</h3>
+</div>
+</div>
+
+<div id="outline-container-org2f67e5b" class="outline-2">
+<h2 id="org2f67e5b"><span class="section-number-2">6.</span> wenchen</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+C-c-x-v with inline image toggle
+[[<img src="file:///Users/wenchenli/Downloads/unnamed.jpg" alt="unnamed.jpg" />]]
+</p>
+
+<p>
+这个中文支持怎么样?
+</p>
+
+<p>
+from: <a href="https://www.youtube.com/watch?v=JWD1Fpdd4Pc">https://www.youtube.com/watch?v=JWD1Fpdd4Pc</a>
+title: Evil Mode: Or, How I Learned to Stop Worrying and Love Emacs
+</p>
+
+<p>
+<a href="file:///Users/wenchenli/Desktop/20220906_EmacsEvilModeSpeech">file:///Users/wenchenli/Desktop/20220906_EmacsEvilModeSpeech</a>
+</p>
+
+<p>
+<a href="file:///Users/wenchenli/Downloads/conference_101719.pdf">file:///Users/wenchenli/Downloads/conference_101719.pdf</a>
+</p>
+
+
+
+<div id="orge041841" class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png" alt="Konigsberg_bridges.png" />
+</p>
+</div>
+
+
+<p>
+####
+from: <a href="https://www.youtube.com/watch?v=37H7bD-G7nE&amp;ab_channel=DistroTube">https://www.youtube.com/watch?v=37H7bD-G7nE&amp;ab_channel=DistroTube</a>
+title: Doom Emacs On Day One (Learn These Things FIRST!)
+</p>
+
+<p>
+Ubuntu start up program
+</p>
+
+<p>
+name: Emacs Daemon
+Command: /usr/bin/emacs &#x2013;daemon
+</p>
+
+<p>
+emacsclient -c -a &rsquo;emacs&rsquo;
+alias emacs=&ldquo;emacsclient -c -a &lsquo;emacs&rsquo;&rdquo;
+## tweak .desktop file
+## desktop file in <i>usr/share/applications</i>
+sudo find / -iname emacs.desktop
+</p>
+
+<p>
+Mate-x find file  ## or
+SPC .
+</p>
+
+<p>
+C-w v ## vertical split
+C-w s ## horizontal split
+C-w c ## close a split
+C-w w ## shuttle between splits  ## or
+SPC w w ## shuttle between splits
+</p>
+
+<p>
+SPC b &lt;actionKey&gt;  ## operations about buffers
+SPC b k ## kill the buffer
+SPC b p ## previous buffer
+SPC h r r ## restart emacs server
+SPC f r ## find recent files
+</p>
+
+
+<p>
+Mate-x term ## to use a terminal emulator inside DoomEmacs
+</p>
+
+
+<p>
+####
+from: <a href="https://www.youtube.com/watch?v=VcgjTEa0kU4&amp;ab_channel=SystemCrafters">https://www.youtube.com/watch?v=VcgjTEa0kU4&amp;ab_channel=SystemCrafters</a>
+title: Emacs From Scratch #5 - Org Mode Basics
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-right">age</th>
+<th scope="col" class="org-left">defuault</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">asdfasdfaf</td>
+<td class="org-right">23</td>
+<td class="org-left">asdfadsf234134</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">what do you want</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> somethign</li>
+<li class="off"><code>[&#xa0;]</code> read the paper</li>
+<li class="off"><code>[&#xa0;]</code> <p>
+what else
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/python</span>
+<span style="color: #51afef;">import</span> os
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">os.path</span>
+
+</pre>
+</div>
+
+<p>
+SPC SPC ## for file manager in  emacs
+gj and gk to go up and go down the same level in org mode
+C-return for new heading
+SPC i s ## insert snippets, linsence, time
+SPC m b - ## table insert header sepearate line
+Mate hjkl ## to move table row and column didn&rsquo;t work on macOS
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc3f03db" class="outline-2">
+<h2 id="orgc3f03db"><span class="section-number-2">7.</span> TODO: something</h2>
+</div>
+<div id="outline-container-org4d69a19" class="outline-2">
+<h2 id="org4d69a19"><span class="section-number-2">8.</span> new heading</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orgc509847" class="outline-3">
+<h3 id="orgc509847"><span class="section-number-3">8.1.</span> what do you want ??</h3>
+</div>
+<div id="outline-container-org2ee9748" class="outline-3">
+<h3 id="org2ee9748"><span class="section-number-3">8.2.</span> this is not new</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: John Doe</p>
+<p class="date">Created: 2022-09-11 Sun 12:15</p>
+</div>
+</body>
+</html>

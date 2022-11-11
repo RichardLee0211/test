@@ -1,0 +1,15 @@
+#+title: Test003
+
+* Oct Monthly report
+
+- Eye Gaze Data analysis and predication model with Peggy
+from: https://www.overleaf.com/project/60669a34489d2a09a0465cfd
+I mainly code up 4 parts of data vis, analysis part, and prediction model prediction.
+I am surprised how RF performed on this dataset.
+[[/Users/wenchenli/Desktop/Screen Shot 2022-11-01 at 5.58.29 PM.png]]
+
+- IBM 2nd proposals writing and paper survey, I mainly did liberture survey for next year.
+just hope that future work would root in a good foundation.
+
+
+- IBM project progress

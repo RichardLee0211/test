@@ -46,6 +46,11 @@ For all other Jetson developer kits (running GNOME)
     gsettings set org.gnome.Vino require-encryption false
 
 3. Set a password to access the VNC server
+<<<<<<< HEAD
+    # Replace the password with your desired password
+    gsettings set org.gnome.Vino authentication-methods "['vnc']"
+    gsettings set org.gnome.Vino vnc-password $(echo -n 'thepassword'|base64)
+=======
     # Replace thepassword with your desired password
     gsettings set org.gnome.Vino authentication-methods "['vnc']"
     gsettings set org.gnome.Vino vnc-password $(echo -n 'thepassword'|base64)
