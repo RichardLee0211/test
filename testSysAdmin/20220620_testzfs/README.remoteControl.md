@@ -143,6 +143,61 @@ need a script to check public IP addr at home
   Upload: 33.47 Mbit/s
 ```
 
+iperf
+not bad for internet speed at lab
+```shell
+  ┌─[wenchenli@Wenchens-Mac-mini] - [~] - [2022-08-20 10:10:36]
+  └─[0] <> speedtest
+        Server: Natural Wireless - New York, NY (id: 16888)
+           ISP: XXXXXXXXXXXXXXXXXXX
+  Idle Latency:     2.56 ms   (jitter: 0.12ms, low: 2.50ms, high: 2.70ms)
+      Download:   940.54 Mbps (data used: 447.4 MB)
+                    7.45 ms   (jitter: 0.35ms, low: 2.97ms, high: 8.28ms)
+        Upload:   939.23 Mbps (data used: 457.8 MB)
+                    3.37 ms   (jitter: 0.15ms, low: 2.95ms, high: 6.22ms)
+   Packet Loss:     0.0%
+
+  [ 10:09AM ]  [ vislab@vislab-MS-7845:~/zfs_tank/20220127test(main✗) ]
+   $ speedtest
+  Retrieving speedtest.net configuration...
+  Testing from XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX...
+  Retrieving speedtest.net server list...
+  Selecting best server based on ping...
+  Hosted by GSL Networks (New York, NY) [29.76 km]: 5.844 ms
+  Testing download speed................................................................................
+  Download: 839.68 Mbit/s
+  Testing upload speed......................................................................................................
+  Upload: 629.27 Mbit/s
+
+```
+
+internal network is not so fast
+```shell
+  $ brew install iperf3
+  $ iperf3 -s  ## server-side
+  $ iperf3 -c $server_ip
+    -----------------------------------------------------------
+    Server listening on 5201 (test #2)
+    -----------------------------------------------------------
+    Accepted connection from XXXXXXXXXXXXX, port 42640
+    [  5] local XXXXXXXXXXXXX port 5201 connected to XXXXXXXXXXXXX port 42642
+    [ ID] Interval           Transfer     Bitrate
+    [  5]   0.00-1.00   sec  81.0 MBytes   679 Mbits/sec
+    [  5]   1.00-2.00   sec  80.5 MBytes   675 Mbits/sec
+    [  5]   2.00-3.00   sec  80.7 MBytes   677 Mbits/sec
+    [  5]   3.00-4.00   sec  81.1 MBytes   680 Mbits/sec
+    [  5]   4.00-5.00   sec  81.1 MBytes   680 Mbits/sec
+    [  5]   5.00-6.00   sec  80.6 MBytes   676 Mbits/sec
+    [  5]   6.00-7.00   sec  80.4 MBytes   675 Mbits/sec
+    [  5]   7.00-8.00   sec  80.5 MBytes   675 Mbits/sec
+    [  5]   8.00-9.00   sec  80.5 MBytes   675 Mbits/sec
+    [  5]   9.00-10.00  sec  80.7 MBytes   677 Mbits/sec
+    [  5]  10.00-10.00  sec   250 KBytes   646 Mbits/sec
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bitrate
+    [  5]   0.00-10.00  sec   807 MBytes   677 Mbits/sec                  receiver
+```
+
 curl ifconfig.co
 curl ifconfig.me
 curl icanhazip.com
