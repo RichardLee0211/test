@@ -1,4 +1,4 @@
-##### debug
+#### debug
 ```shell
 (base) ╭─vislab at vislab-inwin in ~ 21-10-11 - 16:07:58
 	╰─○ dmesg
@@ -948,6 +948,7 @@
 	[   22.697207] rfkill: input handler enabled
 ```
 
+#### debug
 ```shell
 (base) ╭─vislab at vislab-inwin in ~/Code 21-10-11 - 17:01:41
 	╰─○ more /var/log/Xorg.0.log
@@ -1463,40 +1464,4 @@
 	[  4185.347] (WW) xf86CloseConsole: VT_GETMODE failed: Input/output error
 	[  4185.347] (WW) xf86CloseConsole: VT_ACTIVATE failed: Input/output error
 	[  4185.348] (II) Server terminated successfully (0). Closing log file.
-```
-
-#### do resolution 2560x1440 on SyncMaster SA850
-!! not a driver problem, this the DP to DVI adaptor or the DVI cable can not do more than 1080P
-
-```shell
-	## could config X server in ~/.xprofile
-
-	## example
-	# sudo xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
-	# sudo xrandr --addmode eDP-1 "1600x900_60.00"
-	# sudo xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
-
-	## failed
-	# xrandr to get display name, DP-1
-	# ╰─○ cvt 2560 1440
-	# 2560x1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz
-	# Modeline "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
-
-	## failed 02
-	# gtf 2560 1440 60
-	# 2560x1440 @ 60.00 Hz (GTF) hsync: 89.40 kHz; pclk: 311.83 MHz
-	# Modeline "2560x1440_60.00"  311.83  2560 2744 3024 3488  1440 1441 1444 1490  -HSync +Vsync
-	# sudo xrandr --newmode "test02"  311.83  2560 2744 3024 3488  1440 1441 1444 1490  -HSync +Vsync
-	# sudo xrandr --addmode DP-1 "test02"
-
-	## failed 03
-	# gtf 2560 1440 30
-	# 2560x1440 @ 30.00 Hz (GTF) hsync: 43.95 kHz; pclk: 146.27 MHz
-	# Modeline "2560x1440_30.00"  146.27  2560 2680 2944 3328  1440 1441 1444 1465  -HSync +Vsync
-	# sudo xrandr --newmode "test03" 146.27  2560 2680 2944 3328  1440 1441 1444 1465  -HSync +Vsync
-	# sudo xrandr --addmode DP-1 "test03"
-	# sudo xrandr --output DP-1 --mode "test03"
-
-	# lspci -nn # to view the devices
-	# check /var/log/Xorg.0.log
 ```

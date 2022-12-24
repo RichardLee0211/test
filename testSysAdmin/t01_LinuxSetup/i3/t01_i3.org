@@ -1,5 +1,4 @@
-using i3
-================================================================================
+*** using i3
 
 if I don't use i3 for a while, I would forget the keybound
 
@@ -125,9 +124,9 @@ things I wanna do within Linux machine, build a custome OS for me
 
 considering that I might build an applications similar, I would check these open source code first
 
-install i3-gaps on ubuntu 18.04
---------------------------------------------------------------------------------
+**** install i3-gaps on ubuntu 18.04
 ```bash
+#+begin_src shell
 #!/bin/bash
     sudo apt install -y \
     libxcb1-dev \
@@ -165,15 +164,15 @@ install i3-gaps on ubuntu 18.04
     ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
     make
     sudo make install
-```
+#+end_src
 
 install [i3blocks]
 (https://github.com/vivien/i3blocks)
 
-install polybar
+**** install polybar
 --------------------------------------------------------------------------------
 it seems to work
-```shell
+#+begin_src shell
 
     sudo apt-get install -y \
     cmake \
@@ -204,13 +203,12 @@ it seems to work
 
     cd polybar && ./build.sh
 
-```
+#+end_src
 
 I don't know if I install polybar right, when I launch it, it show errors
 
-following this tutorial:
+**** following this tutorial:
 [UnixPorn](https://www.reddit.com/r/unixporn/wiki/index)
---------------------------------------------------------------------------------
 
 I don't really care how system fonts set up, but I need to use
 [fronts](https://github.com/Tecate/bitmap-fonts)
@@ -219,7 +217,7 @@ GTK themes are fine
 icon themes are fine
 
 organize your Xresource
-```
+#+begin_src config
     ! ~/.Xresources
     #define mybg #222222
     #define myfg #cccccc
@@ -257,11 +255,11 @@ organize your Xresource
     xterm*faceName: myfont:style=Medium:size=myfontsize
     xterm*background: mybg
     xterm*foreground: myfg
-```
+#+end_src
 
 !!a good rice start article: https://www.reddit.com/r/unixporn/wiki/ricerous_info
 
-following this video: https://www.youtube.com/watch?v=ARKIwOlazKI
+**** following this video: https://www.youtube.com/watch?v=ARKIwOlazKI
 --------------------------------------------------------------------------------
 
 #### change fonts
@@ -289,8 +287,7 @@ sudo apt install thunar
 # sudo apt install gnome-icon-theme-??
 # fix missing icon in "thunar" by edit gtk-icon-theme-name="gnome" in ~/.gtkrc-2.0
 
-using rofi
---------------------------------------------------------------------------------
+**** using rofi
 
 sudo apt install rofi
 
@@ -315,23 +312,20 @@ sudo apt install i3blocks
 install playerctl by search, download and install
 sudo dpkg -i playerctl-0.4.2_amd64.deb
 
-load rhythmbox load with i3
---------------------------------------------------------------------------------
+**** load rhythmbox load with i3
 
 exec rhythmbox # load everytime you login to a X session
 exec_always rhythmbox # load everytime you restart i3 $mod+shift+r
 
 sudo apt install feh
 
-configure monitor
---------------------------------------------------------------------------------
+**** configure monitor
 
 sudo apt-get install arandr
 config file save in .screenlayout/foo.sh
 internally, it use xrandr and arguments
 
-rename workspaces
---------------------------------------------------------------------------------
+**** rename workspaces
 
 ```config
     set $workspace1 "1. Editor"
@@ -352,8 +346,7 @@ rename workspaces
     bindsym $mod+Shift+4 move container to workspace $workspace4
 ```
 
-force windows to open on certain workspaces
---------------------------------------------------------------------------------
+**** force windows to open on certain workspaces
 
 CLI: xprop
 and then click on one window to get VM_CLASS, need the second argument
@@ -362,8 +355,7 @@ and then click on one window to get VM_CLASS, need the second argument
 in ~/.config/i3/config
 assign [class="Rhythmbox"] $workspace2
 
-how to associate Font Awesome icons with your workspace
---------------------------------------------------------------------------------
+**** how to associate Font Awesome icons with your workspace
 
 https://github.com/FortAwesome/Font-Awesome
 ```shell
@@ -386,8 +378,7 @@ search "Awesome Fonts cheatsheet"
 using terminal transparence and back background, save colors for vim and other application
 don't use theme color in terminal
 
-using URXVT
---------------------------------------------------------------------------------
+**** using URXVT
 in .Xresources
 ```shell
     URxvt.font: xft:monospace:size=16
@@ -410,8 +401,7 @@ finding urxvt extension, others/dotfile, Arch wiki, extension github repository,
 
 take a break here, I did well. to be continue
 
-others
-================================================================================
+*** others
 
 change $PS1 \w to \W
 to only show this current directory name in prompt

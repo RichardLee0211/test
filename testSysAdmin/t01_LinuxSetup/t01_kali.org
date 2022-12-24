@@ -1,4 +1,5 @@
-#### correct screen resolution for raspberry pi 4
+#+title: t01_kali
+**** correct screen resolution for raspberry pi 4
 xrandr -s 2560x1600 # to change solution in terminal
 
 - on raspberry pi 4
@@ -7,15 +8,15 @@ uncomment disable_overscan=1
 http://rpf.io/configtxt
 
 
-#### how to input fontawesome within vim
+**** how to input fontawesome within vim
 go to fontawesome cheatsheet: https://fontawesome.com/cheatsheet/free/regular
 in insert mode of vim, <C-v> u <the unicode of the font>
 
 or search in here: https://fontawesome.com/icons?d=gallery
 
-#### about fontawesome
+**** about fontawesome
 from: https://www.blackmoreops.com/2014/07/31/install-fonts-on-linux/
-```
+#+begin_src shell
     apt-cache search ttf-mscorefonts-installer
     apt-get install ttf-mscorefonts-installer
     apt-get install <package-name>
@@ -30,7 +31,7 @@ from: https://www.blackmoreops.com/2014/07/31/install-fonts-on-linux/
         # fonts-linuxlibertine
         # fonts-dustin
         # ttf-staypuft
-```
+#+end_src
 
 download fontawesome from website
 copy fonts file into directory:
@@ -39,23 +40,23 @@ copy fonts file into directory:
     /usr/share/X11/fonts
     /usr/local/share/fonts
     ~/.fonts
-```shell
+#+begin_src shell
     wget <url to fonts>
     fc-cache -fv /fold/to/fonts
     fc-list -v | grep family
     fc-match OpenSans
-```
+#+end_src
 
 download cheatsheet
 and using vim insert mode, <C-v> u <unicode> to edit file
 
-#### install fonts
+**** install fonts
 from: https://gist.github.com/lightonphiri/5811226a1fba0b3df3be73ff2d5b351c
 
 some place for google font: https://fonts.google.com/
 Nerd font: https://www.nerdfonts.com/font-downloads
 
-```shell
+#+begin_src
     cd /usr/share/fonts # I would prefer ~/.fonts/ or ~/.
     sudo mkdir googlefonts
     cd googlefonts
@@ -65,10 +66,10 @@ Nerd font: https://www.nerdfonts.com/font-downloads
     fc-match OpenSans
     # or
     fc-list -v | grep "<familyName>"
-```
+#+end_src
 
-#### polybar
-```shell
+**** polybar
+#+begin_src shell
     # need to build this from source code
     ** Use GCC even if Clang is installed ----------------------------- [y/N]: y
     ** Include support for "internal/i3" (requires i3) ---------------- [y/N]: y
@@ -79,17 +80,17 @@ Nerd font: https://www.nerdfonts.com/font-downloads
     ** Include support for "internal/github" (requires libcurl) ------- [y/N]: y
     ** Build "polybar-msg" used to send ipc messages ------------------ [y/N]: y
     ** Executing cmake command
-```
+#+end_src
 need some lib installed
 already, I think that's it. Polybar is not ready in Kali yet.
 
-#### urxvt
-```shell
+**** urxvt
+#+begin_src shell
     apt install rxvt-unicode -y
     cp ./urxvt/Xresources ~/.Xresources
     xrdb ~/.Xresources
     mkdir -p ~/.urxvt/ext/ && cp -r ./urxvt/ext/* ~/.urxvt/ext/
-```
+#+end_src
 using .Xresource to config it
 add perl script to ~/.urxvt/ext/ and set up in .Xresource
 TODO: font-size perl script refuse to operate
@@ -100,84 +101,47 @@ guess I need to reserve these script myself
 
 to config urxvt, first man, then archwiki
 
-#### compton
+**** compton
 use for gnome-terminal to get transparent
 
-
-#### add user
-```shell
+**** add user
+#+begin_src shell
     adduser wenchen
     usermod -aG sudo wenchen
     groups wenchen
-```
+#+end_src
 
-#### sc-im
+**** sc-im
 Linux has something called scim: Smart Common input method
 
 spread calculator: https://github.com/andmarti1424/sc-im
-```
+#+begin_src shell
     sudo apt install bison
     git clone https://github.com/andmarti1424/sc-im && cd sc-im
     vim src/Makefile
     make -C src
     sudo make -C src install
-```
+#+end_src
 
-#### Wallpaper
-```shell
+**** Wallpapers
+#+begin_src shell
     apt install feh -y
     mkdir -p ~/Pictures/WallPaper/ && cd ~/Pictures/WallPaper/
     wget https://i.redd.it/cb12p2q4rocx.png
     # restart i3
-```
+#+end_src
 it seem feh couldn't using as wallpaper setter and do slideshow at the same time
 
-#### torrent
+**** torrent
 apt install transmission # torrent file
 
-#### screen temperature adjust
+**** screen temperature adjust
 https://github.com/jonls/redshift
 http://jonls.dk/redshift/
 apt install redshift
 ~/.config/redshift.conf
 
-
-#### fix firefox veritical tear in i3
-disable hardware acceleration
-For Firefox do this:
-    Type "about:config" on the address bar.
-    Search for layers.acceleration.force-enabled (default is false). This forces Hardware Acceleration to turn on.
-    Change it to true by double-clicking.
-    Save and restart Firefox.
-from: https://forum.manjaro.org/t/firefox-screen-tearing-i3wm-compton/81794
-In summary, I changed and added these options to my ~/.config/compton.conf.
-It seems to have fix the issue.
-```
-    backend = "glx";
-    vsync = "true";
-    glx-swap-method = 2;
-```
-
-#### others
-using selection to clipboard and mouse middle key to paste is reasonable
-
-Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
-
-using mkdir /some/directory/to/somewhere/ and then cd !$
-
-I need a way to change volume, brighness, etc
-
-<C-R> to search history
-
-disable beep with modprobe -r pcspkr
-
-set time in Kali because a wrong time could effect web broswer quality
-timedatectl set-time '2019-09-23 15:30:00'
-
-meeting Zathura - a document viewer
-
-
-##### speed test tools
+**** speed test tools
 apt install speedtest-cli   # for internet speed test from remote
 speedtest
 
@@ -193,11 +157,11 @@ TCP window size:  128 KByte (default)
 [ ID] Interval       Transfer     Bandwidth
 [  1] 0.0000-10.1839 sec  83.9 MBytes  69.1 Mbits/sec
 
-#### ask for static IP
+**** ask for static IP
 not very good with netgear wifi router
 is it a wifi thing??
 
-```shell
+#+begin_src shell
     ifconfig
     ip a
     sudo vim /etc/network/interfaces
@@ -208,9 +172,9 @@ is it a wifi thing??
     ip a
     sudo vim /etc/resolv.cong # nameserver 8.8.8.8
     ping google.com
-```
+#+end_src
 
-```interfaces
+#+begin_src interfaces
     # auto lo
     # iface lo inet loopback
 
@@ -227,16 +191,17 @@ is it a wifi thing??
     iface wlan0 inet static
     address 192.168.0.100/24
     gateway 192.168.0.1
-```
+#+end_src
 
 from: https://forums.kali.org/showthread.php?20846-Troubleshooting-Internet-Network-Access
-#### IP addr
+
+**** IP addr
 ifconfig eth0
 dhclient eth0                   # ask for a available ip addr
 ifconfig eth0 192.168.1.25/24   # set ip on the fly
 cp -f /etc/network/interfaces{,.bak}
 sudo vim /etc/network/interafces
-```interfaces
+#begin_src interfaces
     ## change from
     auto eth0
     iface eth0 inet dhcp
@@ -245,45 +210,44 @@ sudo vim /etc/network/interafces
     address 192.168.1.25
     netmask 255.255.255.0
     gateway 192.168.1.1
-```
+#+end_src
 
-#### gateway
+**** gateway
 route -n
 route add default gw 192.168.1.200 eth0
 route delete default gw 192.168.1.2 eth0
 
-#### DNS
-```shell
+**** DNS
+#+begin_src shell
 cat /etc/resolv.conf
 cp -f /etc/resolv.conf{,.bak}
 vim /etc/resolv.conf
 # openDNS: 208.67.222.222     208.67.220.220
 # Google:  8.8.8.8    8.8.4.4
 cat /etc/hosts
-```
+#+end_src
 
-#### network connectivity
+**** network connectivity
 ping -c4 google.com
 traceroute www.kali.org
 
-#### proxy
-```shell
-root@kali ~$ export http_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
-root@kali ~$ export ftp_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
-vim /etc/bash.bashrc
-vim /etc/apt.conf
-# Proxy config
-# Acquire::http::Proxy "http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080";
-```
+**** proxy
+#+begin_src shell
+    root@kali ~$ export http_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+    root@kali ~$ export ftp_proxy=http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080/
+    vim /etc/bash.bashrc
+    vim /etc/apt.conf
+    # Proxy config
+    # Acquire::http::Proxy "http://mycompanyname\g0tmi1k:password2@192.168.1.123:8080";
+#+end_src
 
-#### virtual Machine Network adapter
+**** virtual Machine Network adapter
 bridged: separate IP from host but the same network
 NAT:    the same IP and the same network
 Host Only: access to the host, but not access to the internet
 LAN segment: no access to the host, the VM in the same LAN segment
 
-
-#### OS
+**** OS
 id # for user name  and groups
 uname -a
 lsb_release -a  # kali release info
@@ -293,18 +257,18 @@ lsb_release -a  # kali release info
     Release:        2021.2
     Codename:       kali-rolling
 
-#### hardware
+**** hardware
 lspci
 lsusb
 lsmod # Kernel modules(drivers)
 
-#### wifi
+**** wifi
 airmon-ng --verbose     # air monster?, 233333
 rfkill list    #  enable or disable wireless devices
 iwconfig
 
-#### repository issue
-```shell
+**** repository issue
+#+begin_src shell
     cat /etc/apt/sources.list
     # unable to locate package xyz
     apt update; apt-cache search xyz;
@@ -312,4 +276,36 @@ iwconfig
     ## found a fast mirror site, and add to /etc/apt/sources.list then apt update
     ## download ISO slow
     ## use Torrent
-```
+#+end_src
+
+**** fix firefox veritical tear in i3 :tDevLog:
+disable hardware acceleration
+For Firefox do this:
+    Type "about:config" on the address bar.
+    Search for layers.acceleration.force-enabled (default is false). This forces Hardware Acceleration to turn on.
+    Change it to true by double-clicking.
+    Save and restart Firefox.
+from: https://forum.manjaro.org/t/firefox-screen-tearing-i3wm-compton/81794
+In summary, I changed and added these options to my ~/.config/compton.conf.
+It seems to have fix the issue.
+    backend = "glx";
+    vsync = "true";
+    glx-swap-method = 2;
+
+**** others
+using selection to clipboard and mouse middle key to paste is reasonable
+
+Hey, I am happy that I don't need a driver install to make PS4 controller earphone in Kali
+
+using mkdir /some/directory/to/somewhere/ and then cd !$
+
+I need a way to change volume, brighness, etc
+
+<C-R> to search history
+
+disable beep with modprobe -r pcspkr
+
+set time in Kali because a wrong time could effect web broswer quality
+timedatectl set-time '2019-09-23 15:30:00'
+
+meeting Zathura - a document viewer
