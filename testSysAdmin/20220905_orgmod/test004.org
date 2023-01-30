@@ -1,0 +1,118 @@
+#+title: Windows Env
+
+* motivation
+I need a winSetup for Java and Blender project.
+and as a sandbox
+
+* TODOs
+- open it up and config it ?: storage and memory is upgradable
+- stress test it ?: in Games, the CPU is 95deg, GPU 80deg
+
+- windows env CPU/GPU/TEMP/Network/Disk small icons at tasks bar?
+
+from: https://caiorss.github.io/Emacs-Elisp-Programming/Emacs_On_Windows.html
+from: https://www.emacswiki.org/emacs/Cygwin
+
+* hardware
+Intel i7-5700HQ 4core 8thread
+Nvidia GTX 980M, 8GB GPU memory
+17 inch 1080P, 60HZ display
+
+wifi and bluetooth card is somewhat laggy
+
+- system
+```GUIinfo
+    Edition Windows 10 Pro
+    Version 21H2
+    Installed on    2/26/2022
+    OS build    19044.1706
+    Experience  Windows Feature Experience Pack 120.2212.4170.0
+```
+
+
+#### hardware Bench mark
+
+GeekBench 5 from: https://www.geekbench.com/download/windows/
+results from: https://browser.geekbench.com/v5/cpu/18479505
+
+what you expect, a very weak CPU
+
+* windows softwares
+- hardware drivers: Nvidia, logitech, Audio etc
+
+- MS PowerToy, from: https://github.com/microsoft/PowerToys
+    for Cap2Ctr, window management, etc
+- Chrome
+- Cygwin
+- git-bash/ MINGW64
+- vim
+- Doom Emacs
+- Unity3d
+- VS Code
+- Oculus Quest 2 PC app
+- OBS
+
+- Zoom
+- TeamViewer
+
+#### oh-my-zsh with cygwin
+from: https://jimfrenette.com/2017/02/cygwin-oh-my-zsh-recipe/
+
+vim /etc/nsswitch.conf
+db_home: /%H          ## doesn't seem to be a good idea
+bd_shell: /bin/zsh
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+####
+from: https://chocolatey.org/install
+from: https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org
+choco install git emacs ripgrep
+
+#### Doom Emacs for windows
+
+M-x shell
+
+
+```.doom.d/config.el
+    ;; wenchen
+    (defun run-bash ()
+        (interactive)
+        (let ((shell-file-name "C:\\Program Files\\Git\\git-bash.exe"))
+                (shell "*bash*")))
+```
+
+
+#### Nvidia Driver
+from: https://www.nvidia.com/download/index.aspx
+
+product type:
+    GeForce GTX
+    TITAN
+    RTX/Quadro
+    Data Center/ Tesla
+Windows 10 64-bit
+Game ready driver
+
+####
+java dev env
+
+
+####
+surprisely game-able, but CPU and GPU runs hot
+
+should I top it up with SSD and memory kit ?
+SSD can be considered, SSD ?
+
+- but DDR3 memory kit ?
+from: https://www.ebay.com/itm/115331041268?chn=ps&norover=1&mkevt=1&mkrid=711-117182-37290-0&mkcid=2&mkscid=101&itemid=115331041268&targetid=1264870805664&device=c&mktype=&googleloc=1022761&poi=&campaignid=14859008593&mkgroupid=130497710760&rlsatarget=pla-1264870805664&abcId=9300678&merchantid=112082351&gclid=CjwKCAjwtp2bBhAGEiwAOZZTuEHUATtdGudx_Tp1exayJ6tIoOsvgZOTCIQzCUIbFtCONNJ15ISJFRoCSFoQAvD_BwE
+title: Crucial Ballistix 8GB PC3-14900 DDR3-1866 SODIMM Laptop RAM BLS8G3N18AES4.16FER
+note: 20 dollars
+
+I have
+- 1TB SSD for MBP15
+- 1TB M.2 for mac mini
+
+- what about new thermal paste,
+not that this would change that thin laptop would thermal throttle,
+it would stay 95 deg CPU, 80 deg for GPU
