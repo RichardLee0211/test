@@ -430,3 +430,11 @@ find
     find -iname *wordIremember*
 
 #+end_src
+
+
+from: https://docs.fileflows.com/flows
+from: https://github.com/revenz/FileFlows
+note: 2333333, another similar idea, flows
+
+#+attr_html: :width 50%
+[[https://docs.fileflows.com/images/dashboard/flow.png]]
