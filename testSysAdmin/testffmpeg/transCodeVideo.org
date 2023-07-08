@@ -1,0 +1,440 @@
+#+title: transCodeVideo
+
+**** title
+need to have faith in this portable harddrive, ai
+  142 directories scanned
+   1116 image files read
+   exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov -json -r ./ >   13.81s user 2.77s system 15% cpu 1:45.59 total
+
+use rsync for this folder
+don't trust github for this data
+
+
+I am glad that it is two times faster on desktop CPU, but it still take half hour to transcode a one hour video
+
+I need computation power for transcoding video, save storage
+rsync
+#+begin_src shell
+    rsync -a dir1/ dir2
+    (base) ➜  rsync -avP --delete ../20220103_process/ vislab@130.245.4.102:~/Downloads/20220103_process      # push
+    (base) ➜  rsync -avP --delete vislab@XXXXXXXXXXXXX:~/Downloads/20220103_process/ ../20220103_process      # pull
+#+end_src
+
+I guess if a storage is not connected to computers, it is not active storage
+filter rules:
+- large file inspection
+- storage vs duration
+- storage vs rating
+- storage vs tags
+- a ML decision making ?? for delete files, 233333, or for transcode large files
+
+
+from: https://github.com/vim-syntastic/syntastic
+from: https://www.flake8rules.com/
+desc: Syntastic vim plugin
+note : glad there are some rules about python style, but if the code works, manage style should be an software problem, not programmer's problem
+
+from: https://vimawesome.com/plugin/youcompleteme-thing-itself
+decs: nice vim ycm tutorial
+
+**** aims for 1 hour 720p videos of 500MB storage
+meaning a 100GB is 200hour content, about 100 movies or 10 season of TVshows
+meaning 500MB * 8 * 1000 / 60.0 / 60.0 = 1111 kb/sec
+#+begin_src shell
+
+$ ffprobe 1.mkv
+
+Input #0, matroska,webm, from 'Game.of.Thrones.S03E01.720p.BluRay.450MB.ShAaNiG.com.mkv':
+  Metadata:
+    encoder         : libebml v1.3.0 + libmatroska v1.4.0
+    creation_time   : 2014-07-20T07:35:42.000000Z
+  Duration: 00:54:31.54, start: 0.000000, bitrate: 1153 kb/s
+    Stream #0:0: Video: h264 (High), yuv420p(progressive), 1280x720 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn, 47.95 tbc (default)
+    Stream #0:1: Audio: aac (HE-AAC), 48000 Hz, stereo, fltp (default)
+#+end_src
+
+
+note: ffmpeg -h encoder=hevc_nvenc
+from: https://gist.github.com/nico-lab/c2d192cbb793dfd241c1eafeb52a21c3#file-hevc_nvenc-txt-L61
+from: https://superuser.com/questions/1296374/best-settings-for-ffmpeg-with-nvenc
+from: https://trac.ffmpeg.org/wiki/Encode/H.265
+from: https://trac.ffmpeg.org/wiki/Encode/VP9
+from: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
+with cpu and software encoding
+#+begin_src shell
+ffmpeg -i "input.mp4" -copy_unknown -map_metadata 0 -map 0 -codec copy \
+    -codec:v libx264 -pix_fmt yuv420p -crf 23 \
+    -codec:a libfdk_aac -vbr 4 \
+    -preset fast "output.mp4"
+
+#+end_src
+
+find the good options with hevc_nvenc, use this
+#+begin_src shell
+## ffmpeg GPU transcode
+time ffmpeg -hwaccel cuda -i t01.mkv -crf 24 \
+    -vcodec hevc_nvenc -preset slow \
+    -pixel_format yuv420p \
+    output01.mp4
+
+### find the good options for limited storage
+time ffmpeg -hwaccel cuda -i t01.mkv \
+    -map_metadata 0 \
+    -c:v hevc_nvenc -vf scale=-1:720 -crf 30 -preset slow \
+    -pixel_format yuv420p \
+    -c:a copy -c:s mov_text \
+    -ss 00:00:00 -t 300 \
+    output07.mp4
+
+time ffmpeg -hwaccel cuda \
+    -i t01.mkv -map_metadata 0 \
+    -c:v hevc_nvenc -vf scale=-1:720 \
+    -crf 30 -preset slow -pixel_format yuv420p \
+    -c:a copy -c:s mov_text \
+    output01.mp4
+
+## this is okay
+time ffmpeg -hwaccel cuda -i t01.mp4 \
+    -map_metadata 0 \
+    -c:v hevc_nvenc -vf scale=-1:720 \
+    -rc vbr -cq 24 -qmin 24 -qmax 24 \
+    -preset slow -pixel_format p010le -b:v 0K \
+    -c:a aac -c:s mov_text \
+    output04.mp4
+
+time ffmpeg -hide_banner -loglevel info \
+    -i INPUT_FILE.mkv -threads 2 -strict -2 \
+    -max_muxing_queue_size 2048 -map 0:v:0 -map 0:a:0 -map 0:s:0 \
+    -c:v:0 hevc_nvenc -preset:v slow -tune hq -profile:v main10 \
+    -pix_fmt p010le -tier high -cq 26 -rc:v vbr_hq -rc-lookahead 32 \
+    -spatial_aq:v 1 -temporal-aq:v 1 -nonref_p 1 -b_ref_mode 2 \
+    -a53cc 0 -b:v:0 4M -c:a:0 copy -c:s:0 copy \
+    -y OUTPUT_FILE.mkv
+
+time ffmpeg -strict 2 -hwaccel auto -i "inputfile.mp4"  \
+    -c:v hevc_nvenc -rc vbr -cq 24 -qmin 24 -qmax 24 \
+    -profile:v main10 -pix_fmt p010le -b:v 0K \
+    -c:a aac -map 0 "outputfile.mp4"
+
+
+## try vp9, but too slow for my macine
+time ffmpeg -hwaccel cuda -i t01.mkv -c:v libvpx-vp9 -b:v 2M output01.webm
+
+
+#+end_src
+
+#+begin_src bash
+#!bash
+targets=('/media/wenchen/file asdf 202020.mp4' '/media/wenchen/file2 asdf 23sdf.mp4' )
+for target in "${targets[@]}"; do
+    echo "$target"
+    ffmpeg -y -i "$target" -vf scale=1920:1080 -vcodec hevc_nvenc -preset slow -pixel_format yuv420p -profile:v main "$target.mp4"
+    # rm "$target"
+    # mv "$target.mp4"  something
+done
+
+## or
+for file in *.webm; do
+    echo $file "==============started"
+    ffmpeg -y -i "$file" -vf scale=1920:1080 -vcodec hevc_nvenc -preset slow -pixel_format yuv420p -profile:v main "$file.mp4"
+    ls -alh "$file*"
+done
+
+for f in *.mp4; do
+    echo $f "==============started"
+    time ffmpeg -hwaccel cuda -i "$f" -map_metadata 0 -c:v hevc_nvenc -vf scale=-1:720 -rc vbr -cq 24 -qmin 24 -qmax 24 -preset slow -pixel_format p010le -b:v 0K -c:a aac -c:s mov_text $f.out.mp4  ## this is okay
+done
+
+#+end_src
+
+from: https://github.com/Unmanic/unmanic
+desc: Unmanic - Library Optimiser
+note: convert media files if the file is too large
+    like how I would think
+
+from: https://developer.nvidia.com/nvidia-video-codec-sdk
+from: https://www.cyberciti.biz/faq/how-to-install-ffmpeg-with-nvidia-gpu-acceleration-on-linux/
+note: install nvdia-ffmpeg
+#+begin_src shell
+    sudo apt install -y nvidia-cuda-toolkit
+    mkdir ~/nvidia/ && cd ~/nvidia/
+    git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+    cd nv-codec-headers && sudo make install
+    cd ~/nvidia/
+    git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/
+    sudo apt install -y build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev
+    cd ~/nvidia/ffmpeg/
+    ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp \
+            --extra-cflags=-I/usr/local/cuda/include \
+            --extra-ldflags=-L/usr/local/cuda/lib64
+    make -j $(nproc)     # a few minutes
+    ls -l ~/nvidia/ffmpeg/ffmpeg
+
+#+end_src
+
+default ffmpeg install on Ubuntu
+#+begin_src shell
+	╰─⠠⠵ ffmpeg
+	ffmpeg version 4.2.4-1ubuntu0.1 Copyright (c) 2000-2020 the FFmpeg developers
+	  built with gcc 9 (Ubuntu 9.3.0-10ubuntu2)
+	  configuration: --prefix=/usr --extra-version=1ubuntu0.1 --toolchain=hardened
+		--libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu
+		--arch=amd64 --enable-gpl --disable-stripping --enable-avresample
+		--disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa
+		--enable-libaom --enable-libass --enable-libbluray --enable-libbs2b
+		--enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite
+		--enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme
+		--enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa
+		--enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse
+		--enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy
+		--enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora
+		--enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx
+		--enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2
+		--enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx
+		--enable-openal --enable-opencl --enable-opengl --enable-sdl2
+		--enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc
+		--enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+	  libavutil      56. 31.100 / 56. 31.100
+	  libavcodec     58. 54.100 / 58. 54.100
+	  libavformat    58. 29.100 / 58. 29.100
+	  libavdevice    58.  8.100 / 58.  8.100
+	  libavfilter     7. 57.100 /  7. 57.100
+	  libavresample   4.  0.  0 /  4.  0.  0
+	  libswscale      5.  5.100 /  5.  5.100
+	  libswresample   3.  5.100 /  3.  5.100
+	  libpostproc    55.  5.100 / 55.  5.100
+	Hyper fast Audio and Video encoder
+	usage: ffmpeg [options] [[infile options] -i infile]... {[outfile options] outfile}...
+
+#+end_src
+
+config and compile ffmpeg src code to support better hardware
+#+begin_src shell
+./configure \
+--pkg-config-flags="--static" \
+--extra-cflags=-I/usr/local/cuda/include                                   \
+--extra-ldflags=-L/usr/local/cuda/lib64                             \
+--extra-libs="-lpthread -lm" \
+--ld="g++" \
+--enable-cuda-nvcc --enable-libnpp                \
+--enable-gpl \
+--enable-gnutls \
+--enable-libass \
+--enable-libfdk-aac \
+--enable-libfreetype \
+--enable-libmp3lame \
+--enable-libopus \
+--enable-libvorbis \
+--enable-libvpx \
+--enable-libx264 \
+--enable-libx265 \
+--enable-nonfree
+
+#+end_src
+
+early try of video hevc_nvenc codec choices
+#+begin_src shell
+    ~/nvidia/ffmpeg/ffmpeg -y -hwaccel cuda -i input.mkv -vf scale=1920:1080 -vcodec libx265 -crf 24 output.mp4
+    ## maybe do this, but transcode in my laptop is slow
+    ffmpeg -i input.webm -vf scale=1920:1080 input.mp4
+    ## higher crf more compression
+    ## control the bit rate at 200MB / 10 min
+    ## meaning 2.6 kb/s
+
+    ## use a shorter sample, cut video
+    ffmpeg -i Spider.webm -ss 00:00:00 -codec copy -t 120 shorter.webm ## this is fast
+
+    ~/nvidia/ffmpeg/ffmpeg -y -hwaccel cuda -i Spider.webm -vf scale=1920:1080 output01.mp4
+    ## faster, but only speed=2.04x, not that significant
+    ## but relieved CPU temperature problem
+    ## and this video quality is bad, use -qscale 0
+    ~/nvidia/ffmpeg/ffmpeg -y -hwaccel cuda -i shorter.webm -vf scale=1920:1080 -qscale 0 output01.mp4
+
+    ## reduced 1/5 fileSize, from 4K to 1080P, it is not only about pixel counts
+    ffmpeg -y -i input.kmv -vf scale=1920:1080 -vcodec libx265 -crf 24 output.mp4
+    ffmpeg -y -i input.kmv -vf scale=1920:1080 -vcodec h264_nvenc -preset slow -pixel_format yuv444p output.mp4
+    ffmpeg -y -i input.kmv -vf scale=1920:1080 -vcodec hevc_nvenc -preset slow -pixel_format yuv420p -profile:v main output.mp4
+
+    target="path/to/file";
+    ffmpeg -y -i $target -vf scale=1920:1080 -vcodec hevc_nvenc -preset slow -pixel_format yuv420p -profile:v main $target.mp4
+
+#+end_src
+
+**** IDEA [#7] we would need a FIFO queue with pause/stop function ??
+**** Ubuntu-Mate Desktop Environment for video review, analysis and management
+
+Ubuntu Mate file program: Caja vs. Dolphin
+media player: Celluid, mpv, vlc
+terminal: Mate terminal,
+    it can adjust shortcut copy paste in edit->keyboard shortcuts, using super+c super+v
+firefox support select and mid wheel click for copy and paste
+
+***** use mpv for video in Ubuntu mate system
+from: https://mpv.io/manual/master/
+#+begin_src config
+    # Location of user-defined bindings: ~/.config/mpv/input.conf
+    ## wenchen
+    l seek  5
+    j seek -5
+    k cycle pause
+
+    9 seek 120
+    7 seek -120
+
+    o frame-step
+    u frame-back-step
+
+    UP    add volume +2
+    DOWN  add volume -2
+    > multiply speed 1.1
+    < multiply speed 1/1.1
+    . set speed 1.0
+
+#+end_src
+
+***** use "Eye of Mate" for pictures in Ubuntu mate system
+***** use caja for file explorer
+dolphin might be better
+
+match macOS shortcut
+~/.config/caja/accels
+(gtk_accel_path "<Actions>/DirViewActions/Properties" "<Primary>i")   ; Ctrl+i to show metadata
+(gtk_accel_path "<Actions>/DirViewActions/Rename" "Return")
+
+from: https://askubuntu.com/questions/88010/assigning-shortcuts-accelerators-to-nautilus-3
+from: https://unix.stackexchange.com/questions/443784/where-does-caja-put-its-preferences
+#+begin_src shell
+    apt install dconf-editor -y
+    ## this is not working well
+
+    ## not helping with change shortcuts
+    $ dconf dump /org/mate/caja/ > cajaprefs.txt
+    $ $EDITOR cajaprefs.txt
+    $ dconf load /org/mate/caja/ < cajaprefs.txt
+
+#+end_src
+
+***** TODO [#7] look into gsetting and ubuntu-mate personalization
+from: https://guide.ubuntu-mate.org/#personalization-window-controls
+gsettings set org.gnome.desktop.lockdown disable-lock-screen true
+
+**** title
+use ffmpeg for quick video and audio process
+- vlc convert is not so good, it misses audio sometimes
+- using soundflower system extension for macOS to direct an process's audio to quicktime record
+- reboot after install a system extension
+
+from: https://ostechnix.com/20-ffmpeg-commands-beginners/
+#+begin_src shell
+    # 01 detailed info
+    ffmpeg -i video.mp4
+
+    # 02 convert format, compress .mov file
+    ffmpeg -i video.mov video.mp3
+
+    # 03 convert format but don't loss quaility
+    ffmpeg -i video.mov -qscale 0 video.mp3
+
+    # 04 Converting video files to audio files
+    ffmpeg -i input.mp4 -vn output.mp3
+
+    # more control
+    ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320 -f mp3 output.mp3
+    # -vn - Indicates that we have disabled video recording in the output file.
+    # -ar - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.
+    # -ac - Set the number of audio channels.
+    # -ab - Indicates the audio bitrate.
+    # -f - Output file format. In our case, it's mp3 format.
+
+    # 05 Change the volume of audio files
+    ffmpeg -i input.mp3 -af 'volume=0.5' output.mp3
+
+    #  -filter: video scale=XXX:XXX -codec: audio copy
+    ffmpeg -i input.mp4 -filter:v scale=1280:720 -c:a copy output.mp4
+    ffmpeg -i input.mp4 -vf scale=1920:1080 smaller.mp4  # my 13MBP cannot play 4k video well, :(
+
+    # 06 Compressing video files
+    ffmpeg -i input.mp4 -vf scale=1280:-1 -c:v libx264 -preset veryslow -crf 24 output.mp4
+    # audio -ac 2 -c:a aac -strict -2 -b:a 128k
+
+    # 07 Compressing Audio files
+    ffmpeg -i input.mp3 -ab 128 output.mp3
+    # 96kbps
+    # 112kbps
+    # 128kbps
+    # 160kbps
+    # 192kbps
+    # 256kbps
+    # 320kbps
+
+    # 08 Removing audio stream from a video file
+    ffmpeg -i input.mp4 -an output.mp4
+
+    # 09 Removing video stream from a media file
+    ffmpeg -i input.mp4 -vn output.mp3
+    ffmpeg -i input.mp4 -vn -ab 320 output.mp3
+
+    # 10 Extracting images from the video
+    ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png
+
+    -r - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.
+    -f - Indicates the output format i.e image format in our case.
+    image-%2d.png - Indicates how we want to name the extracted images.
+
+    # 11 Cropping videos
+    ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+
+    # 12 Convert a specific portion of a video
+    ffmpeg -i input.mp4 -t 10 output.avi
+
+    # 13 Set the aspect ratio to video
+    ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+
+    # 14 Adding poster image to audio files
+    ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+
+    # 15 Trim a media file using start and stop times
+    ffmpeg -i input.mp4 -ss 00:00:50 -codec copy -t 50 output.mp4
+    ffmpeg -i audio.mp3 -ss 00:01:54 -to 00:06:53 -c copy output.mp3
+
+    # 16 Split audio/video files into multiple parts
+    ffmpeg -i input.mp4 -t 00:00:30 -c copy part1.mp4 -ss 00:00:30 -codec copy part2.mp4
+
+    # 17 Joining or merging multiple audio/video parts into one
+    ffmpeg -f concat -safe 0 -i join.txt -c copy output.mp4
+    ffmpeg -i "concat:audio1.mp3|audio2.mp3|audio3.mp3" -c copy output.mp3
+    cat join.txt
+    file /home/sk/myvideos/part1.mp4
+    file /home/sk/myvideos/part2.mp4
+    file /home/sk/myvideos/part3.mp4
+    file /home/sk/myvideos/part4.mp4
+
+    # 18 Add subtitles to a video file
+    fmpeg -i input.mp4 -i subtitle.srt -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast output.mp4
+
+    # 19 Preview or test video or audio files
+    ffplay video.mp4
+    ffplay audio.mp3
+
+    # 20 Increase video playback speed
+    ffmpeg -i input.mp4 -vf "setpts=0.5*PTS" output.mp4
+
+#+end_src
+
+find
+#+begin_src shell
+    find ./ -type d -iregex ".*verbal.*" \
+            -and -iregex ".*advan.*"
+    find -iname <filename>
+    find -iname *wordIremember*
+
+#+end_src
+
+
+from: https://docs.fileflows.com/flows
+from: https://github.com/revenz/FileFlows
+note: 2333333, another similar idea, flows
+
+#+attr_html: :width 50%
+[[https://docs.fileflows.com/images/dashboard/flow.png]]

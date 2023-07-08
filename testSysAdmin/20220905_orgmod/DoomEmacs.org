@@ -28,10 +28,12 @@ Over time, the repositories for Doom’s plugins will accumulate. Run this comma
 An overview of the available commands that doom provides. Use /doom help COMMAND/ to display documentation for a particular COMMAND.
 ** NOTE: I recommend you add your .emacs.d/bin to your PATH so you can call doom directly and from anywhere. Accomplish this by adding this to your .bashrc or .zshrc file: ~export PATH=”$HOME/.emacs.d/bin:$PATH”~
 * DOOMDIR
-You can configure Doom by tweaking the files found in your DOOMDIR. Doom expects this directory to be found in one of:
+You can configure Doom by tweaking the files found in your DOOMDIR. Doom expects
+this directory to be found in one of:
 ** ~/.config/doom (respects $XDG_CONFIG_HOME)
 ** or ~/.doom.d
-This directory is referred to as your DOOMDIR. Only one of these directories should exist (Doom will only recognize one).
+This directory is referred to as your DOOMDIR. Only one of these directories
+should exist (Doom will only recognize one).
 * Configuration Files
 ** init.el
 Where you’ll find your doom! block, which controls what Doom modules are enabled and in what order they will be loaded. This file is evaluated early when Emacs is starting up; before any other module has loaded. You generally shouldn’t add code to this file unless you’re targeting Doom’s CLI or something that needs to be configured very early in the startup process.
@@ -52,14 +54,14 @@ Package management is done from this file; where you’ll declare what packages 
 ** DO NOT configure packages here (definitely no use-package! or after! in here!). This file is read in an isolated environment and will have no lasting effect.
 
 
-* wenchen
+* wenchen001
 SCHEDULED: <2022-09-11 Sun>
+这个中文支持可以的
 
 C-c-x-v with inline image toggle
 or cursor on pics links, and hit return
 [[[[/Users/wenchenli/Downloads/unnamed.jpg]]]]
 
-这个中文支持怎么样?
 
 from: https://www.youtube.com/watch?v=JWD1Fpdd4Pc
 title: Evil Mode: Or, How I Learned to Stop Worrying and Love Emacs
@@ -157,16 +159,10 @@ title: Emacs From Scratch #5 - Org Mode Basics
 | what do you want |     |                |
 
 
-- [ ] somethign
+- [ ] something
 - [ ] read the paper
 - [ ] what else
 
-  #+begin_src python
-#!/bin/python
-import os
-# os.path
-
-  #+end_src
 
 
 
@@ -181,9 +177,13 @@ from: https://alhassy.github.io/emacs.d/#Emacs-is-a-flexible-platform-for-develo
 > Don't just get used to your tool, make it get used to you!
 > Emacs is not just an editor, but a host for running Lisp applications!
 
+TAB   ## fold headings
+S-TAB ## unfold
+>>    or M-rightArrowKey ## demote headings
+<<    or M-leftArrowKey  ## promote headings
 
 
-** TODO Create a quickstart guide
+** TODO showcase the color rainbow of emacs theme
 *** TODO Create a quickstart guide
 **** TODO Create a quickstart guide
 ***** TODO Create a quickstart guide
@@ -191,17 +191,22 @@ from: https://alhassy.github.io/emacs.d/#Emacs-is-a-flexible-platform-for-develo
 ******* TODO Create a quickstart guide
 
 
-* heading 1
+* simple markup syntax
+
+**** text, list, links(www, local files, pics), table, code, comments
+
 To markup text in Org, simply surround it with one or more marker characters.
 *Bold*, /italic/ and _underline_ are fairly intuitive, and the ability to use
 +strikethrough+ is a plus.  You can _/*combine*/_ the basic markup in any
 order, however ~code~ and =verbatim= need to be the *_~inner-most~_* markers
 if they are present since their contents are interpreted =_literally_=.
 
-To buy:
+To buy list:
 1. Milk
 2. Eggs
-   - Organic
+   - Organic :: this is a description
+     . what 01
+     . what 02
 3. Cheese
    + Parmesan
    + Mozzarella
@@ -214,6 +219,10 @@ To buy:
 [[file:/Users/wenchenli/Pictures/dank-meme.png]]]]
 [[earlier heading][an earlier heading in the document]]
 
+[[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]][[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]]
+
+[[/Users/wenchenli/Downloads/test001.png]]
+[[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]]
 
 #+begin_src emacs-lisp
 (message "Hello world")
@@ -221,6 +230,7 @@ To buy:
 
 #+begin_example python
 ## this is
+print("something")
 #+end_example
 
 | Tool                           | Literate programming? | Reproducible Research? | Languages |
@@ -249,26 +259,16 @@ As well as other markup.
 #+end_src
 #+end_comment
 
-* A top level heading
-** COMMENT This section and subsections are commented out
-*** This heading inherits the =COMMENT= keyword
+
+***** COMMENT This section and subsections are commented out
+***** This heading inherits the =COMMENT= keyword
 This text is commented out
-
-
-** This heading is not commented
+***** This heading is not commented
 This text will be exported and code blocks will run.
 
-[[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]][[Users/wenchenli/Desktop/Screen\ Shot\ 2022-09-05\ at\ 5.55.13\ PM.png]]
-
-[[/Users/wenchenli/Downloads/test001.png]]
-[[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]][[/Users/wenchenli/Downloads/test001.png]]
 
 
-emoji:  ??, TODO
-
-+delete+
-
-[[youtube.com]]
+**** emoji:  ?:  https://github.com/iqbalansari/emacs-emojify
 
 
 * Diary 20220911 Sun
@@ -276,11 +276,15 @@ emoji:  ??, TODO
 
 [[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 9.17.14 PM.png]] [[/Users/wenchenli/Desktop/Screen Shot 2022-09-11 at 9.38.36 PM.png]]
 
+#+begin_src elips
 (message "Mozart is a great %s."
          (if (> (string-to-number (emacs-uptime "%H")) 3)
              "programmer"
            "composer"))
+#+end_src
 
+
+#### good urls
 
 TODO_1: read it again and follow
 from: https://m00natic.github.io/emacs/emacs-wiki.html
@@ -301,7 +305,6 @@ some small thing
 - from: https://www.emacswiki.org/emacs/AlignCommands
 
 - mac emacs some shortcut conflicts
-- I need to insert emoji in emacs
 
 
 * Diary 20220924 Sat
@@ -311,7 +314,7 @@ TODO:
 - curse doesn't go to the very top of very bottom of file viwer
 - and music index list ??
 
-  M-x list-packages
+M-x list-packages
 org-download                   20220906.1929  available    melpa    Image drag-and-drop for Org-mode.
 This extension facilitates moving images from point A to point B.
 
@@ -671,8 +674,42 @@ click on it to display image in its own buffer, then +=- to zoom in/out
 image mangement with emacs, not good for now
 
 
-####
-something I wanna do with doom emacs
-- guard line at 80 chars
-- change syntax
-- change scroll margin
+* Diary 20221111 Fri
+
+M1 evil emacs is a bit different configuration
+
+M-x org-timer-start
+add data C-c .
+
+<2022-11-11 Fri>
+
+from: https://naghdbishi.ir/Doom-Emacs-Cheat-Sheet/README.html#org011609c
+SPC TAB n New workspace
+SPC TAB N Newly named workspace
+SPC TAB [ Previous workspace
+SPC TAB ] Next workspace
+SPC TAB d Remove workspace
+SPC TAB R Restore last session
+M-1 Switch to workspace 1
+M-2 Switch to workspace 2 and so forth.
+
+from: https://orgmode.org/worg/org-tutorials/org4beginners.
+
+**** learn about AMD CPUs, code, price and performance
+
+AMD CPU and GPU product survey:
+Ryzen: 3, 5, 7
+AMD Ryzon 3 2200G
+2400, 2500, 2600, performance,
+2700, 2800 enthusiast,
+G, WX, X sufffix, G for power feature, X for high performance, WX for work station
+Threadripper enthusic line
+Epyc server line
+
+from: https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors#Raphael_(7000_series_CPUs)
+
+**** headline and list
+
+M-rightArrowKey or >> ## demote headline
+M-leftArrowKey  or << ## promote headline
+M-RET   ## new headline

@@ -1,9 +1,10 @@
-ubuntu flovar Linux set up
-================================================================================
+#+title: t01_ubuntu2204
+*** ubuntu 22.04 setup notes
 
-TODO: definately have soemthing to add
-ubuntu setup script
-```bash
+**** TODO [#A] definately have more things to add
+
+**** ubuntu setup script
+#+begin_src shell
 sudo apt update && sudo apt upgrade
 reboot
 ### app tools
@@ -34,16 +35,16 @@ git config --global user.name wenchen
 git config --global user.email richardlee0211er@gmail.com
 
 ## config file
-mkdir Code && cd Code
+mkdir $HOME/Code
 git clone https://github.com/richardlee0211/test $HOME/Code/_Mytest
 # cp ~/Code/test/testSysAdmin/... ~/.Xmodmap  && xmodmap ~/.Xmodmap    # use caps as ctrl
 # cp ~/Code/test/testSysAdmin/... ~/.tmux.conf
 # cp ~/Code/test/testSysAdmin/... ~/.vimrc
 
-cp $HOME/Code/_Mytest/testSysAdmin/testLinuxSetup/vim/vimrc.basic.conf $HOME/.vimrc
-cp $HOME/Code/_Mytest/testSysAdmin/testLinuxSetup/tmux.conf $HOME/.tmux.conf
+cp $HOME/Code/_Mytest/testSysAdmin/t01_LinuxSetup/vim/vimrc.basic.conf $HOME/.vimrc
+cp $HOME/Code/_Mytest/testSysAdmin/t01_LinuxSetup/c01_tmux.conf  $HOME/.tmux.conf
 
-```
+#+end_src
 
 this seem to be a good ubuntu set up script
 [here](https://github.com/sojharo/mangi-script/blob/master/my_ubuntu_setup.sh)
@@ -62,7 +63,7 @@ this is exciting, and this is a choice. i3, tmux, transparent terminal and backg
 and I will need a remap to vim keystrick
 
 
-#### map cap locks to ctrl as I am so used to it
+**** map cap locks to ctrl as I am so used to it
 - change the keyboard layout
 setxkbmap -layout us
 
@@ -90,7 +91,7 @@ keycode 57 = n N
  6. ISO_Level3_Shift+Shift+Key
 
 - map caplock to ctrl
-```~/.Xmodmap
+#+begin_src ~/.Xmodmap
     ! Simplest example of changeing CapsLock into Control
     ! from: https://wiki.archlinux.org/title/xmodmap
     ! need to clear modifier key involved
@@ -100,20 +101,22 @@ keycode 57 = n N
     keycode 66 = Control_L
     ! add back the modifier key
     add control = Control_L Control_R
-```
+#+end_src
+
 then xmodmap ~/.Xmodmap
 
 following example modifies CapsLock to Control, and Shift+CapsLock to CapsLock
 I perfer this solution
-```~/.Xmodmap
+#+begin_src ~/.Xmodmap
 	clear lock
 	clear control
 	add control = Caps_Lock Control_L Control_R
 	keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
-```
+#+end_src
+
 - see the changed modifier key
 xmodmap -pm
-```shell
+#+begin_src  shell
 	┌──(kali㉿kali)-[~]
 	└─$ xmodmap -pm                                                                                                 1 ⚙
 	xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
@@ -126,14 +129,13 @@ xmodmap -pm
 	mod3
 	mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
 	mod5        ISO_Level3_Shift (0x5c),  Mode_switch (0xcb)
-```
+#+end_src
 
 - to see the keycode and keysym
-```shell
-xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
-
-showkey --keycodes # in console
-```
+#+begin_src shell
+    xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+    showkey --keycodes # in console
+#+end_src
 
 - Turn CapsLock into Control, and LeftControl into Hyper
 This is new idea for me.
@@ -141,7 +143,7 @@ Laptop users may prefer having CapsLock as Control.
 The Left Control key can be used as a Hyper modifier
 (an additional modifier for emacs or openbox or i3).
 
-```~/.Xmodmap
+#+begin_src  ~/.Xmodmap
 	clear      lock
 	clear   control
 	clear      mod1
@@ -157,16 +159,21 @@ The Left Control key can be used as a Hyper modifier
 	add        mod3 = Hyper_L
 	add        mod4 = Super_L Super_R
 	add        mod5 = Mode_switch ISO_Level3_Shift
-```
+#+end_src
 
 - using super+tab to switch window focus
 - disable super+l to lock the screen
 
-#### zsh and oh-my-zsh
-a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
-```shell
-    apt install zsh
+***** with gnome tweak tool
+sudo add-apt-repository universe
+sudo apt install gnome-tweaks -y
 
+in GUI:  gnome-tweak-tool > Keyboard & Mouse > Keyboard > Additional Layout Options > Caps Lock behavior
+
+**** zsh and oh-my-zsh
+a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-zsh-on-linux/
+#+begin_src shell
+    apt install zsh
     ## config
     usermod username -s /usr/bin/zsh
     # or
@@ -174,8 +181,9 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
 
     # install Oh My Zsh
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
+#+end_src
 
+<<<<<<< HEAD:testSysAdmin/testLinuxSetup/README.UbuntuSetup.md
 about zsh theme: 
 need to be 
 - relative/tail path, hostname
@@ -184,6 +192,9 @@ need to be
 good examples: geoffgarside
 
 ```~/.zshrc
+=======
+#+begin_src  ~/.zshrc
+>>>>>>> 6e972b65ac02e186cb424c53c305bc29a0b1d863:testSysAdmin/t01_LinuxSetup/t01_ubuntu2204.org
     ## wenchen
     ## inside ~/.bash_profile
     ## xmodmap ~/.Xmodmap
@@ -207,51 +218,54 @@ good examples: geoffgarside
             PATH="${PATH:+"$PATH:"}$1"
         fi
     }
-```
+#+end_src
 
-#### ranger
+**** ranger
 apt install ranger
 ~/.config/ranger/rc.conf
-```
+#+begin_src config
     set preview_images true
     set preview_images_method urxvt
     set draw_borders true
     set ranger_load_default_rc false
-```
+
+#+end_src
 
 ranger --copy-config=scope
 TODO: couldn't get image preview, could be since Kali distro
 
-## ssh server
-sudo apt-get install openssh-server
-sudo systemctl enable ssh
-sudo systemctl status ssh
+**** ssh server
+#+begin_src shell
+    sudo apt-get install openssh-server
+    sudo systemctl enable ssh
+    sudo systemctl status ssh
+#+end_src
 
-#### Chinese input method
+**** Chinese input method
 from: http://yingshaoxo.blogspot.com/2017/12/install-chinese-input-method-on-kali.html
 not work for i3
-```
+#+begin_src shell
     # 0. Set ibus
     `sudo apt install ibus`
     `sudo im-config`
 
-    1. Install RIME
+    ## 1. Install RIME
     `sudo apt-get install ibus-rime`
     https://github.com/rime/home/wiki/RimeWithIBus#ubuntu
 
-    2. Select Input Language
+    ## 2. Select Input Language
     `reboot`
     System Setting — Region&Language — input Source, then click ‘+’ button, choose Chinese
 
-    3. Ready to use
+    ## 3. Ready to use
     Press Super + space to switch input method.
     Press F4 to switch schema(simple or complex).
-```
+#+end_src
 
 from: https://ultra-technology.org/linux_for_beginners/how-to-write-in-japanese-or-chinese-under-linux-on-any-window-manager-using-fcitx/
 from: https://askubuntu.com/questions/1060130/using-ibus-japanese-input-with-ubuntu-mate-and-i3
 using fcitx, take some patient to make it running
-```
+#+begin_src shell
     sudo apt install fcitx fcitx-googlepinyin fcitx-mozc im-config
     sudo apt install xfonts-intl-chinese
 
@@ -266,9 +280,9 @@ using fcitx, take some patient to make it running
 
     fcitx
     fcitx-configtool # using fcitx-config-gtk3 to add language/shortcuts
-```
+#+end_src
 
-#### Chinese input method 2
+**** Chinese input method 2
 now I understand how encoding and font work.
 Hey, since I can read Chinese and there are some pretty cool Chinese Community,
 I would need to be type Chinese in Kali, although I don't consider bring Chinese
@@ -276,26 +290,27 @@ into my Terminal yet, as a result of not finding a pretty fonts for terminal.
 I think type Chinese in the search bar is good enough for now.
 Plus if I really need to type Chinese in Terminal,
 Gnomal-Terminal has good internal font support for Chinese.
-```
+#+begin_src  shell
     sudo apt install ibus-pinyin
     sudo apt install ibus-sunpinyin
     ibus-setup # config to using <C-space> to change imput method
     ibus restart
     reboot
-```
+#+end_src
 
-#### firefox plugin
+**** firefox plugin
 vimium, vim like operation
 adblock, adblock
 windowed, could float youtube video
 dark reader, for late night read
 
-#### screenshot
+**** screenshot
 apt install scrot # and bind it to PrtSc
 apt install gnome-screenshot
 
-#### nvidia driver
+**** nvidia driver
 
+#+begin_src shell
 ➜  testSysAdmin git:(master) ✗ sudo nvidia-detector
 nvidia-driver-495
 ➜  testSysAdmin git:(master) ✗ ubuntu-drivers devices
@@ -313,54 +328,58 @@ nvidia-driver-495
     driver   : nvidia-driver-470 - distro non-free recommended
     driver   : xserver-xorg-video-nouveau - distro free builtin
 ➜  testSysAdmin git:(master) ✗ sudo apt install -y nvidia-driver-495
+#+end_src
 
 
-## uninstall nvidia drivers
+***** uninstall nvidia drivers
 from: https://askubuntu.com/questions/206283/how-can-i-uninstall-a-nvidia-driver-completely
-```shell
+#+begin_src shell
     dpkg -l  | grep -i nvidia
     sudo apt-get remove --purge '^nvidia-.*'
     sudo apt autoremove
     sudo pat-get install ubuntu-desktop
     echo 'nouveau' | sudo tee -a /etc/modules
     sudo rm /etc/X11/xorg.conf
-```
+#+end_src
 
 this works, from: https://askubuntu.com/questions/1124057/ubuntu-18-04-stuck-at-purple-loading-screen-after-new-update
-```shell
+#+begin_src shell
 	sudo apt-get update
 	sudo apt-get install --reinstall lightdm
 	sudo dpkg-reconfigure lightdm
-```
+#+end_src
 
-#### cuda
+**** cuda
 sudo apt install nvidia-cuda-toolkit
 nvcc --version
 
 
-#### install mate
+**** install mate
+#+begin_src shell
     sudo apt install -y tasksel
     sudo tasksel install ubuntu-mate-desktop
-    choose lightdm as display manager
+    ## choose lightdm as display manager
+#+end_src
 
-#### use terminator
+**** use terminator
 as it support "copy on select"
 would be faster when with terminal and broswer work flow
 apt install terminator
 
-#### unattended-upgr take too long
+**** unattended-upgr take too long
 from: https://askubuntu.com/questions/934807/unattended-upgrades-status
 check
-```shell
+#+begin_src shell
 	systemctl list-timers apt-daily.timer
 	ls -l /var/lib/apt/periodic/
 	less /var/log/unattended-upgrades/unattended-upgrades.log
 	apt list --upgradeable | wc -l
-```
+#+end_src
 for this time, it would take 10 hours to download all the packages it needs
 abort this job
 
 from: https://unix.stackexchange.com/questions/374748/ubuntu-update-error-waiting-for-unattended-upgr-to-exit
+#+begin_quote
     1. Stop the automatic updater.
     `sudo dpkg-reconfigure -plow unattended-upgrades`
     At the first prompt, choose not to download and install updates.
@@ -375,19 +394,20 @@ from: https://unix.stackexchange.com/questions/374748/ubuntu-update-error-waitin
     4. Turn the automatic updater back on, now that the blockage is cleared.
     `sudo dpkg-reconfigure -plow unattended-upgrades`
     Select the package unattended-upgrades again.
+#+end_quote
 
 log:
 system crashed, try to save it,
 guess what, donot move the case when the computer is working
 
 
-#### fix audio problem
+**** fix audio problem
 
 kali don't play audio when playing youtube
 apt install alsa-utils -y # to use alsamixer
 And it could tell PS4 controller and pass audio to this device, nice
 
-#### fix firefox veritical tear
+**** fix firefox veritical tear
 disable hardware acceleration
 For Firefox do this:
     Type "about:config" on the address bar.
@@ -395,13 +415,13 @@ For Firefox do this:
     Change it to true by double-clicking.
     Save and restart Firefox.
 
-#### firefox tab appearance
+**** firefox tab appearance
 
 I can hard see the tabs, change its appearence
 from: https://superuser.com/questions/1653533/how-to-switch-back-to-firefox-old-style-of-tabs
 n Firefox 91, restore the old tab style as follows:
 
-```shell
+#+begin_quote
     Open about:config.
 
     Search for toolkit.legacyUserProfileCustomizations.stylesheets.
@@ -445,17 +465,17 @@ n Firefox 91, restore the old tab style as follows:
     Restart Firefox.
 
 	The old tab style is restored.
-```
+#+end_quote
 
-
-#### vim copy and paste x11
+**** vim copy and paste x11
 apt install vim-gtk3
 vim --version # look for xterm_clipboard
 set clipboard+=unnamedplus
 
-#### build vim with X11 copy and paste support
+**** build vim with X11 copy and paste support
 from vim.git/src/INTSALL
 ```shell
+#+begin_quote
 To build Vim on Ubuntu from scratch on a clean system using git:
 	Install tools required to be able to get and build Vim:
 	% sudo apt install git
@@ -486,19 +506,20 @@ To build Vim on Ubuntu from scratch on a clean system using git:
 	Uncomment this line in Makefile:
 		"CONF_OPT_PYTHON3 = --enable-python3interp"
 	% make reconfig
-```
+#+end_quote
 
 apt vim is in /user/bin while this build should be in /user/local/bin/vim
 only ubuntu using Ctrl+Shift+c or +v to copy and paste
 
 
-#### pip3 and internet speed test
+**** pip3 and internet speed test
 sudo apt install -y python3-pip
 pip3 install speedtest-cli
 export PATH="/home/wenchen/.local/bin/:$PATH" # ~/.zshrc
 
 Gigbit internet in the lab
 ```shell
+#+begin_src shell
     pip3 install speedtest-cli
     ➜  testLinuxSetup git:(master) ✗ ~/.local/bin/speedtest
     Retrieving speedtest.net configuration...
@@ -510,15 +531,15 @@ Gigbit internet in the lab
     Download: 774.94 Mbit/s
     Testing upload speed......................................................................................................
     Upload: 677.55 Mbit/s
-```
+#+end_src
 
-#### youtube-dl
+**** youtube-dl
 sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
 sudo chmod a+x /usr/local/bin/youtube-dl
 sudo apt install python-dev
 rehash
 
-#### dolphin
+**** dolphin
 using dolphin as it provides better img preview
 sudo apt install dolphin
 feels like this apt build is limited
@@ -531,7 +552,7 @@ https://help.ubuntu.com/community/DefaultFileManager
 #### stress test
 nice, the new heat sink works, stress cpu top temp 65 degrees,
 stress gpu top temp 71 degrees
-```shell
+#+begin_src shell
     sudo apt-get install -y stress htop iotop lm-sensors
     # Run a stress test with `nproc` CPU workers (sqrt)
     #                        `nproc` Virtual Memory workers (malloc / free)
@@ -555,9 +576,9 @@ stress gpu top temp 71 degrees
     sudo iotop
     watch sudo sensors
     watch nvidia-smi
-```
+#+end_src
 
-#### install notejs
+**** install notejs
 sudo snap install node --classic
 alias open=open-cli # in ~/.zshrc
 
@@ -565,14 +586,14 @@ sudo npm install --global open-cli
 sudo npm install --global public-ip-cli    # public-ip
 sudo npm install --global internal-ip-cli  # internal-ip
 
-#### how2
+**** how2
 how2 seems to be nice, terminal app to search stack overflow
 https://github.com/santinic/how2
 
-#### exiftool
+**** exiftool
 mp4, mkv, webm, mov
 
-```shell
+#+begin_src shell
     exiftool --common -json <filename.mp4>
 
     ## Renaming Image Files According to their Creation Date
@@ -636,9 +657,9 @@ mp4, mkv, webm, mov
 
     ## without -common
     ## SourceFile,AudioBitsPerSample,AudioChannels,AudioFormat,AudioSampleRate,AverageBitrate,AvgBitrate,Balance,BitDepth,BufferSize,ByteOrderMark,CodecID,ColorRepresentation,CompatibleBrands,CompressorID,CreateDate,CurrentTime,Directory,DocType,DocTypeReadVersion,DocTypeVersion,Duration,EBMLReadVersion,EBMLVersion,Encoder,Error,ExifToolVersion,FileAccessDate,FileInodeChangeDate,FileModifyDate,FileName,FilePermissions,FileSize,FileType,FileTypeExtension,GraphicsMode,HandlerDescription,HandlerType,HandlerVendorID,ImageHeight,ImageSize,ImageWidth,LineCount,MajorBrand,MatrixStructure,MaxBitrate,MediaCreateDate,MediaDataOffset,MediaDataSize,MediaDuration,MediaHeaderVersion,MediaLanguageCode,MediaModifyDate,MediaTimeScale,Megapixels,MIMEEncoding,MIMEType,MinorVersion,ModifyDate,MovieHeaderVersion,MuxingApp,Newlines,NextTrackID,OpColor,PixelAspectRatio,PosterTime,PreferredRate,PreferredVolume,PreviewDuration,PreviewTime,Rotation,SelectionDuration,SelectionTime,SourceImageHeight,SourceImageWidth,TagName,TagString,TimecodeScale,TimeScale,TrackCreateDate,TrackDuration,TrackHeaderVersion,TrackID,TrackLanguage,TrackLayer,TrackModifyDate,TrackNumber,TrackType,TrackVolume,VideoFrameRate,VideoScanType,WordCount,WritingApp,XResolution,YResolution
-```
+#+end_src
 
-#### teamviewer
+**** teamviewer
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 sudo apt install ./name.deb ## or
 sudo dpkg -i ./name.deb
@@ -653,44 +674,55 @@ teamviewer -info
 
 
 
-#### config window manager to fit my habits
+**** config window manager to fit my habits
 tile window to left, right, top-right, botton-right, full screen
     ALT+SHIFT+hjkl
 move window to second screen
     ALT+SHIFT+1234
 
-log 20210924 lab machine
---------------------------------------------------------------------------------
-python3 unattended-upgrade # 100% CPU core usage
+**** zothers
+this seem to be a good ubuntu set up script
+from: [[https://github.com/sojharo/mangi-script/blob/master/my_ubuntu_setup.sh]]
 
-okay, it made sence, the CPU thermal throttled pretty easily
+using mac keyboard but windows way to copy and paste is painful
 
-log 20220124 lab machine
---------------------------------------------------------------------------------
+maybe I just need a simple laptop setup to focus on coding problem
+
+from: [[https://dev.to/brpaz/my-linux-development-environment-of-2018-ch7]]
+contains a lot ubuntu tools
+
+so restart the VM, and in the login options, I can i3 as my VM(window manage)
+
+this is exciting, and this is a choice. i3, tmux, transparent terminal and backgroud picture
+
+and I will need a remap to vim keystrick
+
+
+
+*** log 20220124 lab machine
 okay I need to set up a clean Ubuntu 18.04 for Unity3D
 
 change color palettes in terminal app, as many terminal app use this config
 
-#### different desktop environment survey
+**** different desktop environment survey
 from: https://ubuntu.com/download/flavours
 from: https://linuxconfig.org/the-8-best-ubuntu-desktop-environments-20-04-focal-fossa-linux
 
-##### Ubuntu Mate
+**** Ubuntu Mate
 from: https://wiki.mate-desktop.org/mate-desktop/
 has redshift, cool
 from: https://wiki.mate-desktop.org/mate-desktop/applications/atril/
 
-##### Gnome 3
+Gnome 3
 from: https://www.gnome.org/
 
-##### KDE
-https://kde.org/plasma-desktop/
+KDE
+from: https://kde.org/plasma-desktop/
 
-##### I wanna try out this one
 from: https://ubuntustudio.org/
 from: https://xubuntu.org/
 
-log 20220526 lab machine
+**** log 20220526 lab machine
 --------------------------------------------------------------------------------
 set up Ubuntu 22.04 for Docker GPU experience
 
@@ -701,8 +733,8 @@ Code
 Download folder
 broswer book marks
 
-####
-power consumption cli
+
+**** power consumption cli
 
 of course a file
 sudo cat /sys/class/powercap/*/energy_uj   ## on a laptop version Ubuntu
@@ -714,3 +746,153 @@ Powertop, Powerstat, and Power Statistics programs only works for laptops
 it turns out, this is inconvenient by software
 from: https://web.archive.org/web/20210506133809/
 from: https://software.intel.com/content/www/us/en/develop/blogs/measuring-application-power-consumption-on-linux-operating-system.html
+
+*** temp rice Linux
+
+well, I gonna try it anyway.
+
+search download and install *VirtualBox*
+search download and install *Arch Linux*
+
+links:
+[[https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg][time line]]
+[[https://wiki.installgentoo.com/index.php/GNU/Linux_ricing][GNU/Linux ricing]]
+[[https://github.com/Airblader/i3][i3-gaps]]
+[[https://wiki.archlinux.org/index.php/Frequently_asked_questions][arch wiki]]
+
+form:[[https://wiki.archlinux.org/index.php/General_recommendations][general recommendations]]
+followed this wiki to build my ArchLinux and fall, the login interface display gabage
+the default pdf view in Ubuntu is "evince", which support hjkl vim move key-map
+
+**** Top 10 Linux Job Interview Questions
+
+<2019-09-23>
+
+From youtube tutorialLinux
+Q1: Kernel Version Checking
+uname -a
+
+Q2: IP address checking
+Ifconfig
+Ip adds show eth0
+
+Q3: Free disk space checking
+df -ah
+Disk free
+
+Q4: Manage services on a system
+new: systemd
+Systemctl status udev
+
+old:
+Service dev status
+
+Q5: check fold’s size
+du -sh ~/Code
+Disk usage
+
+Q6: check for open ports
+netstat -tulpn
+
+Q7: CPU usage of a process
+Ps aux | grep nginx
+Top
+
+Q8: Dealing with Mounts
+Ls /mnt
+Mount /dev/sda2 /mnt
+More /etc/fsfile
+
+Q9: help list
+Man <command>
+<Command> —help
+Google.com
+
+**** Some notes on youtube DistroTube First Rice
+
+For any terminal using Xresource
+Xrdb -merge ~/.Xresource
+
+- Alsamixer
+- GIMP, the photo editing software
+- Powerline
+- Cmus, a terminal music player
+- Unicode character with fontawesome, or other font
+- Just search unicode music
+ - vi mode in bash and zsh
+- mpd ncmpcpp mpc
+- Pandoc
+
+**** logout using commnand line
+Logout with ‘pkill x’, OMG
+Pkill - u ${USERNAME}
+Or
+Gnome-session-quit
+
+Use stow to place dot in  ~/.config
+
+**** Linux from scratch
+
+here: http://www.linuxfromscratch.org/
+what could help more to build a Linux from scratch
+
+Here: http://www.linuxfromscratch.org/blfs/view/svn/index.html
+A good list of Linux package and utility
+
+
+**** do resolution 2560x1440 on SyncMaster SA850 :tDevLog:
+
+!! not a driver problem, this the DP to DVI adaptor or the DVI cable can not do more than 1080P
+
+```shell
+	## could config X server in ~/.xprofile
+
+	## example
+	# sudo xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+	# sudo xrandr --addmode eDP-1 "1600x900_60.00"
+	# sudo xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+
+	## failed
+	# xrandr to get display name, DP-1
+	# ╰─○ cvt 2560 1440
+	# 2560x1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz
+	# Modeline "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+
+	## failed 02
+	# gtf 2560 1440 60
+	# 2560x1440 @ 60.00 Hz (GTF) hsync: 89.40 kHz; pclk: 311.83 MHz
+	# Modeline "2560x1440_60.00"  311.83  2560 2744 3024 3488  1440 1441 1444 1490  -HSync +Vsync
+	# sudo xrandr --newmode "test02"  311.83  2560 2744 3024 3488  1440 1441 1444 1490  -HSync +Vsync
+	# sudo xrandr --addmode DP-1 "test02"
+
+	## failed 03
+	# gtf 2560 1440 30
+	# 2560x1440 @ 30.00 Hz (GTF) hsync: 43.95 kHz; pclk: 146.27 MHz
+	# Modeline "2560x1440_30.00"  146.27  2560 2680 2944 3328  1440 1441 1444 1465  -HSync +Vsync
+	# sudo xrandr --newmode "test03" 146.27  2560 2680 2944 3328  1440 1441 1444 1465  -HSync +Vsync
+	# sudo xrandr --addmode DP-1 "test03"
+	# sudo xrandr --output DP-1 --mode "test03"
+
+	# lspci -nn # to view the devices
+	# check /var/log/Xorg.0.log
+```
+
+**** setting up printer in Ubuntu, no lucky here :tDevLog:
+
+Dell 2155cdn Ubuntu driver install
+
+driver from dell doesn't work with ubuntu
+from: https://www.dell.com/support/home/en-us/product-support/product/dell-2155cn-cdn/drivers
+from: https://www.dell.com/support/kbdoc/en-us/000129694/how-to-install-and-configure-a-dell-printer-using-the-ubuntu-operating-system
+rpm2cpio your filename.rpm | cpio --extract --make-directories
+sudo chown -R root:root usr
+sudo cp -r usr /
+sudo service cups restart
+ipstat
+https://ip:631/Printers
+
+
+
+from: https://ubuntuforums.org/showthread.php?t=2053460
+Openprinting recommends the Generic PCL 5c Printer - CUPS+Gutenprint v5.2.5 driver for the related 2145cn. You might have some luck there.
+
