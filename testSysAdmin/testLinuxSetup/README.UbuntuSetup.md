@@ -35,10 +35,13 @@ git config --global user.email richardlee0211er@gmail.com
 
 ## config file
 mkdir Code && cd Code
-git clone https://github.com/richardlee0211/test
-cp ~/Code/test/testSysAdmin/... ~/.Xmodmap  && xmodmap ~/.Xmodmap    # use caps as ctrl
-cp ~/Code/test/testSysAdmin/... ~/.tmux.conf
-cp ~/Code/test/testSysAdmin/... ~/.vimrc
+git clone https://github.com/richardlee0211/test $HOME/Code/_Mytest
+# cp ~/Code/test/testSysAdmin/... ~/.Xmodmap  && xmodmap ~/.Xmodmap    # use caps as ctrl
+# cp ~/Code/test/testSysAdmin/... ~/.tmux.conf
+# cp ~/Code/test/testSysAdmin/... ~/.vimrc
+
+cp $HOME/Code/_Mytest/testSysAdmin/testLinuxSetup/vim/vimrc.basic.conf $HOME/.vimrc
+cp $HOME/Code/_Mytest/testSysAdmin/testLinuxSetup/tmux.conf $HOME/.tmux.conf
 
 ```
 
@@ -172,6 +175,13 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
     # install Oh My Zsh
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
+
+about zsh theme: 
+need to be 
+- relative/tail path, hostname
+- no two lines
+- no head and tail decoration
+good examples: geoffgarside
 
 ```~/.zshrc
     ## wenchen
