@@ -247,3 +247,41 @@ nice tool
 - exiftool
 
 - vlc Sys+I to trigger inspect windows
+
+tmp
+=====
+
+- vscode
+- vim and clis
+- doom emacs
+- Chinese Calendar
+
+from: https://github.com/exelban/stats
+brew install stats
+
+from: https://github.com/alyssaxuu/later
+note: mac app session management
+
+from: https://www.raycast.com/
+note: brew install --cask raycast
+      so turning app functions into commands, cool
+
+from: https://shottr.cc/
+note: better screenshot tool
+
+from: https://imageoptim.com/mac
+note: quick image tools to remove metadata and reduce image storage
+
+from: https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12
+note: 23333, clip board management
+
+from: https://apps.apple.com/us/app/hidden-bar/id1452453066?mt=12
+from: https://github.com/dwarvesf/hidden
+note: status bar management
+
+still need zoom app
+
+find myself about macOS setup: note/other/newMacOS.md
+
+need to sync my ssh config&keys, need to backup or sync Downloads, Desktop, Documents, etc content folder
+need to sync my Zotero Lib, etc
