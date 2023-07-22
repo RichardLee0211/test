@@ -518,7 +518,6 @@ pip3 install speedtest-cli
 export PATH="/home/wenchen/.local/bin/:$PATH" # ~/.zshrc
 
 Gigbit internet in the lab
-```shell
 #+begin_src shell
     pip3 install speedtest-cli
     ➜  testLinuxSetup git:(master) ✗ ~/.local/bin/speedtest
