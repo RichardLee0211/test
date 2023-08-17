@@ -279,9 +279,75 @@ from: https://apps.apple.com/us/app/hidden-bar/id1452453066?mt=12
 from: https://github.com/dwarvesf/hidden
 note: status bar management
 
-still need zoom app
+from: http://www.derlien.com/downloads/index.html
+note: disk and storage, parse and clean up tool
+
+from: https://apps.apple.com/us/app/wireguard/id1451685025?mt=12
+title: wireguard
+
+```shell
+cat: remote control and device connection
+	/Parsec.app
+	/AnyDesk.app
+	/TeamViewer.app
+	/Android File Transfer.app
+
+cat: communication
+	/Google Chrome.app  ## more like gmail and chats
+	/Discord.app
+	/Slack.app
+	/Safari.app
+	/WeChat.app
+	/zoom.us.app
+
+cat: productivity
+	/Zotero.app
+	/iTerm.app
+	/Notion.app
+	/Emacs.app
+	/Visual Studio Code.app
+	/TeX
+
+cat: media
+	/GoPro Player.app
+	/Fusion Studio 1.4.app
+	/GarageBand.app
+	/Garmin VIRB Edit.app
+	/IINA.app
+
+cat: util
+	/WireGuard.app
+	/Rectangle.app
+	/Snap.app
+	/Syntax Highlight.app
+	/The Unarchiver.app
+	/Utilities
+	/Brother iPrint&Scan.app
+	/DB Browser for SQLite.app
+
+```
+
+
+
+still need to stay connected
+- gmail and chat
+- zoom app
+- wechat
+- slack
+- discord
+- telegram
 
 find myself about macOS setup: note/other/newMacOS.md
 
-need to sync my ssh config&keys, need to backup or sync Downloads, Desktop, Documents, etc content folder
-need to sync my Zotero Lib, etc
+- need to sync my ssh config&keys,
+- need to backup or sync Downloads, Desktop, Documents, etc content folder
+- need to sync my Zotero Lib, etc
+
+#### macOS preview
+
+brew install --cask qlstephen
+brew install --cask qlmarkdown
+brew install --cask qlcolorcode
+
+
+install node, npm and yarn
