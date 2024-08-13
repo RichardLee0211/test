@@ -1,4 +1,4 @@
-####
+#### t
 
 My objective:
 a remote file system I can access files, because laptop storage have some limits
@@ -10,7 +10,7 @@ so that everyfile is in one place (a single harddirve?? )
 if I just using normal harddrives to store projects file, then files are tied to
 one drive and its backup drive
 
-####
+#### t
 home server ssh security
 
 from: https://security.stackexchange.com/questions/75803/what-is-the-safest-way-to-ssh-to-a-machine-behind-a-router
@@ -39,7 +39,7 @@ root username.
 
 1. Check the login logs from time to time for unauthorized access.
 
-####
+#### t
 try router port forward
 
 - config port forward at router web interface, and it just works
@@ -89,8 +89,7 @@ but poor upload speed
 ```
 
 
-####
-check ssh log
+#### t check ssh log
 
 day one on internet, already an unknown IP attempt
 
@@ -105,8 +104,7 @@ day one on internet, already an unknown IP attempt
   158 Jun 26 10:51:34 wenchen-MS-7845 sshd[6172]: Connection closed by authenticating user root xxxxxxxxxxxxx port xxxxx [preauth]
 ```
 
-####
-fail2ban
+#### t fail2ban
 from: https://www.linuxcapable.com/how-to-install-fail2ban-on-ubuntu-22-04-lts/
 
 ```shell
@@ -127,7 +125,7 @@ ssh vislab@<ip_addr>                                                            
 ssh: connect to host XXXXXXXXXXXXX port 22: Connection refused
 
 
-####
+#### t
 need a script to check public IP addr at home
 
 ```shell
@@ -236,8 +234,7 @@ crontab -e
 	0 */1 * * * /bin/bash /home/wenchen/Downloads/20220626_IPscript/test.sh
 ```
 
-####
-some other convenient tools
+#### t some other convenient tools
 
 - rclone
 from: https://it.stonybrook.edu/help/kb/using-rclone-to-backup-data
