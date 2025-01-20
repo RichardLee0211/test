@@ -15,6 +15,7 @@ sudo apt install -y ranger
 sudo apt install -y cmatrix
 sudo apt install -y tldr
 sudo apt install -y pandoc
+sudo apt install -y trash-cli
 
 ### system tools
 # sudo apt install -y i3
@@ -996,7 +997,17 @@ https://ip:631/Printers
 from: https://ubuntuforums.org/showthread.php?t=2053460
 Openprinting recommends the Generic PCL 5c Printer - CUPS+Gutenprint v5.2.5 driver for the related 2145cn. You might have some luck there.
 
-
 **** t brew
 will be hard to install as root
 create user and group
+
+**** t home brew on ubuntu
+- apt
+- snap
+- homebrew
+- pip
+- npm
+
+**** t golang for hugo websites
+wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.0.linux-amd64.tar.gz

@@ -41,6 +41,23 @@ ddl changes from year to year
 |------------+------------------------------------------------------------+------------+------------------------------------------------------+--------------------------------|
 
 
+- ML conference02
+|------------+------------------------------------------------------------+---------------+------------------------------------------------------+--------------------------------|
+| name       | full name                                                  | ddl           | link                                                 | note                           |
+|------------+------------------------------------------------------------+---------------+------------------------------------------------------+--------------------------------|
+| NIPS       | Conference on Neural Information Processing Systems        | May. 16th     | [[https://nips.cc/Conferences/2022/Dates]]           | NeurIPS                        |
+| ICML       | International Conference on Machine Learning               | Jan. 11th     | [[https://icml.cc/Conferences/2022/CallForPapers]]   |                                |
+| CVPR       | Conference on Computer Vision and Pattern Recognition      | Nov. 11th     | [[https://cvpr2023.thecvf.com/]]                     |                                |
+| ICLR       | International Conference on Learning Representations       | Sep. 28th     | [[https://iclr.cc/]]                                 |                                |
+| ICCV       | International Conference on Computer Vision                | Mar. 8th      | [[https://iccv2023.thecvf.com/]]                     |                                |
+| ECCV       | European Conference on Computer Vision                     | Mar. 7th      | [[https://eccv2022.ecva.net/submission/]]            |                                |
+| ICPR       | International Conference on Pattern Recognition            | Jan. 17th     | [[https://www.icpr2022.com/]]                        |                                |
+| AAAI       | Association for the Advancement of Artificial Intelligence | July. 11th    | [[https://aaai.org/Conferences/AAAI-23/aaai23call/]] | website unclear submission ddl |
+| KDD        |                                                            | Aug 1st, 2024 | [[https://kdd2025.kdd.org/]]                         |                                |
+|------------+------------------------------------------------------------+---------------+------------------------------------------------------+--------------------------------|
+| IEEE Cloud | IEEE Cloud                                                 | Apri. 1st     | [[https://conferences.computer.org/cloud/2022/cfp/]] |                                |
+|------------+------------------------------------------------------------+---------------+------------------------------------------------------+--------------------------------|
+
 - other
 |---------+------------------------------------------------------------------+-----+------+----------|
 | name    | full name                                                        | ddl | link | note     |
