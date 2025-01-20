@@ -1,47 +1,70 @@
 #+title: transCodeVideo
 
+*** t
 **** title
-need to have faith in this portable harddrive, ai
-  142 directories scanned
-   1116 image files read
-   exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov -json -r ./ >   13.81s user 2.77s system 15% cpu 1:45.59 total
+note: need to have faith in the portable harddrive
+    hopefully it will survive this kind of tasks
+#+begin_src shell
+142 directories scanned
+1116 image files read
+exiftool -progress -ext mp4 -ext mkv -ext webm -ext mov -json -r ./ >
+13.81s user 2.77s system 15% cpu 1:45.59 total
+#+end_src
 
-use rsync for this folder
-don't trust github for this data
+note: don't trust github for this meta data. Rather, encrypt it and upload to server
 
+note: I am glad that it is two times faster on desktop CPU, but it still take half
+    hour to transcode a one hour video.
+    I need computation power for transcoding video, save storage
 
-I am glad that it is two times faster on desktop CPU, but it still take half hour to transcode a one hour video
-
-I need computation power for transcoding video, save storage
-rsync
+note: with rsync for folder backup.
+note02: using syncthing rn
+    use rsync for this folder
 #+begin_src shell
     rsync -a dir1/ dir2
     (base) ➜  rsync -avP --delete ../20220103_process/ vislab@130.245.4.102:~/Downloads/20220103_process      # push
     (base) ➜  rsync -avP --delete vislab@XXXXXXXXXXXXX:~/Downloads/20220103_process/ ../20220103_process      # pull
 #+end_src
 
-I guess if a storage is not connected to computers, it is not active storage
-filter rules:
-- large file inspection
-- storage vs duration
-- storage vs rating
-- storage vs tags
-- a ML decision making ?? for delete files, 233333, or for transcode large files
-
-
+note: I guess if a storage is not connected to computers, it is not active storage
+note: filter rules to decide which video files to transcode
+    - large file inspection
+    - storage vs duration
+    - storage vs rating
+    - storage vs tags
+    - a ML decision making ?? for delete files, 233333, or for transcode large files
+**** t others
 from: https://github.com/vim-syntastic/syntastic
 from: https://www.flake8rules.com/
 desc: Syntastic vim plugin
-note : glad there are some rules about python style, but if the code works, manage style should be an software problem, not programmer's problem
+note : glad there are some rules about python style. So if the code works,
+    manage style should be an software problem, not programmer's problem
 
 from: https://vimawesome.com/plugin/youcompleteme-thing-itself
 decs: nice vim ycm tutorial
 
-**** aims for 1 hour 720p videos of 500MB storage
+**** t discuss mp4 vs mkv, vs webm, vs rmvb
+goal: to show a thumbnail, video size, bitrate
+    and to storage video in enjoyable and scale-able bitrate
+sum: Use MP4. You can't beat the format that's native to everything
+    and convertion is easy script
+
+note: codec H.264 with AAC Audio.
+    Nvidia GPU HW support, intel CPU quicksliver HW support
+
+from: https://www.reddit.com/r/PleX/comments/2t9kbr/mkv_vs_mp4/
+quote:
+note: macOS preview doesn’t support mkv, and rmvb
+    Windows support for mkv, or rmvb, I don't think so
+    Linux Dolphin support mkv "preview" playback
+    Android VLC suppport vlc, but take a long time to seek
+    Iphone VLC ??, I don't use/have it anymore
+
+**** t aims for 1 hour 720p videos of 500MB storage
 meaning a 100GB is 200hour content, about 100 movies or 10 season of TVshows
 meaning 500MB * 8 * 1000 / 60.0 / 60.0 = 1111 kb/sec
+note: ffprobe 1.mkv
 #+begin_src shell
-
 $ ffprobe 1.mkv
 
 Input #0, matroska,webm, from 'Game.of.Thrones.S03E01.720p.BluRay.450MB.ShAaNiG.com.mkv':
@@ -53,7 +76,6 @@ Input #0, matroska,webm, from 'Game.of.Thrones.S03E01.720p.BluRay.450MB.ShAaNiG.
     Stream #0:1: Audio: aac (HE-AAC), 48000 Hz, stereo, fltp (default)
 #+end_src
 
-
 note: ffmpeg -h encoder=hevc_nvenc
 from: https://gist.github.com/nico-lab/c2d192cbb793dfd241c1eafeb52a21c3#file-hevc_nvenc-txt-L61
 from: https://superuser.com/questions/1296374/best-settings-for-ffmpeg-with-nvenc
@@ -61,16 +83,7 @@ from: https://trac.ffmpeg.org/wiki/Encode/H.265
 from: https://trac.ffmpeg.org/wiki/Encode/VP9
 from: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
-with cpu and software encoding
-#+begin_src shell
-ffmpeg -i "input.mp4" -copy_unknown -map_metadata 0 -map 0 -codec copy \
-    -codec:v libx264 -pix_fmt yuv420p -crf 23 \
-    -codec:a libfdk_aac -vbr 4 \
-    -preset fast "output.mp4"
-
-#+end_src
-
-find the good options with hevc_nvenc, use this
+note: usethis, find the good options with hevc_nvenc,
 #+begin_src shell
 ## ffmpeg GPU transcode
 time ffmpeg -hwaccel cuda -i t01.mkv -crf 24 \
@@ -124,6 +137,16 @@ time ffmpeg -hwaccel cuda -i t01.mkv -c:v libvpx-vp9 -b:v 2M output01.webm
 
 #+end_src
 
+note: with cpu and software encoding
+#+begin_src shell
+ffmpeg -i "input.mp4" -copy_unknown -map_metadata 0 -map 0 -codec copy \
+    -codec:v libx264 -pix_fmt yuv420p -crf 23 \
+    -codec:a libfdk_aac -vbr 4 \
+    -preset fast "output.mp4"
+
+#+end_src
+
+note: with BASH loops
 #+begin_src bash
 #!bash
 targets=('/media/wenchen/file asdf 202020.mp4' '/media/wenchen/file2 asdf 23sdf.mp4' )
@@ -173,7 +196,7 @@ note: install nvdia-ffmpeg
 
 #+end_src
 
-default ffmpeg install on Ubuntu
+note: default ffmpeg install on Ubuntu
 #+begin_src shell
 	╰─⠠⠵ ffmpeg
 	ffmpeg version 4.2.4-1ubuntu0.1 Copyright (c) 2000-2020 the FFmpeg developers
@@ -209,31 +232,31 @@ default ffmpeg install on Ubuntu
 
 #+end_src
 
-config and compile ffmpeg src code to support better hardware
+note: config and compile ffmpeg src code to support better hardware
 #+begin_src shell
 ./configure \
---pkg-config-flags="--static" \
---extra-cflags=-I/usr/local/cuda/include                                   \
---extra-ldflags=-L/usr/local/cuda/lib64                             \
---extra-libs="-lpthread -lm" \
---ld="g++" \
---enable-cuda-nvcc --enable-libnpp                \
---enable-gpl \
---enable-gnutls \
---enable-libass \
---enable-libfdk-aac \
---enable-libfreetype \
---enable-libmp3lame \
---enable-libopus \
---enable-libvorbis \
---enable-libvpx \
---enable-libx264 \
---enable-libx265 \
---enable-nonfree
+  --pkg-config-flags="--static" \
+  --extra-cflags=-I/usr/local/cuda/include                                   \
+  --extra-ldflags=-L/usr/local/cuda/lib64                             \
+  --extra-libs="-lpthread -lm" \
+  --ld="g++" \
+  --enable-cuda-nvcc --enable-libnpp                \
+  --enable-gpl \
+  --enable-gnutls \
+  --enable-libass \
+  --enable-libfdk-aac \
+  --enable-libfreetype \
+  --enable-libmp3lame \
+  --enable-libopus \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-libx264 \
+  --enable-libx265 \
+  --enable-nonfree
 
 #+end_src
 
-early try of video hevc_nvenc codec choices
+note: early try of video hevc_nvenc codec choices
 #+begin_src shell
     ~/nvidia/ffmpeg/ffmpeg -y -hwaccel cuda -i input.mkv -vf scale=1920:1080 -vcodec libx265 -crf 24 output.mp4
     ## maybe do this, but transcode in my laptop is slow
@@ -262,6 +285,7 @@ early try of video hevc_nvenc codec choices
 #+end_src
 
 **** IDEA [#7] we would need a FIFO queue with pause/stop function ??
+
 **** Ubuntu-Mate Desktop Environment for video review, analysis and management
 
 Ubuntu Mate file program: Caja vs. Dolphin
@@ -294,6 +318,7 @@ from: https://mpv.io/manual/master/
 #+end_src
 
 ***** use "Eye of Mate" for pictures in Ubuntu mate system
+
 ***** use caja for file explorer
 dolphin might be better
 
@@ -315,7 +340,7 @@ from: https://unix.stackexchange.com/questions/443784/where-does-caja-put-its-pr
 
 #+end_src
 
-***** TODO [#7] look into gsetting and ubuntu-mate personalization
+***** DONE [#7] look into gsetting and ubuntu-mate personalization
 from: https://guide.ubuntu-mate.org/#personalization-window-controls
 gsettings set org.gnome.desktop.lockdown disable-lock-screen true
 

@@ -22,6 +22,8 @@ sudo apt install -y python3
 sudo apt install -y ranger
 sudo apt install -y tldr
 sudo apt install -y pandoc
+sudo apt install -y dolphin
+sudo snap install node
 
 # config
 #===============================================================================

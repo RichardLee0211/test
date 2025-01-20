@@ -1,5 +1,5 @@
 #+title: README.remoteControl
-
+*** t
 **** My objective:
 a remote file system I can access files, because laptop storage have some limits
 edit them using local or remote machine,
@@ -86,7 +86,6 @@ but poor upload speed
          1.34M   0%  278.62kB/s    0:27:12
 #+end_src
 
-
 **** check ssh log
 
 day one on internet, already an unknown IP attempt
@@ -118,10 +117,11 @@ from: https://www.linuxcapable.com/how-to-install-fail2ban-on-ubuntu-22-04-lts/
 - test out fail2ban
 with another ip machine with wrong password
 after 5 tries
-ssh vislab@<ip_addr>                                                                                                                                                                                                                                                                                                                                      130 ⨯
+ssh vislab@<ip_addr>
 ssh: connect to host XXXXXXXXXXXXX port 22: Connection refused
 
-
+change maxtry to 3
+and enable geoip and exclude countries I am not travelling
 **** need a script to check public IP addr at home
 
 #+begin_src shell
@@ -190,13 +190,13 @@ Don't know how to control it
 - sshfs
 from: https://it.stonybrook.edu/help/kb/using-sshfs
 from: https://osxfuse.github.io/
-```shell
+#+begin_src shell
   ## this is more convenient than ssh, scp, rsync, sftp(and sftp GUI)
   sshfs vislab@130.245.4.102:/home/vislab/ ~/vislab_mnt  ## or with some opnion
   sshfs -o auto_cache,reconnect vislab@130.245.4.102:/home/vislab/ ~/vislab_mnt
   fusermount -u /Volumes/vislab  ## or use umount
   sudo umount /Volumes/vislab
-```
+#+end_src
 
 from: https://github.com/osxfuse/osxfuse/issues/828
 title: macOS 11.5 - The system extension required for mounting macFUSE volumes could not be loaded.
@@ -221,7 +221,6 @@ upload at 45MB/s using rsync
 download at 2MB/s using rsync
 
 - try nfs
-
 #+begin_src
   ## Ubuntu nfs server
   sudo apt update
@@ -263,8 +262,6 @@ download at 2MB/s using rsync
 #+end_src
 
 - try nfs at home
-
-
 (base) ➜  Report git:(master) ✗ sudo mount -t nfs -o resvport 192.168.1.39:/home/wenchen ~/mnt_NFS
 download at 25MB/s with rsync
 upload   at 30MB/s with sudo rsync
@@ -345,7 +342,7 @@ from: https://www.youtube.com/watch?v=_JTEsQufSx4&ab_channel=Coodos
 title: Don't Dual Boot, Do this instead | MacOS Big Sur and Windows 10 KVM SINGLE GPU OVMF Passthrough
 tricky to get GPU passthrough into KVM and QEMU
 
-Virtual Mechine Host
+note: Virtual Mechine Host
 #+begin_src shell
   egrep -c '(vmx|svm)' /proc/cpuinfo   ## check cpu virtualization cap
 

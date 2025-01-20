@@ -1,8 +1,6 @@
 #+title: t01_ubuntu2204
 *** ubuntu 22.04 setup notes
 
-**** TODO [#A] definately have more things to add
-
 **** ubuntu setup script
 #+begin_src shell
 sudo apt update && sudo apt upgrade
@@ -19,13 +17,13 @@ sudo apt install -y tldr
 sudo apt install -y pandoc
 
 ### system tools
-sudo apt install -y i3
+# sudo apt install -y i3
 sudo apt install -y net-tools # ifconfig
 sudo apt install -y htop
 
-sudo apt install -y g++
-sudo apt install -y valgrind
-sudo apt install -y ctags
+# sudo apt install -y g++
+# sudo apt install -y valgrind
+# sudo apt install -y ctags
 
 # ??
 # sudo apt-get install -y python-opencv
@@ -48,18 +46,119 @@ cp $HOME/Code/_Mytest/testSysAdmin/t01_LinuxSetup/c01_tmux.conf  $HOME/.tmux.con
 
 this seem to be a good ubuntu set up script
 [here](https://github.com/sojharo/mangi-script/blob/master/my_ubuntu_setup.sh)
+note: nice, forked
 
 using mac keyboard but windows way to copy and paste is painful
 
 maybe I just need a simple laptop setup to focus on coding problem
 
-[this](https://dev.to/brpaz/my-linux-development-environment-of-2018-ch7)
-contains a lot ubuntu tools
+his category
+#+begin_quote
+  - Productivity Tools
+  - Internet
+  - Graphics and multimedia
+  - Sound and Video
+  - System utilities
+  - Terminal setup
+  - Command line utilities
+  - Development Environment
+  - Development tools
+  - DevOps tools
+#+end_quote
+#
 
+from: https://www.codacy.com/quality
+quote: Codacy gives me automated code reviews & code analytics and it´s free for 4 users.
+
+from: https://viethung.space/SnippetStoreWeb/
+from; https://github.com/ZeroX-DG/SnippetStore
+note: appearently, code snippet management is a thing/topic
+
+from: https://www.diigo.com/index
+note: good webpage highlighter before I save the page to Zotero
+
+**** t linux-development-environment
+from: [this](https://dev.to/brpaz/my-linux-development-environment-of-2018-ch7)
+note: contains a lot ubuntu tools
+from: https://www.cerebroapp.com/
+note: cross-platform launcher with JS and CSS
+quote: Corebird — Twitter Desktop client
+  Ramme — Instagram desktop client
+  Caprine — Facebook messenger desktop client
+  ffmulticonverter — For converting images / videos between multiple formats.
+  Peek — Peek allows to record the screen and save as GIF format. very useful for creating demo gifs for put on project readme files for example.
+
+from: https://www.pinta-project.com/
+note: could learn it, image/photograph creativity
+quote: Pinta — Pinta is a free, open source program for drawing and image editing. Its my image editor of choice. While Gimp is the most popular image editor on Linux, I found Pinta to much more simpler to use and resembles more with Photostop.
+
+from: https://www.xnview.com/en/xnconvert/
+note: quite handy
+quote: a powerful and free cross-platform batch image processor, allowing you to combine over 80 actions.
+
+from: https://app.diagrams.net/?src=about
+from: https://github.com/jgraph/drawio-desktop
+note: not as polished as commercial one, and that okay
+
+from: https://github.com/shutter-project/shutter
+note: good one. Could use it if default screenshot app doesn't work for me
+
+from: https://pushover.net/pricing
+from: https://www.youtube.com/watch?v=z_e39lmd5b4
+title: Get Instant Push Notifications with Zero Subscription Fee!
+note: 5$ for pushover notification for software integration
+
+from: https://devdocs.io/
+quote: DevDocs combines multiple API documentations in a fast, organized, and searchable interface.
+note: very nice, this will be better than google search
+
+**** t linux-development-environment conti.
+note: things I might come back for a future upgrade
+fasd — Fasd is a command-line productivity booster. Fasd offers quick access to files and directories for POSIX shells. It is inspired by tools like autojump, z and v. Fasd keeps track of files and directories you have accessed, so that you can quickly reference them in the command line.
+lnav — An advanced log file viewer for the small-scale
+ascicinema — Record and share your terminal sessions, the right way.
+
+from: https://github.com/knqyf263/pet?tab=readme-ov-file#main-features
+quote: Pet — Simple command-line snippet manager. I use it to store the commands I use most.
+note: great, TODO [#1]
+
+from: https://caniuse.com/ciu/about
+from: https://github.com/sgentle/caniuse-cmd?tab=readme-ov-file
+quote: "Can I use" provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers.
+
+from: https://github.com/httpie/cli
+quote: httpie — Modern command line HTTP client — user-friendly curl alternative with intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, etc
+
+from: https://github.com/mailhog/MailHog
+note: some SMTP tools
+quote: mailhog — Web and API based SMTP testing
+
+from: https://github.com/artilleryio/artillery
+quote: The complete load testing platform. Everything you need for production-grade load tests. Serverless & distributed. Load test with Playwright. Load test HTTP APIs, GraphQL, WebSocket, and more. Use any Node.js module.
+note: not for my purpose, but looks nice
+
+from: https://developer.hashicorp.com/terraform/intro
+note: I like it, infrastructure config in special json/yaml
+
+from: https://firebase.google.com/pricing
+note: maybe comeback and use this
+
+#+begin_quote
+#### Development Environment
+  I use Docker extensively in my development environment. I still have common runtimes like go, php, node (with nvm) and ruby (with rvm) installed in the host.
+  Docker
+  Docker-compose — Define and run multi-container applications with Docker
+  Minikube — Run Kubernetes locally
+  Telepresence — Local development against a remote Kubernetes or OpenShift cluster
+  note: don't really get it
+  ctop — Top-like interface for container metrics
+  Vagrant — Development Environments Made Easy. I dont Vagrant that much nowadays unless I want to work on infrastucture stuff. (Ex: testing spinning a new cluster or testing an Ansible playbook).
+  Dnsdock — For managing dns of Docker containers.
+#+end_quote
+
+**** t
 so restart the VM, and in the login options, I can i3 as my VM(window manage)
-
 this is exciting, and this is a choice. i3, tmux, transparent terminal and backgroud picture
-
 and I will need a remap to vim keystrick
 
 
@@ -175,26 +274,22 @@ a tutorial: https://computingforgeeks.com/installingconfiguring-and-customizing-
 #+begin_src shell
     apt install zsh
     ## config
-    usermod username -s /usr/bin/zsh
-    # or
-    chsh -s /usr/bin/zsh username
+    # usermod username -s /usr/bin/zsh
+    # # or
+    # chsh -s /usr/bin/zsh username
 
     # install Oh My Zsh
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 #+end_src
 
-<<<<<<< HEAD:testSysAdmin/testLinuxSetup/README.UbuntuSetup.md
-about zsh theme: 
-need to be 
+about zsh theme:
+need to be
 - relative/tail path, hostname
 - no two lines
 - no head and tail decoration
 good examples: geoffgarside
 
-```~/.zshrc
-=======
 #+begin_src  ~/.zshrc
->>>>>>> 6e972b65ac02e186cb424c53c305bc29a0b1d863:testSysAdmin/t01_LinuxSetup/t01_ubuntu2204.org
     ## wenchen
     ## inside ~/.bash_profile
     ## xmodmap ~/.Xmodmap
@@ -224,11 +319,11 @@ good examples: geoffgarside
 apt install ranger
 ~/.config/ranger/rc.conf
 #+begin_src config
+    set preview_files true
     set preview_images true
     set preview_images_method urxvt
     set draw_borders true
-    set ranger_load_default_rc false
-
+    # set ranger_load_default_rc false
 #+end_src
 
 ranger --copy-config=scope
@@ -298,7 +393,7 @@ Gnomal-Terminal has good internal font support for Chinese.
     reboot
 #+end_src
 
-**** firefox plugin
+**** t firefox plugin
 vimium, vim like operation
 adblock, adblock
 windowed, could float youtube video
@@ -337,7 +432,7 @@ from: https://askubuntu.com/questions/206283/how-can-i-uninstall-a-nvidia-driver
     dpkg -l  | grep -i nvidia
     sudo apt-get remove --purge '^nvidia-.*'
     sudo apt autoremove
-    sudo pat-get install ubuntu-desktop
+    sudo apt-get install ubuntu-desktop
     echo 'nouveau' | sudo tee -a /etc/modules
     sudo rm /etc/X11/xorg.conf
 #+end_src
@@ -366,7 +461,7 @@ as it support "copy on select"
 would be faster when with terminal and broswer work flow
 apt install terminator
 
-**** unattended-upgr take too long
+**** t unattended-upgr take too long
 from: https://askubuntu.com/questions/934807/unattended-upgrades-status
 check
 #+begin_src shell
@@ -401,13 +496,13 @@ system crashed, try to save it,
 guess what, donot move the case when the computer is working
 
 
-**** fix audio problem
+**** t fix audio problem
 
 kali don't play audio when playing youtube
 apt install alsa-utils -y # to use alsamixer
 And it could tell PS4 controller and pass audio to this device, nice
 
-**** fix firefox veritical tear
+**** t fix firefox veritical tear
 disable hardware acceleration
 For Firefox do this:
     Type "about:config" on the address bar.
@@ -415,7 +510,7 @@ For Firefox do this:
     Change it to true by double-clicking.
     Save and restart Firefox.
 
-**** firefox tab appearance
+**** t firefox tab appearance
 
 I can hard see the tabs, change its appearence
 from: https://superuser.com/questions/1653533/how-to-switch-back-to-firefox-old-style-of-tabs
@@ -532,7 +627,7 @@ Gigbit internet in the lab
     Upload: 677.55 Mbit/s
 #+end_src
 
-**** youtube-dl
+**** t youtube-dl
 sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
 sudo chmod a+x /usr/local/bin/youtube-dl
 sudo apt install python-dev
@@ -548,7 +643,7 @@ failed after some twinking
 maybe reboot??
 https://help.ubuntu.com/community/DefaultFileManager
 
-#### stress test
+**** t stress test
 nice, the new heat sink works, stress cpu top temp 65 degrees,
 stress gpu top temp 71 degrees
 #+begin_src shell
@@ -577,13 +672,20 @@ stress gpu top temp 71 degrees
     watch nvidia-smi
 #+end_src
 
-**** install notejs
-sudo snap install node --classic
-alias open=open-cli # in ~/.zshrc
+**** install notejs for coc
+#+begin_src shell
+## from:
+# sudo snap install node --classic
+# alias open=open-cli # in ~/.zshrc
+# source ~/.bashrc
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+source ~/.zshrc; rehash;
+nvm install v16.14.0
 
 sudo npm install --global open-cli
 sudo npm install --global public-ip-cli    # public-ip
 sudo npm install --global internal-ip-cli  # internal-ip
+#+begin_src
 
 **** how2
 how2 seems to be nice, terminal app to search stack overflow
@@ -679,7 +781,7 @@ tile window to left, right, top-right, botton-right, full screen
 move window to second screen
     ALT+SHIFT+1234
 
-**** zothers
+**** TODO, zothers
 this seem to be a good ubuntu set up script
 from: [[https://github.com/sojharo/mangi-script/blob/master/my_ubuntu_setup.sh]]
 
@@ -722,7 +824,6 @@ from: https://ubuntustudio.org/
 from: https://xubuntu.org/
 
 **** log 20220526 lab machine
---------------------------------------------------------------------------------
 set up Ubuntu 22.04 for Docker GPU experience
 
 tried Code ready Container(CRC) from redhat and charted-kubeflow, microk8s, and juju
@@ -895,3 +996,7 @@ https://ip:631/Printers
 from: https://ubuntuforums.org/showthread.php?t=2053460
 Openprinting recommends the Generic PCL 5c Printer - CUPS+Gutenprint v5.2.5 driver for the related 2145cn. You might have some luck there.
 
+
+**** t brew
+will be hard to install as root
+create user and group

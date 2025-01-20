@@ -2,19 +2,19 @@
 
 *** title
 from: https://discourse.ubuntu.com/t/testing-the-self-healing-of-zfs-on-ubuntu-20-04/26189
-
+#+begin_src shell
 $ sudo apt install zfsutils-linux
 └> zfs --version
-zfs-0.8.3-1ubuntu12.14
-zfs-kmod-2.0.6-1ubuntu2.1
+    zfs-0.8.3-1ubuntu12.14
+    zfs-kmod-2.0.6-1ubuntu2.1
 (base) ┌[wenchen☮wenchen-MS-7845]-(~)
 └> zpool --version
-zfs-0.8.3-1ubuntu12.14
-zfs-kmod-2.0.6-1ubuntu2.1
+    zfs-0.8.3-1ubuntu12.14
+    zfs-kmod-2.0.6-1ubuntu2.1
+#+end_src
 
-
-testing with stripped disks
-```shell
+note: testing with stripped disks
+#+begin_src shell
     for FAKE_DISK in disk1.img disk2.img
     do
         dd if=/dev/zero of=`pwd`/$FAKE_DISK bs=1M count=100
@@ -78,11 +78,10 @@ testing with stripped disks
 	          /home/wenchen/Downloads/20220620_testZFS/test_zfs_healing/disk2.img  ONLINE
 
      sudo zpool import test_pool_striped -d $ZFS_TEST_DIR/disk2.img  ## reimport, take a long time
+#+end_src
 
-```
-
-testing with mirrored disks
-```shell
+note: testing with mirrored disks
+#+begin_src shell
 	for FAKE_DISK in disk1.img disk2.img
 	do
 	    dd if=/dev/zero of=`pwd`/$FAKE_DISK bs=1M count=100
@@ -172,15 +171,15 @@ testing with mirrored disks
 
 	errors: No known data errors
 
-```
+#+end_src
 
-#### benchmark
+**** benchmark
 have a base line operation
 2 mirrored disks: 200 MB/s write
 2x2 striped and mirrored disks: 350 MB/s write
 this is so cool
 
-```shell
+#+begin_src shell
 (base) ➜  _Music
 rsync -ha --progress '/Volumes/SSD_1TB/_Music/Daft Punk - Discography (1996-2007) [Flac][WwW.LoKoTorrents.CoM]' wenchen@192.168.1.39:/media/wenchen/work4/
 	building file list ...
@@ -201,9 +200,9 @@ $ rsync ... ## when do with a ZFS with 2x2 striped mirror pool
 sent 5.45G bytes  received 6.08K bytes  33.13M bytes/sec
 total size is 5.45G  speedup is 1.00
 
-```
+#+end_src
 
-####
+**** t
 from: https://timor.site/2021/11/creating-fully-encrypted-zfs-pool/
 title: Creating fully encrypted ZFS pool
 this blog style is so good
@@ -221,8 +220,8 @@ from: https://arstechnica.com/gadgets/2021/06/a-quick-start-guide-to-openzfs-nat
 title: A quick-start guide to OpenZFS native encryption
 a good one
 
-#### use the right disks
-```shell
+**** use the right disks
+#+begin_src shell
 	fdisk -l  ## find disk with label liks /dev/sda, not fix between reboots
 
 	└> ls /dev/disk/by-id
@@ -232,6 +231,8 @@ a good one
 	ata-WDC_WD40EZAZ-00SF3B0_WD-WXXXXXXXFDVX
 	ata-WDC_WD40EZAZ-00SF3B0_WD-WXXXXXXXA6Z7
 	ata-WDC_WD40EZAZ-00SF3B0_WD-WXXXXXXX7E38
+
+
 
 
 	└> lsblk -o NAME,SIZE,SERIAL,LABEL,FSTYPE
@@ -255,10 +256,11 @@ a good one
 	├─nvme0n1p1     1M
 	├─nvme0n1p2   513M                                 vfat
 	└─nvme0n1p3 953.4G                                 ext4
-```
 
-on my own machine
-```shell
+#+end_src
+
+note: on my own machine
+#+begin_src shell
 # mkdir -p /media/wenchen/zfs_tank
 mkdir -p $HOME/zfs_tank
 sudo zpool create -m $HOME/zfs_tank  \
@@ -312,7 +314,7 @@ Jun 21 2022 00:34:57.990432377 sysevent.fs.zfs.history_event
         pool_state = 0x0
         pool_context = 0x0
         history_hostname = "wenchen-MS-7845"
-        history_internal_str = "pool version 5000; software version zfs-0.7.0-XXXXXXXXXXXXXXX-dist; uts wenchen-MS-7845 XXXXXXXXX-gener
+        history_internal_str = pool version 5000; software version zfs-0.7.0-XXXXXXXXXXXXXXX-dist; uts wenchen-MS-7845 XXXXXXXXX-gener
 
 
 $ sudo zfs set mountpoint=<path> <pool_name>
@@ -338,10 +340,6 @@ tank                                          5.09G  3.62T      0      8     16 
 --------------------------------------------  -----  -----  -----  -----  -----  -----
 
 zpool destroy poolname
-
-
-
-
 
 # sudo zpool create NAME mirror VDEV1 VDEV2 mirror VDEV3 VDEV4
 ## or
@@ -372,9 +370,6 @@ config:
             ata-WDC_WD40EZAZ-00SF3B0_WD-WXxxxxxxTPF4  ONLINE       0     0     0
             ata-WDC_WD40EZAZ-00SF3B0_WD-WXxxxxxxA6Z7  ONLINE       0     0     0
 
-
-
-
 ## or use this
 sudo zpool create -m $HOME/zfs_tank  \
 		-o feature@encryption=enabled \
@@ -392,19 +387,20 @@ $ sudo zfs create -o encryption=on -o keylocation=prompt -o keyformat=passphrase
 
 $ sudo zfs mount -l test-pool/encrypted
 
-```
 
-```shell
-## weird trick to generate key file
+#+end_src
+
+note: weird trick to generate key file
+#+begin_src shell
 └> hexdump ~/.zfs-encrypt.key
 0000000 0a14 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 0000010 b80d XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 0000020
 └> sudo dd if=/dev/random of=$HOME/.zfs-encrypt.key bs=1 count=32
-```
+#+end_src
 
-this is probably a right way to manage zfs folder permission
-```shell
+note: this is probably a right way to manage zfs folder permission
+#+begin_src shell
 	GRP_NAME=<groupanem>
 	ZFS_P=<zfs_path>
 	sudo groupadd $GRP_NAME
@@ -412,16 +408,18 @@ this is probably a right way to manage zfs folder permission
 	sudo mkdir $ZFS_P/data1
 	sudo chgrp $GRP_NAME $ZFS_P/data1
 	sudo chmod g+rwsx $ZFS_P/data1/
-```
+#+end_src
 
-####
+
+#### t
 zfs snapshot zpoolname@snapshotname
 zfs list -t snapshot
 zfs rollback poolname@snapshotname
 zfs destroy poolname@snapshotname
 
-#### samba share
-```shell
+**** samba share
+
+#+begin_src shell
 	mkdir /home/<username>/sambashare/
 
 cat << EOF > /etc/samba/smb.conf
@@ -446,11 +444,11 @@ EOF
 systemctl status smbd
 systemctl enable smbd
 
-```
+#+end_src
 
-####
-some steps to mount zfs after reboots
-
+#### t
+note: some steps to mount zfs after reboots
+#+begin_src shell
 └> zfs list
 NAME   USED  AVAIL     REFER  MOUNTPOINT
 tank   844G  6.30T      844G  /home/wenchen/zfs_tank
@@ -468,8 +466,9 @@ Enter passphrase for 'tank':
 
 └> sudo zfs mount tank
 
-####
-rclone
+#+end_src
+
+**** t rclone
 
 from: https://console.cloud.google.com/
 from: https://rclone.org/drive/
@@ -499,9 +498,7 @@ from: https://rclone.org/drive/
  --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 --stats 1s \
  "/home/dave/Documents" "google-drive:LinuxDocs"
 
-
-####
-do zfs in the lab
+**** do zfs in the lab
 
  $ ls -alh /dev/disk/by-id
  total 0
@@ -540,8 +537,6 @@ sent 27.12G bytes  received 30.18M bytes  16.73M bytes/sec
 total size is 27.02G  speedup is 1.00
 rsync -ah --progress ../20220127test vislab@130.245.4.102:~/zfs_tank/
 293.64s user 769.92s system 63% cpu 27:44.53 total
-
-
 
 **** ssh access machine behind firewall
 server$ ssh -R 9091:localhost:22 client.example.egg
@@ -635,8 +630,7 @@ note: Since an SSH-based setup entails a fair amount of overhead, it may be more
     suited to temporary setups, such as for wireless VPNs. More permanent VPNs are
     better provided by tools such as ipsecctl(8) and isakmpd(8).
 
-
-****  benchmart internet speed
+**** benchmart internet speed
 from: https://www.speedtest.net/apps/cli
 
 ```shell

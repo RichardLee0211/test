@@ -1,6 +1,6 @@
 #! /bin/bash
 
-## remove the 20s advertisement in the end of audio file
+## goal: remove the 20s advertisement in the end of audio file
 ## this is uncanny since I may need do this in the future collection
 ## I hate this kind of advertisement
 
